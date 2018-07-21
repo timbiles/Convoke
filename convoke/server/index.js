@@ -1,7 +1,6 @@
 require('dotenv').config();
 const express = require('express');
 const { json } = require('body-parser');
-const session = require('session');
 const massive = require('massive');
 // const passport = require('passport');
 const path = require('path');

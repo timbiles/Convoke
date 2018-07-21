@@ -1,14 +1,7 @@
-import { createStore, combineReducers, applyMiddleware } from 'redux';
-import promiseMiddleware from 'redux-promise-middleware';
+import { createStore } from 'redux';
 
-import reducer from './reducer';
+import eventReducer from './eventReducer';
 
-const combineReducers = combineReducers({
-  eventReducer
-});
-
-const middlewares = applyMiddleware(promiseMiddleware);
-
-const store = createStore(combineReducers, middlewares);
+const store = createStore(eventReducer);
 
 export default store;

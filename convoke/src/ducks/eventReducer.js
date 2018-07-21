@@ -2,31 +2,62 @@ import axios from 'axios';
 
 //initial state
 const initialState = {
-  events: []
+  events: [],
+  isLoading: false,
+  didErr: false
 };
 
 //constants
-const GET_EVENT = 'GET_EVENT';
-const CREATE_EVENT = 'CREATE_EVENT';
-const REMOVE_EVENT = 'REMOVE_EVENT';
+const GET_EVENTS = 'GET_EVENTS';
+// const CREATE_EVENT = 'CREATE_EVENT';
+// const REMOVE_EVENT = 'REMOVE_EVENT';
 
 //action creators
-export const getEvent = () => {
-  return {};
+export function getEvents() {
+  return {
+    type: GET_EVENTS,
+    payload: axios.get('/api/events')
+  };
 };
 
-export const createEvent = () => {
-  return {};
-};
+// export const createEvent = event => {
+//   return {
+//     type: CREATE_EVENT,
+//     payload: axios.post(`/api/events`)
+//   };
+// };
 
-export const removeEvent = () => {
-  return {};
-};
+// export const removeEvent = event => {
+//   return {
+//     type: REMOVE_EVENT,
+//     payload: axios.delete(`/api/events/${events_id}`)
+//   };
+// };
 
-//reducer
+// reducer
 export default function eventReducer(state = initialState, action) {
   switch (action.type) {
-      case 
+    case `${GET_EVENTS}_PENDING`:
+        return {
+            ...state,
+            isLoading: true
+        }
+    case `${GET_EVENTS}_FULFILLED`:
+    // case `${CREATE_EVENT}_FULFILLED`:
+    // case `${REMOVE_EVENT}_FULFILLED`:
+      return {
+        ...state,
+        isLoading: false,
+        events: action.payload.data
+      };
+    case `${GET_EVENTS}_REJECTED`:
+    // case `${CREATE_EVENT}_REJECTED`:
+    // case `${REMOVE_EVENT}_REJECTED`:
+      return {
+          ...state,
+          isLoading: false,
+          didErr: true
+      }
     default:
       return state;
   }

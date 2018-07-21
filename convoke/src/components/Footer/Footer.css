@@ -1,6 +1,7 @@
 .footer_container {
   /* width: 100%; */
   display: flex;
+  align-items: center;
   justify-content: space-between;
   /* border-top: solid 1.5px rgb(207, 207, 207); */
 }

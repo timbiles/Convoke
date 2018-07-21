@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import {Link} from 'react-router-dom';
 import './Footer.css';
 
 export default class Footer extends Component {
@@ -13,6 +14,14 @@ export default class Footer extends Component {
               alt="Twitter logo"
             />
           </a>
+          <a href="https://www.linkedin.com/" target="blank">
+            <img
+              className="twitter_icon"
+              src="http://1000logos.net/wp-content/uploads/2017/03/Logo-LinkedIn.jpg"
+              alt="Linkedin logo"
+            />
+          </a>
+          <Link to="/contact">Contact</Link>          
           <p className="copyright">© Olive Branch Designs</p>
         </div>
       </Fragment>

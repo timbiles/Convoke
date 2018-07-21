@@ -3,13 +3,9 @@ const getAll = (req, res, next) => {
 
   db.get_all()
     .then(response => {
-      console.log(response);
       res.status(200).send(response);
     })
-    .catch(err => {
-      res.status(500).send(err);
-      console.log(`Something went wrong!`);
-    });
+    .catch(err => res.status(500).send(err));
 };
 
 const deleteEvent = (req, res, next) => {
