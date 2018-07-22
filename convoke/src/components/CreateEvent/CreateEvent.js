@@ -1,31 +1,42 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import axios from 'axios';
+// import { connect } from 'react-redux';
 
-// import './CreateEvent.css';
+import './CreateEvent.css';
 
-import { getEvents } from '../../ducks/eventReducer';
+// import { createEvent } from '../../ducks/eventReducer';
 
 class CreateEvent extends Component {
   componentDidMount() {
-    // this.props.getEvents();
+    this.createEvents();
   }
+
+  createEvents = () => {
+      axios.post('/api/events')
+  }
+
+
+
   render() {
-      console.log(this.props)
+
     return (
-      <div>
+      <div className='create_event_container'>
         <h1>CreateEvent</h1>
       </div>
     );
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    event: state.eventReducer
-  };
-};
 
-export default connect(
-  mapStateToProps,
-  { getEvents }
-)(CreateEvent);
+export default CreateEvent;
+
+// const mapStateToProps = state => {
+//   return {
+//     event: state.eventReducer
+//   };
+// };
+
+// export default connect(
+//   mapStateToProps,
+//   { createEvent }
+// )(CreateEvent);

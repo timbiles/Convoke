@@ -1,0 +1,8 @@
+.events_container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    height: 90vh;
+    width: 80%;
+    padding: 1%;
+  }

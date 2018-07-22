@@ -21,6 +21,12 @@ class App extends Component {
             <Header />
             {routes}
             <Footer />
+            <div
+              className="scroll_to_top"
+              onClick={() => {
+                window.scroll({ top: 0, behavior: 'smooth' });
+              }}
+            />
           </div>
         </Router>
       </Provider>

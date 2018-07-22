@@ -9,11 +9,11 @@ export default class Header extends Component {
 
         <div className='header_container'>
 
-          <Link to="/about">About</Link>
-          <Link to="/chat">Chat</Link>
-          <Link to="/create">CreateEvent</Link>
-          <Link to="/login">Login</Link>
-          <Link to="/profile">Profile</Link>
+          <Link className='link' to="/create">CreateEvent</Link>
+          <Link className='link' to="/about">About</Link>
+          <Link className='link' to="/chat">Chat</Link>
+          <Link className='link' to="/login">Login</Link>
+          <Link className='link' to="/profile">Profile</Link>
         </div>
 
     );

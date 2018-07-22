@@ -1,11 +1,5 @@
 import axios from 'axios';
 
-//initial state
-const initialState = {
-  events: [],
-  isLoading: false,
-  didErr: false
-};
 
 //constants
 const GET_EVENTS = 'GET_EVENTS';
@@ -20,6 +14,12 @@ export function getEvents() {
   };
 };
 
+//initial state
+const initialState = {
+  events: [],
+  isLoading: false,
+  didErr: false
+};
 // export const createEvent = event => {
 //   return {
 //     type: CREATE_EVENT,
