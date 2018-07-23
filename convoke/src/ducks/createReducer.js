@@ -1,15 +1,94 @@
-//state
+// import axios from 'axios';
+
+//initial state
 const initialState = {
-    
+  title: '',
+  host: '',
+  date: '',
+  time: ''
+};
+
+//constants
+const UPDATE_EVENT_NAME = 'UPDATE_EVENT_NAME';
+const UPDATE_HOST = 'UPDATE_HOST';
+const UPDATE_DATE = 'UPDATE_DATE';
+const UPDATE_TIME = 'UPDATE_TIME';
+const RESET = 'RESET';
+
+//action creators
+export const updateEventName = title => {
+  return {
+    type: UPDATE_EVENT_NAME,
+    payload: title
+  };
+};
+
+export const updateHost = host => {
+  return {
+    type: UPDATE_HOST,
+    payload: host
+  };
+};
+
+export const updateDate = date => {
+  return {
+    type: UPDATE_DATE,
+    payload: date
+  };
+};
+
+export const updateTime = time => {
+  return {
+    type: UPDATE_TIME,
+    payload: time
+  };
+};
+
+export function reset() {
+  return {
+    type: RESET,
+    payload: ''
+  };
 }
 
+// reducer
+export default function eventReducer(state = initialState, action) {
+  switch (action.type) {
+    case UPDATE_EVENT_NAME:
+      return {
+        ...state,
+        title: action.payload
+      };
+    case UPDATE_HOST:
+      return {
+        ...state,
+        host: action.payload
+      };
+    case UPDATE_DATE:
+      return {
+        ...state,
+        date: action.payload
+      };
+    case UPDATE_TIME:
+      return {
+        ...state,
+        time: action.payload
+      };
+    case RESET:
+      return {
+        title: action.payload,
+        host: action.payload,
+        date: action.payload,
+        time: action.payload                
+      };
+    default:
+      return state;
+  }
+}
 
-//constants//
-
-
-
-//action creators//
-
-
-
-//reducer//
+// export const createEvent = event => {
+//   return {
+//     type: CREATE_EVENTS,
+// };
+//     payload: axios.post(`/api/events`)
+//   };

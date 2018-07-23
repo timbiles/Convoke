@@ -1,9 +1,14 @@
 import axios from 'axios';
 
+//initial state
+const initialState = {
+  events: [],
+  isLoading: false,
+  didErr: false
+};
 
 //constants
 const GET_EVENTS = 'GET_EVENTS';
-// const CREATE_EVENT = 'CREATE_EVENT';
 // const REMOVE_EVENT = 'REMOVE_EVENT';
 
 //action creators
@@ -14,18 +19,7 @@ export function getEvents() {
   };
 };
 
-//initial state
-const initialState = {
-  events: [],
-  isLoading: false,
-  didErr: false
-};
-// export const createEvent = event => {
-//   return {
-//     type: CREATE_EVENT,
-//     payload: axios.post(`/api/events`)
-//   };
-// };
+
 
 // export const removeEvent = event => {
 //   return {
