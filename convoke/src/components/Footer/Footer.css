@@ -3,19 +3,34 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  background-color: rgb(157, 180, 173);
+
+
   /* border-top: solid 1.5px rgb(207, 207, 207); */
 }
 
-.twitter_icon {
-  padding: 30px;
-  height: 40px;
-  width: 40px;
+.footer_icon {
+  margin: 30px;
+  height: 35px;
+  width: 35px;
+}
+
+.twitter {
+  border-radius: 50%;
+}
+
+.linkedin {
+  border-radius: 5%;
+}
+
+.facebook {
 }
 
 .copyright {
   display: flex;
   align-items: center;
-  padding: 2%;
+  width: 100%;
+  padding-right: 10px;
 }
 
 .footer_link {
@@ -23,4 +38,5 @@
   color: #000000;
   font-family: Arial, Helvetica, sans-serif;
   cursor: pointer;
+  padding: 10%;
 }

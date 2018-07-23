@@ -9,14 +9,15 @@ import EventCard from '../EventCard/EventCard';
 import { getEvents } from '../../ducks/eventReducer';
 
 class Home extends Component {
+  
   componentDidMount() {
     this.props.getEvents();
     // console.log(getEvents());
   }
 
-  //   handleChange = e => {
-  //     this.setState({ filterEvents: e });
-  //   };
+    // handleChange = e => {
+    //   this.props.filteredEvets: e
+    // };
 
   render() {
     const { isLoading, events } = this.props;
@@ -29,6 +30,7 @@ class Home extends Component {
               className="search_bar"
               placeholder="Search for an Event"
               type="text"
+              onChange={e => this.handleChange(e.target.value)}
             />
           </div>
           {isLoading && <p>Loading...</p>}

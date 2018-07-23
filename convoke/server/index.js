@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
 const massive = require('massive');
+// const session = require('express-session');
 // const passport = require('passport');
 const path = require('path');
 const NodeGeocoder = require('node-geocoder');
@@ -20,6 +21,18 @@ massive(process.env.CONNECTION_STRING)
   .then(db => app.set('db', db))
   .catch(err => console.log(err));
 
+// app.use(
+//   session({
+//     secret: process.env.SESSION_SECRET,
+//     resave: false,
+//     saveUninitialized: false
+//   })
+// );
+
+// app.use((req,res,next) => {
+//   if(!req.session.)
+// })
+
 // const options = {
 //   provider: 'google',
 //   httpAdapter: 'https',
@@ -28,8 +41,6 @@ massive(process.env.CONNECTION_STRING)
 // };
 
 // const geocoder = NodeGeocoder(options);
-
-
 
 // massive(process.env.CONNECTION_STRING)
 //   .then(db => {
