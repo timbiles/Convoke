@@ -1,5 +1,4 @@
 import React, { Component, Fragment } from 'react';
-// import axios from 'axios';
 import { connect } from 'react-redux';
 
 import './Home.css';

@@ -23,7 +23,7 @@
   border-bottom: 1px solid #dbd8cf;
   background: linear-gradient(to top, rgb(212, 178, 178) 0%, #fff 80%);
   color: #413f3f;
-  
+  text-decoration: none;
 }
 
 .events_container h3 {
@@ -68,25 +68,25 @@
 
 .events_host {
   letter-spacing: 5px;
+  /* z-index: 1; */
 }
 
 .events_info_btn {
   display: none;
-  position: relative;
+  position: absolute;
   left: 0;
   bottom: 0;
+  margin: 5%;  
   height: 35px;
   width: 35px;
 }
 
-.events_dropdown {
-  display: none;
-  position: absolute;
-  background-color: #f9f9f9;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  padding: 12px 16px;
-  z-index: 1;
+.events_info_btn:hover {
+  transform: scale(1.5);
+}
+
+.events_info_btn:active {
+  transform: translateY(0.5px);
 }
 
 @media (max-width: 850px) {
@@ -107,9 +107,6 @@
     display: block;
   }
 
-  .events_info_btn:hover .events_dropdown {
-    display: block;
-  }
 
   .events_container h3 {
     display: none;
