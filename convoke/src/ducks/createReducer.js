@@ -6,6 +6,7 @@ const initialState = {
   host: '',
   date: '',
   time: '',
+  location: '',
   img: ''
 };
 
@@ -14,6 +15,7 @@ const UPDATE_EVENT_NAME = 'UPDATE_EVENT_NAME';
 const UPDATE_HOST = 'UPDATE_HOST';
 const UPDATE_DATE = 'UPDATE_DATE';
 const UPDATE_TIME = 'UPDATE_TIME';
+const UPDATE_LOCATION = 'UPDATE_LOCATION';
 const UPDATE_IMG = 'UPDATE_IMG';
 const RESET = 'RESET';
 
@@ -43,6 +45,13 @@ export const updateTime = time => {
   return {
     type: UPDATE_TIME,
     payload: time
+  };
+};
+
+export const updateLocation = location => {
+  return {
+    type: UPDATE_LOCATION,
+    payload: location
   };
 };
 
@@ -83,6 +92,11 @@ export default function eventReducer(state = initialState, action) {
         ...state,
         time: action.payload
       };
+    case UPDATE_LOCATION:
+      return {
+        ...state,
+        location: action.payload
+      };
     case UPDATE_IMG:
       return {
         ...state,
@@ -94,6 +108,7 @@ export default function eventReducer(state = initialState, action) {
         host: action.payload,
         date: action.payload,
         time: action.payload,  
+        location: action.payload,
         img: action.payload              
       };
     default:

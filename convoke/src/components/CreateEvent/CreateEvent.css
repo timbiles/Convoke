@@ -7,14 +7,17 @@
 }
 
 .create_event_input {
+    position: relative;
+    height: 30%;
     width: 40%;
     display: flex;
     justify-content: center;
     flex-direction: column;
-    background-color: rgb(205, 218, 214);
     padding: 10%;
-    border-radius: 2%;
+    border-radius: .5%;
     margin: 2% 0;
+    border-bottom: 1px solid #dbd8cf;
+    background: linear-gradient(bottom, rgb(205, 218, 214) 0%, #fff 90%);
 }
 
 .create_event_container input {
@@ -22,5 +25,25 @@
 }
 
 .create_event_container h1 {
-    font-weight: bold;    
+    font-weight: bold; 
+    letter-spacing: 2px;   
+}
+
+.create_event_input button {
+    cursor: pointer;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin: 2%;
+    border-radius: 0%;
+    height: 5%;
+    width: 10%;
+}
+
+.create_event_input button:hover {
+    transform: scale(1.05);
+}
+
+.location-search-input {
+    width: 95%;
 }

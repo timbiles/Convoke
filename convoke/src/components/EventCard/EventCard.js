@@ -23,14 +23,15 @@ const Card = ({ events }) => {
       </div>
       <div>
         <img className="events_container_img" src={events.img} />
-        <h3>{events.host}</h3>
+        <h3 className='events_host'> [{events.host}]</h3>
         <h3>{events.date.substring(0, 10).replace(/-/g, '/')}</h3>
         <h3>{events.time.substring(0, 5)}</h3>
+        <h3>{events.location}</h3>
         <input
           type="image"
           className="events_btn"
-          src="https://cdn0.iconfinder.com/data/icons/minimal-set-four/32/minimal-19-512.png"
-          alt="Smiley face"
+          src="https://image.flaticon.com/icons/svg/126/126469.svg"
+          alt="Add to favs btn"
           // onClick={this.handleClick}
         />
         <input

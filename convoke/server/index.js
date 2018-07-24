@@ -24,11 +24,7 @@ massive(process.env.CONNECTION_STRING)
     app.set('db', db);
   })
   .catch(err => console.log(err));
-
-// massive(process.env.CONNECTION_STRING)
-//   .then(db => app.set('db', db))
-//   .catch(err => console.log(err));
-
+  
 // app.use(
 //   session({
 //     secret: process.env.SESSION_SECRET,

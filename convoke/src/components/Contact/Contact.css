@@ -15,11 +15,13 @@
     align-items: center;
     justify-content: center;
     background-color: rgb(205, 218, 214);
-    border-radius: 2%;
+    border-radius: .5%;
     margin: 2% 0;
     position: relative;
     text-align: center;
     padding: 2%;
+    border-bottom: 1px solid #dbd8cf;
+    background: linear-gradient(bottom, rgb(205, 218, 214) 0%, #fff 90%);
 }
 
 .contacts_box h1 {
@@ -27,6 +29,7 @@
     position: absolute;
     top: 0;
     margin: 5% 0;
+    letter-spacing: 5px;
 }
 
 .contacts_box p {
