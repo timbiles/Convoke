@@ -31,6 +31,9 @@
 .about_box p {
     font-size: 1.2rem;
     letter-spacing: 1px;  
+    line-height: 2rem;
     text-align: center;  
-    padding-top: 5%;
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 5%;
 }

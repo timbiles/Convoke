@@ -11,12 +11,13 @@ import {
   updateHost,
   updateDate,
   updateTime,
+  updateImg,
   reset
 } from '../../ducks/createReducer';
 
 class CreateEvent extends Component {
   handleSubmit = id => {
-    let { title, host, date, time } = this.props.create;
+    let { title, host, date, time, img } = this.props.create;
     console.log(this.props);
     swal({
       position: 'top-end',
@@ -31,7 +32,8 @@ class CreateEvent extends Component {
         title,
         host,
         date,
-        time
+        time,
+        img
       })
       .then(() => this.props.reset());
   };
@@ -46,20 +48,21 @@ class CreateEvent extends Component {
         timer: 1000
       });
 
-      let { title, host, date, time } = this.props.create;
+      let { title, host, date, time, img } = this.props.create;
       axios
         .post(`/api/events`, {
           title,
           host,
           date,
-          time
+          time,
+          img
         })
         .then(() => this.props.reset());
     }
   };
 
   render() {
-    const { updateEventName, updateHost, updateDate, updateTime } = this.props;
+    const { updateEventName, updateHost, updateDate, updateTime, updateImg } = this.props;
     // console.log(this.props);
 
     return (
@@ -90,6 +93,13 @@ class CreateEvent extends Component {
             onChange={e => updateTime(e.target.value)}
             onKeyDown={this.handleKeyDown}
           />
+          <h1>Img URL</h1>
+          <input
+            type="text"
+            placeholder="Place URL here"
+            onChange={e => updateImg(e.target.value)}
+            onKeyDown={this.handleKeyDown}
+          />
           <Link to="/">
             <button onClick={id => this.handleSubmit(id)}>Submit Event</button>
           </Link>
@@ -103,5 +113,5 @@ const mapStateToProps = state => state;
 
 export default connect(
   mapStateToProps,
-  { updateEventName, updateHost, updateDate, updateTime, reset }
+  { updateEventName, updateHost, updateDate, updateTime, updateImg, reset }
 )(CreateEvent);

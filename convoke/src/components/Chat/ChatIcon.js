@@ -7,7 +7,7 @@ const ChatIcon = () => {
       
       <Link replace to="/chat">
         <img
-          className="chat_icon"
+          
           src="https://cdn4.vectorstock.com/i/thumb-large/33/48/speech-bubble-color-message-icon-vector-10073348.jpg"
           alt=""
         />

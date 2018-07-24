@@ -9,7 +9,7 @@
 
 .contacts_box {
     width: 50%;
-    height: 50%;
+    height: 40%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -32,12 +32,13 @@
 .contacts_box p {
     font-size: 1.2rem;
     letter-spacing: 1px;
+    line-height: 2rem;    
 }
 
 .email_text {
     position: absolute;
     bottom: 0;
-    margin: 5% 0;    
+    margin-bottom: 5%;    
 }
 
 .contacts_email {

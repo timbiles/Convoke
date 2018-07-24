@@ -13,10 +13,10 @@ const getAll = (req, res) => {
 
 const createEvent = (req, res, next) => {
   const db = req.app.get('db');
-  const { title, host, date, time } = req.body;
+  const { title, host, date, time, img } = req.body;
   console.log(req.body);
 
-  db.create_event([ title, host, date, time ])
+  db.create_event([ title, host, date, time, img ])
     .then(() => {
       res.status(200).send('Sweet');
     })
