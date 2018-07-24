@@ -7,12 +7,14 @@
 }
 
 .create_event_input {
-    width: 50%;
+    width: 40%;
     display: flex;
     justify-content: center;
     flex-direction: column;
-    background-color: rgb(197, 223, 216);
+    background-color: rgb(205, 218, 214);
     padding: 10%;
+    border-radius: 2%;
+    margin: 2% 0;
 }
 
 .create_event_container input {

@@ -36,10 +36,8 @@ class CreateEvent extends Component {
       .then(() => this.props.reset());
   };
 
-  handleKeyPress = e => {
+  handleKeyDown = e => {
     if (e.keycode === 13) {
-      let { title, host, date, time } = this.props.create;
-
       swal({
         position: 'top-end',
         type: 'success',
@@ -48,6 +46,7 @@ class CreateEvent extends Component {
         timer: 1000
       });
 
+      let { title, host, date, time } = this.props.create;
       axios
         .post(`/api/events`, {
           title,
@@ -64,24 +63,35 @@ class CreateEvent extends Component {
     // console.log(this.props);
 
     return (
-      <div className='create_event_container'>
-        
+      <div className="create_event_container">
         <div className="create_event_input">
           <h1>Event Name</h1>
-          <input type="text" onChange={e => updateEventName(e.target.value)} />
+          <input
+            type="text"
+            placeholder="Event Name"
+            onChange={e => updateEventName(e.target.value)}
+          />
           <h1>Hoster</h1>
-          <input type="text" onChange={e => updateHost(e.target.value)} />
+          <input
+            type="text"
+            placeholder="Hoster"
+            onChange={e => updateHost(e.target.value)}
+          />
           <h1>Date</h1>
-          <input type="text" onChange={e => updateDate(e.target.value)} />
+          <input
+            type="text"
+            placeholder="&quot;07/29/2017&quot;"
+            onChange={e => updateDate(e.target.value)}
+          />
           <h1>Time</h1>
-          <input type="text" onChange={e => updateTime(e.target.value)} />
+          <input
+            type="text"
+            placeholder="&quot;12:00&quot;"
+            onChange={e => updateTime(e.target.value)}
+            onKeyDown={this.handleKeyDown}
+          />
           <Link to="/">
-            <button
-              onKeyPress={this.handleKeyDown}
-              onClick={id => this.handleSubmit(id)}
-            >
-              Submit Event
-            </button>
+            <button onClick={id => this.handleSubmit(id)}>Submit Event</button>
           </Link>
         </div>
       </div>

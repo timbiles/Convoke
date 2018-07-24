@@ -3,9 +3,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: rgb(157, 180, 173);
-
-
+  background-color: rgb(250, 250, 250);
   /* border-top: solid 1.5px rgb(207, 207, 207); */
 }
 
@@ -24,6 +22,7 @@
 }
 
 .facebook {
+  border-radius: 10%;  
 }
 
 .copyright {
@@ -39,4 +38,26 @@
   font-family: Arial, Helvetica, sans-serif;
   cursor: pointer;
   padding: 10%;
+}
+
+
+@media (max-width: 800px){
+  .footer_icon {
+    margin: 15px;
+  }
+
+  .footer_link {
+    padding: 5%;
+  }
+} 
+
+@media (max-width: 600px) {
+  .footer_link {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .footer_icon {
+    margin: 5px;
+  }
 }

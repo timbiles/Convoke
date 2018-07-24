@@ -6,7 +6,10 @@ export default class About extends Component {
     return (
       <Fragment>
         <div className='about_container'>
-          <h1>About</h1>
+          <div className='about_box'>
+              <h1>About Convoke</h1>
+              <p>Convoke is a site to bring real people together with a common purpose.</p>
+          </div>
         </div>
       </Fragment>
     );
