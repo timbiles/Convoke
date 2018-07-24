@@ -16,6 +16,8 @@ import './EventCard.css';
 const Card = ({ events }) => {
   // console.log(events);
 
+  /// 2018/08/01
+
   return (
     <div className="events_container">
       <div className="events_title">
@@ -24,8 +26,13 @@ const Card = ({ events }) => {
       <div>
         <img className="events_container_img" src={events.img} />
         <h3 className='events_host'> [{events.host}]</h3>
-        <h3>{events.date.substring(0, 10).replace(/-/g, '/')}</h3>
-        <h3>{events.time.substring(0, 5)}</h3>
+
+        <h3>
+          {events.date.substring(5,10).replace(/-/g, '/')}/{events.date.substring(0,4)}
+        </h3>
+
+        {/* <h3>{events.date.substring(0, 10).replace(/-/g, '/')}</h3> */}
+        <h3>{ events.time[0] === '0' ? events.time.substring(1,5) : events.time.substring(0, 5)}</h3>
         <h3>{events.location}</h3>
         <input
           type="image"

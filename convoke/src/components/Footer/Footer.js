@@ -11,7 +11,7 @@ export default class Footer extends Component {
             <a href="http://www.twitter.com/" target="blank">
               <img
                 className="twitter footer_icon"
-                src='https://seeklogo.com/images/T/twitter-2012-negative-logo-5C6C1F1521-seeklogo.com.png'
+                src="https://seeklogo.com/images/T/twitter-2012-negative-logo-5C6C1F1521-seeklogo.com.png"
                 alt="Twitter logo"
               />
             </a>
@@ -31,10 +31,22 @@ export default class Footer extends Component {
             </a>
           </div>
           <div>
-            <Link className="footer_link" to="/about">
+            <Link
+              onClick={() => {
+                window.scroll({ top: 1000, behavior: 'smooth' });
+              }}
+              className="footer_link"
+              to="/about"
+            >
               About
             </Link>
-            <Link className="footer_link" to="/contact">
+            <Link
+              onClick={() => {
+                window.scroll({ top: 1000, behavior: 'smooth' });
+              }}
+              className="footer_link"
+              to="/contact"
+            >
               Contact
             </Link>
           </div>

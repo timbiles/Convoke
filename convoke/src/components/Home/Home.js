@@ -20,6 +20,13 @@ class Home extends Component {
   render() {
     const { isLoading, events } = this.props;
 
+    let sortEvents = events.events.map((e, i) => (
+      <EventCard
+        events={e}
+        key={i}
+      />
+    ))
+
     return (
       <Fragment>
         <div className="home_container">
@@ -33,12 +40,7 @@ class Home extends Component {
           </div>
           {isLoading && <p>Loading...</p>}
           <div className="events_display">
-            {events.events.map((e, i) => (
-                <EventCard
-                  events={e}
-                  key={i}
-                />
-              ))}
+            {sortEvents.sort()}
           </div>
         </div>
       </Fragment>

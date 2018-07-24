@@ -37,12 +37,16 @@
     margin: 2%;
     border-radius: 0%;
     height: 5%;
-    width: 10%;
 }
 
 .create_event_input button:hover {
     transform: scale(1.05);
+    background-color: rgb(236, 236, 236);
 }
+
+.create_event_input button:focus {
+    outline: none;
+  }
 
 .location-search-input {
     width: 95%;

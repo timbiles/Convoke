@@ -15,7 +15,7 @@ export default (
     <Route path="/chat" component={Chat} />
     <Route path="/contact" component={Contact} />
     <Route path="/create" component={CreateEvent} />  
-    <Route path="/login" component={Login} />
+    {/* <Route path="/login" component={Login} /> */}
     <Route path="/profile" component={Profile} />
     <Route exact path="/" component={Home} />
   </Switch>

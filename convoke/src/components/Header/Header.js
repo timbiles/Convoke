@@ -9,20 +9,49 @@ export default class Header extends Component {
       <div className="header_container">
         <div className="header_link_container">
           <div>
-            <Link className="link" to="/create">
+            <Link
+              onClick={() => {
+                window.scrollTo({ top: 1000, behavior: 'smooth' });
+              }}
+              className="link"
+              to="/create"
+            >
               Create Event
             </Link>
           </div>
-          <div>
-            <Link className="link" to="/chat">
+          <div className='right_header_links'>
+            <Link
+              onClick={() => {
+                window.scroll({ top: 1000, behavior: 'smooth' });
+              }}
+              className="link"
+              to="/chat"
+            >
               Chat
             </Link>
-            <Link className="link" to="/profile">
+            <Link
+              onClick={() => {
+                window.scroll({ top: 1000, behavior: 'smooth' });
+              }}
+              className="link"
+              to="/profile"
+            >
               MyConvoke
             </Link>
-            <Link className="link" to="/login">
+            {/* <Link
+              onClick={() => {
+                window.scroll({ top: 1000, behavior: 'smooth' });
+              }}
+              className="link"
+              to="/login"
+            >
               Login
-            </Link>
+            </Link> */}
+            <div>
+              <a className="link" href={process.env.REACT_APP_LOGIN}>
+                <h1 className="link">Login</h1>
+              </a>
+            </div>
           </div>
         </div>
         <img

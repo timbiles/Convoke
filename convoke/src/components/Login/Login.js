@@ -1,12 +1,14 @@
-import React, {Component, Fragment} from 'react';
+import React, { Component } from 'react';
 // import './Login.css';
 
 export default class Login extends Component {
-    render(){
-        return(
-            <Fragment>
-                <h1>Login</h1>
-            </Fragment>
-        )
-    }
+  render() {
+    return (
+      <div>
+        <a href={process.env.REACT_APP_LOGIN}>
+          <button>Login</button>
+        </a>
+      </div>
+    );
+  }
 }
