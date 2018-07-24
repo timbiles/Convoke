@@ -4,16 +4,17 @@
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  height: 30vh;
-  width: 20vh;
-  padding: 1%;
-  background-color: rgb(250, 250, 250);
+  /* text-align: center; */
+  height: 60vh;
+  width: 40vh;
+  background-color: rgb(240, 240, 240);
+  /* border: solid 1px gray; */
   position: relative;
   margin: 3%;
   border-radius: 2%;
 }
 
-.events_container h1 {
+.events_title {
   font-weight: bold;
   position: absolute;
   text-align: center;
@@ -27,21 +28,51 @@
 }
 
 .events_container h3 {
-  text-align: center;
   padding: 5%;
+  text-align: center;
 }
 
-.events_container button {
+.events_btn {
   position: absolute;
+  right: 0;
   bottom: 0;
-  margin: 5% 0;
+  margin: 5%;
   cursor: pointer;
+  background-color: rgb(255, 255, 255);
+  border-radius: 50%;
+  height: 35px;
+  width: 35px;
+}
+
+.events_btn:hover {
+  background-color: rgb(205, 218, 214);
+  
+}
+
+
+.events_container_img{
+  height: 225px;
+  width: 100%;
+  top: 0;
+  object-fit: cover;
+}
+
+@media (max-width: 850px){
+  .events_container {
+    height: 60vh;
+    width: 60vh;
+  }
+
 }
 
 @media (max-width: 567px) {
   .events_container {
-    height: 25vh;
-    width: 15vh;
+    height: 40vh;
+    width: 40vh;
+  }
+
+  .events_container h3 {
+    display: none;
   }
 
   .events_container h1 {

@@ -33,6 +33,14 @@
   cursor: pointer;
 }
 
+.chat_icon{
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  height: 40px;
+  width: 40px;
+}
+
 /* @keyframes bounce {
 	0% {
     transform: translateY(0)
