@@ -1,5 +1,5 @@
 import React from 'react';
-import swal from 'sweetalert2';
+// import swal from 'sweetalert2';
 
 import './EventCard.css';
 
@@ -16,7 +16,6 @@ import './EventCard.css';
 const Card = ({ events }) => {
   // console.log(events);
 
-  /// 2018/08/01
 
   return (
     <div className="events_container">
@@ -24,7 +23,7 @@ const Card = ({ events }) => {
         <h1>{events.title}</h1>
       </div>
       <div>
-        <img className="events_container_img" src={events.img} />
+        <img className="events_container_img" src={events.img} alt={events.title}/>
         <h3 className='events_host'> [{events.host}]</h3>
 
         <h3>

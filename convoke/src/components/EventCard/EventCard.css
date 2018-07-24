@@ -21,7 +21,7 @@
   padding: 5% 0;
   letter-spacing: 1px;
   border-bottom: 1px solid #dbd8cf;
-  background: linear-gradient(bottom, rgb(212, 178, 178) 0%, #fff 80%);
+  background: linear-gradient(to top, rgb(212, 178, 178) 0%, #fff 80%);
   color: #413f3f;
   
 }

@@ -45,7 +45,9 @@ class CreateEvent extends Component {
   };
 
   handleKeyDown = e => {
-    if (e.keycode === 13) {
+    let { title, host, date, time, location, img } = this.props.create;
+
+    if (e.keyCode === 13) {
       swal({
         position: 'top-end',
         type: 'success',
@@ -54,7 +56,6 @@ class CreateEvent extends Component {
         timer: 1000
       });
 
-      let { title, host, date, time, location, img } = this.props.create;
       axios
         .post(`/api/events`, {
           title,
@@ -112,13 +113,13 @@ class CreateEvent extends Component {
             type="text"
             placeholder="&quot;12:00&quot;"
             onChange={e => updateTime(e.target.value)}
-            onKeyDown={this.handleKeyDown}
           />
           <h1>Location</h1>
           <PlacesAutocomplete
             value={this.props.create.location}
             onChange={updateLocation}
             onSelect={this.handleSelect}
+            onKeyDown={this.handleKeyDown}            
           >
           
             {({
@@ -164,7 +165,7 @@ class CreateEvent extends Component {
             type="text"
             placeholder="Place URL here"
             onChange={e => updateImg(e.target.value)}
-            onKeyDown={this.handleKeyDown}
+            // onKeyDown={this.handleKeyDown}
           />
           <Link to="/">
             <button onClick={id => this.handleSubmit(id)}>Submit Event</button>

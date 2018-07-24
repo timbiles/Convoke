@@ -18,7 +18,7 @@
     padding: 2%;
     position: relative;
     border-bottom: 1px solid #dbd8cf;
-    background: linear-gradient(bottom, rgb(205, 218, 214) 0%, #fff 90%);
+    background: linear-gradient(to top, rgb(205, 218, 214) 0%, #fff 90%);
 }
 
 .about_box h1 {
