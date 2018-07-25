@@ -18,13 +18,18 @@ import {
 class EditProfile extends Component {
   handleSubmit = id => {
     let { name, email, home_town, img, bio, auth_id } = this.props.user;
-    this.props
-      .updateUserInfo(auth_id, name, email, home_town, img, bio)
+    this.props.updateUserInfo(auth_id, name, email, home_town, img, bio);
+  };
 
+  handleKeyDown = e => {
+    if (e.keyCode === 13) {
+      let { name, email, home_town, img, bio, auth_id } = this.props.user;
+      this.props.updateUserInfo(auth_id, name, email, home_town, img, bio);
+    }
   };
 
   render() {
-    const { auth_id } = this.props.user;
+    const { auth_id, name, email, home_town, img, bio } = this.props.user;
     const {
       updateName,
       updateEmail,
@@ -50,21 +55,22 @@ class EditProfile extends Component {
               <h1>Update Name</h1>
               <input
                 className="update_profile_name"
-                placeholder="Update Name"
+                value={name}
                 type="text"
                 onChange={e => updateName(e.target.value)}
+                onKeyDown={this.handleKeyDown}
               />
               <h1>Update Email</h1>
               <input
                 className="update_profile_email"
-                placeholder="Update Email"
+                value={email}
                 type="text"
                 onChange={e => updateEmail(e.target.value)}
               />
               <h1>Update Home Town</h1>
               <input
                 className="update_profile_home_town"
-                placeholder="Update Home Town"
+                value={home_town}
                 type="text"
                 onChange={e => updateHomeTown(e.target.value)}
               />
@@ -78,12 +84,15 @@ class EditProfile extends Component {
               <h1>Update Bio</h1>
               <input
                 className="update_profile_bio"
-                placeholder="Update Bio"
+                value={bio}
                 type="text"
                 onChange={e => updateBio(e.target.value)}
               />
               <Link to="/profile">
-                <button onClick={id => this.handleSubmit(id)}>
+                <button
+                  onKeyDown={this.handleKeyDown}
+                  onClick={id => this.handleSubmit(id)}
+                >
                   Submit Edit
                 </button>
               </Link>

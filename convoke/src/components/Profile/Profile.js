@@ -7,7 +7,6 @@ import './Profile.css';
 import { getUser } from '../../ducks/userReducer';
 
 class Profile extends Component {
-
   render() {
     const { auth_id, name, email, home_town, img, bio } = this.props.user;
 
@@ -31,15 +30,15 @@ class Profile extends Component {
                 <p>{email}</p>
                 <h3>Home Town</h3>
                 <p>{home_town}</p>
-                <h3>Bio</h3>
-                <p>{bio}</p>
                 <div className="mc_img_and_edit">
-                  <p>{name}</p>
+                  <p className="mc_profile_name">{name}</p>
                   <img
                     className="profile_display_img"
                     src={img}
                     alt={auth_id}
                   />
+                  <h3>Bio</h3>
+                  <p>{bio}</p>
                   <Link className="" to="/editprofile">
                     Edit Profile
                   </Link>

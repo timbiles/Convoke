@@ -45,12 +45,17 @@ class Home extends Component {
               onChange={e => this.handleChange(e.target.value)}
             />
           </div>
+          <div className="home_linebreak" />
           {isLoading && <p>Loading...</p>}
-          <div className="events_display">{filter}
-          {!filter.length && (
-                  <div className="event_not_found"><h1> Ooops! We didn't find any event with that name!</h1></div>
-                )}
+          <div className="events_display">
+            {filter}
+            {!filter.length && (
+              <div className="event_not_found">
+                <h1> Ooops! We didn't find any event with that name!</h1>
+              </div>
+            )}
           </div>
+          
         </div>
       </Fragment>
     );

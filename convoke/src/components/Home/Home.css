@@ -50,6 +50,12 @@
   letter-spacing: 4px;
 }
 
+.home_linebreak {
+  margin-top: 2%;
+  border: solid 1px rgb(204, 202, 202);
+  width: 99%;
+}
+
 @media (max-width: 1116px) {
   .events_display{
     justify-content: center;
