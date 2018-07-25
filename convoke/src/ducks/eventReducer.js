@@ -3,14 +3,12 @@ import axios from 'axios';
 //initial state
 const initialState = {
   events: [],
-  searchEvents: '',
   isLoading: false,
   didErr: false
 };
 
 //constants
 const GET_EVENTS = 'GET_EVENTS';
-const SEARCH_EVENTS = 'SEARCH_EVENTS';
 // const REMOVE_EVENT = 'REMOVE_EVENT';
 
 //action creators
@@ -21,12 +19,6 @@ export function getEvents() {
   };
 }
 
-export function searchEvents(text) {
-  return {
-    type: SEARCH_EVENTS,
-    payload: text
-  };
-}
 
 // export const removeEvent = event => {
 //   return {
@@ -59,11 +51,6 @@ export default function eventReducer(state = initialState, action) {
         isLoading: false,
         didErr: true
       };
-    case SEARCH_EVENTS:
-    return {
-      ...state,
-      searchText: action.payload
-    }
     default:
       return state;
   }

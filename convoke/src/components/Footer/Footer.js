@@ -30,7 +30,7 @@ export default class Footer extends Component {
               />
             </a>
           </div>
-          <div>
+          <div className='footer_link_container'>
             <Link
               onClick={() => {
                 window.scroll({ top: 1000, behavior: 'smooth' });

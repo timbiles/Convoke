@@ -8,6 +8,10 @@
   background: linear-gradient(to top, rgb(224, 223, 223) 0%, #fff 100%);
 }
 
+.footer_link_container {
+margin-right: 100px;
+}
+
 .footer_icon {
   margin: 30px;
   height: 35px;

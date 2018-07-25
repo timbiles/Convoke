@@ -5,7 +5,7 @@ import axios from 'axios';
 import swal from 'sweetalert2';
 import PlacesAutocomplete, {
   geocodeByAddress,
-  getLatLng,
+  getLatLng
 } from 'react-places-autocomplete';
 
 import './CreateEvent.css';
@@ -15,6 +15,7 @@ import {
   updateHost,
   updateDate,
   updateTime,
+  updateAmPm,
   updateLocation,
   updateImg,
   reset
@@ -22,7 +23,7 @@ import {
 
 class CreateEvent extends Component {
   handleSubmit = id => {
-    let { title, host, date, time, location, img } = this.props.create;
+    let { title, host, date, time, ampm, location, img } = this.props.create;
     console.log(this.props);
     swal({
       position: 'top-end',
@@ -38,6 +39,7 @@ class CreateEvent extends Component {
         host,
         date,
         time,
+        ampm,
         location,
         img
       })
@@ -45,7 +47,7 @@ class CreateEvent extends Component {
   };
 
   handleKeyDown = e => {
-    let { title, host, date, time, location, img } = this.props.create;
+    let { title, host, date, time, ampm, location, img } = this.props.create;
 
     if (e.keyCode === 13) {
       swal({
@@ -62,6 +64,7 @@ class CreateEvent extends Component {
           host,
           date,
           time,
+          ampm,
           location,
           img
         })
@@ -82,6 +85,7 @@ class CreateEvent extends Component {
       updateHost,
       updateDate,
       updateTime,
+      // updateAmPm,
       updateLocation,
       updateImg
     } = this.props;
@@ -110,18 +114,17 @@ class CreateEvent extends Component {
           />
           <h1>Time</h1>
           <input
-            type="text"
-            placeholder="&quot;12:00&quot;"
-            onChange={e => updateTime(e.target.value)}
-          />
+              type="text"
+              placeholder="&quot;12:00&quot;"
+              onChange={e => updateTime(e.target.value)}
+            />
           <h1>Location</h1>
           <PlacesAutocomplete
             value={this.props.create.location}
             onChange={updateLocation}
             onSelect={this.handleSelect}
-            onKeyDown={this.handleKeyDown}            
+            onKeyDown={this.handleKeyDown}
           >
-          
             {({
               getInputProps,
               suggestions,
@@ -180,5 +183,28 @@ const mapStateToProps = state => state;
 
 export default connect(
   mapStateToProps,
-  { updateEventName, updateHost, updateDate, updateTime, updateLocation, updateImg, reset }
+  {
+    updateEventName,
+    updateHost,
+    updateDate,
+    updateTime,
+    updateAmPm,
+    updateLocation,
+    updateImg,
+    reset
+  }
 )(CreateEvent);
+
+
+
+/* <div>
+            <input
+              type="text"
+              placeholder="&quot;12:00&quot;"
+              onChange={e => updateTime(e.target.value)}
+            />
+            <select className="am_pm" onSelect={e=> updateAmPm(e.target.value)}>
+              <option value="am">am</option>
+              <option value="pm">pm</option>
+            </select>
+          </div> */
