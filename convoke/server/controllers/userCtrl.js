@@ -1,8 +1,9 @@
 const passport = require('passport');
 
 const logout = (req, res) => {
+  // console.log('fired')
   req.session.destroy(() => {
-    res.redirect('http://localhost:3000/login');
+    res.redirect('http://localhost:3000');
   });
 };
 
@@ -12,6 +13,7 @@ const login = passport.authenticate('auth0', {
 });
 
 const getUser = (req, res) => {
+  console.log(req.user)
   if (!req.user) {
     res.status(500).send({ message: 'Not Logged in' });
   } else {
@@ -20,7 +22,7 @@ const getUser = (req, res) => {
 };
 
 const updateUserInfo = (req, res) => {
-  console.log(req.body);
+  // console.log(req.body);
   const db = req.app.get('db');
   const { auth_id, name, email, home_town, img, bio } = req.body;
 

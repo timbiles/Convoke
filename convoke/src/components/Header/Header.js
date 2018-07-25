@@ -1,10 +1,17 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import './Header.css';
 
-export default class Header extends Component {
+import { getUser } from '../../ducks/userReducer';
+
+class Header extends Component {
+  componentDidMount() {
+    this.props.getUser();
+  }
   render() {
+    const { auth_id } = this.props.user;
     return (
       <div className="header_container">
         <div className="header_link_container">
@@ -19,7 +26,7 @@ export default class Header extends Component {
               Create Event
             </Link>
           </div>
-          <div className='right_header_links'>
+          <div className="right_header_links">
             <Link
               onClick={() => {
                 window.scroll({ top: 1000, behavior: 'smooth' });
@@ -38,20 +45,21 @@ export default class Header extends Component {
             >
               MyConvoke
             </Link>
-            {/* <Link
-              onClick={() => {
-                window.scroll({ top: 1000, behavior: 'smooth' });
-              }}
-              className="link"
-              to="/login"
-            >
-              Login
-            </Link> */}
-            <div>
+            {!auth_id.length ? (
+              <div>
               <a className="link" href={process.env.REACT_APP_LOGIN}>
                 <h1 className="link">Login</h1>
               </a>
             </div>
+            ) : (
+              <div>
+              <a className="link" href={process.env.REACT_APP_LOGOUT}>
+                <h1 className="link">Logout</h1>
+              </a>
+            </div>
+            )}
+
+            
           </div>
         </div>
         <img
@@ -63,3 +71,12 @@ export default class Header extends Component {
     );
   }
 }
+
+const mapStateToProps = state => state;
+
+export default connect(
+  mapStateToProps,
+  {
+    getUser
+  }
+)(Header);

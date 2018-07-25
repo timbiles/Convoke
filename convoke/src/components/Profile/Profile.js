@@ -1,97 +1,53 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import './Profile.css';
 
-import {
-  getUser,
-  updateName,
-  updateEmail,
-  updateHomeTown,
-  updateImg,
-  updateBio,
-  reset,
-  updateUserInfo
-} from '../../ducks/userReducer';
+import { getUser } from '../../ducks/userReducer';
 
 class Profile extends Component {
-  //   constructor(props) {
-  //     super(props);
-
-  //     this.state = {
-  //       users: []
-  //     };
-  //   }
-
-  componentDidMount() {
-    this.props.getUser().then(response => {
-      console.log('AFTER YOU GET USER....', this.props);
-    });
-  }
-
-  handleSubmit = id => {
-    let { name, email, home_town, img, bio, auth_id } = this.props.user;
-    this.props.updateUserInfo(auth_id, name, email, home_town, img, bio);
-  };
 
   render() {
-    const { auth_id } = this.props.user;
-    const {
-      updateName,
-      updateEmail,
-      updateHomeTown,
-      updateImg,
-      updateBio
-    } = this.props;
-    return (
-      <div className="profile_container">
-        <div className='profile_edit_container'>
-          {/* {!user.length && ( */}
-          {/* {auth_id && ( */}
-            <div className='profile_edit_box'>
-            <h1>Update Name</h1>
-              <input
-                className="update_profile_name"
-                placeholder="Update Name"
-                type="text"
-                //   value={this.props.user.name}
-                onChange={e => updateName(e.target.value)}
-              />
-              <h1>Update Email</h1>
-              <input
-                className="update_profile_email"
-                placeholder="Update Email"
-                type="text"
-                //   value={user.email}
-                onChange={e => updateEmail(e.target.value)}
-              />
-              <h1>Update Home Town</h1>
-              <input
-                className="update_profile_home_town"
-                placeholder="Update Home Town"
-                type="text"
-                onChange={e => updateHomeTown(e.target.value)}
-              />
-              <h1>Update Image</h1>
-              <input
-                className="update_profile_Img"
-                placeholder="Update Image"
-                type="text"
-                onChange={e => updateImg(e.target.value)}
-              />
-              <h1>Update Bio</h1>
-              <input
-                className="update_profile_bio"
-                placeholder="Update Bio"
-                type="text"
-                onChange={e => updateBio(e.target.value)}
-              />
-              <button onClick={id => this.handleSubmit(id)}>Submit Edit</button>
-            </div>
-          {/* )} */}
-        </div>
+    const { auth_id, name, email, home_town, img, bio } = this.props.user;
 
-        {/* {this.state.users.name} */}
+    console.log(this.props.user);
+
+    return (
+      <div className="mc_container">
+        <div className="mc_title">{/* <h1>MyConvoke Page</h1> */}</div>
+        <div className="mc_display">
+          {!auth_id.length ? (
+            <div>
+              <h2>Oops! Don't forget to Login!</h2>
+              <a className="mc_link" href={process.env.REACT_APP_LOGIN}>
+                <h1 className="mc_login_btn">Login</h1>
+              </a>
+            </div>
+          ) : (
+            <div>
+              <div>
+                <h3>Email</h3>
+                <p>{email}</p>
+                <h3>Home Town</h3>
+                <p>{home_town}</p>
+                <h3>Bio</h3>
+                <p>{bio}</p>
+                <div className="mc_img_and_edit">
+                  <p>{name}</p>
+                  <img
+                    className="profile_display_img"
+                    src={img}
+                    alt={auth_id}
+                  />
+                  <Link className="" to="/editprofile">
+                    Edit Profile
+                  </Link>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
       </div>
     );
   }
@@ -102,13 +58,8 @@ const mapStateToProps = state => state;
 export default connect(
   mapStateToProps,
   {
-    getUser,
-    updateName,
-    updateEmail,
-    updateHomeTown,
-    updateImg,
-    updateBio,
-    reset,
-    updateUserInfo
+    getUser
   }
 )(Profile);
+
+// fix css

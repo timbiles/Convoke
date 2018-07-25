@@ -21,7 +21,13 @@ import {
   reset
 } from '../../ducks/createReducer';
 
+import { getUser } from '../../ducks/userReducer';
+
 class CreateEvent extends Component {
+  // componentDidMount() {
+  //   this.props.getUser()
+  // }
+
   handleSubmit = id => {
     let { title, host, date, time, ampm, location, img } = this.props.create;
     console.log(this.props);
@@ -85,14 +91,23 @@ class CreateEvent extends Component {
       updateHost,
       updateDate,
       updateTime,
-      // updateAmPm,
       updateLocation,
       updateImg
     } = this.props;
-    // console.log(this.props);
+    const { auth_id } = this.props.user;
+
+    console.log(this.props.user)
 
     return (
       <div className="create_event_container">
+        {!auth_id.length ? (
+          <div>
+              <h1>You have to login to Create an Event!</h1>
+              <a className="" href={process.env.REACT_APP_LOGIN}>
+                <h1 className="">Login</h1>
+              </a>
+            </div>
+        ) : (
         <div className="create_event_input">
           <h1>Event Name</h1>
           <input
@@ -174,6 +189,7 @@ class CreateEvent extends Component {
             <button onClick={id => this.handleSubmit(id)}>Submit Event</button>
           </Link>
         </div>
+        )}
       </div>
     );
   }
@@ -191,7 +207,8 @@ export default connect(
     updateAmPm,
     updateLocation,
     updateImg,
-    reset
+    reset, 
+    getUser
   }
 )(CreateEvent);
 

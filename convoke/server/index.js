@@ -76,7 +76,7 @@ app.post('/api/events', createEvent);
 
 //user endpoints
 app.get('/login', login);
-app.post('/logout', logout);
+app.get('/logout', logout);
 app.get('/api/me', getUser);
 app.put('/api/updateUserInfo/:id', updateUserInfo)
 
