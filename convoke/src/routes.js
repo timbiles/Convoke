@@ -18,5 +18,6 @@ export default (
     <Route path="/create" component={CreateEvent} />  
     <Route path="/profile" component={Profile} />
     <Route exact path="/" component={Home} />
+    <Route path='*' render={()=> <h1>404</h1>}/>
   </Switch>
 );

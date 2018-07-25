@@ -9,7 +9,7 @@ const NodeGeocoder = require('node-geocoder');
 const port = process.env.SERVER_PORT || 3001;
 
 const strategy = require('./strategy');
-const { logout, login, getUser } = require('./controllers/userCtrl');
+const { logout, login, getUser, updateUserInfo } = require('./controllers/userCtrl');
 const {
   getAll,
   createEvent
@@ -29,7 +29,10 @@ app.use(
   session({
     secret: process.env.SESSION_SECRET,
     resave: false,
-    saveUninitialized: false
+    saveUninitialized: false,
+    cookie: {
+      maxAge: 60 * 60 * 24 * 7 * 2
+    }
   })
 );
 
@@ -50,7 +53,7 @@ passport.serializeUser((user, done) => {
   const db = app.get('db');
   db.get_user_by_authid(user.id)
     .then(response => {
-      console.log(response)
+      console.log(response);
       if (!response[0]) {
         db.add_user_by_authid([user.displayName, user.id])
           .then(res => done(null, res[0]))
@@ -66,14 +69,16 @@ passport.deserializeUser((user, done) => {
   done(null, user);
 });
 
-//end-points
+//create end-points
 app.get('/api/events', getAll);
 app.post('/api/events', createEvent);
 // app.delete('/api/events/:id', deleteEvent);
 
+//user endpoints
 app.get('/login', login);
 app.post('/logout', logout);
 app.get('/api/me', getUser);
+app.put('/api/updateUserInfo/:id', updateUserInfo)
 
 app.listen(port, () => {
   console.log(`Listening on port ${port}.`);

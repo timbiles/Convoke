@@ -3,10 +3,12 @@ import promiseMiddleware from 'redux-promise-middleware';
 
 import eventReducer from './eventReducer';
 import createReducer from './createReducer';
+import userReducer from './userReducer';
 
 const combinedReducers = combineReducers({
   events: eventReducer,
-  create: createReducer
+  create: createReducer,
+  user: userReducer
 });
 
 const middlewares = applyMiddleware(promiseMiddleware());
