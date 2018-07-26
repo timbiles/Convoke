@@ -49,7 +49,7 @@ class CreateEvent extends Component {
         location,
         img
       })
-      .then(() => this.props.reset());
+      // .then(() => this.props.reset());
   };
 
   handleKeyDown = e => {

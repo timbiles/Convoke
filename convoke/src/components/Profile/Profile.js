@@ -8,6 +8,7 @@ import './Profile.css';
 import EventCard from '../EventCard/EventCard';
 
 import { getUser } from '../../ducks/userReducer';
+import { removeEvent } from '../../ducks/eventReducer';
 
 class Profile extends Component {
   constructor() {
@@ -30,14 +31,21 @@ class Profile extends Component {
     });
   };
 
+  handleDelete = id => {
+    axios.delete(`/api/delete/${id}/${this.props.user.users_id}`).then(res => {
+      this.getEventsAttending();
+    });
+  };
+
   render() {
     const { auth_id, name, email, home_town, img, bio } = this.props.user;
     const { cart } = this.props.cart;
 
-    console.log(this.state.eventsAttending);
-    console.log(this.props.user);
+    // console.log(this.state.eventsAttending);
+    // console.log(this.props.user);
     // console.log(this.)
     // console.log(this.props.cart);
+    console.log(this.props.events);
 
     return (
       <div className="mc_container">
@@ -74,15 +82,34 @@ class Profile extends Component {
           )}
         </div>
         {!auth_id.length || (
-          <div className="mc_display">
+          <div className="mc_events_display">
             {this.state.eventsAttending.map((e, i) => {
               return (
-                <div key={e.id}>
-                  <p>{e.id}</p>
-                  <p>{e.user_id}</p>
-                  <p>{e.events_id}</p>
-                  <p>{e.title}</p>
+                <div className="mc_events_cards" key={e.id}>
+                  <div className="mc_name_and_img">
+                    <h1>{e.title}</h1>
+                    <img className="mc_events_img" src={e.img} alt={e.title} />
+                  </div>
                   <p>{e.host}</p>
+                  <p>
+                    {e.date.substring(5, 10).replace(/-/g, '/')}/{e.date.substring(
+                      0,
+                      4
+                    )}
+                  </p>
+                  <p>
+                    {e.time[0] === '0'
+                      ? e.time.substring(1, 5)
+                      : e.time.substring(0, 5)}
+                  </p>
+                  <p>{e.location.substring(0, e.location.length - 5)}</p>
+                  <button
+                    onClick={id => {
+                      this.handleDelete(e.events_id);
+                    }}
+                  >
+                    Delete
+                  </button>
                 </div>
               );
             })}
@@ -98,22 +125,9 @@ const mapStateToProps = state => state;
 export default connect(
   mapStateToProps,
   {
-    getUser
+    getUser,
+    removeEvent
   }
 )(Profile);
 
 // fix css
-
-{
-  /* <div>
-  {cart[0] &&
-    cart.map((e, i) => (
-      <EventCard
-        key={i}
-        // text="Delete"
-        events={e}
-        // handleCardClick={this.props.deleteFromCart}
-      />
-    ))}
-</div> */
-}

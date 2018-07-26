@@ -19,8 +19,8 @@ const {
   getAll,
   createEvent,
   getEvents,
-  addEvent
-  // deleteEvent
+  addEvent,
+  deleteEvent
 } = require('./controllers/eventsCtrl');
 
 const app = express();
@@ -38,7 +38,7 @@ app.use(
     resave: false,
     saveUninitialized: false,
     cookie: {
-      maxAge: (60 * 60 * 24 * 7 * 2)
+      maxAge: 60 * 60 * 24 * 7 * 2
     }
   })
 );
@@ -86,9 +86,9 @@ passport.deserializeUser((user, done) => {
 //events end-points
 app.get('/api/events', getAll);
 app.get('/api/events/:users_id', getEvents);
-app.post("/api/add-event/:events_id/:users_id", addEvent)
+app.post('/api/add-event/:events_id/:users_id', addEvent);
 app.post('/api/events', createEvent);
-// app.delete('/api/events/:id', deleteEvent);
+app.delete('/api/delete/:events_id/:users_id', deleteEvent);
 
 //user endpoints
 app.get('/login', login);

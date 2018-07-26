@@ -9,7 +9,7 @@ const initialState = {
 
 //constants
 const GET_EVENTS = 'GET_EVENTS';
-// const REMOVE_EVENT = 'REMOVE_EVENT';
+const REMOVE_EVENT = 'REMOVE_EVENT';
 
 //action creators
 export function getEvents() {
@@ -19,13 +19,12 @@ export function getEvents() {
   };
 }
 
-
-// export const removeEvent = event => {
-//   return {
-//     type: REMOVE_EVENT,
-//     payload: axios.delete(`/api/events/${events_id}`)
-//   };
-// };
+export const removeEvent = event => {
+  return {
+    type: REMOVE_EVENT,
+    payload: axios.delete(`/api/events/${event}`)
+  };
+};
 
 // reducer
 export default function eventReducer(state = initialState, action) {
@@ -36,16 +35,14 @@ export default function eventReducer(state = initialState, action) {
         isLoading: true
       };
     case `${GET_EVENTS}_FULFILLED`:
-      // case `${CREATE_EVENT}_FULFILLED`:
-      // case `${REMOVE_EVENT}_FULFILLED`:
+    case `${REMOVE_EVENT}_FULFILLED`:
       return {
         ...state,
         isLoading: false,
         events: action.payload.data
       };
     case `${GET_EVENTS}_REJECTED`:
-      // case `${CREATE_EVENT}_REJECTED`:
-      // case `${REMOVE_EVENT}_REJECTED`:
+    case `${REMOVE_EVENT}_REJECTED`:
       return {
         ...state,
         isLoading: false,

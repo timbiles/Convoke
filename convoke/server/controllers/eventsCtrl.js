@@ -29,7 +29,7 @@ const createEvent = (req, res, next) => {
 const getEvents = (req, res, next) => {
   const db = req.app.get('db');
   const {users_id} = req.params
-  console.log(req.body)
+  // console.log(req.body)
 
   db.get_event_by_user_id([users_id])
     .then(response => {
@@ -56,20 +56,23 @@ const addEvent = (req, res, next) => {
     });
 };
 
-// const deleteEvent = (req, res, next) => {
-//   const db = req.app.get('db');
+const deleteEvent = (req, res, next) => {
+  const db = req.app.get('db');
+  // const {user_id, id} = req.params
+  console.log(req.params.events_id)
 
-//   db.delete_event(req.params.id)
-//     .then(() => res.status(200).send('Sweet'))
-//     .catch(err => {
-//       res.status(500).send(err);
-//       console.log(`Something went wrong!!`);
-//     });
-// };
+  db.delete_event([req.params.users_id, req.params.events_id])
+    .then(() => res.status(200).send('Sweet'))
+    .catch(err => {
+      res.status(500).send(err);
+      console.log(`Something went wrong!!`);
+    });
+};
 
 module.exports = {
   getAll,
   createEvent,
   getEvents,
-  addEvent
+  addEvent,
+  deleteEvent
 };
