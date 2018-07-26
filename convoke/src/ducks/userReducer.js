@@ -2,6 +2,7 @@ import axios from 'axios';
 
 const initialState = {
   user: {},
+  eventsAttending: [],
   didErr: false,
   auth_id: '',
   name: '',
@@ -12,6 +13,7 @@ const initialState = {
 };
 
 const GET_USER = 'GET_USER';
+const GET_EVENTS_ATTENDING = 'GET_EVENTS_ATTENDING';
 const UPDATE_NAME = 'UPDATE_NAME';
 const UPDATE_EMAIL = 'UPDATE_EMAIL';
 const UPDATE_HOME_TOWN = 'UPDATE_HOME_TOWN';
@@ -24,6 +26,14 @@ export const getUser = () => {
   return {
     type: GET_USER,
     payload: axios.get('api/me')
+  };
+};
+
+export const getEventsAttending = users_id => {
+  return {
+
+    type: GET_EVENTS_ATTENDING,
+    payload: axios.get(`/api/events/${users_id}`)
   };
 };
 
@@ -100,7 +110,13 @@ export default function userReducer(state = initialState, action) {
         // bio,
         // auth_id
       };
+    case `${GET_EVENTS_ATTENDING}_FULFILLED`:  
+      return {
+        ...state,
+        eventsAttending: action.payload.data
+      };
     case `${GET_USER}_REJECTED`:
+    case `${GET_EVENTS_ATTENDING}_REJECTED`:    
       return {
         ...state,
         didErr: true

@@ -7,17 +7,15 @@ import swal from 'sweetalert2';
 import './EventCard.css';
 import axios from 'axios';
 
-import { getUser } from '../../ducks/userReducer';
-
-import Button from '../Button/Button';
+import { getUser, getEventsAttending } from '../../ducks/userReducer';
 
 class Card extends Component {
-  constructor(props) {
-    super(props);
+  componentDidMount(){
+    this.props.getEventsAttending(this.props.user.users_id);    
   }
 
   handleClick = val => {
-    axios.post(`/api/add-event/${val}/${this.props.user.users_id}`)
+    axios.post(`/api/add-event/${val}/${this.props.user.users_id}`);
 
     swal({
       position: 'top-end',
@@ -29,10 +27,10 @@ class Card extends Component {
   };
 
   render() {
-    const { text, handleCardClick } = this.props;
     const { eachEvent } = this.props;
 
-    // console.log(this.props.user.users_id)
+    // console.log(this.props.user);
+
 
     return (
       <div className="events_container">
@@ -81,17 +79,25 @@ class Card extends Component {
             />{' '}
             {eachEvent.location.substring(0, eachEvent.location.length - 5)}
           </h3>
-          <input
-            type="image"
-            className="events_btn"
-            src="https://image.flaticon.com/icons/svg/126/126469.svg"
-            // src='https://image.flaticon.com/icons/svg/149/149411.svg'
-            alt="Add to favs btn"
-            onClick={e => this.handleClick(eachEvent.events_id)}
-          />
-          {/* <Button data={events} clickHandler={handleCardClick}>
-        {text}
-      </Button> */}
+          {/* {!this.props.user.eventsAttending.user_id ? ( */}
+            <input
+              type="image"
+              className="events_btn"
+              src="https://image.flaticon.com/icons/svg/126/126469.svg"
+              // src='https://image.flaticon.com/icons/svg/149/149411.svg'
+              alt="Add to favs btn"
+              onClick={e => this.handleClick(eachEvent.events_id)}
+            />
+          {/* ) : (
+            <input
+              type="image"
+              className="events_btn"
+              src="https://image.flaticon.com/icons/svg/126/126469.svg"
+              // src='https://image.flaticon.com/icons/svg/149/149411.svg'
+              alt="Add to favs btn"
+              // onClick={e => this.handleClick2()}
+            />
+          )} */}
           <input
             type="image"
             className="events_info_btn"
@@ -108,6 +114,6 @@ const mapStateToProps = state => state;
 
 export default connect(
   mapStateToProps,
-  { getUser }
+  { getUser, getEventsAttending }
 )(Card);
 // export default Card;

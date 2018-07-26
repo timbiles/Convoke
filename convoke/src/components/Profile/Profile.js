@@ -5,47 +5,43 @@ import axios from 'axios';
 
 import './Profile.css';
 
-import EventCard from '../EventCard/EventCard';
-
-import { getUser } from '../../ducks/userReducer';
+import { getUser, getEventsAttending } from '../../ducks/userReducer';
 import { removeEvent } from '../../ducks/eventReducer';
 
 class Profile extends Component {
-  constructor() {
-    super();
+  // constructor(props) {
+  //   super(props);
 
-    this.state = {
-      eventsAttending: []
-    };
-  }
+  //   this.state = {
+  //     eventsAttending: []
+  //   };
+  // }
 
   componentDidMount() {
-    // this.props.getCart();
-    this.getEventsAttending();
+    this.props.getEventsAttending(this.props.user.users_id);
+    
   }
 
-  getEventsAttending = () => {
-    axios.get(`/api/events/${this.props.user.users_id}`).then(res => {
-      console.log(res.data);
-      this.setState({ eventsAttending: res.data });
-    });
-  };
+  // getEventsAttending = () => {
+  //   console.log(this.props.user.users_id);
+  //   axios.get(`/api/events/${this.props.user.users_id}`).then(res => {
+  //     console.log(res.data);
+  //     this.setState({ eventsAttending: res.data });
+  //   });
+  // };
 
   handleDelete = id => {
-    axios.delete(`/api/delete/${id}/${this.props.user.users_id}`).then(res => {
-      this.getEventsAttending();
+    axios.delete(`/api/delete/${id}/${this.props.user.users_id}`)
+    .then(res => {
+      this.props.getEventsAttending(this.props.user.users_id);
+
     });
   };
 
   render() {
     const { auth_id, name, email, home_town, img, bio } = this.props.user;
-    const { cart } = this.props.cart;
-
-    // console.log(this.state.eventsAttending);
     // console.log(this.props.user);
-    // console.log(this.)
-    // console.log(this.props.cart);
-    console.log(this.props.events);
+    
 
     return (
       <div className="mc_container">
@@ -83,7 +79,8 @@ class Profile extends Component {
         </div>
         {!auth_id.length || (
           <div className="mc_events_display">
-            {this.state.eventsAttending.map((e, i) => {
+            {this.props.user.eventsAttending.map((e, i) => {
+              
               return (
                 <div className="mc_events_cards" key={e.id}>
                   <div className="mc_name_and_img">
@@ -126,7 +123,8 @@ export default connect(
   mapStateToProps,
   {
     getUser,
-    removeEvent
+    removeEvent,
+    getEventsAttending
   }
 )(Profile);
 

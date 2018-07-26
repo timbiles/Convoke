@@ -9,8 +9,8 @@ import { getEvents } from '../../ducks/eventReducer';
 import { addToCart } from '../../ducks/cartReducer';
 
 class Home extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       filteredEvents: []
@@ -28,6 +28,8 @@ class Home extends Component {
   render() {
     const { isLoading, events } = this.props;
     const { filteredEvents } = this.state;
+
+    // console.log(this.props)
 
     let filter = events.events
       .filter((e, i) => {

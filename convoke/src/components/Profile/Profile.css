@@ -36,7 +36,8 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  background: linear-gradient(to top left, rgb(205, 218, 214) 0%, #fff 80%);
+  border-radius: 1%;
+  background: linear-gradient(to top left, rgb(198, 200, 201) 0%, #fff 80%);
   margin: 3%;
 }
 
@@ -49,6 +50,7 @@
 .mc_events_img {
   height: 225px;
   width: 225px;
+  border-radius: 1%;
 }
 
 .mc_events_display p {
