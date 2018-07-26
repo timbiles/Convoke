@@ -41,70 +41,137 @@ class EditProfile extends Component {
     console.log(this.props.user);
 
     return (
-      <div className="ep_container">
-        <div className="ep_box_container">
+      <div className="mc_container">
+        <div className="mc_title">{/* <h1>MyConvoke Page</h1> */}</div>
+        <div className="mc_display">
           {!auth_id.length ? (
             <div>
-              <h1>Don't forget to Login!</h1>
-              <a className="" href={process.env.REACT_APP_LOGIN}>
-                <h1 className="">Login</h1>
+              <h2>Oops! Don't forget to Login!</h2>
+              <a className="mc_link" href={process.env.REACT_APP_LOGIN}>
+                <h1 className="mc_login_btn">Login</h1>
               </a>
             </div>
           ) : (
-            <div className="ep_input">
-              <h1>Update Name</h1>
-              <input
-                className="update_profile_name"
-                value={name}
-                type="text"
-                onChange={e => updateName(e.target.value)}
-                onKeyDown={this.handleKeyDown}
-              />
-              <h1>Update Email</h1>
-              <input
-                className="update_profile_email"
-                value={email}
-                type="text"
-                onChange={e => updateEmail(e.target.value)}
-              />
-              <h1>Update Home Town</h1>
-              <input
-                className="update_profile_home_town"
-                value={home_town}
-                type="text"
-                onChange={e => updateHomeTown(e.target.value)}
-              />
-              <h1>Update Image</h1>
-              <input
-                className="update_profile_Img"
-                placeholder="Update Image"
-                type="text"
-                onChange={e => updateImg(e.target.value)}
-              />
-              <h1>Update Bio</h1>
-              <input
-                className="update_profile_bio"
-                value={bio}
-                type="text"
-                onChange={e => updateBio(e.target.value)}
-              />
-              <Link to="/profile">
-                <button
-                  onKeyDown={this.handleKeyDown}
-                  onClick={id => this.handleSubmit(id)}
-                >
-                  Submit Edit
-                </button>
-              </Link>
+            <div>
+              <div>
+                <h3>Email</h3>
+                <input
+                  className="update_profile_email"
+                  value={email}
+                  type="text"
+                  onChange={e => updateEmail(e.target.value)}
+                />
+                <h3>Home Town</h3>
+                <input
+                  className="update_profile_home_town"
+                  value={home_town}
+                  type="text"
+                  onChange={e => updateHomeTown(e.target.value)}
+                />
+                
+                <div className="mc_img_and_edit">
+                  <input
+                    className="update_profile_name"
+                    value={name}
+                    type="text"
+                    onChange={e => updateName(e.target.value)}
+                    onKeyDown={this.handleKeyDown}
+                  />
+                  <img
+                    className="profile_display_img"
+                    src={img}
+                    alt={auth_id}
+                  />
+                  <h3>Bio</h3>
+                  <input
+                    className="update_profile_bio"
+                    value={bio}
+                    type="text"
+                    onChange={e => updateBio(e.target.value)}
+                  />
+                  <Link to="/profile">
+                    <button
+                      onKeyDown={this.handleKeyDown}
+                      onClick={id => this.handleSubmit(id)}
+                    >
+                      Submit Edit
+                    </button>
+                  </Link>
+                </div>
+              </div>
             </div>
           )}
         </div>
-
-        {/* {this.state.users.name} */}
       </div>
     );
   }
 }
+
+//     return (
+//       <div className="ep_container">
+//         <div className="ep_box_container">
+//           {!auth_id.length ? (
+//             <div>
+//               <h1>Don't forget to Login!</h1>
+//               <a className="" href={process.env.REACT_APP_LOGIN}>
+//                 <h1 className="">Login</h1>
+//               </a>
+//             </div>
+//           ) : (
+//             <div className="ep_input">
+//               <h1>Update Name</h1>
+//               <input
+//                 className="update_profile_name"
+//                 value={name}
+//                 type="text"
+//                 onChange={e => updateName(e.target.value)}
+//                 onKeyDown={this.handleKeyDown}
+//               />
+//               <h1>Update Email</h1>
+//               <input
+//                 className="update_profile_email"
+//                 value={email}
+//                 type="text"
+//                 onChange={e => updateEmail(e.target.value)}
+//               />
+//               <h1>Update Home Town</h1>
+//               <input
+//                 className="update_profile_home_town"
+//                 value={home_town}
+//                 type="text"
+//                 onChange={e => updateHomeTown(e.target.value)}
+//               />
+//               <h1>Update Image</h1>
+//               <input
+//                 className="update_profile_Img"
+//                 placeholder="Update Image"
+//                 type="text"
+//                 onChange={e => updateImg(e.target.value)}
+//               />
+//               <h1>Update Bio</h1>
+//               <input
+//                 className="update_profile_bio"
+//                 value={bio}
+//                 type="text"
+//                 onChange={e => updateBio(e.target.value)}
+//               />
+//               <Link to="/profile">
+//                 <button
+//                   onKeyDown={this.handleKeyDown}
+//                   onClick={id => this.handleSubmit(id)}
+//                 >
+//                   Submit Edit
+//                 </button>
+//               </Link>
+//             </div>
+//           )}
+//         </div>
+
+//         {/* {this.state.users.name} */}
+//       </div>
+//     );
+//   }
+// }
 
 const mapStateToProps = state => state;
 

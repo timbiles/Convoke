@@ -29,6 +29,23 @@
   transform: scale(1.05);
 }
 
+.header_avatar {
+  border-radius: 50%;
+  height: 35px;
+  width: 35px;
+  /* margin-right: 25%; */
+}
+
+.header_render_logout {
+  display: flex;
+}
+
+.header_render_logout a {
+  display: flex;
+  align-items: center;
+justify-content: center;
+}
+
 .hamburger {
   display: none;
 }

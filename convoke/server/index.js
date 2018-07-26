@@ -9,10 +9,17 @@ const NodeGeocoder = require('node-geocoder');
 const port = process.env.SERVER_PORT || 3001;
 
 const strategy = require('./strategy');
-const { logout, login, getUser, updateUserInfo } = require('./controllers/userCtrl');
+const {
+  logout,
+  login,
+  getUser,
+  updateUserInfo
+} = require('./controllers/userCtrl');
 const {
   getAll,
-  createEvent
+  createEvent,
+  getEvents,
+  addEvent
   // deleteEvent
 } = require('./controllers/eventsCtrl');
 
@@ -31,7 +38,7 @@ app.use(
     resave: false,
     saveUninitialized: false,
     cookie: {
-      maxAge: 60 * 60 * 24 * 7 * 2
+      maxAge: (60 * 60 * 24 * 7 * 2)
     }
   })
 );
@@ -45,6 +52,13 @@ app.use(
 
 // const geocoder = NodeGeocoder(options);
 
+// app.use((req, res, next) => {
+//   if (!req.session.cart) {
+//     req.session.cart = [];
+//   }
+//   next();
+// });
+
 app.use(passport.initialize());
 app.use(passport.session());
 passport.use(strategy);
@@ -53,7 +67,7 @@ passport.serializeUser((user, done) => {
   const db = app.get('db');
   db.get_user_by_authid(user.id)
     .then(response => {
-      console.log(response);
+      // console.log(response);
       if (!response[0]) {
         db.add_user_by_authid([user.displayName, user.id])
           .then(res => done(null, res[0]))
@@ -69,8 +83,10 @@ passport.deserializeUser((user, done) => {
   done(null, user);
 });
 
-//create end-points
+//events end-points
 app.get('/api/events', getAll);
+app.get('/api/events/:users_id', getEvents);
+app.post("/api/add-event/:events_id/:users_id", addEvent)
 app.post('/api/events', createEvent);
 // app.delete('/api/events/:id', deleteEvent);
 
@@ -78,7 +94,7 @@ app.post('/api/events', createEvent);
 app.get('/login', login);
 app.get('/logout', logout);
 app.get('/api/me', getUser);
-app.put('/api/updateUserInfo/:id', updateUserInfo)
+app.put('/api/updateUserInfo/:id', updateUserInfo);
 
 app.listen(port, () => {
   console.log(`Listening on port ${port}.`);

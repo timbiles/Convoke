@@ -1,20 +1,46 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 import './Profile.css';
+
+import EventCard from '../EventCard/EventCard';
 
 import { getUser } from '../../ducks/userReducer';
 
 class Profile extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      eventsAttending: []
+    };
+  }
+
+  componentDidMount() {
+    // this.props.getCart();
+    this.getEventsAttending();
+  }
+
+  getEventsAttending = () => {
+    axios.get(`/api/events/${this.props.user.users_id}`).then(res => {
+      console.log(res.data);
+      this.setState({ eventsAttending: res.data });
+    });
+  };
+
   render() {
     const { auth_id, name, email, home_town, img, bio } = this.props.user;
+    const { cart } = this.props.cart;
 
+    console.log(this.state.eventsAttending);
     console.log(this.props.user);
+    // console.log(this.)
+    // console.log(this.props.cart);
 
     return (
       <div className="mc_container">
-        <div className="mc_title">{/* <h1>MyConvoke Page</h1> */}</div>
         <div className="mc_display">
           {!auth_id.length ? (
             <div>
@@ -47,6 +73,21 @@ class Profile extends Component {
             </div>
           )}
         </div>
+        {!auth_id.length || (
+          <div className="mc_display">
+            {this.state.eventsAttending.map((e, i) => {
+              return (
+                <div key={e.id}>
+                  <p>{e.id}</p>
+                  <p>{e.user_id}</p>
+                  <p>{e.events_id}</p>
+                  <p>{e.title}</p>
+                  <p>{e.host}</p>
+                </div>
+              );
+            })}
+          </div>
+        )}
       </div>
     );
   }
@@ -62,3 +103,17 @@ export default connect(
 )(Profile);
 
 // fix css
+
+{
+  /* <div>
+  {cart[0] &&
+    cart.map((e, i) => (
+      <EventCard
+        key={i}
+        // text="Delete"
+        events={e}
+        // handleCardClick={this.props.deleteFromCart}
+      />
+    ))}
+</div> */
+}

@@ -11,7 +11,7 @@ class Header extends Component {
     this.props.getUser();
   }
   render() {
-    const { auth_id } = this.props.user;
+    const { auth_id, img } = this.props.user;
     return (
       <div className="header_container">
         <div className="header_link_container">
@@ -47,19 +47,20 @@ class Header extends Component {
             </Link>
             {!auth_id.length ? (
               <div>
-              <a className="link" href={process.env.REACT_APP_LOGIN}>
-                <h1 className="link">Login</h1>
-              </a>
-            </div>
+                <a className="link" href={process.env.REACT_APP_LOGIN}>
+                  <h1 className="link">Login</h1>
+                </a>
+              </div>
             ) : (
-              <div>
-              <a className="link" href={process.env.REACT_APP_LOGOUT}>
-                <h1 className="link">Logout</h1>
-              </a>
-            </div>
+              <div className='header_render_logout'>
+                <a className="link" href={process.env.REACT_APP_LOGOUT}>
+                  <h1 className="link">Logout</h1>
+                </a>
+                <div>
+                  <img className="header_avatar" src={img} alt="avatar" />
+                </div>
+              </div>
             )}
-
-            
           </div>
         </div>
         <img
