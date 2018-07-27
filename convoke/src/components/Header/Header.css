@@ -33,6 +33,7 @@
   border-radius: 50%;
   height: 35px;
   width: 35px;
+  /* margin: 0 25%; */
   /* margin-right: 25%; */
 }
 
@@ -43,7 +44,7 @@
 .header_render_logout a {
   display: flex;
   align-items: center;
-justify-content: center;
+/* justify-content: center; */
 }
 
 .hamburger {

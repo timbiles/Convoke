@@ -4,11 +4,15 @@ import { connect } from 'react-redux';
 
 import './Header.css';
 
-import { getUser } from '../../ducks/userReducer';
+import { getUser, getEventsAttending } from '../../ducks/userReducer';
+import { getEvents } from '../../ducks/eventReducer';
 
 class Header extends Component {
   componentDidMount() {
-    this.props.getUser();
+    this.props.getUser().then(() => {
+      this.props.getEvents();
+      this.props.getEventsAttending(this.props.user.users_id);
+    });
   }
   render() {
     const { auth_id, img } = this.props.user;
@@ -46,13 +50,11 @@ class Header extends Component {
               MyConvoke
             </Link>
             {!auth_id.length ? (
-              <div>
-                <a className="link" href={process.env.REACT_APP_LOGIN}>
-                  <h1 className="link">Login</h1>
-                </a>
-              </div>
+              <a className="link" href={process.env.REACT_APP_LOGIN}>
+                <h1>Login</h1>
+              </a>
             ) : (
-              <div className='header_render_logout'>
+              <div className="header_render_logout">
                 <a className="link" href={process.env.REACT_APP_LOGOUT}>
                   <h1 className="link">Logout</h1>
                 </a>
@@ -78,6 +80,8 @@ const mapStateToProps = state => state;
 export default connect(
   mapStateToProps,
   {
-    getUser
+    getUser,
+    getEventsAttending,
+    getEvents
   }
 )(Header);

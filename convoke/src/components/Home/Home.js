@@ -6,7 +6,8 @@ import './Home.css';
 import EventCard from '../EventCard/EventCard';
 
 import { getEvents } from '../../ducks/eventReducer';
-import { addToCart } from '../../ducks/cartReducer';
+// import { addToCart } from '../../ducks/cartReducer';
+import { getEventsAttending } from '../../ducks/userReducer';
 
 class Home extends Component {
   constructor(props) {
@@ -18,7 +19,8 @@ class Home extends Component {
   }
 
   componentDidMount() {
-    this.props.getEvents();
+    // this.props.getEvents();
+    // this.props.getEventsAttending(this.props.user.users_id);
   }
 
   handleChange = e => {
@@ -29,19 +31,19 @@ class Home extends Component {
     const { isLoading, events } = this.props;
     const { filteredEvents } = this.state;
 
-    // console.log(this.props)
+    // console.log(this.props);
 
     let filter = events.events
       .filter((e, i) => {
         return e.title.toLowerCase().includes(filteredEvents);
       })
       .map((e, i) => (
-          <EventCard
-            eachEvent={e}
-            key={i}
-            handleCardClick={this.props.addToCart}
-          />
-        ));
+        <EventCard
+          eachEvent={e}
+          key={i}
+          handleCardClick={this.props.addToCart}
+        />
+      ));
 
     return (
       <Fragment>
@@ -74,7 +76,7 @@ const mapStateToProps = state => state;
 
 export default connect(
   mapStateToProps,
-  { getEvents, addToCart }
+  { getEvents, getEventsAttending }
 )(Home);
 
 /*

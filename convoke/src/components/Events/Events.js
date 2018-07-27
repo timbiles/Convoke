@@ -6,7 +6,7 @@ import { getEvents } from '../../ducks/eventReducer';
 
 class Events extends Component {
   componentDidMount() {
-    this.props.getEvents();
+    // this.props.getEvents();
   }
   render() {
     const { events } = this.props;

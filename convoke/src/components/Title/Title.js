@@ -4,9 +4,11 @@ import './Title.css';
 
 export default class Title extends Component {
   render() {
+    // console.log("title rendered")
+
     return (
       <div className="titlepage_main">
-        <Link replace to="/">
+        <Link to="/">
           <img
             className="fake_logo"
             src="https://i.pinimg.com/originals/11/da/6a/11da6aa25da4eff91e2674eb721fe360.png"

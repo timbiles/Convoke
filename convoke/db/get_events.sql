@@ -1,1 +1,2 @@
-SELECT * FROM events;
+SELECT * FROM events
+ORDER BY date;

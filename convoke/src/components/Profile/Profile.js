@@ -9,13 +9,6 @@ import { getUser, getEventsAttending } from '../../ducks/userReducer';
 import { removeEvent } from '../../ducks/eventReducer';
 
 class Profile extends Component {
-  // constructor(props) {
-  //   super(props);
-
-  //   this.state = {
-  //     eventsAttending: []
-  //   };
-  // }
 
   componentDidMount() {
     this.props.getEventsAttending(this.props.user.users_id);
@@ -41,6 +34,11 @@ class Profile extends Component {
   render() {
     const { auth_id, name, email, home_town, img, bio } = this.props.user;
     // console.log(this.props.user);
+    // console.log(this.props.user.eventsAttending[0].date);
+
+    // console.log(this.props.user.eventsAttending);
+    
+    console.log(this.props.user.eventsAttending)
     
 
     return (

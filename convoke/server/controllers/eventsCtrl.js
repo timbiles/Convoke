@@ -34,13 +34,13 @@ const getEvents = (req, res, next) => {
 
   db.get_event_by_user_id([users_id])
     .then(response => {
-      console.log(response);
+      // console.log(response);
       res.status(200).send(response);
     })
     .catch(err => {
       console.log(err);
       res.status(500).send(err);
-      console.log(`Something is wrong!!!`);
+      console.log(`getEvents error`);
     });
 };
 
@@ -48,9 +48,32 @@ const addEvent = (req, res, next) => {
   const db = req.app.get('db');
   const { events_id, users_id } = req.params;
   // console.log('PARAMS TIM!!!!', req.params);
+  /*
+
+
+
+
+   CHECK IF USER IS ALREADY SUBSCRIBED TO EVENT
+
+
+   db.is_user_subscribed(events_id, users_id).then(response=>{
+    if(response.data.length>1){
+          return res.status(403).send({message: "already subscribed"})
+    }else{
+      db.add_event_by_events_id([events_id, users_id]).then(subscribed=>{
+        return res.status(200).send(subscribed)
+      })
+    }
+   })
+
+
+
+
+
+   */
   db.add_event_by_events_id([events_id, users_id])
     .then(response => {
-      console.log(response);
+      // console.log(response);
       res.status(200).send(response);
     })
     .catch(err => {

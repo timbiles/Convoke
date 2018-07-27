@@ -10,12 +10,17 @@ import axios from 'axios';
 import { getUser, getEventsAttending } from '../../ducks/userReducer';
 
 class Card extends Component {
-  componentDidMount(){
-    this.props.getEventsAttending(this.props.user.users_id);    
+  componentDidMount() {
+    // this.props.getUser();
+    // this.props.getEventsAttending(this.props.user.users_id);
+    // console.log(this.props.user.eventsAttending[0]);
   }
 
   handleClick = val => {
     axios.post(`/api/add-event/${val}/${this.props.user.users_id}`);
+    // .then(() => {
+    //   this.props.history.push('/');
+    // });
 
     swal({
       position: 'top-end',
@@ -29,8 +34,13 @@ class Card extends Component {
   render() {
     const { eachEvent } = this.props;
 
-    // console.log(this.props.user);
+    // console.log('refire');
 
+    // let mapped = this.props.user.eventsAttending.map((e,i)=>{
+
+    // })
+
+    // console.log(this.props.user.eventsAttending)
 
     return (
       <div className="events_container">
@@ -79,15 +89,15 @@ class Card extends Component {
             />{' '}
             {eachEvent.location.substring(0, eachEvent.location.length - 5)}
           </h3>
-          {/* {!this.props.user.eventsAttending.user_id ? ( */}
-            <input
-              type="image"
-              className="events_btn"
-              src="https://image.flaticon.com/icons/svg/126/126469.svg"
-              // src='https://image.flaticon.com/icons/svg/149/149411.svg'
-              alt="Add to favs btn"
-              onClick={e => this.handleClick(eachEvent.events_id)}
-            />
+          {/* {!this.props.user.eventsAttending.events_id ? ( */}
+          <input
+            type="image"
+            className="events_btn"
+            src="https://image.flaticon.com/icons/svg/126/126469.svg"
+            // src='https://image.flaticon.com/icons/svg/149/149411.svg'
+            alt="Add to favs btn"
+            onClick={e => this.handleClick(eachEvent.events_id)}
+          />
           {/* ) : (
             <input
               type="image"

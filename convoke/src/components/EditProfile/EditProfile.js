@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import './EditProfile.css';
 
 import {
-  getUser,
+  // getUser,
   updateName,
   updateEmail,
   updateHomeTown,
@@ -178,7 +178,7 @@ const mapStateToProps = state => state;
 export default connect(
   mapStateToProps,
   {
-    getUser,
+    // getUser,
     updateName,
     updateEmail,
     updateHomeTown,
