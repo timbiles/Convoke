@@ -17,8 +17,9 @@
   align-items: center;
   height: 500px;
   width: 50%;
-  background: linear-gradient(to top, rgb(205, 218, 214) 0%, #fff 90%);
+  background: linear-gradient(to top left, rgb(198, 200, 201) 0%, #fff 90%);
   position: relative;
+  border-radius: 1%;
 }
 
 .mc_events_display {
@@ -45,6 +46,7 @@
   display: flex;
   flex-direction: column;
   letter-spacing: 2px;
+
 }
 
 .mc_events_img {
@@ -90,3 +92,23 @@
 .mc_profile_name {
     font-size: 1.5rem;
 }
+
+.mc_selected_title {
+  text-decoration: none;
+  color: rgb(10, 10, 10);
+}
+
+.mc_name_and_img h1{
+  /* color: Pink;  */
+  /* font-family: "Courier"; */
+  /* font-size: 20px; */
+  /* margin: 10px 0 0 10px; */
+  white-space: nowrap;
+  overflow: auto;
+  width: 8rem;
+  animation: type 1.5s steps(60, start); 
+}
+
+@keyframes type{ 
+  from { width: 0; } 
+} 

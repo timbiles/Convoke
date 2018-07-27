@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-
+import axios from 'axios';
 import swal from 'sweetalert2';
 
 import './EventCard.css';
-import axios from 'axios';
+
+import InfoBtn from './InfoBtn';
 
 import { getUser, getEventsAttending } from '../../ducks/userReducer';
 
@@ -42,14 +43,6 @@ class Card extends Component {
 
   render() {
     const { eachEvent } = this.props;
-
-    // console.log('refire');
-
-    // let mapped = this.props.user.eventsAttending.map((e,i)=>{
-
-    // })
-
-    // console.log(this.props.user.eventsAttending)
 
     return (
       <div className="events_container">
@@ -98,7 +91,6 @@ class Card extends Component {
             />{' '}
             {eachEvent.location.substring(0, eachEvent.location.length - 5)}
           </h3>
-          {/* {!this.props.user.eventsAttending.events_id ? ( */}
           <input
             type="image"
             className="events_btn"
@@ -106,24 +98,17 @@ class Card extends Component {
             // src='https://image.flaticon.com/icons/svg/149/149411.svg'
             alt="Add to favs btn"
             onClick={e => this.handleClick(eachEvent.events_id)}
-            // onClick={e => this.handleClick2(eachEvent.events_id)}
+
           />
-          {/* ) : (
-            <input
-              type="image"
-              className="events_btn"
-              src="https://image.flaticon.com/icons/svg/126/126469.svg"
-              // src='https://image.flaticon.com/icons/svg/149/149411.svg'
-              alt="Add to favs btn"
-              // onClick={e => this.handleClick2()}
-            />
-          )} */}
-          <input
+          <div className='events_info_btn'>
+            <InfoBtn/>
+          </div>
+          {/* <input
             type="image"
             className="events_info_btn"
             src="https://cdn0.iconfinder.com/data/icons/mobile-set/154/info-512.png"
             alt="info btn"
-          />
+          /> */}
         </div>
       </div>
     );

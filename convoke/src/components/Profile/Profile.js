@@ -68,39 +68,41 @@ class Profile extends Component {
           )}
         </div>
 
-          <div className="mc_events_display">
-            {this.props.user.eventsAttending.map((e, i) => {
-              return (
-                <div className="mc_events_cards" key={e.id}>
-                  <div className="mc_name_and_img">
-                    <h1>{e.title}</h1>
-                    <img className="mc_events_img" src={e.img} alt={e.title} />
-                  </div>
-                  <p>{e.host}</p>
-                  <p>
-                    {e.date.substring(5, 10).replace(/-/g, '/')}/{e.date.substring(
-                      0,
-                      4
-                    )}
-                  </p>
-                  <p>
-                    {e.time[0] === '0'
-                      ? e.time.substring(1, 5)
-                      : e.time.substring(0, 5)}
-                  </p>
-                  <p>{e.location.substring(0, e.location.length - 5)}</p>
-                  <button
-                    onClick={id => {
-                      this.handleDelete(e.events_id);
-                    }}
-                  >
-                    Delete
-                  </button>
-                </div>
-              );
-            })}
-          </div>
+        <div className="mc_events_display">
+          {this.props.user.eventsAttending.map((e, i) => {
+            return (
+              <div className="mc_events_cards" key={e.id}>
+                <div className="mc_name_and_img">
+                  <Link to={`/events/${e.title}`}>
+                    <h1 className='mc_selected_title'>{e.title}</h1>
+                  </Link>
 
+                  <img className="mc_events_img" src={e.img} alt={e.title} />
+                </div>
+                <p>{e.host}</p>
+                <p>
+                  {e.date.substring(5, 10).replace(/-/g, '/')}/{e.date.substring(
+                    0,
+                    4
+                  )}
+                </p>
+                <p>
+                  {e.time[0] === '0'
+                    ? e.time.substring(1, 5)
+                    : e.time.substring(0, 5)}
+                </p>
+                <p>{e.location.substring(0, e.location.length - 5)}</p>
+                <button
+                  onClick={id => {
+                    this.handleDelete(e.events_id);
+                  }}
+                >
+                  Delete
+                </button>
+              </div>
+            );
+          })}
+        </div>
       </div>
     );
   }
