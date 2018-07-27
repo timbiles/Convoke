@@ -31,7 +31,6 @@ export const getUser = () => {
 
 export const getEventsAttending = users_id => {
   return {
-
     type: GET_EVENTS_ATTENDING,
     payload: axios.get(`/api/events/${users_id}`)
   };
@@ -110,13 +109,13 @@ export default function userReducer(state = initialState, action) {
         // bio,
         // auth_id
       };
-    case `${GET_EVENTS_ATTENDING}_FULFILLED`:  
+    case `${GET_EVENTS_ATTENDING}_FULFILLED`:
       return {
         ...state,
         eventsAttending: action.payload.data
       };
     case `${GET_USER}_REJECTED`:
-    case `${GET_EVENTS_ATTENDING}_REJECTED`:    
+    case `${GET_EVENTS_ATTENDING}_REJECTED`:
       return {
         ...state,
         didErr: true

@@ -9,10 +9,8 @@ import { getUser, getEventsAttending } from '../../ducks/userReducer';
 import { removeEvent } from '../../ducks/eventReducer';
 
 class Profile extends Component {
-
   componentDidMount() {
     this.props.getEventsAttending(this.props.user.users_id);
-    
   }
 
   // getEventsAttending = () => {
@@ -24,10 +22,8 @@ class Profile extends Component {
   // };
 
   handleDelete = id => {
-    axios.delete(`/api/delete/${id}/${this.props.user.users_id}`)
-    .then(res => {
+    axios.delete(`/api/delete/${id}/${this.props.user.users_id}`).then(res => {
       this.props.getEventsAttending(this.props.user.users_id);
-
     });
   };
 
@@ -37,9 +33,8 @@ class Profile extends Component {
     // console.log(this.props.user.eventsAttending[0].date);
 
     // console.log(this.props.user.eventsAttending);
-    
-    console.log(this.props.user.eventsAttending)
-    
+
+    console.log(this.props.user.eventsAttending);
 
     return (
       <div className="mc_container">
@@ -53,32 +48,28 @@ class Profile extends Component {
             </div>
           ) : (
             <div>
-              <div>
-                <h3>Email</h3>
-                <p>{email}</p>
-                <h3>Home Town</h3>
-                <p>{home_town}</p>
-                <div className="mc_img_and_edit">
-                  <p className="mc_profile_name">{name}</p>
-                  <img
-                    className="profile_display_img"
-                    src={img}
-                    alt={auth_id}
-                  />
-                  <h3>Bio</h3>
-                  <p>{bio}</p>
-                  <Link className="" to="/editprofile">
-                    Edit Profile
-                  </Link>
+              <p className="mc_profile_name">{name}</p>
+              <div className="img-email-edit">
+                <img className="profile_display_img" src={img} alt={auth_id} />
+
+                <div className="email_and_img_edit">
+                  <h3>Email</h3>
+                  <p>{email}</p>
+                  <h3>Home Town</h3>
+                  <p>{home_town}</p>
                 </div>
               </div>
+              <h3>Bio</h3>
+              <p>{bio}</p>
+              <Link className="" to="/editprofile">
+                Edit Profile
+              </Link>
             </div>
           )}
         </div>
-        {!auth_id.length || (
+
           <div className="mc_events_display">
             {this.props.user.eventsAttending.map((e, i) => {
-              
               return (
                 <div className="mc_events_cards" key={e.id}>
                   <div className="mc_name_and_img">
@@ -109,7 +100,7 @@ class Profile extends Component {
               );
             })}
           </div>
-        )}
+
       </div>
     );
   }

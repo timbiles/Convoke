@@ -2,6 +2,7 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
 import About from './components/About/About';
+import Calendar from './components/Calendar/Calendar';
 import Chat from './components/Chat/Chat';
 import Contact from './components/Contact/Contact';
 import CreateEvent from './components/CreateEvent/CreateEvent';
@@ -19,6 +20,7 @@ export default (
     <Route path="/contact" component={Contact} />
     <Route path="/create" component={CreateEvent} />  
     <Route path="/profile" component={Profile} />
+    <Route path="/Calendar" component={Calendar}/>
     <Route exact path="/" component={Home} />
     <Route path='*' render={()=> <h1>404</h1>}/>
   </Switch>

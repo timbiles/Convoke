@@ -87,6 +87,7 @@ passport.deserializeUser((user, done) => {
 app.get('/api/events', getAll);
 app.get('/api/events/:users_id', getEvents);
 app.post('/api/add-event/:events_id/:users_id', addEvent);
+app.post('/api/add-event/:events_id/:users_id', addEvent);
 app.post('/api/events', createEvent);
 app.delete('/api/delete/:events_id/:users_id', deleteEvent);
 

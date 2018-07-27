@@ -17,18 +17,27 @@ class Card extends Component {
   }
 
   handleClick = val => {
-    axios.post(`/api/add-event/${val}/${this.props.user.users_id}`);
-    // .then(() => {
-    //   this.props.history.push('/');
-    // });
+    axios
+      .post(`/api/add-event/${val}/${this.props.user.users_id}`)
 
-    swal({
-      position: 'top-end',
-      type: 'success',
-      title: 'Added to MyConvoke',
-      showConfirmButton: false,
-      timer: 1500
-    });
+      .then(res => {
+        swal({
+          position: 'top-end',
+          type: 'success',
+          title: 'Added to MyConvoke',
+          showConfirmButton: false,
+          timer: 1500
+        });
+      })
+      .catch(err => {
+        swal({
+          position: 'top-end',
+          type: 'warning',
+          title: 'You are already going to this event!',
+          showConfirmButton: false,
+          timer: 1500
+        });
+      });
   };
 
   render() {
@@ -97,6 +106,7 @@ class Card extends Component {
             // src='https://image.flaticon.com/icons/svg/149/149411.svg'
             alt="Add to favs btn"
             onClick={e => this.handleClick(eachEvent.events_id)}
+            // onClick={e => this.handleClick2(eachEvent.events_id)}
           />
           {/* ) : (
             <input

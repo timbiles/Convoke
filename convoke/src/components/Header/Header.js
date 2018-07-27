@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import './Header.css';
+import Avatar from '../Avatar/Avatar';
 
 import { getUser, getEventsAttending } from '../../ducks/userReducer';
 import { getEvents } from '../../ducks/eventReducer';
@@ -55,12 +56,13 @@ class Header extends Component {
               </a>
             ) : (
               <div className="header_render_logout">
-                <a className="link" href={process.env.REACT_APP_LOGOUT}>
+                {/* <a className="link" href={process.env.REACT_APP_LOGOUT}>
                   <h1 className="link">Logout</h1>
                 </a>
                 <div>
                   <img className="header_avatar" src={img} alt="avatar" />
-                </div>
+                </div> */}
+                  <Avatar />
               </div>
             )}
           </div>

@@ -26,6 +26,28 @@
     margin: 4% 0;
 }
 
+.img-email-edit {
+    display: flex;
+
+}
+
+.mc_img_and_edit {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 2%;
+  }
+
+.email_and_img_edit {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 10%;
+
+}
+
 .ep_input input {
     margin: 3%;
     width: 40%;
@@ -49,3 +71,13 @@
     transform: scale(1.05);
     background-color: rgb(236, 236, 236);
   }
+
+  .update_profile_bio {
+      width: 98%;
+  }
+
+  /* .update_profile_bio.break {
+    word-wrap: break-word;
+    word-break: break-all;
+    height: 80px;
+} */
