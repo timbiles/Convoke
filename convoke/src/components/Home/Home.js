@@ -6,7 +6,6 @@ import './Home.css';
 import EventCard from '../EventCard/EventCard';
 
 import { getEvents } from '../../ducks/eventReducer';
-// import { addToCart } from '../../ducks/cartReducer';
 import { getEventsAttending } from '../../ducks/userReducer';
 
 class Home extends Component {
@@ -18,11 +17,6 @@ class Home extends Component {
     };
   }
 
-  componentDidMount() {
-    // this.props.getEvents();
-    // this.props.getEventsAttending(this.props.user.users_id);
-  }
-
   handleChange = e => {
     this.setState({ filteredEvents: e.toLowerCase() });
   };
@@ -30,8 +24,6 @@ class Home extends Component {
   render() {
     const { isLoading, events } = this.props;
     const { filteredEvents } = this.state;
-
-    // console.log(this.props);
 
     let filter = events.events
       .filter((e, i) => {
@@ -41,7 +33,7 @@ class Home extends Component {
         <EventCard
           eachEvent={e}
           key={i}
-          handleCardClick={this.props.addToCart}
+          // handleCardClick={this.props.addToCart}
         />
       ));
 

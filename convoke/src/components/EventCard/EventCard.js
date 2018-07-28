@@ -11,13 +11,7 @@ import InfoBtn from './InfoBtn';
 import { getUser, getEventsAttending } from '../../ducks/userReducer';
 
 class Card extends Component {
-  componentDidMount() {
-    // this.props.getUser();
-    // this.props.getEventsAttending(this.props.user.users_id);
-    // console.log(this.props.user.eventsAttending[0]);
-  }
-
-  handleClick = val => {
+    handleClick = val => {
     axios
       .post(`/api/add-event/${val}/${this.props.user.users_id}`)
 
@@ -26,6 +20,11 @@ class Card extends Component {
           position: 'top-end',
           type: 'success',
           title: 'Added to MyConvoke',
+          // imageUrl:
+          //   'http://images.hellogiggles.com/uploads/2015/09/17/bill_murray.jpg',
+          // imageWidth: 175,
+          // imageHeight: 250,
+          // imageAlt: 'Custom image',
           showConfirmButton: false,
           timer: 1500
         });
@@ -34,11 +33,36 @@ class Card extends Component {
         swal({
           position: 'top-end',
           type: 'warning',
-          title: 'You are already going to this event!',
+          title: 'Oops! You are already going to this event.',
+          text: 'See you there!',
+          // imageUrl:
+          //   'https://i.pinimg.com/originals/bc/a8/5f/bca85f46b77d4b2f2e247b13441b4fd8.jpg',
+          // imageWidth: 175,
+          // imageHeight: 250,
+          // imageAlt: 'Custom going image',
           showConfirmButton: false,
           timer: 1500
         });
       });
+  };
+
+  handleDelete = e => {
+    axios
+      .delete(`/api/deleteEvent/${this.props.user.users_id}/${e}`)
+      .then(res => {
+        swal({
+          position: 'top-end',
+          type: 'warning',
+          title: 'Removing this event is permanant.',
+          text: 'Do you wish to continue?',
+          confirmButtonText: 'Yes, remove it!',
+          showCancelButton: true
+        }).then(res => {
+          if (res.value) {
+            swal('Removed!', 'Your event has been deleted.', 'success');
+          }
+        });
+      })
   };
 
   render() {
@@ -91,17 +115,26 @@ class Card extends Component {
             />{' '}
             {eachEvent.location.substring(0, eachEvent.location.length - 5)}
           </h3>
+          {this.props.user.users_id === eachEvent.users_id && (
+            <input
+              className="remove_event_by_id"
+              type="image"
+              src="https://www.flaticon.com/premium-icon/icons/svg/484/484662.svg"
+              alt="trash icon"
+              onClick={e => this.handleDelete(eachEvent.events_id)}
+            />
+          )}
+
           <input
             type="image"
             className="events_btn"
             src="https://image.flaticon.com/icons/svg/126/126469.svg"
-            // src='https://image.flaticon.com/icons/svg/149/149411.svg'
             alt="Add to favs btn"
             onClick={e => this.handleClick(eachEvent.events_id)}
-
           />
-          <div className='events_info_btn'>
-            <InfoBtn/>
+          <div className="events_info_btn">
+            {/* <InfoBtn/> */}
+            {eachEvent.host}
           </div>
           {/* <input
             type="image"
@@ -121,4 +154,3 @@ export default connect(
   mapStateToProps,
   { getUser, getEventsAttending }
 )(Card);
-// export default Card;

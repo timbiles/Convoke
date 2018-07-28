@@ -13,10 +13,10 @@ const getAll = (req, res) => {
 
 const createEvent = (req, res, next) => {
   const db = req.app.get('db');
-  const { title, host, date, time, location, img } = req.body;
+  const { title, host, date, time, location, img, users_id } = req.body;
   // console.log(req.body);
 
-  db.create_event([title, host, date, time, location, img])
+  db.create_event([title, host, date, time, location, img, users_id])
     .then(() => {
       res.status(200).send('Sweet');
     })
@@ -31,7 +31,7 @@ const getEvents = (req, res, next) => {
   const db = req.app.get('db');
   const { users_id } = req.params;
 
-  console.log('hope this works: ', users_id);
+  // console.log('hope this works: ', users_id);
 
   db.get_event_by_user_id([users_id])
     .then(response => {
@@ -46,7 +46,7 @@ const getEvents = (req, res, next) => {
 };
 
 const addEvent = (req, res, next) => {
-  console.log('i think the error is here....idk...lol...');
+  // console.log('i think the error is here....idk...lol...');
   const db = req.app.get('db');
   const { events_id, users_id } = req.params;
 
@@ -90,10 +90,27 @@ const deleteEvent = (req, res, next) => {
     });
 };
 
+const deleteEventById = (req, res, next) => {
+  const db = req.app.get('db');
+  const { users_id, events_id } = req.params;
+  console.log('hope this works: ', users_id);
+  
+
+  db.delete_event_by_users_id([users_id, events_id])
+    .then(() => res.status(200).send('Sweet!'))
+    .catch(err => {
+      console.log(err);
+
+      res.status(500).send(err);
+      console.log(`Something went wrong!!`);
+    });
+};
+
 module.exports = {
   getAll,
   createEvent,
   getEvents,
   addEvent,
-  deleteEvent
+  deleteEvent,
+  deleteEventById
 };

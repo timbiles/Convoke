@@ -96,6 +96,18 @@
   width: 15px;
 }
 
+.remove_event_by_id {
+  /* display: none; */
+  position: absolute;
+  background-color: rgb(240, 240, 240);
+  /* border-radius: 50%;   */
+  /* left: 0; */
+  bottom: 0;
+  margin: 5%;  
+  height: 35px;
+  width: 35px;
+}
+
 @media (max-width: 850px) {
   .events_container {
     height: 60vh;

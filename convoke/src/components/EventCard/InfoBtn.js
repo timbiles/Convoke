@@ -8,11 +8,11 @@ import { getEvents } from '../../ducks/eventReducer';
 
 class InfoBtn extends Component {
   render() {
-    const { host, date, time, location } = this.props.events.events;
+    // const { host, date, time, location } = this.props.events.events;
 
     let mapped = this.props.events.events.map((e, i) => {
       return (
-        <div  key={i}>
+        <div key={i} >
           <h1>{e.host}</h1>
           {/* <h1>{e.date}</h1>
           <h1>{e.time}</h1>
@@ -20,7 +20,6 @@ class InfoBtn extends Component {
         </div>
       );
     });
-
     console.log(this.props.events.events);
     return (
       <div className="info_container">

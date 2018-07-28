@@ -24,12 +24,9 @@ import {
 import { getUser } from '../../ducks/userReducer';
 
 class CreateEvent extends Component {
-  // componentDidMount() {
-  //   this.props.getUser()
-  // }
-
-  handleSubmit = id => {
+    handleSubmit = id => {
     let { title, host, date, time, ampm, location, img } = this.props.create;
+    let {users_id} = this.props.user
     console.log(this.props);
     swal({
       position: 'top-end',
@@ -47,7 +44,8 @@ class CreateEvent extends Component {
         time,
         ampm,
         location,
-        img
+        img,
+        users_id
       })
       // .then(() => this.props.reset());
   };
@@ -95,8 +93,6 @@ class CreateEvent extends Component {
       updateImg
     } = this.props;
     const { auth_id } = this.props.user;
-
-    console.log(this.props.user)
 
     return (
       <div className="create_event_container">

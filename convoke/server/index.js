@@ -6,6 +6,7 @@ const session = require('express-session');
 const passport = require('passport');
 const path = require('path');
 const NodeGeocoder = require('node-geocoder');
+const cloudinary = require('cloudinary');
 const port = process.env.SERVER_PORT || 3001;
 
 const strategy = require('./strategy');
@@ -20,7 +21,8 @@ const {
   createEvent,
   getEvents,
   addEvent,
-  deleteEvent
+  deleteEvent,
+  deleteEventById
 } = require('./controllers/eventsCtrl');
 
 const app = express();
@@ -59,6 +61,13 @@ app.use(
 //   next();
 // });
 
+///cloudinary///
+cloudinary.config({
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.CLOUD_API_KEY,
+  api_secret: process.env.CLOUD_SECRET
+})
+
 app.use(passport.initialize());
 app.use(passport.session());
 passport.use(strategy);
@@ -86,10 +95,11 @@ passport.deserializeUser((user, done) => {
 //events end-points
 app.get('/api/events', getAll);
 app.get('/api/events/:users_id', getEvents);
-app.post('/api/add-event/:events_id/:users_id', addEvent);
+// app.post('/api/add-event/:events_id/:users_id', addEvent);
 app.post('/api/add-event/:events_id/:users_id', addEvent);
 app.post('/api/events', createEvent);
 app.delete('/api/delete/:events_id/:users_id', deleteEvent);
+app.delete('/api/deleteEvent/:users_id/:events_id', deleteEventById);
 
 //user endpoints
 app.get('/login', login);
