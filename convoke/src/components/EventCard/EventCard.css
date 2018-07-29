@@ -20,7 +20,8 @@
   width: 100%;
   padding: 5% 0;
   letter-spacing: 1px;
-  background: linear-gradient(to left top, rgb(212, 178, 178) 0%, #fff 60%);
+  /* background: linear-gradient(to left top, rgb(212, 178, 178) 0%, #fff 60%); */
+  background: linear-gradient(to left top, rgb(95, 73, 73) 0%, #fff 60%);  
   color: #413f3f;
   text-decoration: none;
   z-index: 1;
@@ -88,10 +89,11 @@
   position: absolute;
   width: 200px;
   padding: 30%;
-  transform: translateY(-50%);
+  transform: translateY(-60%);
   background-color: #ffffff;
   z-index: 9999;
   font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
   letter-spacing: 1%;
   opacity: .9;
 }
@@ -131,6 +133,10 @@
 .remove_icon_dropdown {
   height: 35px;
   width: 35px;
+  padding: 5%;
+  position: absolute;
+  right: 0;
+  bottom: 0;
 }
 
 @media (max-width: 850px) {

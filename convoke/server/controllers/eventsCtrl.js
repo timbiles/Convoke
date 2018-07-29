@@ -26,6 +26,19 @@ const getUserEvents = (req, res) => {
     });
 };
 
+const getEventCount = (req, res, next) => {
+  const db = req.app.get('db');
+  const { events_id } = req.params;
+
+  db.events
+    .get_event_count([events_id])
+    .then(() => res.status(200).send('Cool'))
+    .catch(err => {
+      console.log(err);
+      res.status(500).send(err);
+    });
+};
+
 const createEvent = (req, res, next) => {
   const db = req.app.get('db');
   const { title, host, date, time, location, img, users_id } = req.body;
@@ -107,26 +120,13 @@ const deleteEventById = (req, res, next) => {
     });
 };
 
-const getEventCount = (req, res, next) => {
-  const db = req.app.get('db');
-  const { events_id } = req.params;
-
-  db.events
-    .get_event_count([events_id])
-    .then(() => res.status(200).send('Cool'))
-    .catch(err => {
-      console.log(err);
-      res.status(500).send(err);
-    });
-};
-
 module.exports = {
   getAll,
   getUserEvents,
+  getEventCount,
   createEvent,
   getEvents,
   addEvent,
   deleteEvent,
-  deleteEventById,
-  getEventCount
+  deleteEventById
 };

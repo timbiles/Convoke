@@ -11,6 +11,9 @@ import { getUser, getEventsAttending } from '../../ducks/userReducer';
 import { eventCount } from '../../ducks/userEventReducer';
 
 class Card extends Component {
+  // componentDidMount(){
+  //   this.props.eventCount(this.props.userEvents.userEvents.events_id);
+  // }
 
   handleClick = val => {
     axios
@@ -66,11 +69,12 @@ class Card extends Component {
       });
   };
 
+
+
   render() {
     const { eachEvent } = this.props;
 
-    // console.log(this.props.userEvents)
-    console.log(this.props.userEvents)
+    
 
     return (
       <div className="events_container">
@@ -119,6 +123,7 @@ class Card extends Component {
             />{' '}
             {eachEvent.location.substring(0, eachEvent.location.length - 5)}
           </h3>
+        
           {this.props.user.users_id === eachEvent.users_id && (
             <input
               className="remove_event_by_id"
