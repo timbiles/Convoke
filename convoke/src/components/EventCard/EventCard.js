@@ -6,12 +6,13 @@ import swal from 'sweetalert2';
 
 import './EventCard.css';
 
-import InfoBtn from './InfoBtn';
-
 import { getUser, getEventsAttending } from '../../ducks/userReducer';
 
+import { eventCount } from '../../ducks/userEventReducer';
+
 class Card extends Component {
-    handleClick = val => {
+
+  handleClick = val => {
     axios
       .post(`/api/add-event/${val}/${this.props.user.users_id}`)
 
@@ -62,11 +63,14 @@ class Card extends Component {
             swal('Removed!', 'Your event has been deleted.', 'success');
           }
         });
-      })
+      });
   };
 
   render() {
     const { eachEvent } = this.props;
+
+    // console.log(this.props.userEvents)
+    console.log(this.props.userEvents)
 
     return (
       <div className="events_container">
@@ -133,15 +137,39 @@ class Card extends Component {
             onClick={e => this.handleClick(eachEvent.events_id)}
           />
           <div className="events_info_btn">
-            {/* <InfoBtn/> */}
-            {eachEvent.host}
+            <input
+              type="image"
+              className="events_info_btn"
+              src="https://cdn0.iconfinder.com/data/icons/mobile-set/154/info-512.png"
+              alt="info btn"
+            />
+            <div className="events_info_btn_dropdown">
+              <p>{eachEvent.host}</p>
+              <p>
+                {eachEvent.date.substring(5, 10).replace(/-/g, '/')}/{eachEvent.date.substring(
+                  0,
+                  4
+                )}
+              </p>
+              <p>
+                {eachEvent.time[0] === '0'
+                  ? eachEvent.time.substring(1, 5)
+                  : eachEvent.time.substring(0, 5)}
+              </p>
+              <p>
+                {eachEvent.location.substring(0, eachEvent.location.length - 5)}
+              </p>
+              {this.props.user.users_id === eachEvent.users_id && (
+                <input
+                  className="remove_icon_dropdown"
+                  type="image"
+                  src="https://www.flaticon.com/premium-icon/icons/svg/484/484662.svg"
+                  alt="trash icon"
+                  onClick={e => this.handleDelete(eachEvent.events_id)}
+                />
+              )}
+            </div>
           </div>
-          {/* <input
-            type="image"
-            className="events_info_btn"
-            src="https://cdn0.iconfinder.com/data/icons/mobile-set/154/info-512.png"
-            alt="info btn"
-          /> */}
         </div>
       </div>
     );
@@ -152,5 +180,5 @@ const mapStateToProps = state => state;
 
 export default connect(
   mapStateToProps,
-  { getUser, getEventsAttending }
+  { getUser, getEventsAttending, eventCount }
 )(Card);

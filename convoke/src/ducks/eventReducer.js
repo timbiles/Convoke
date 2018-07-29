@@ -41,7 +41,7 @@ export default function eventReducer(state = initialState, action) {
         isLoading: false,
         events: action.payload.data
       };
-    case `${GET_EVENTS}_REJECTED`:
+    case `${GET_EVENTS}_REJECTED`:   
     case `${REMOVE_EVENT}_REJECTED`:
       return {
         ...state,

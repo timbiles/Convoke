@@ -18,11 +18,13 @@ const {
 } = require('./controllers/userCtrl');
 const {
   getAll,
+  getUserEvents,
   createEvent,
   getEvents,
   addEvent,
   deleteEvent,
-  deleteEventById
+  deleteEventById,
+  getEventCount
 } = require('./controllers/eventsCtrl');
 
 const app = express();
@@ -62,11 +64,11 @@ app.use(
 // });
 
 ///cloudinary///
-cloudinary.config({
-  cloud_name: process.env.CLOUD_NAME,
-  api_key: process.env.CLOUD_API_KEY,
-  api_secret: process.env.CLOUD_SECRET
-})
+// cloudinary.config({
+//   cloud_name: process.env.CLOUD_NAME,
+//   api_key: process.env.CLOUD_API_KEY,
+//   api_secret: process.env.CLOUD_SECRET
+// })
 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -74,11 +76,12 @@ passport.use(strategy);
 
 passport.serializeUser((user, done) => {
   const db = app.get('db');
-  db.get_user_by_authid(user.id)
+  db.users
+    .get_user_by_authid(user.id)
     .then(response => {
-      // console.log(response);
       if (!response[0]) {
-        db.add_user_by_authid([user.displayName, user.id])
+        db.users
+          .add_user_by_authid([user.displayName, user.id])
           .then(res => done(null, res[0]))
           .catch(err => done(err, null));
       } else {
@@ -94,8 +97,9 @@ passport.deserializeUser((user, done) => {
 
 //events end-points
 app.get('/api/events', getAll);
+app.get('/api/user-events', getUserEvents);
 app.get('/api/events/:users_id', getEvents);
-// app.post('/api/add-event/:events_id/:users_id', addEvent);
+app.get('/api/event-count/:events_id', getEventCount);
 app.post('/api/add-event/:events_id/:users_id', addEvent);
 app.post('/api/events', createEvent);
 app.delete('/api/delete/:events_id/:users_id', deleteEvent);

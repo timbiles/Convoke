@@ -13,14 +13,6 @@ class Profile extends Component {
     this.props.getEventsAttending(this.props.user.users_id);
   }
 
-  // getEventsAttending = () => {
-  //   console.log(this.props.user.users_id);
-  //   axios.get(`/api/events/${this.props.user.users_id}`).then(res => {
-  //     console.log(res.data);
-  //     this.setState({ eventsAttending: res.data });
-  //   });
-  // };
-
   handleDelete = id => {
     axios.delete(`/api/delete/${id}/${this.props.user.users_id}`).then(res => {
       this.props.getEventsAttending(this.props.user.users_id);
@@ -54,8 +46,8 @@ class Profile extends Component {
                 </div>
               </div>
               <h3>Bio</h3>
-              <p>{bio}</p>
-              <Link className="" to="/editprofile">
+              <p className='profile_bio'>{bio}</p>
+              <Link className="edit_profile_link"to="/editprofile">
                 Edit Profile
               </Link>
             </div>
@@ -67,8 +59,8 @@ class Profile extends Component {
             return (
               <div className="mc_events_cards" key={e.id}>
                 <div className="mc_name_and_img">
-                  <Link to={`/events/${e.title}`}>
-                    <h1 className='mc_selected_title'>{e.title}</h1>
+                  <Link className='mc_selected_title' to={`/events/${e.title}`}>
+                    {e.title}
                   </Link>
 
                   <img className="mc_events_img" src={e.img} alt={e.title} />
@@ -86,13 +78,16 @@ class Profile extends Component {
                     : e.time.substring(0, 5)}
                 </p>
                 <p>{e.location.substring(0, e.location.length - 5)}</p>
-                <button
+              
+                <input
+                  className='profile_remove_img'
+                  type="image"
+                  alt='Delete icon'
+                  src='https://image.flaticon.com/icons/svg/118/118743.svg'
                   onClick={id => {
                     this.handleDelete(e.events_id);
                   }}
-                >
-                  Delete
-                </button>
+                />
               </div>
             );
           })}

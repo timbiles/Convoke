@@ -4,19 +4,23 @@ import { connect } from 'react-redux';
 
 import './Header.css';
 import Avatar from '../Avatar/Avatar';
+import Hamburger from './Hamburger/Hamburger';
 
 import { getUser, getEventsAttending } from '../../ducks/userReducer';
 import { getEvents } from '../../ducks/eventReducer';
+import { getUserEvents } from '../../ducks/userEventReducer';
+
 
 class Header extends Component {
   componentDidMount() {
     this.props.getUser().then(() => {
       this.props.getEvents();
       this.props.getEventsAttending(this.props.user.users_id);
+      this.props.getUserEvents();
     });
   }
   render() {
-    const { auth_id, img } = this.props.user;
+    const { auth_id } = this.props.user;
     return (
       <div className="header_container">
         <div className="header_link_container">
@@ -56,22 +60,12 @@ class Header extends Component {
               </a>
             ) : (
               <div className="header_render_logout">
-                {/* <a className="link" href={process.env.REACT_APP_LOGOUT}>
-                  <h1 className="link">Logout</h1>
-                </a>
-                <div>
-                  <img className="header_avatar" src={img} alt="avatar" />
-                </div> */}
-                  <Avatar />
+                <Avatar />
               </div>
             )}
           </div>
         </div>
-        <img
-          className="hamburger"
-          src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Hamburger_icon.svg/220px-Hamburger_icon.svg.png"
-          alt="hamburger icon"
-        />
+        <Hamburger />
       </div>
     );
   }
@@ -84,6 +78,7 @@ export default connect(
   {
     getUser,
     getEventsAttending,
-    getEvents
+    getEvents,
+    getUserEvents
   }
 )(Header);

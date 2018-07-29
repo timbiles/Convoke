@@ -37,7 +37,7 @@ class EditProfile extends Component {
       updateName,
       updateEmail,
       updateHomeTown,
-      updateImg,
+      // updateImg,
       updateBio
     } = this.props;
 
@@ -96,6 +96,7 @@ class EditProfile extends Component {
                   <Link to="/profile">
                     <button
                       onKeyDown={this.handleKeyDown}
+                      className='ep_submit_btn'
                       onClick={id => this.handleSubmit(id)}
                     >
                       Submit Edit

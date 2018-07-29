@@ -46,7 +46,6 @@
   display: flex;
   flex-direction: column;
   letter-spacing: 2px;
-
 }
 
 .mc_events_img {
@@ -85,12 +84,12 @@
 }
 
 .mc_display h3 {
-    font-weight: bold;
-    margin: 5% 0;
+  font-weight: bold;
+  margin: 5% 0;
 }
 
 .mc_profile_name {
-    font-size: 1.5rem;
+  font-size: 1.5rem;
 }
 
 .mc_selected_title {
@@ -98,17 +97,45 @@
   color: rgb(10, 10, 10);
 }
 
-.mc_name_and_img h1{
-  /* color: Pink;  */
-  /* font-family: "Courier"; */
-  /* font-size: 20px; */
-  /* margin: 10px 0 0 10px; */
-  white-space: nowrap;
-  overflow: auto;
-  width: 8rem;
-  animation: type 1.5s steps(60, start); 
+.profile_bio {
+  margin-bottom: 2%;
 }
 
-@keyframes type{ 
-  from { width: 0; } 
-} 
+.edit_profile_link {
+  text-decoration: none;
+  color: #3f3e3e;
+  cursor: pointer;
+  width: 90px;
+}
+
+.profile_remove_img {
+  width: 35px;
+}
+
+.profile_remove_img:hover {
+  transform: scale(1.05);
+}
+
+.profile_remove_img:focus {
+  outline: none;
+}
+
+.mc_selected_title{
+  animation: textFade 2s;
+  /* text-decoration: none; */
+}
+
+@keyframes textFade {
+  0% {
+    opacity: 0;
+    /* transform: scale(0.95); */
+    transform: translateX(-30px)
+  }
+
+  100% {
+    opacity: 1;
+    /* transform: scale(1); */
+    transform: translateX(0)
+    
+  }
+}

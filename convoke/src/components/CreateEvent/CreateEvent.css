@@ -27,6 +27,7 @@
 .create_event_container h1 {
     font-weight: bold; 
     letter-spacing: 2px;   
+    /* color: #d1cfcf; */
 }
 
 .create_event_input button {

@@ -33,7 +33,6 @@ class Home extends Component {
         <EventCard
           eachEvent={e}
           key={i}
-          // handleCardClick={this.props.addToCart}
         />
       ));
 
