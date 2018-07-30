@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import swal from 'sweetalert2';
+import _ from 'lodash';
 
 import './EventCard.css';
 
@@ -11,9 +12,22 @@ import { getUser, getEventsAttending } from '../../ducks/userReducer';
 import { eventCount } from '../../ducks/userEventReducer';
 
 class Card extends Component {
-  // componentDidMount(){
-  //   this.props.eventCount(this.props.userEvents.userEvents.events_id);
-  // }
+  constructor() {
+    super();
+
+    this.state = {
+      count: 0
+    };
+  }
+
+  componentDidMount() {
+    axios
+      .get(`/api/event-count/${this.props.userEvents.userEvents.events_id}`)
+      .then(res => {
+        this.setState({count: res.data})
+        // console.log(res);
+      });
+  }
 
   handleClick = val => {
     axios
@@ -69,13 +83,24 @@ class Card extends Component {
       });
   };
 
-
-
   render() {
     const { eachEvent } = this.props;
 
-    
+    const { userEvents } = this.props.userEvents;
 
+    // let mappedUserEvents = this.props.userEvents.userEvents.map((e, i) => {
+    //   return <div key={i}>{e}</div>;
+    // });
+
+    let mapped = _.mapValues(userEvents, function(e) {
+      return e.events_id;
+    });
+
+    // userEvents.length !== 0 &&
+    //   console.log(mapped)
+    // console.log(this.props);
+
+    console.log(this.state)
     return (
       <div className="events_container">
         <div className="events_title">
@@ -123,7 +148,7 @@ class Card extends Component {
             />{' '}
             {eachEvent.location.substring(0, eachEvent.location.length - 5)}
           </h3>
-        
+
           {this.props.user.users_id === eachEvent.users_id && (
             <input
               className="remove_event_by_id"

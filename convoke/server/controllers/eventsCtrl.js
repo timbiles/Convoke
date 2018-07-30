@@ -32,7 +32,7 @@ const getEventCount = (req, res, next) => {
 
   db.events
     .get_event_count([events_id])
-    .then(() => res.status(200).send('Cool'))
+    .then(() => res.status(200).send(response))
     .catch(err => {
       console.log(err);
       res.status(500).send(err);

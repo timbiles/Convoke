@@ -11,6 +11,7 @@ import { getEvents } from '../../ducks/eventReducer';
 import { getUserEvents } from '../../ducks/userEventReducer';
 
 
+
 class Header extends Component {
   componentDidMount() {
     this.props.getUser().then(() => {
@@ -21,7 +22,6 @@ class Header extends Component {
   }
   render() {
     const { auth_id } = this.props.user;
-    // console.log(this.props)
     
     return (
       <div className="header_container">
