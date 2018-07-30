@@ -12,22 +12,22 @@ import { getUser, getEventsAttending } from '../../ducks/userReducer';
 import { eventCount } from '../../ducks/userEventReducer';
 
 class Card extends Component {
-  constructor() {
-    super();
+  // constructor() {
+  //   super();
 
-    this.state = {
-      count: 0
-    };
-  }
+  //   this.state = {
+  //     count: 0
+  //   };
+  // }
 
-  componentDidMount() {
-    axios
-      .get(`/api/event-count/${this.props.userEvents.userEvents.events_id}`)
-      .then(res => {
-        this.setState({count: res.data})
-        // console.log(res);
-      });
-  }
+  // componentDidMount() {
+  //   axios
+  //     .get(`/api/event-count/${this.props.userEvents.userEvents.events_id}`)
+  //     .then(res => {
+  //       this.setState({count: res.data})
+  //       // console.log(res);
+  //     });
+  // }
 
   handleClick = val => {
     axios
@@ -88,19 +88,19 @@ class Card extends Component {
 
     const { userEvents } = this.props.userEvents;
 
-    // let mappedUserEvents = this.props.userEvents.userEvents.map((e, i) => {
-    //   return <div key={i}>{e}</div>;
-    // });
-
     let mapped = _.mapValues(userEvents, function(e) {
       return e.events_id;
     });
 
+    let filter = _.filter(mapped, function(e) {
+      return e === eachEvent.events_id;
+    }).length;
+
     // userEvents.length !== 0 &&
-    //   console.log(mapped)
+    //   console.log(filter)
+
     // console.log(this.props);
 
-    console.log(this.state)
     return (
       <div className="events_container">
         <div className="events_title">
@@ -148,7 +148,6 @@ class Card extends Component {
             />{' '}
             {eachEvent.location.substring(0, eachEvent.location.length - 5)}
           </h3>
-
           {this.props.user.users_id === eachEvent.users_id && (
             <input
               className="remove_event_by_id"
@@ -189,6 +188,10 @@ class Card extends Component {
               <p>
                 {eachEvent.location.substring(0, eachEvent.location.length - 5)}
               </p>
+              <p>
+                Number Attending:{userEvents.length !== 0 && filter}
+              </p>
+
               {this.props.user.users_id === eachEvent.users_id && (
                 <input
                   className="remove_icon_dropdown"
