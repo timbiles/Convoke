@@ -121,7 +121,6 @@ export default function userReducer(state = initialState, action) {
         didErr: true
       };
     case UPDATE_NAME:
-      // console.log(action.payload);
       return {
         ...state,
         name: action.payload

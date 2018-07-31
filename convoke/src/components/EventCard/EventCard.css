@@ -121,6 +121,15 @@
   width: 15px;
 }
 
+.events_person {
+  height: 20px;
+}
+
+.events_person_white {
+  height: 20px;
+  background-color: white;
+}
+
 .remove_event_by_id {
   position: absolute;
   background-color: rgb(240, 240, 240);

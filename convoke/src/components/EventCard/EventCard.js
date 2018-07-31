@@ -6,29 +6,11 @@ import swal from 'sweetalert2';
 import _ from 'lodash';
 
 import './EventCard.css';
+import pic from './person.png';
 
 import { getUser, getEventsAttending } from '../../ducks/userReducer';
 
-import { eventCount } from '../../ducks/userEventReducer';
-
 class Card extends Component {
-  // constructor() {
-  //   super();
-
-  //   this.state = {
-  //     count: 0
-  //   };
-  // }
-
-  // componentDidMount() {
-  //   axios
-  //     .get(`/api/event-count/${this.props.userEvents.userEvents.events_id}`)
-  //     .then(res => {
-  //       this.setState({count: res.data})
-  //       // console.log(res);
-  //     });
-  // }
-
   handleClick = val => {
     axios
       .post(`/api/add-event/${val}/${this.props.user.users_id}`)
@@ -96,10 +78,16 @@ class Card extends Component {
       return e === eachEvent.events_id;
     }).length;
 
-    // userEvents.length !== 0 &&
-    //   console.log(filter)
-
-    // console.log(this.props);
+    let image1 = (
+      <img
+        className="events_person"
+        src="https://image.flaticon.com/icons/svg/10/10522.svg"
+        alt="person icon"
+      />
+    );
+    let image2 = (
+      <img className="events_person_white" src={pic} alt="person icon" />
+    );
 
     return (
       <div className="events_container">
@@ -189,7 +177,8 @@ class Card extends Component {
                 {eachEvent.location.substring(0, eachEvent.location.length - 5)}
               </p>
               <p>
-                Number Attending:{userEvents.length !== 0 && filter}
+                {image1}
+                {userEvents.length !== 0 && filter}
               </p>
 
               {this.props.user.users_id === eachEvent.users_id && (
@@ -213,5 +202,5 @@ const mapStateToProps = state => state;
 
 export default connect(
   mapStateToProps,
-  { getUser, getEventsAttending, eventCount }
+  { getUser, getEventsAttending }
 )(Card);

@@ -23,12 +23,33 @@ const {
   getEvents,
   addEvent,
   deleteEvent,
-  deleteEventById,
-  getEventCount
+  deleteEventById
 } = require('./controllers/eventsCtrl');
+// const {} = require('./controllers/messageCtrl')
 
 const app = express();
 app.use(bodyParser.json());
+
+// const server = require('http').Server(app);
+// const io = require('socket.io').listen(server);
+
+// app.get('/chat', function(req, res) {
+//   res.sendFile(__durname + '/src/components/Chat/Chat');
+// });
+
+// io.sockets.on('connection', function(socket) {
+//   socket.emit('news', {hello: 'world'});
+//   socket.on('my other event', function (data) {
+//     console.log(data)
+//   })
+// });
+
+// users = [];
+// connections = [];
+
+// console.log('server running...');
+
+
 
 massive(process.env.CONNECTION_STRING)
   .then(db => {
@@ -99,7 +120,6 @@ passport.deserializeUser((user, done) => {
 app.get('/api/events', getAll);
 app.get('/api/user-events', getUserEvents);
 app.get('/api/events/:users_id', getEvents);
-app.get('/api/event-count/:events_id', getEventCount);
 app.post('/api/add-event/:events_id/:users_id', addEvent);
 app.post('/api/events', createEvent);
 app.delete('/api/delete/:events_id/:users_id', deleteEvent);
