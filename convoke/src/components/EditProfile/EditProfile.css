@@ -1,66 +1,64 @@
 .ep_container {
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: bold; 
-    letter-spacing: 2px;   
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  letter-spacing: 2px;
 }
 
 .ep_box_container {
-    width: 60%;
-    height: 70%;
-    display: flex;
-    justify-content: center;
+  width: 60%;
+  height: 70%;
+  display: flex;
+  justify-content: center;
 }
 
 .ep_input {
-    position: relative;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(to top, rgb(205, 218, 214) 0%, #fff 90%);
-    border-radius: .5%;
-    margin: 4% 0;
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(to top, rgb(205, 218, 214) 0%, #fff 90%);
+  border-radius: 0.5%;
+  margin: 4% 0;
 }
 
 .img-email-edit {
-    display: flex;
-
+  display: flex;
 }
 
 .mc_img_and_edit {
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    top: 0;
-    left: 0;
-    margin: 2%;
-  }
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 2%;
+}
 
 .email_and_img_edit {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin-left: 10%;
-
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 10%;
 }
 
 .ep_input input {
-    margin: 3%;
-    width: 40%;
+  margin: 3%;
+  width: 40%;
 }
 
 .ep_input button {
-    cursor: pointer;
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    margin: 2%;
-    border-radius: 0%;
-    height: 5%;
+  cursor: pointer;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin: 2%;
+  border-radius: 0%;
+  height: 5%;
 }
 
 /* .ep_input button:focus {
@@ -72,12 +70,19 @@
     background-color: rgb(236, 236, 236);
   } */
 
-  .update_profile_bio {
-      width: 98%;
-  }
+.update_profile_bio {
+  width: 98%;
+}
 
-  .ep_submit_btn {
-      margin-top: 2%;
-    background-color: rgb(229, 236, 234);
-    border-radius: 0%;
-  }
+.ep_submit_btn {
+  margin-top: 2%;
+  background-color: rgb(229, 236, 234);
+  border-radius: 0%;
+}
+
+.image_dropzone {
+  height: 225px;
+  width: 225px;
+  border-radius: 1%;
+  border: 1px dotted black;
+}

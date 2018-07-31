@@ -7,6 +7,7 @@ const passport = require('passport');
 const path = require('path');
 const NodeGeocoder = require('node-geocoder');
 const cloudinary = require('cloudinary');
+var mustacheExpress = require('mustache-express');
 const port = process.env.SERVER_PORT || 3001;
 
 const strategy = require('./strategy');
@@ -30,24 +31,26 @@ const {
 const app = express();
 app.use(bodyParser.json());
 
+///image uploader
+// app.engine('html', mustacheExpress());
+// app.set('view engine', 'mustache');
+// app.use('/public', express.static('public'));
+
+
+//socket io
 // const server = require('http').Server(app);
-// const io = require('socket.io').listen(server);
+// const io = require('socket.io')(server);
 
-// app.get('/chat', function(req, res) {
-//   res.sendFile(__durname + '/src/components/Chat/Chat');
-// });
-
-// io.sockets.on('connection', function(socket) {
-//   socket.emit('news', {hello: 'world'});
+// io.on('connection', (socket) => {
+//   socket.emit('news', { hello: 'world' });
 //   socket.on('my other event', function (data) {
-//     console.log(data)
-//   })
+//     console.log(data);
+//   });
 // });
 
-// users = [];
-// connections = [];
-
-// console.log('server running...');
+// app.get('/', function (req, res) {
+//   res.sendfile(__dirname + '/index.html');
+// });
 
 
 
@@ -76,13 +79,6 @@ app.use(
 // };
 
 // const geocoder = NodeGeocoder(options);
-
-// app.use((req, res, next) => {
-//   if (!req.session.cart) {
-//     req.session.cart = [];
-//   }
-//   next();
-// });
 
 ///cloudinary///
 // cloudinary.config({
@@ -130,6 +126,7 @@ app.get('/login', login);
 app.get('/logout', logout);
 app.get('/api/me', getUser);
 app.put('/api/updateUserInfo/:id', updateUserInfo);
+
 
 app.listen(port, () => {
   console.log(`Listening on port ${port}.`);

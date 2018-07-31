@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import Dropzone from 'react-dropzone';
+import request from 'superagent';
 
 import './EditProfile.css';
 
@@ -15,7 +17,17 @@ import {
   updateUserInfo
 } from '../../ducks/userReducer';
 
+const CLOUDINARY_UPLOAD_URL =
+  'https://api.cloudinary.com/v1_1/dwvrok1le/upload';
+const CLOUDINARY_UPLOAD_PRESET = 'ncjyrxth';
+
 class EditProfile extends Component {
+  constructor() {
+    super();
+    this.state = {
+      uploadedFileCloudinaryUrl: ''
+    };
+  }
   componentDidMount() {
     this.props.getEventsAttending(this.props.user.users_id);
   }
@@ -31,6 +43,29 @@ class EditProfile extends Component {
     }
   };
 
+  onImageDrop = files => {
+    this.setState({ uploadedFile: files[0] });
+    this.handleImageUpload(files[0]);
+  }
+
+  handleImageUpload =file => {
+    let upload = request
+      .post(CLOUDINARY_UPLOAD_URL)
+      .field('upload_preset', CLOUDINARY_UPLOAD_PRESET)
+      .field('file', file);
+
+    upload.end((err, response) => {
+      if (err) {
+        console.log(err);
+      }
+      if (response.body.secure_url !== '') {
+        this.setState({
+          uploadedFileCloudinaryUrl: response.body.secure_url
+        });
+      }
+    });
+  }
+
   render() {
     const { auth_id, name, email, home_town, img, bio } = this.props.user;
     const {
@@ -40,6 +75,7 @@ class EditProfile extends Component {
       // updateImg,
       updateBio
     } = this.props;
+
 
     return (
       <div className="mc_container">
@@ -96,13 +132,35 @@ class EditProfile extends Component {
                   <Link to="/profile">
                     <button
                       onKeyDown={this.handleKeyDown}
-                      className='ep_submit_btn'
+                      className="ep_submit_btn"
                       onClick={id => this.handleSubmit(id)}
                     >
                       Submit Edit
                     </button>
                   </Link>
                 </div>
+                <form>
+                  <div className="FileUpload">
+                    <Dropzone
+                      onDrop={this.onImageDrop}
+                      multiple={false}
+                      accept="image/*"
+                      className="image_dropzone"
+                    >
+
+                    <div>
+                    {this.state.uploadedFileCloudinaryUrl === '' ? 'Drop an image or click to select a file to upload.' : (
+                      <div>
+                        {/* <p>{this.state.uploadedFile.name}</p> */}
+                        <img src={this.state.uploadedFileCloudinaryUrl} />
+                      </div>
+                    )}
+                  </div>
+                    </Dropzone>
+                  </div>
+
+                  
+                </form>
               </div>
             </div>
           )}
