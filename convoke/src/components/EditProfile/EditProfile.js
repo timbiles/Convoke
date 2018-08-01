@@ -46,9 +46,9 @@ class EditProfile extends Component {
   onImageDrop = files => {
     this.setState({ uploadedFile: files[0] });
     this.handleImageUpload(files[0]);
-  }
+  };
 
-  handleImageUpload =file => {
+  handleImageUpload = file => {
     let upload = request
       .post(CLOUDINARY_UPLOAD_URL)
       .field('upload_preset', CLOUDINARY_UPLOAD_PRESET)
@@ -64,7 +64,7 @@ class EditProfile extends Component {
         });
       }
     });
-  }
+  };
 
   render() {
     const { auth_id, name, email, home_town, img, bio } = this.props.user;
@@ -75,7 +75,6 @@ class EditProfile extends Component {
       // updateImg,
       updateBio
     } = this.props;
-
 
     return (
       <div className="mc_container">
@@ -147,19 +146,22 @@ class EditProfile extends Component {
                       accept="image/*"
                       className="image_dropzone"
                     >
-
-                    <div>
-                    {this.state.uploadedFileCloudinaryUrl === '' ? 'Drop an image or click to select a file to upload.' : (
                       <div>
-                        {/* <p>{this.state.uploadedFile.name}</p> */}
-                        <img src={this.state.uploadedFileCloudinaryUrl} />
+                        {this.state.uploadedFileCloudinaryUrl === '' ? (
+                          'Drop an image or click to select a file to upload.'
+                        ) : (
+                          <div>
+                            {/* <p>{this.state.uploadedFile.name}</p> */}
+                            <img src={this.state.uploadedFileCloudinaryUrl} />
+                          </div>
+                        )}
                       </div>
-                    )}
-                  </div>
                     </Dropzone>
                   </div>
-
-                  
+                  <label className="file-upload-container" for="file-upload">
+                    <input id="file-upload" type="file" />
+                    Select an Image
+                  </label>
                 </form>
               </div>
             </div>

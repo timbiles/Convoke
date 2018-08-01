@@ -29,14 +29,6 @@
   transform: scale(1.05);
 }
 
-.header_avatar {
-  /* border-radius: 50%;
-  height: 35px;
-  width: 35px; */
-  /* margin: 0 25%; */
-  /* margin-right: 25%; */
-}
-
 .header_render_logout {
   display: flex;
 }

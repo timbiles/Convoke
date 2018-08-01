@@ -63,13 +63,14 @@ class Card extends Component {
           }
         });
       })
-      .catch(()=>{
+      .catch(() => {
         swal({
           position: 'top-end',
           type: 'warning',
-          title: 'You cannot remove an event that someone has already signed up for!.',
-        })
-      })
+          title:
+            'You cannot remove an event that someone has already signed up for!.'
+        });
+      });
   };
 
   render() {
@@ -103,7 +104,7 @@ class Card extends Component {
             <h1 className="events_title">{eachEvent.title}</h1>
           </Link>
         </div>
-        <div>
+        <div className="events_sub_container">
           <Link to={`/events/${eachEvent.title}`}>
             <img
               className="events_container_img"
@@ -143,6 +144,11 @@ class Card extends Component {
             />{' '}
             {eachEvent.location.substring(0, eachEvent.location.length - 5)}
           </h3>
+          <h3>
+            {image1}
+            {userEvents.length !== 0 && filter}
+          </h3>
+
           {this.props.user.users_id === eachEvent.users_id && (
             <input
               className="remove_event_by_id"
@@ -160,6 +166,7 @@ class Card extends Component {
             alt="Add to favs btn"
             onClick={e => this.handleClick(eachEvent.events_id)}
           />
+
           <div className="events_info_btn">
             <input
               type="image"

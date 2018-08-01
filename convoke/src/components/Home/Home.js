@@ -29,24 +29,42 @@ class Home extends Component {
       .filter((e, i) => {
         return e.title.toLowerCase().includes(filteredEvents);
       })
-      .map((e, i) => (
-        <EventCard
-          eachEvent={e}
-          key={i}
-        />
-      ));
+      .map((e, i) => <EventCard eachEvent={e} key={i} />);
+
+    // var today = new Date();
+    // var dd = today.getDate();
+    // var mm = today.getMonth() + 1; //January is 0!
+    // var yyyy = today.getFullYear();
+
+    // if (dd < 10) {
+    //   dd = '0' + dd;
+    // }
+
+    // if (mm < 10) {
+    //   mm = '0' + mm;
+    // }
+
+    // today = mm + '/' + dd + '/' + yyyy;
+    // console.log(today);
 
     return (
       <Fragment>
         <div className="home_container">
-        <h1 className='home_title'>Convoke</h1>
-          <div>
+          <h1 className="home_title">Convoke</h1>
+          <div className="home_input_section">
             <input
               className="search_bar"
               placeholder="Search through Events"
               type="text"
               onChange={e => this.handleChange(e.target.value)}
             />
+            <div className="home_dropdown_container">
+              <h1>Categories</h1>
+              <div className="home_dropdown">
+                <h2>Party</h2>
+                <h2>Other...</h2>
+              </div>
+            </div>
           </div>
           <div className="home_linebreak" />
           {isLoading && <p>Loading...</p>}
