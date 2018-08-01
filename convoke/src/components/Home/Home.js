@@ -39,6 +39,7 @@ class Home extends Component {
     return (
       <Fragment>
         <div className="home_container">
+        <h1 className='home_title'>Convoke</h1>
           <div>
             <input
               className="search_bar"

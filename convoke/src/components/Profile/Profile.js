@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import swal from 'sweetalert2';
 
 import './Profile.css';
 
@@ -15,7 +16,22 @@ class Profile extends Component {
 
   handleDelete = id => {
     axios.delete(`/api/delete/${id}/${this.props.user.users_id}`).then(res => {
-      this.props.getEventsAttending(this.props.user.users_id);
+      swal({
+        position: 'top-end',
+        type: 'warning',
+        title: 'Removing this event is permanant.',
+        text: 'Do you wish to continue?',
+        confirmButtonText: 'Yes, remove it!',
+        showCancelButton: true
+      })
+        .then(res => {
+          if (res.value) {
+            swal('Removed!', 'Your event has been deleted.', 'success');
+          }
+        })
+        .then(() => {
+          this.props.getEventsAttending(this.props.user.users_id);
+        });
     });
   };
 
@@ -46,8 +62,8 @@ class Profile extends Component {
                 </div>
               </div>
               <h3>Bio</h3>
-              <p className='profile_bio'>{bio}</p>
-              <Link className="edit_profile_link"to="/editprofile">
+              <p className="profile_bio">{bio}</p>
+              <Link className="edit_profile_link" to="/editprofile">
                 Edit Profile
               </Link>
             </div>
@@ -59,7 +75,7 @@ class Profile extends Component {
             return (
               <div className="mc_events_cards" key={e.id}>
                 <div className="mc_name_and_img">
-                  <Link className='mc_selected_title' to={`/events/${e.title}`}>
+                  <Link className="mc_selected_title" to={`/events/${e.title}`}>
                     {e.title}
                   </Link>
 
@@ -78,12 +94,12 @@ class Profile extends Component {
                     : e.time.substring(0, 5)}
                 </p>
                 <p>{e.location.substring(0, e.location.length - 5)}</p>
-              
+
                 <input
-                  className='profile_remove_img'
+                  className="profile_remove_img"
                   type="image"
-                  alt='Delete icon'
-                  src='https://image.flaticon.com/icons/svg/118/118743.svg'
+                  alt="Delete icon"
+                  src="https://image.flaticon.com/icons/svg/118/118743.svg"
                   onClick={id => {
                     this.handleDelete(e.events_id);
                   }}

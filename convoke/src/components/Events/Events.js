@@ -20,7 +20,7 @@ class Events extends Component {
 
     return (
       <div className="ie_container">
-        <h1>{event.title}</h1>
+        <h1 className='ie_title'>{event.title}</h1>
         <div className="ie_box">
           <div className="ie_img_box">
             <img className="ie_img" src={event.img} alt={event.title} />
@@ -42,7 +42,7 @@ class Events extends Component {
             </div>
             <div className="ie_info_two">
               <h2>Event Description</h2>
-              <h3>{event.description}</h3>
+              <h4>{event.description}</h4>
             </div>
           </div>
         </div>

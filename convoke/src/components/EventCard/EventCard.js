@@ -62,7 +62,14 @@ class Card extends Component {
             swal('Removed!', 'Your event has been deleted.', 'success');
           }
         });
-      });
+      })
+      .catch(()=>{
+        swal({
+          position: 'top-end',
+          type: 'warning',
+          title: 'You cannot remove an event that someone has already signed up for!.',
+        })
+      })
   };
 
   render() {
