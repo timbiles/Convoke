@@ -7,6 +7,8 @@ import PlacesAutocomplete, {
   geocodeByAddress,
   getLatLng
 } from 'react-places-autocomplete';
+import DatePicker from 'react-custom-date-picker';
+import moment from 'moment';
 
 import './CreateEvent.css';
 
@@ -24,6 +26,14 @@ import {
 import { getUser } from '../../ducks/userReducer';
 
 class CreateEvent extends Component {
+  state = {
+    date: null
+  };
+
+  handleDateChange = date => {
+    this.setState({ date });
+  };
+
   handleSubmit = id => {
     let { title, host, date, time, ampm, location, img } = this.props.create;
     let { users_id } = this.props.user;
@@ -129,6 +139,20 @@ class CreateEvent extends Component {
               placeholder="&quot;07/29/2017&quot;"
               onChange={e => updateDate(e.target.value)}
             />
+
+            {/* <DatePicker
+            color="#296b3e"
+            date={this.state.date}
+            errorColor="#c32c27"
+            onChange={e => updateDate(e.target.value)}
+            handleDateChange={this.handleDateChange}            
+            hoverWeek
+            inputStyle={{
+              borderRadius: 0,
+            }}
+            lightHeader
+        /> */}
+
             <h1>Time</h1>
             <input
               type="text"

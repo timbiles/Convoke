@@ -32,12 +32,16 @@
 
 .ie_img_box {
     width: 50%;
+    height: 100%;
 }
 
 .ie_img {
-  height: 50%;
+  /* height: 100px; */
+  /* object-fit: cover; */
   width: 100%;
-  object-fit: contain;
+  max-width: 300px;
+    max-height: 400px;
+  /* object-fit: contain; */
 }
 
 .ie_info_container {

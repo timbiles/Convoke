@@ -148,18 +148,18 @@ class EditProfile extends Component {
                     >
                       <div>
                         {this.state.uploadedFileCloudinaryUrl === '' ? (
-                          'Drop an image or click to select a file to upload.'
+                          <p className='dropzone_text'>Drop an image or click to select a file to upload.</p>
                         ) : (
                           <div>
                             {/* <p>{this.state.uploadedFile.name}</p> */}
-                            <img src={this.state.uploadedFileCloudinaryUrl} />
+                            <img className='ep_upload_pic' src={this.state.uploadedFileCloudinaryUrl} alt='profile pic'/>
                           </div>
                         )}
                       </div>
                     </Dropzone>
                   </div>
-                  <label className="file-upload-container" for="file-upload">
-                    <input id="file-upload" type="file" />
+                  <label className="file-upload-container" htmlFor="file-upload">
+                    <input className="file-upload" type="file" />
                     Select an Image
                   </label>
                 </form>

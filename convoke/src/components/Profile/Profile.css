@@ -15,7 +15,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 500px;
+  /* height: 500px; */
   width: 50%;
   background: linear-gradient(to top left, rgb(198, 200, 201) 0%, #fff 90%);
   position: relative;

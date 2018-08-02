@@ -5,7 +5,7 @@ import _ from 'lodash';
 import './Events.css';
 
 import { getEvents } from '../../ducks/eventReducer';
-import pic from '../EventCard/person.png';
+// import pic from '../EventCard/person.png';
 
 class Events extends Component {
   render() {
@@ -28,16 +28,16 @@ class Events extends Component {
       return e === event.events_id;
     }).length;
 
-    let image1 = (
-      <img
-        className="events_person"
-        src="https://image.flaticon.com/icons/svg/10/10522.svg"
-        alt="person icon"
-      />
-    );
-    let image2 = (
-      <img className="events_person_white" src={pic} alt="person icon" />
-    );
+    // let image1 = (
+    //   <img
+    //     className="events_person"
+    //     src="https://image.flaticon.com/icons/svg/10/10522.svg"
+    //     alt="person icon"
+    //   />
+    // );
+    // let image2 = (
+    //   <img className="events_person_white" src={pic} alt="person icon" />
+    // );
 
     let one = filter === 1 ? (' person is going') : (' people going')
 

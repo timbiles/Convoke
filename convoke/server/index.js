@@ -8,6 +8,7 @@ const path = require('path');
 const NodeGeocoder = require('node-geocoder');
 const cloudinary = require('cloudinary');
 var mustacheExpress = require('mustache-express');
+var moment = require('moment');
 const port = process.env.SERVER_PORT || 3001;
 
 const strategy = require('./strategy');
