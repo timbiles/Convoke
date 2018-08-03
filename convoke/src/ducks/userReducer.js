@@ -2,6 +2,7 @@ import axios from 'axios';
 
 const initialState = {
   user: {},
+  users: {},
   eventsAttending: [],
   didErr: false,
   auth_id: '',
@@ -13,6 +14,7 @@ const initialState = {
 };
 
 const GET_USER = 'GET_USER';
+const GET_ALL_USERS = 'GET_ALL_USERS'
 const GET_EVENTS_ATTENDING = 'GET_EVENTS_ATTENDING';
 const UPDATE_NAME = 'UPDATE_NAME';
 const UPDATE_EMAIL = 'UPDATE_EMAIL';
@@ -26,6 +28,13 @@ export const getUser = () => {
   return {
     type: GET_USER,
     payload: axios.get('api/me')
+  };
+};
+
+export const getAllUsers = () => {
+  return {
+    type: GET_ALL_USERS,
+    payload: axios.get('api/users')
   };
 };
 
@@ -94,7 +103,7 @@ export const updateUserInfo = (auth_id, name, email, home_town, img, bio) => {
 
 export default function userReducer(state = initialState, action) {
   switch (action.type) {
-    case `${GET_USER}_FULFILLED`:
+    case `${GET_USER}_FULFILLED`:    
       // let { name, email, home_town, img, bio, auth_id } = action.payload.data;
       return {
         // ...state,
@@ -109,12 +118,18 @@ export default function userReducer(state = initialState, action) {
         // bio,
         // auth_id
       };
+    case `${GET_ALL_USERS}_FULFILLED`:
+      return {
+        ...state,
+        users: action.payload.data
+      }      
     case `${GET_EVENTS_ATTENDING}_FULFILLED`:
       return {
         ...state,
         eventsAttending: action.payload.data
       };
     case `${GET_USER}_REJECTED`:
+    case `${GET_ALL_USERS}_REJECTED`:    
     case `${GET_EVENTS_ATTENDING}_REJECTED`:
       return {
         ...state,

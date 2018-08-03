@@ -6,7 +6,7 @@ import swal from 'sweetalert2';
 import _ from 'lodash';
 
 import './EventCard.css';
-import pic from './person.png';
+// import pic from './person.png';
 
 import { getUser, getEventsAttending } from '../../ducks/userReducer';
 
@@ -93,9 +93,9 @@ class Card extends Component {
         alt="person icon"
       />
     );
-    let image2 = (
-      <img className="events_person_white" src={pic} alt="person icon" />
-    );
+    // let image2 = (
+    //   <img className="events_person_white" src={pic} alt="person icon" />
+    // );
 
     return (
       <div className="events_container">
@@ -218,3 +218,19 @@ export default connect(
   mapStateToProps,
   { getUser, getEventsAttending }
 )(Card);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

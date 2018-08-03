@@ -4,6 +4,7 @@ import { Switch, Route } from 'react-router-dom';
 import About from './components/About/About';
 import Calendar from './components/Calendar/Calendar';
 import Chat from './components/Chat/Chat';
+import Connect from './components/Connect/Connect';
 import Contact from './components/Contact/Contact';
 import CreateEvent from './components/CreateEvent/CreateEvent';
 import Home from './components/Home/Home';
@@ -21,6 +22,7 @@ export default (
     <Route path="/create" component={CreateEvent} />  
     <Route path="/profile" component={Profile} />
     <Route path="/Calendar" component={Calendar}/>
+    <Route path="/Connect" component={Connect}/>    
     <Route exact path="/" component={Home} />
     <Route path='*' render={()=> <h1>404</h1>}/>
   </Switch>

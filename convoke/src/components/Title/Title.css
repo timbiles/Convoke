@@ -3,11 +3,14 @@
   height: 100vh;
   /* background-color: rgb(71, 73, 72); */
   background-image: url(https://images.pexels.com/photos/325521/pexels-photo-325521.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);
+  background-attachment: fixed;
+  background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   display: flex;
   justify-content: center;
   align-items: center;
+
 }
 
 .fake_logo {

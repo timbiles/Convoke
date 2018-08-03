@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
 // import DatePicker from 'react-custom-date-picker';
-import $ from 'jquery';
 import 'fullcalendar';
+import $ from 'jquery';
+// import moment from 'moment';
 
 import './Calendar.css';
 
-class Calendar extends React.Component {
+
+class Calendar extends Component {
+  render() {
+    return <div id="calendar" />;
+  }
   componentDidMount() {
     $('#calendar').fullCalendar({
       header: {
@@ -13,8 +18,6 @@ class Calendar extends React.Component {
         center: 'title',
         right: 'month,agendaWeek,agendaDay'
       },
-      defaultView: 'month',
-      contentHeight: 600,
       editable: true,
       droppable: true, // this allows things to be dropped onto the calendar
       drop: function() {
@@ -25,13 +28,6 @@ class Calendar extends React.Component {
         }
       }
     });
-  }
-
-  
-  render() {
-    return <div id="calendar">
-
-    </div>;
   }
 }
 

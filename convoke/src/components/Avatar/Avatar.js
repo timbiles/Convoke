@@ -16,6 +16,9 @@ class Avatar extends Component {
           <Link className="dropdown_link" to="/Calendar">
             <h1 className='dropdown_link'>Calendar</h1>
           </Link>
+          <Link className="dropdown_link" to="/Connect">
+            <h1 className='dropdown_link'>Connect</h1>
+          </Link>
           <a className="dropdown_link" href={process.env.REACT_APP_LOGOUT}>
             <h1 className="dropdown_link">Logout</h1>
           </a>

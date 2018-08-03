@@ -7,6 +7,7 @@ const passport = require('passport');
 const path = require('path');
 const NodeGeocoder = require('node-geocoder');
 const cloudinary = require('cloudinary');
+const socket = require('socket.io');
 var mustacheExpress = require('mustache-express');
 var moment = require('moment');
 const port = process.env.SERVER_PORT || 3001;
@@ -16,7 +17,8 @@ const {
   logout,
   login,
   getUser,
-  updateUserInfo
+  updateUserInfo,
+  getAllUsers
 } = require('./controllers/userCtrl');
 const {
   getAll,
@@ -27,7 +29,7 @@ const {
   deleteEvent,
   deleteEventById
 } = require('./controllers/eventsCtrl');
-// const {} = require('./controllers/messageCtrl')
+const { createMessage, getMessages } = require('./controllers/messageCtrl');
 
 const app = express();
 app.use(bodyParser.json());
@@ -36,24 +38,6 @@ app.use(bodyParser.json());
 // app.engine('html', mustacheExpress());
 // app.set('view engine', 'mustache');
 // app.use('/public', express.static('public'));
-
-
-//socket io
-// const server = require('http').Server(app);
-// const io = require('socket.io')(server);
-
-// io.on('connection', (socket) => {
-//   socket.emit('news', { hello: 'world' });
-//   socket.on('my other event', function (data) {
-//     console.log(data);
-//   });
-// });
-
-// app.get('/', function (req, res) {
-//   res.sendfile(__dirname + '/index.html');
-// });
-
-
 
 massive(process.env.CONNECTION_STRING)
   .then(db => {
@@ -126,9 +110,23 @@ app.delete('/api/deleteEvent/:users_id/:events_id', deleteEventById);
 app.get('/login', login);
 app.get('/logout', logout);
 app.get('/api/me', getUser);
+app.get('/api/users', getAllUsers);
 app.put('/api/updateUserInfo/:id', updateUserInfo);
 
+//message endpoints
+app.post('/api/message', createMessage);
+app.get('/api/message', getMessages);
 
-app.listen(port, () => {
+server = app.listen(port, () => {
   console.log(`Listening on port ${port}.`);
+});
+
+//// socket io
+io = socket(server);
+
+io.on('connection', socket => {
+  // console.log(socket.id);
+  socket.on('SEND_MESSAGE', function(data) {
+    io.emit('RECEIVE_MESSAGE', data);
+  });
 });

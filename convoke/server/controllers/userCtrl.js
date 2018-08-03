@@ -29,9 +29,24 @@ const updateUserInfo = (req, res) => {
     .catch(err => res.status(500).send(err));
 };
 
+const getAllUsers = (req, res) => {
+  const db = req.app.get('db');
+
+  db.users
+    .get_all_users()
+    .then(response => {
+      res.status(200).send(response);
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).send(err);
+    });
+};
+
 module.exports = {
   login,
   logout,
   getUser,
-  updateUserInfo
+  updateUserInfo,
+  getAllUsers
 };

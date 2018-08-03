@@ -32,8 +32,8 @@ const createEvent = (req, res, next) => {
 
   db.events
     .create_event([title, host, date, time, location, img, users_id])
-    .then(() => {
-      res.status(200).send('Sweet');
+    .then((response) => {
+      res.status(200).send(response);
     })
     .catch(err => {
       console.log(err);
