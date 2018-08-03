@@ -87,7 +87,7 @@ const deleteEvent = (req, res, next) => {
 
   db.events
     .delete_event([users_id, events_id])
-    .then(() => res.status(200).send('Sweet'))
+    .then((response) => res.status(200).send(response))
     .catch(err => {
       console.log(err);
       res.status(500).send(err);
@@ -100,7 +100,7 @@ const deleteEventById = (req, res, next) => {
 
   db.events
     .delete_event_by_users_id([users_id, events_id])
-    .then(() => res.status(200).send('Sweet!'))
+    .then((response) => res.status(200).send(response))
     .catch(err => {
       console.log(err);
       res.status(500).send(err);

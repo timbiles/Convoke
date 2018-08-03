@@ -4,8 +4,8 @@ const createMessage = (req, res, next) => {
 
   db.messages
     .create_message()
-    .then(() => {
-      res.status(200).send('Sweet');
+    .then((response) => {
+      res.status(200).send(response);
     })
     .catch(err => {
       console.log(err);

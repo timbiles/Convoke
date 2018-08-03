@@ -7,8 +7,8 @@ import PlacesAutocomplete, {
   geocodeByAddress,
   getLatLng
 } from 'react-places-autocomplete';
-// import DatePicker from 'react-custom-date-picker';
-// import moment from 'moment';
+import DatePicker from 'react-custom-date-picker';
+import moment from 'moment';
 
 import './CreateEvent.css';
 
@@ -85,17 +85,11 @@ class CreateEvent extends Component {
     }
   };
 
-  // handleClick = location => {
-  //   geocodeByAddress(location)
-  //     .then(location => getLatLng(location[0]))
-  //     .then(latLng => console.log('Success', latLng))
-  //     .catch(error => console.error('Error', error));
-  // };
-
   handleSelect = location => {
     geocodeByAddress(location)
       .then(location => getLatLng(location[0]))
       .then(latLng => console.log('Success', latLng))
+      .then(console.log(location))
       .catch(error => console.error('Error', error));
   };
 
@@ -134,13 +128,13 @@ class CreateEvent extends Component {
               onChange={e => updateHost(e.target.value)}
             />
             <h1>Date</h1>
-            <input
+            {/* <input
               type="text"
               placeholder="&quot;07/29/2017&quot;"
               onChange={e => updateDate(e.target.value)}
-            />
+            /> */}
 
-            {/* <DatePicker
+            <DatePicker
             color="#296b3e"
             date={this.state.date}
             errorColor="#c32c27"
@@ -151,7 +145,7 @@ class CreateEvent extends Component {
               borderRadius: 0,
             }}
             lightHeader
-        /> */}
+        />
 
             <h1>Time</h1>
             <input
@@ -164,8 +158,6 @@ class CreateEvent extends Component {
               value={this.props.create.location}
               onChange={updateLocation}
               onSelect={this.handleSelect}
-              onClick={this.handleSelect}
-              onKeyDown={this.handleKeyDown}
             >
               {({
                 getInputProps,
@@ -177,7 +169,7 @@ class CreateEvent extends Component {
                   <input
                     {...getInputProps({
                       placeholder: 'Search Places ...',
-                      className: 'location-search-input'
+                      className: 'location-search-input',
                     })}
                   />
                   <div className="autocomplete-dropdown-container">

@@ -40,18 +40,9 @@ class Chat extends Component {
 
   componentDidMount() {
     this.props.getUser();
-    // this.getMessages();
   }
 
-  // getMessages = () => {
-  //   axios.get('/api/message').then(res => {
-  //     console.log(res);
-  //     this.setState({ messages: res.data });
-  //   });
-  // };
-
   render() {
-    // console.log(this.props)
     return (
       <div className="chat_container">
           <div className="chatbar">
