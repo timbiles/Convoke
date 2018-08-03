@@ -1,14 +1,17 @@
 import React, { Component } from 'react';
-// import DatePicker from 'react-custom-date-picker';
+import { connect } from 'react-redux';
 import 'fullcalendar';
 import $ from 'jquery';
-// import moment from 'moment';
 
 import './fullcalendar.css';
 import './Calendar.css';
 
+import { getUser, getEventsAttending } from '../../ducks/userReducer';
+
 class Calendar extends Component {
   componentDidMount() {
+    this.props.getEventsAttending(this.props.user.users_id);
+
     $('#calendar').fullCalendar({
       header: {
         left: 'prev,next today',
@@ -23,46 +26,58 @@ class Calendar extends Component {
           // if so, remove the element from the "Draggable Events" list
           $(this).remove();
         }
+      },
+      events: {
+        url: `/api/events/${this.props.user.users_id}`
+      },
+      eventMouseover: function(e, jsEvent) {
+        const tooltip =
+          '<div class="tooltipevent" style="padding:1% 1.5%;background:rgb(241, 241, 241);position:absolute;z-index:10001;">' +
+          e.title +
+          '<br />' +
+          (e.time[0] === '0'
+            ? e.time.substring(1, 5)
+            : e.time.substring(0, 5)) +
+          '<br />' +
+          e.location.substring(0, e.location.length - 5) +
+          '</div>';
+        $('body').append(tooltip);
+        $(this)
+          .mouseover(function(e) {
+            $(this).css('z-index', 10000);
+            $('.tooltipevent').fadeIn('500');
+            $('.tooltipevent').fadeTo('10', 1.9);
+          })
+          .mousemove(function(e) {
+            $('.tooltipevent').css('top', e.pageY + 10);
+            $('.tooltipevent').css('left', e.pageX + 20);
+          });
+      },
+      eventMouseout: function(calEvent, jsEvent) {
+        $(this).css('z-index', 8);
+        $('.tooltipevent').remove();
+      },
+      eventClick: function(e) {
+        window.location.href = `/events/${e.title}`;
       }
     });
-
-  //   $('.external_events .fc-event').each(function() {
-
-	// 		// store data so the calendar knows to render an event upon drop
-	// 		$(this).data('event', {
-	// 			title: $.trim($(this).text()), // use the element's text as the event title
-	// 			stick: true // maintain when user navigates (see docs on the renderEvent method)
-	// 		});
-
-	// 		// make the event draggable using jQuery UI
-	// 		$(this).draggable({
-	// 			zIndex: 999,
-	// 			revert: true,      // will cause the event to go back to its
-	// 			revertDuration: 0  //  original position after the drag
-	// 		});
-	// 	});
   }
-
 
   render() {
     return (
-      <div className='calendar_container'>
-        <div className="external_events">
-          <h4>Draggable Events</h4>
-          <div className="fc-event">My Event 1</div>
-          <div className="fc-event">My Event 2</div>
-          <div className="fc-event">My Event 3</div>
-          <div className="fc-event">My Event 4</div>
-          <div className="fc-event">My Event 5</div>
-          <p>
-            <input type="checkbox" id="drop-remove" />
-            <label for="drop-remove">remove after drop</label>
-          </p>
-        </div>
+      <div className="calendar_container">
         <div id="calendar" />
       </div>
     );
   }
 }
 
-export default Calendar;
+const mapStateToProps = state => state;
+
+export default connect(
+  mapStateToProps,
+  {
+    getUser,
+    getEventsAttending
+  }
+)(Calendar);

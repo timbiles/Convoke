@@ -8,7 +8,6 @@ import PlacesAutocomplete, {
   getLatLng
 } from 'react-places-autocomplete';
 import DatePicker from 'react-custom-date-picker';
-import moment from 'moment';
 
 import './CreateEvent.css';
 

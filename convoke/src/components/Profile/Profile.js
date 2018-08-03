@@ -26,7 +26,14 @@ class Profile extends Component {
       })
         .then(res => {
           if (res.value) {
-            swal('Removed!', 'Your event has been deleted.', 'success');
+            swal({
+              position: 'top-end',
+              type: 'success',
+              title: 'Removed!',
+              text: 'Your event has been deleted.',
+              showConfirmButton: false,
+              timer: 1000
+            });
           }
         })
         .then(() => {
@@ -123,5 +130,3 @@ export default connect(
     getEventsAttending
   }
 )(Profile);
-
-// fix css
