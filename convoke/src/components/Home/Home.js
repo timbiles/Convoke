@@ -46,6 +46,15 @@ class Home extends Component {
 
     // today = mm + '/' + dd + '/' + yyyy;
     // console.log(today);
+    console.log(this.props.user)
+
+    // let eventsMap = 
+    
+    // this.props.user.eventsAttending.map((e,i)=>{
+    //   return <div>e.title</div>
+    // })
+
+    // console.log(eventsMap)
 
     return (
       <Fragment>
@@ -76,6 +85,19 @@ class Home extends Component {
                 <h1> Ooops! We didn't find any event with that name!</h1>
               </div>
             )}
+          </div>
+          <div className="hidden_menu_arrow">
+            <div className="hidden_menu_content">
+              <h3>Event 1</h3>
+              <h3>Event 2</h3>
+              {/* <h3>{eventsMap}</h3> */}
+            </div>
+            <input
+              type="image"
+              className="hidden_menu_img"
+              src="https://image.flaticon.com/icons/svg/483/483345.svg"
+              alt="hidden menu btn"
+            />
           </div>
         </div>
       </Fragment>

@@ -146,6 +146,7 @@ class CreateEvent extends Component {
               }}
               lightHeader
               required
+              // modal
               placeholder={day}
             />
 

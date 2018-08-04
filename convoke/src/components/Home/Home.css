@@ -22,10 +22,6 @@
   font-family: Arial, Helvetica, sans-serif;
 }
 
-.home_toolbar {
-
-}
-
 .search_bar {
   /* margin-top: 40px; */
   width: 50rem;
@@ -51,7 +47,7 @@
   font-variant: small-caps;
   font-weight: bold;
   text-align: center;
-  text-shadow: .5px .5px 8px grey;
+  text-shadow: 0.5px 0.5px 8px grey;
   letter-spacing: 4px;
 }
 
@@ -66,7 +62,7 @@
   letter-spacing: 2px;
   font-size: 2rem;
   color: rgb(72, 72, 72);
-  animation: textIn 1s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
+  animation: textIn 1s cubic-bezier(0.215, 0.61, 0.355, 1) both;
 }
 
 .home_input_section {
@@ -86,9 +82,8 @@
   cursor: pointer;
 }
 
-
 .home_dropdown h2 {
-  border-top: solid grey .5px;
+  border-top: solid grey 0.5px;
   margin: 3% 10%;
   padding: 4% 0;
 }
@@ -97,16 +92,59 @@
   display: flex;
   flex-direction: column;
   animation: rightFade 2s;
-
 }
 
-.hidden_menu_text {
-  font-family: Arial, Helvetica, sans-serif;
-  transform: rotate(90deg);
-  position: sticky;
+.hidden_menu_arrow {
+  display: flex;
+}
+
+.hidden_menu_img {
+  position: fixed;
   left: 0;
-  top: 10%;
-  max-height: 300px;
+  top: 50%;
+  height: 40px;
+  opacity: .1;
+}
+
+.hidden_menu_img:hover {
+  opacity: .3;
+}
+
+.hidden_menu_img:focus {
+  outline: none;
+}
+
+.hidden_menu_content {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: .75rem;
+  letter-spacing: 1px;
+  display: none;
+  position: fixed;
+  min-width: 160px;
+  height: 100px;
+  width: auto;
+  z-index: 9999;
+  animation: menuFade 1.5s;
+  left: 2%;
+  top: 52%;
+}
+
+.hidden_menu_arrow:hover .hidden_menu_content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+@keyframes menuFade {
+  0% {
+    opacity: 0;
+    transform: translateY(-50%, 30px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(-50%, 0);
+  }
 }
 
 @keyframes tracking-out-contract {
@@ -122,17 +160,15 @@
   }
 }
 
-
 @keyframes rightFade {
   0% {
     opacity: 0;
-    transform: translate(30px)
+    transform: translate(30px);
   }
 
   100% {
     opacity: 1;
-    transform: translate(0)
-    
+    transform: translate(0);
   }
 }
 
@@ -149,9 +185,8 @@
   }
 }
 
-
 @media (max-width: 1116px) {
-  .events_display{
+  .events_display {
     justify-content: center;
   }
 }
