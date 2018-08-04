@@ -29,8 +29,13 @@ import { getUser } from '../../ducks/userReducer';
 
 class CreateEvent extends Component {
 
+  state = {
+    date: new Date(2018, 11, 12),
+  }
+
   handleDateChange = date => {
-    this.props.create.date = moment(date).format('YYYY-MM-DD');
+    // this.props.create.date = moment(date).format('YYYY-MM-DD');
+    this.setState({date})
   };
 
   handleTime = time => {
@@ -137,7 +142,8 @@ class CreateEvent extends Component {
 
             <DatePicker
               color="#296b3e"
-              date={this.props.create.date}
+              // date={this.props.create.date}
+              date={this.state.date}
               errorColor="#c32c27"
               handleDateChange={this.handleDateChange}
               hoverWeek
@@ -240,15 +246,3 @@ export default connect(
     getUser
   }
 )(CreateEvent);
-
-/* <div>
-            <input
-              type="text"
-              placeholder="&quot;12:00&quot;"
-              onChange={e => updateTime(e.target.value)}
-            />
-            <select className="am_pm" onSelect={e=> updateAmPm(e.target.value)}>
-              <option value="am">am</option>
-              <option value="pm">pm</option>
-            </select>
-          </div> */

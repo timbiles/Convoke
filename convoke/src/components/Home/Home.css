@@ -23,7 +23,7 @@
 }
 
 .home_toolbar {
-  
+
 }
 
 .search_bar {
@@ -98,6 +98,15 @@
   flex-direction: column;
   animation: rightFade 2s;
 
+}
+
+.hidden_menu_text {
+  font-family: Arial, Helvetica, sans-serif;
+  transform: rotate(90deg);
+  position: sticky;
+  left: 0;
+  top: 10%;
+  max-height: 300px;
 }
 
 @keyframes tracking-out-contract {

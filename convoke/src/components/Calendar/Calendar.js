@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import 'fullcalendar';
 import $ from 'jquery';
+import moment from 'moment';
 
 import './fullcalendar.css';
 import './Calendar.css';
@@ -35,9 +36,8 @@ class Calendar extends Component {
           '<div class="tooltipevent" style="padding:1% 1.5%;opacity: 0.8;background:rgb(241, 241, 241);position:absolute;z-index:10001;">' +
           e.title +
           '<br />' +
-          (e.time[0] === '0'
-            ? e.time.substring(1, 5)
-            : e.time.substring(0, 5)) +
+          moment(e.time).format('h:mm a')
+          +
           '<br />' +
           e.location.substring(0, e.location.length - 5) +
           '</div>';
