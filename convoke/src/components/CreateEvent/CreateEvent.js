@@ -29,13 +29,8 @@ import { getUser } from '../../ducks/userReducer';
 
 class CreateEvent extends Component {
 
-  state = {
-    date: new Date(2018, 11, 12),
-  }
-
   handleDateChange = date => {
-    // this.props.create.date = moment(date).format('YYYY-MM-DD');
-    this.setState({date})
+    this.props.create.date = moment(date).format('YYYY-MM-DD');
   };
 
   handleTime = time => {
@@ -142,13 +137,12 @@ class CreateEvent extends Component {
 
             <DatePicker
               color="#296b3e"
-              // date={this.props.create.date}
-              date={this.state.date}
+              date={this.props.create.date}
               errorColor="#c32c27"
               handleDateChange={this.handleDateChange}
               hoverWeek
               inputStyle={{
-                borderRadius: 0
+                borderRadius: 0,
               }}
               lightHeader
               required
@@ -219,7 +213,7 @@ class CreateEvent extends Component {
               onKeyDown={this.handleKeyDown2}
             />
             <Link to="/">
-              <button onClick={id => this.handleSubmit(id)}>
+              <button className='ce_button'onClick={id => this.handleSubmit(id)}>
                 Submit Event
               </button>
             </Link>

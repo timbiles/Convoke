@@ -62,6 +62,7 @@ class Home extends Component {
               <h1>Categories</h1>
               <div className="home_dropdown">
                 <h2>Party</h2>
+                <h2>Concert</h2>
                 <h2>Other...</h2>
               </div>
             </div>

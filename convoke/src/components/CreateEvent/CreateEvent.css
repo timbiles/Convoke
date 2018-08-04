@@ -30,7 +30,7 @@
     /* color: #d1cfcf; */
 }
 
-.create_event_input button {
+.ce_button {
     cursor: pointer;
     position: absolute;
     bottom: 0;

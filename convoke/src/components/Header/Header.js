@@ -12,8 +12,8 @@ import { getUserEvents } from '../../ducks/userEventReducer';
 
 class Header extends Component {
   componentDidMount() {
-    this.props.getEvents();
     this.props.getUser();
+    this.props.getEvents();
     this.props.getEventsAttending(this.props.user.users_id);
     this.props.getUserEvents();
   }

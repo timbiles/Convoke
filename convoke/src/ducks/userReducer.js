@@ -10,7 +10,7 @@ const initialState = {
   email: '',
   home_town: '',
   img: '',
-  bio: ''
+  bio: '',
 };
 
 const GET_USER = 'GET_USER';
