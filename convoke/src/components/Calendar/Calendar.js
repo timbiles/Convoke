@@ -32,7 +32,7 @@ class Calendar extends Component {
       },
       eventMouseover: function(e, jsEvent) {
         const tooltip =
-          '<div class="tooltipevent" style="padding:1% 1.5%;background:rgb(241, 241, 241);position:absolute;z-index:10001;">' +
+          '<div class="tooltipevent" style="padding:1% 1.5%;opacity: 0.8;background:rgb(241, 241, 241);position:absolute;z-index:10001;">' +
           e.title +
           '<br />' +
           (e.time[0] === '0'

@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 import swal from 'sweetalert2';
 import _ from 'lodash';
+import moment from 'moment';
 
 import './EventCard.css';
 // import pic from './person.png';
@@ -120,10 +121,7 @@ class Card extends Component {
               src="https://image.flaticon.com/icons/svg/25/25393.svg"
               alt="calendar"
             />{' '}
-            {eachEvent.date.substring(5, 10).replace(/-/g, '/')}/{eachEvent.date.substring(
-              0,
-              4
-            )}
+            {moment(eachEvent.date).format('MMM Do, YYYY')}
           </h3>
 
           <h3>
@@ -132,9 +130,7 @@ class Card extends Component {
               src="https://image.flaticon.com/icons/svg/61/61227.svg"
               alt="clock"
             />{' '}
-            {eachEvent.time[0] === '0'
-              ? eachEvent.time.substring(1, 5)
-              : eachEvent.time.substring(0, 5)}
+              {moment(eachEvent.time).format('h:mm a')}
           </h3>
           <h3>
             <img
@@ -177,10 +173,12 @@ class Card extends Component {
             <div className="events_info_btn_dropdown">
               <p>{eachEvent.host}</p>
               <p>
-                {eachEvent.date.substring(5, 10).replace(/-/g, '/')}/{eachEvent.date.substring(
+                {/* {eachEvent.date.substring(5, 10).replace(/-/g, '/')}/{eachEvent.date.substring(
                   0,
                   4
-                )}
+                )} */}
+            {moment(eachEvent.date).format('M/D/YYYY')}
+                
               </p>
               <p>
                 {eachEvent.time[0] === '0'

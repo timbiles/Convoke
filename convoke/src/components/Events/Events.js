@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import _ from 'lodash';
+import moment from 'moment';
 
 import './Events.css';
 
@@ -56,10 +57,8 @@ class Events extends Component {
               <h2>Event Creator</h2>
               <h3>{event.host}</h3>
               <h3>
-                {date.substring(5, 10).replace(/-/g, '/')}/{date.substring(
-                  0,
-                  4
-                )}
+
+                {moment(date).format('dddd MMM Do, YYYY')}
               </h3>
               <h3>
                 {time[0] === '0' ? time.substring(1, 5) : time.substring(0, 5)}

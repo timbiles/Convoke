@@ -8,8 +8,11 @@ import PlacesAutocomplete, {
   getLatLng
 } from 'react-places-autocomplete';
 import DatePicker from 'react-custom-date-picker';
+import moment from 'moment';
+import TimePicker from 'rc-time-picker';
 
 import './CreateEvent.css';
+import 'rc-time-picker/assets/index.css';
 
 import {
   updateEventName,
@@ -25,12 +28,13 @@ import {
 import { getUser } from '../../ducks/userReducer';
 
 class CreateEvent extends Component {
-  state = {
-    date: null
-  };
 
   handleDateChange = date => {
-    this.setState({ date });
+    this.props.create.date = moment(date).format('YYYY-MM-DD');
+  };
+
+  handleTime = time => {
+    this.props.create.time = time;
   };
 
   handleSubmit = id => {
@@ -103,16 +107,20 @@ class CreateEvent extends Component {
     } = this.props;
     const { auth_id } = this.props.user;
 
+    const format = 'h:mm a';
+
+    const day = moment().format('MM/DD/YYYY')
+
     return (
       <div className="create_event_container">
-        {!auth_id.length ? (
+        {/* {!auth_id.length ? (
           <div>
             <h1>You have to login to Create an Event!</h1>
             <a className="" href={process.env.REACT_APP_LOGIN}>
               <h1 className="">Login</h1>
             </a>
           </div>
-        ) : (
+        ) : ( */}
           <div className="create_event_input">
             <h1>Event Name</h1>
             <input
@@ -123,35 +131,37 @@ class CreateEvent extends Component {
             <h1>Hoster</h1>
             <input
               type="text"
-              placeholder="Hoster"
+              placeholder={this.props.user.name}
               onChange={e => updateHost(e.target.value)}
             />
             <h1>Date</h1>
-            {/* <input
-              type="text"
-              placeholder="&quot;07/29/2017&quot;"
-              onChange={e => updateDate(e.target.value)}
-            /> */}
 
             <DatePicker
-            color="#296b3e"
-            date={this.state.date}
-            errorColor="#c32c27"
-            onChange={e => updateDate(e.target.value)}
-            handleDateChange={this.handleDateChange}            
-            hoverWeek
-            inputStyle={{
-              borderRadius: 0,
-            }}
-            lightHeader
-        />
+              color="#296b3e"
+              date={this.props.create.date}
+              errorColor="#c32c27"
+              handleDateChange={this.handleDateChange}
+              hoverWeek
+              inputStyle={{
+                borderRadius: 0
+              }}
+              lightHeader
+              required
+              placeholder={day}
+            />
 
             <h1>Time</h1>
-            <input
-              type="text"
-              placeholder="&quot;12:00&quot;"
-              onChange={e => updateTime(e.target.value)}
+
+            <TimePicker
+              showSecond={false}
+              defaultValue={moment()}
+              className='ce_time'
+              onChange={this.handleTime}
+              format={format}
+              use12Hours
+              style={{width: 100}}
             />
+
             <h1>Location</h1>
             <PlacesAutocomplete
               value={this.props.create.location}
@@ -164,11 +174,11 @@ class CreateEvent extends Component {
                 getSuggestionItemProps,
                 loading
               }) => (
-                <div className='location_container'>
+                <div className="location_container">
                   <input
                     {...getInputProps({
                       placeholder: 'Search Places ...',
-                      className: 'location-search-input',
+                      className: 'location-search-input'
                     })}
                   />
                   <div className="autocomplete-dropdown-container">
