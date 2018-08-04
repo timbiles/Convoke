@@ -59,7 +59,6 @@ class CreateEvent extends Component {
       img,
       users_id
     });
-    // .then(() => this.props.reset());
   };
 
   handleKeyDown2 = e => {
@@ -113,14 +112,14 @@ class CreateEvent extends Component {
 
     return (
       <div className="create_event_container">
-        {/* {!auth_id.length ? (
+        {!auth_id.length ? (
           <div>
             <h1>You have to login to Create an Event!</h1>
             <a className="" href={process.env.REACT_APP_LOGIN}>
               <h1 className="">Login</h1>
             </a>
           </div>
-        ) : ( */}
+        ) : (
           <div className="create_event_input">
             <h1>Event Name</h1>
             <input
