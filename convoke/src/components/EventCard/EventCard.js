@@ -48,30 +48,40 @@ class Card extends Component {
   };
 
   handleDelete = e => {
-    axios
-      .delete(`/api/deleteEvent/${this.props.user.users_id}/${e}`)
-      .then(res => {
+    swal({
+      position: 'top-end',
+      type: 'warning',
+      title: 'Removing this event is permanant.',
+      text: 'Do you wish to continue?',
+      confirmButtonText: 'Yes, remove it!',
+      showCancelButton: true,
+      closeOnConfirm: false,
+      closeOnCancel: false
+    }).then(res => {
+      if (res.value) {
         swal({
           position: 'top-end',
-          type: 'warning',
-          title: 'Removing this event is permanant.',
-          text: 'Do you wish to continue?',
-          confirmButtonText: 'Yes, remove it!',
-          showCancelButton: true
-        }).then(res => {
-          if (res.value) {
-            swal('Removed!', 'Your event has been deleted.', 'success');
-          }
+          type: 'success',
+          title: 'Deleted',
+          text: 'Your Event has been deleted!',
+          showConfirmButton: false,
+          timer: 1500
         });
-      })
-      .catch(() => {
-        swal({
-          position: 'top-end',
-          type: 'warning',
-          title:
-            'You cannot remove an event that someone has already signed up for!.'
-        });
-      });
+        axios
+          .delete(`/api/deleteEvent/${this.props.user.users_id}/${e}`)
+
+          .catch(() => {
+            swal({
+              position: 'top-end',
+              type: 'warning',
+              title:
+                'You cannot remove an event that someone has already signed up for!'
+            });
+          });
+      } else if (res.dismiss === swal.DismissReason.cancel) {
+        swal('Cancelled', 'Your Event is still here :)', 'error');
+      }
+    });
   };
 
   render() {
@@ -102,7 +112,7 @@ class Card extends Component {
       <div className="events_container">
         <div className="events_title">
           <Link to={`/events/${eachEvent.title}`}>
-              <h1 className="events_title">{eachEvent.title}</h1>
+            <h1 className="events_title">{eachEvent.title}</h1>
           </Link>
         </div>
         <div className="events_sub_container">

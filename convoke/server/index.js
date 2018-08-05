@@ -29,6 +29,7 @@ const {
   deleteEventById
 } = require('./controllers/eventsCtrl');
 const { createMessage, getMessages } = require('./controllers/messageCtrl');
+const { eventEmail } = require('./controllers/nodeCtrl');
 
 const app = express();
 app.use(bodyParser.json());
@@ -115,6 +116,9 @@ app.put('/api/updateUserInfo/:id', updateUserInfo);
 //message endpoints
 app.post('/api/message', createMessage);
 app.get('/api/message', getMessages);
+
+//node endpoints
+app.post('/api/email', eventEmail);
 
 server = app.listen(port, () => {
   console.log(`Listening on port ${port}.`);

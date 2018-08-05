@@ -28,7 +28,6 @@ import {
 import { getUser } from '../../ducks/userReducer';
 
 class CreateEvent extends Component {
-
   handleDateChange = date => {
     this.props.create.date = moment(date).format('YYYY-MM-DD');
   };
@@ -40,25 +39,31 @@ class CreateEvent extends Component {
   handleSubmit = id => {
     let { title, host, date, time, ampm, location, img } = this.props.create;
     let { users_id } = this.props.user;
-    console.log(this.props);
-    swal({
-      position: 'top-end',
-      type: 'success',
-      title: 'Event Added',
-      showConfirmButton: false,
-      timer: 1000
-    });
 
-    axios.post(`/api/events`, {
-      title,
-      host,
-      date,
-      time,
-      ampm,
-      location,
-      img,
-      users_id
-    });
+    axios
+      .post(`/api/events`, {
+        title,
+        host,
+        date,
+        time,
+        ampm,
+        location,
+        img,
+        users_id
+      })
+      .then(() => {
+        swal({
+          position: 'top-end',
+          type: 'success',
+          title: 'Event Added',
+          showConfirmButton: false,
+          timer: 1000
+        });
+      });
+      axios.post(`/api/email`, {
+        email: this.props.user.email
+      }
+    )
   };
 
   handleKeyDown2 = e => {
@@ -108,7 +113,9 @@ class CreateEvent extends Component {
 
     const format = 'h:mm a';
 
-    const day = moment().format('MM/DD/YYYY')
+    const day = moment().format('MM/DD/YYYY');
+
+    console.log(this.props.user)
 
     return (
       <div className="create_event_container">
@@ -142,7 +149,7 @@ class CreateEvent extends Component {
               handleDateChange={this.handleDateChange}
               hoverWeek
               inputStyle={{
-                borderRadius: 0,
+                borderRadius: 0
               }}
               lightHeader
               required
@@ -155,11 +162,11 @@ class CreateEvent extends Component {
             <TimePicker
               showSecond={false}
               defaultValue={moment()}
-              className='ce_time'
+              className="ce_time"
               onChange={this.handleTime}
               format={format}
               use12Hours
-              style={{width: 100}}
+              style={{ width: 100 }}
             />
 
             <h1>Location</h1>
@@ -214,7 +221,10 @@ class CreateEvent extends Component {
               onKeyDown={this.handleKeyDown2}
             />
             <Link to="/">
-              <button className='ce_button'onClick={id => this.handleSubmit(id)}>
+              <button
+                className="ce_button"
+                onClick={id => this.handleSubmit(id)}
+              >
                 Submit Event
               </button>
             </Link>

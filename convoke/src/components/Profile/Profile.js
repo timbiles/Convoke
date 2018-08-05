@@ -16,37 +16,43 @@ class Profile extends Component {
   }
 
   handleDelete = id => {
-    axios.delete(`/api/delete/${id}/${this.props.user.users_id}`).then(res => {
-      swal({
-        position: 'top-end',
-        type: 'warning',
-        title: 'Removing this event is permanant.',
-        text: 'Do you wish to continue?',
-        confirmButtonText: 'Yes, remove it!',
-        showCancelButton: true
+    swal({
+      position: 'top-end',
+      type: 'warning',
+      title: 'Removing this event is permanant.',
+      text: 'Do you wish to continue?',
+      confirmButtonText: 'Yes, remove it!',
+      showCancelButton: true
+    })
+      .then(res => {
+        if (res.value) {
+          swal({
+            position: 'top-end',
+            type: 'success',
+            title: 'Removed!',
+            text: 'Your event has been deleted.',
+            showConfirmButton: false,
+            timer: 1000
+          });
+          axios.delete(`/api/delete/${id}/${this.props.user.users_id}`);
+        } else if (res.dismiss === swal.DismissReason.cancel) {
+          swal({
+            position: 'top-end',
+            type: 'error',
+            title: 'Cancelled',
+            text: 'Your Event is still here :)',
+            showConfirmButton: false,
+            timer: 1000
+          });
+        }
       })
-        .then(res => {
-          if (res.value) {
-            swal({
-              position: 'top-end',
-              type: 'success',
-              title: 'Removed!',
-              text: 'Your event has been deleted.',
-              showConfirmButton: false,
-              timer: 1000
-            });
-          }
-        })
-        .then(() => {
-          this.props.getEventsAttending(this.props.user.users_id);
-        });
-    });
+      .then(() => {
+        this.props.getEventsAttending(this.props.user.users_id);
+      });
   };
 
   render() {
     const { auth_id, name, email, home_town, img, bio } = this.props.user;
-
-    
 
     return (
       <div className="mc_container">
