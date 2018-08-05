@@ -1,12 +1,13 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import './Home.css';
 
 import EventCard from '../EventCard/EventCard';
 
 import { getEvents } from '../../ducks/eventReducer';
-import { getEventsAttending } from '../../ducks/userReducer';
+import { getUser, getEventsAttending } from '../../ducks/userReducer';
 
 class Home extends Component {
   constructor(props) {
@@ -15,6 +16,12 @@ class Home extends Component {
     this.state = {
       filteredEvents: []
     };
+  }
+
+  componentDidMount() {
+    this.props.getUser().then(() => {
+      this.props.getEventsAttending(this.props.user.users_id);
+    });
   }
 
   handleChange = e => {
@@ -31,30 +38,15 @@ class Home extends Component {
       })
       .map((e, i) => <EventCard eachEvent={e} key={i} />);
 
-    // var today = new Date();
-    // var dd = today.getDate();
-    // var mm = today.getMonth() + 1; //January is 0!
-    // var yyyy = today.getFullYear();
-
-    // if (dd < 10) {
-    //   dd = '0' + dd;
-    // }
-
-    // if (mm < 10) {
-    //   mm = '0' + mm;
-    // }
-
-    // today = mm + '/' + dd + '/' + yyyy;
-    // console.log(today);
-    console.log(this.props.user)
-
-    // let eventsMap = 
-    
-    // this.props.user.eventsAttending.map((e,i)=>{
-    //   return <div>e.title</div>
-    // })
-
-    // console.log(eventsMap)
+    let mapEvents = this.props.user.eventsAttending.map((e, i) => {
+      return (
+        <div className="hidden_side_events" key={i}>
+          <Link className="home_selected_event" to={`/events/${e.title}`}>
+            {e.title}
+          </Link>
+        </div>
+      );
+    });
 
     return (
       <Fragment>
@@ -88,9 +80,8 @@ class Home extends Component {
           </div>
           <div className="hidden_menu_arrow">
             <div className="hidden_menu_content">
-              <h3>Event 1</h3>
-              <h3>Event 2</h3>
-              {/* <h3>{eventsMap}</h3> */}
+              <h1>Quick Events List</h1>
+              {mapEvents}
             </div>
             <input
               type="image"
@@ -109,7 +100,7 @@ const mapStateToProps = state => state;
 
 export default connect(
   mapStateToProps,
-  { getEvents, getEventsAttending }
+  { getUser, getEvents, getEventsAttending }
 )(Home);
 
 /*

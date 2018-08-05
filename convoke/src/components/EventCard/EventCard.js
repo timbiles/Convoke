@@ -102,7 +102,7 @@ class Card extends Component {
       <div className="events_container">
         <div className="events_title">
           <Link to={`/events/${eachEvent.title}`}>
-            <h1 className="events_title">{eachEvent.title}</h1>
+              <h1 className="events_title">{eachEvent.title}</h1>
           </Link>
         </div>
         <div className="events_sub_container">
@@ -130,7 +130,7 @@ class Card extends Component {
               src="https://image.flaticon.com/icons/svg/61/61227.svg"
               alt="clock"
             />{' '}
-              {moment(eachEvent.time).format('h:mm a')}
+            {moment(eachEvent.time).format('h:mm a')}
           </h3>
           <h3>
             <img
@@ -177,8 +177,7 @@ class Card extends Component {
                   0,
                   4
                 )} */}
-            {moment(eachEvent.date).format('M/D/YYYY')}
-                
+                {moment(eachEvent.date).format('M/D/YYYY')}
               </p>
               <p>
                 {eachEvent.time[0] === '0'
@@ -216,19 +215,3 @@ export default connect(
   mapStateToProps,
   { getUser, getEventsAttending }
 )(Card);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

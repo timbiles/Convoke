@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import './Hamburger.css';
-// import Avatar from '../../Avatar/Avatar';
 
 import { getUser } from '../../../ducks/userReducer';
 

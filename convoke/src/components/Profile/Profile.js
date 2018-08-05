@@ -46,6 +46,8 @@ class Profile extends Component {
   render() {
     const { auth_id, name, email, home_town, img, bio } = this.props.user;
 
+    
+
     return (
       <div className="mc_container">
         <div className="mc_display">

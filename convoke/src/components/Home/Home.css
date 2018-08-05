@@ -127,12 +127,35 @@
   animation: menuFade 1.5s;
   left: 2%;
   top: 52%;
+  background-color: white;
+  opacity: .8;
+  padding: 2%;
+}
+
+.hidden_menu_content h1 {
+  font-weight: bold;
+  padding-bottom: 6%;
+}
+
+.hidden_side_events {
+  padding: 1.5% 0;
 }
 
 .hidden_menu_arrow:hover .hidden_menu_content {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  padding-left: 2%;
+  /* align-items: center; */
+}
+
+.home_selected_event {
+  text-decoration: none;
+  color: rgb(10, 10, 10);
+}
+
+.home_selected_event:hover {
+  color: rgb(99, 28, 28);
 }
 
 @keyframes menuFade {
@@ -142,7 +165,7 @@
   }
 
   100% {
-    opacity: 1;
+    opacity: .8;
     transform: translateY(-50%, 0);
   }
 }
