@@ -26,7 +26,9 @@ const {
   getEvents,
   addEvent,
   deleteEvent,
-  deleteEventById
+  deleteEventById,
+  updateEventInfo,
+  deleteOldEvents
 } = require('./controllers/eventsCtrl');
 const { createMessage, getMessages } = require('./controllers/messageCtrl');
 const { eventEmail } = require('./controllers/nodeCtrl');
@@ -107,6 +109,8 @@ app.post('/api/add-event/:events_id/:users_id', addEvent);
 app.post('/api/events', createEvent);
 app.delete('/api/delete/:events_id/:users_id', deleteEvent);
 app.delete('/api/deleteEvent/:users_id/:events_id', deleteEventById);
+app.put('/api/updateEventInfo/:id', updateEventInfo);
+app.delete('/api/deleteOldEvent', deleteOldEvents)
 
 //user endpoints
 app.get('/login', login);

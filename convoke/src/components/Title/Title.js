@@ -4,7 +4,6 @@ import './Title.css';
 
 export default class Title extends Component {
   render() {
-    // console.log("title rendered")
 
     return (
       <div className="titlepage_main">
@@ -15,9 +14,9 @@ export default class Title extends Component {
             alt="fake logo"
           />
         </Link>
+          <h1 className='title_text'>A Place to Meet</h1>
       </div>
     );
   }
 }
 
-// https://statewideguttercompany.com/wp-content/uploads/2012/07/logo-placeholder.jpg

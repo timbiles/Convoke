@@ -77,6 +77,8 @@ class EditProfile extends Component {
       updateBio
     } = this.props;
 
+    console.log(this.props)
+
     return (
       <div className="mc_container">
         <div className="mc_title">{/* <h1>MyConvoke Page</h1> */}</div>

@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import io from 'socket.io-client';
+import _ from 'lodash';
 
 import './Connect.css';
 
-import { getUser } from '../../ducks/userReducer';
+import { getUser, getAllUsers } from '../../ducks/userReducer';
 
 class Connect extends Component {
   constructor() {
@@ -39,13 +40,40 @@ class Connect extends Component {
 
   componentDidMount() {
     this.props.getUser();
+    this.props.getAllUsers();
   }
 
   render() {
+    console.log(this.props.user.users);
+
+    let mapped = _.mapValues(this.props.user.users, function(e) {
+      return e.img === null
+        ? 'https://image.flaticon.com/icons/svg/21/21104.svg'
+        : e.img;
+    });
+
+    console.log(mapped)
+
+
+    let map = Object.values(mapped).map((e, i) => {
+      return (
+        <div key={i}>
+          <img className='connect_profile_img'src={e} alt="user profile" />
+          <h1> {this.props.user.users[i].img === e && this.props.user.users[i].name}</h1>
+        </div>
+      );
+    });
+
+
     return (
       <div className="connect_container">
+        <div className="connect_users">
+          <h1>Find Users</h1>
+          {map}
+        </div>
+        <div className="connect_sub_container">
           <div className="connect_bar">
-          <h1>Message Feed</h1>
+            <h1>Message Feed</h1>
             {this.state.messages.map(e => {
               return (
                 <div>
@@ -70,13 +98,11 @@ class Connect extends Component {
               onChange={e => this.setState({ message: e.target.value })}
             />
             <br />
-            <h2
-              onClick={this.sendMessage}
-              className="message_btn"
-            >
+            <h2 onClick={this.sendMessage} className="message_btn">
               Send
             </h2>
           </div>
+        </div>
       </div>
     );
   }
@@ -87,21 +113,14 @@ const mapStateToProps = state => state;
 export default connect(
   mapStateToProps,
   {
-    getUser
+    getUser,
+    getAllUsers
   }
 )(Connect);
-
-
-
-
-
-
-
 
 // import React, { Component } from 'react';
 // import { connect } from 'react-redux';
 // import _ from 'lodash';
-
 
 // import './Connect.css';
 // import { getAllUsers } from '../../ducks/userReducer';

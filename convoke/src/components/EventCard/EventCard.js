@@ -6,6 +6,7 @@ import swal from 'sweetalert2';
 import _ from 'lodash';
 import moment from 'moment';
 
+import EditEvent from './EditEvent';
 import './EventCard.css';
 // import pic from './person.png';
 
@@ -110,6 +111,7 @@ class Card extends Component {
 
     return (
       <div className="events_container">
+      <EditEvent />
         <div className="events_title">
           <Link to={`/events/${eachEvent.title}`}>
             <h1 className="events_title">{eachEvent.title}</h1>

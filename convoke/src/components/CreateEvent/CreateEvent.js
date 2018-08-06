@@ -29,6 +29,12 @@ import {
 import { getUser } from '../../ducks/userReducer';
 
 class CreateEvent extends Component {
+  constructor() {
+    super();
+    this.state = {
+      locationSelect: ''
+    };
+  }
   handleDateChange = date => {
     this.props.create.date = moment(date).format('YYYY-MM-DD');
   };
@@ -60,14 +66,13 @@ class CreateEvent extends Component {
           timer: 1000
         });
       });
-      console.log(title)
-      axios.post(`/api/email`, {
-        email,
-        name,
-        title,
-        date,
-        time
-      });
+    axios.post(`/api/email`, {
+      email,
+      name,
+      title,
+      date,
+      time
+    });
   };
 
   handleKeyDown2 = e => {
@@ -94,14 +99,6 @@ class CreateEvent extends Component {
         })
         .then(() => this.props.reset());
     }
-  };
-
-  handleSelect = location => {
-    geocodeByAddress(location)
-      .then(location => getLatLng(location[0]))
-      .then(latLng => console.log('Success', latLng))
-      .then(console.log(location))
-      .catch(error => console.error('Error', error));
   };
 
   render() {
@@ -180,7 +177,6 @@ class CreateEvent extends Component {
             <PlacesAutocomplete
               value={this.props.create.location}
               onChange={updateLocation}
-              onSelect={this.handleSelect}
             >
               {({
                 getInputProps,

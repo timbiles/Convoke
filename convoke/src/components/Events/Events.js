@@ -5,10 +5,22 @@ import moment from 'moment';
 
 import './Events.css';
 
-import { getEvents } from '../../ducks/eventReducer';
+import {
+  getEvents,
+  updateTitle,
+  updateHost,
+  updateEventInfo
+} from '../../ducks/eventReducer';
 // import pic from '../EventCard/person.png';
 
 class Events extends Component {
+  handleSubmit = id => {
+    let { host } = this.props.events.events;
+
+    console.log(this.props.events.events)
+    this.props.updateEventInfo(host);
+  };
+
   render() {
     const { events } = this.props;
 
@@ -20,6 +32,9 @@ class Events extends Component {
     let time = String(event.time);
 
     const { userEvents } = this.props.userEvents;
+    const { updateTitle } = this.props;
+
+    console.log(this.props);
 
     let mapped = _.mapValues(userEvents, function(e) {
       return e.events_id;
@@ -40,7 +55,7 @@ class Events extends Component {
     //   <img className="events_person_white" src={pic} alt="person icon" />
     // );
 
-    let one = filter === 1 ? (' person is going') : (' people going')
+    let one = filter === 1 ? ' person is going' : ' people going';
 
     return (
       <div className="ie_container">
@@ -49,17 +64,21 @@ class Events extends Component {
           <div className="ie_img_box">
             <img className="ie_img" src={event.img} alt={event.title} />
             <h2>
-             {filter}{one}
+              {filter}
+              {one}
             </h2>
           </div>
           <div className="ie_info_container">
             <div className="ie_info_one">
               <h2>Event Creator</h2>
               <h3>{event.host}</h3>
-              <h3>
-
-                {moment(date).format('dddd MMM Do, YYYY')}
-              </h3>
+              <input
+                placeholder={event.host}
+                type="text"
+                className="something_1"
+                onChange={e => updateHost(e.target.value)}
+              />
+              <h3>{moment(date).format('dddd MMM Do, YYYY')}</h3>
               <h3>
                 {time[0] === '0' ? time.substring(1, 5) : time.substring(0, 5)}
               </h3>
@@ -70,6 +89,12 @@ class Events extends Component {
               <h4>{event.description}</h4>
             </div>
           </div>
+          <button
+            className="ep_submit_btn"
+            onClick={id => this.handleSubmit(id)}
+          >
+            Submit Edit
+          </button>
         </div>
       </div>
     );
@@ -80,5 +105,5 @@ const mapStateToProps = state => state;
 
 export default connect(
   mapStateToProps,
-  { getEvents }
+  { getEvents, updateTitle, updateHost, updateEventInfo }
 )(Events);

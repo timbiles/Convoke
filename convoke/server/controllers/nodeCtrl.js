@@ -13,7 +13,6 @@ let transporter = nodemailer.createTransport(
 const eventEmail = (req, res) => {
   const { name, title, email, date, time } = req.body;
 
-  
   transporter
     .sendMail({
       from: 'convoke.meet@gmail.com',
@@ -21,8 +20,7 @@ const eventEmail = (req, res) => {
       subject: `Thanks for creating your event, ${title} with Convoke!`,
       text: `Hey ${name}! Thank you for using Convoke to create your event, ${title}. Your event details are listed below.\n` +
       moment(date).format('MMM Do, YYYY') + `\n` +
-      moment(time).format('h:mm a'),
-      bcc: 'timbilestimbiles@gmail.com'
+      moment(time).format('h:mm a') + '\n' 
     })
     .catch(err => {
       console.log(err);

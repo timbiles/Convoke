@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
+import axios from 'axios';
 
 import './App.css';
 
@@ -10,8 +11,11 @@ import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import Title from './components/Title/Title';
 
-
 class App extends Component {
+  componentDidMount() {
+    axios.delete('/api/deleteOldevent');
+  }
+
   render() {
     return (
       <Provider store={store}>

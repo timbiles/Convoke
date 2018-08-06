@@ -141,6 +141,10 @@
   width: 35px;
 }
 
+.remove_event_by_id:hover {
+  transform: scale(1.1)
+}
+
 .remove_icon_dropdown {
   height: 35px;
   width: 35px;

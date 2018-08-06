@@ -107,6 +107,30 @@ const deleteEventById = (req, res, next) => {
     });
 };
 
+const updateEventInfo = (req, res) => {
+  const db = req.app.get('db');
+  const { events_id, title, host, date, time, description } = req.body;
+
+  db.events
+    .edit_event_by_events_id([events_id, title, host, date, time, description])
+    .then(response => res.status(200).send(response))
+    .catch(err => res.status(500).send(err));
+};
+
+const deleteOldEvents = (req, res) => {
+  const db = req.app.get('db');
+
+  db.events
+  .delete_old_events()
+  .then(response => {
+    res.status(200).send(response);
+  })
+  .catch(err => {
+    console.log(err);
+    res.status(500).send(err);
+  });
+}
+
 module.exports = {
   getAll,
   getUserEvents,
@@ -114,5 +138,7 @@ module.exports = {
   getEvents,
   addEvent,
   deleteEvent,
-  deleteEventById
+  deleteEventById,
+  updateEventInfo,
+  deleteOldEvents
 };
