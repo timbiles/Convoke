@@ -52,7 +52,11 @@ class Profile extends Component {
   };
 
   render() {
-    const { auth_id, name, email, home_town, img, bio } = this.props.user;
+    const { auth_id, name, email, home_town, img, bio, membership_date } = this.props.user;
+
+    const image = !img
+      ? 'https://image.flaticon.com/icons/svg/21/21104.svg'
+      : img;
 
     return (
       <div className="mc_container">
@@ -68,13 +72,15 @@ class Profile extends Component {
             <div>
               <p className="mc_profile_name">{name}</p>
               <div className="img-email-edit">
-                <img className="profile_display_img" src={img} alt={auth_id} />
+                <img className="profile_display_img" src={image} alt={auth_id} />
 
                 <div className="email_and_img_edit">
                   <h3>Email</h3>
                   <p>{email}</p>
                   <h3>Home Town</h3>
                   <p>{home_town}</p>
+                  <h3>Member Since</h3>
+                  <p>{moment(membership_date).format('MMM YYYY')}</p>
                 </div>
               </div>
               <h3>Bio</h3>

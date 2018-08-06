@@ -55,8 +55,8 @@ class Card extends Component {
       text: 'Do you wish to continue?',
       confirmButtonText: 'Yes, remove it!',
       showCancelButton: true,
-      closeOnConfirm: false,
-      closeOnCancel: false
+      // closeOnConfirm: false,
+      // closeOnCancel: false
     }).then(res => {
       if (res.value) {
         swal({

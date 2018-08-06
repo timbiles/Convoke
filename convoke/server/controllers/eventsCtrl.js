@@ -32,7 +32,7 @@ const createEvent = (req, res, next) => {
 
   db.events
     .create_event([title, host, date, time, location, img, users_id])
-    .then((response) => {
+    .then(response => {
       res.status(200).send(response);
     })
     .catch(err => {
@@ -87,7 +87,7 @@ const deleteEvent = (req, res, next) => {
 
   db.events
     .delete_event([users_id, events_id])
-    .then((response) => res.status(200).send(response))
+    .then(response => res.status(200).send(response))
     .catch(err => {
       console.log(err);
       res.status(500).send(err);
@@ -100,7 +100,7 @@ const deleteEventById = (req, res, next) => {
 
   db.events
     .delete_event_by_users_id([users_id, events_id])
-    .then((response) => res.status(200).send(response))
+    .then(response => res.status(200).send(response))
     .catch(err => {
       console.log(err);
       res.status(500).send(err);

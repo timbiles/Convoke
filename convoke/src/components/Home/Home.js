@@ -27,6 +27,7 @@ class Home extends Component {
   handleChange = e => {
     this.setState({ filteredEvents: e.toLowerCase() });
   };
+  
 
   render() {
     const { isLoading, events } = this.props;

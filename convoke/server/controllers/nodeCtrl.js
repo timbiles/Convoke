@@ -1,6 +1,7 @@
 require('dotenv').config();
 const nodemailer = require('nodemailer');
 const ses = require('nodemailer-ses-transport');
+const moment = require('moment');
 
 let transporter = nodemailer.createTransport(
   ses({
@@ -10,14 +11,17 @@ let transporter = nodemailer.createTransport(
 );
 
 const eventEmail = (req, res) => {
-  const { email, title } = req.body;
+  const { name, title, email, date, time } = req.body;
 
+  
   transporter
     .sendMail({
       from: 'convoke.meet@gmail.com',
       to: email,
       subject: `Thanks for creating your event, ${title} with Convoke!`,
-      text: 'Something here',
+      text: `Hey ${name}! Thank you for using Convoke to create your event, ${title}. Your event details are listed below.\n` +
+      moment(date).format('MMM Do, YYYY') + `\n` +
+      moment(time).format('h:mm a'),
       bcc: 'timbilestimbiles@gmail.com'
     })
     .catch(err => {

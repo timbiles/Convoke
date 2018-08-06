@@ -10,6 +10,7 @@ import PlacesAutocomplete, {
 import DatePicker from 'react-custom-date-picker';
 import moment from 'moment';
 import TimePicker from 'rc-time-picker';
+import _ from 'lodash';
 
 import './CreateEvent.css';
 import 'rc-time-picker/assets/index.css';
@@ -37,8 +38,8 @@ class CreateEvent extends Component {
   };
 
   handleSubmit = id => {
-    let { title, host, date, time, ampm, location, img } = this.props.create;
-    let { users_id } = this.props.user;
+    let { title, host, date, time, location, img } = this.props.create;
+    let { users_id, name, email } = this.props.user;
 
     axios
       .post(`/api/events`, {
@@ -46,7 +47,6 @@ class CreateEvent extends Component {
         host,
         date,
         time,
-        ampm,
         location,
         img,
         users_id
@@ -60,11 +60,14 @@ class CreateEvent extends Component {
           timer: 1000
         });
       });
+      console.log(title)
       axios.post(`/api/email`, {
-        email: this.props.user.email,
-        title: this.props.events.events.title
-      }
-    )
+        email,
+        name,
+        title,
+        date,
+        time
+      });
   };
 
   handleKeyDown2 = e => {
@@ -128,11 +131,15 @@ class CreateEvent extends Component {
         ) : (
           <div className="create_event_input">
             <h1>Event Name</h1>
-            <input
-              type="text"
-              placeholder="Event Name"
-              onChange={e => updateEventName(e.target.value)}
-            />
+            <div className="something">
+              <input
+                className="ce_input_field"
+                type="text"
+                placeholder="Event Name"
+                onChange={e => updateEventName(e.target.value)}
+              />
+              {/* <span className='floating_placeholder'>Event Name</span> */}
+            </div>
             <h1>Hoster</h1>
             <input
               type="text"
@@ -221,10 +228,7 @@ class CreateEvent extends Component {
               onKeyDown={this.handleKeyDown2}
             />
             <Link to="/">
-              <h1
-                className="ce_button"
-                onClick={id => this.handleSubmit(id)}
-              >
+              <h1 className="ce_button" onClick={id => this.handleSubmit(id)}>
                 Submit Event
               </h1>
             </Link>
