@@ -159,7 +159,7 @@ class Card extends Component {
             <input
               className="remove_event_by_id"
               type="image"
-              src="https://www.flaticon.com/premium-icon/icons/svg/484/484662.svg"
+              src="https://image.flaticon.com/icons/svg/107/107181.svg"
               alt="trash icon"
               onClick={e => this.handleDelete(eachEvent.events_id)}
             />

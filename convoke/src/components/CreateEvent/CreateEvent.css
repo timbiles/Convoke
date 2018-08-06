@@ -36,8 +36,7 @@
     bottom: 0;
     right: 0;
     margin: 2%;
-    border-radius: 0%;
-    height: 5%;
+    color: black;
 }
 
 .create_event_input button:hover {

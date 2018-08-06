@@ -61,7 +61,8 @@ class CreateEvent extends Component {
         });
       });
       axios.post(`/api/email`, {
-        email: this.props.user.email
+        email: this.props.user.email,
+        title: this.props.events.events.title
       }
     )
   };
@@ -104,8 +105,6 @@ class CreateEvent extends Component {
     const {
       updateEventName,
       updateHost,
-      updateDate,
-      updateTime,
       updateLocation,
       updateImg
     } = this.props;
@@ -115,7 +114,7 @@ class CreateEvent extends Component {
 
     const day = moment().format('MM/DD/YYYY');
 
-    console.log(this.props.user)
+    const today = new Date();
 
     return (
       <div className="create_event_container">
@@ -155,6 +154,7 @@ class CreateEvent extends Component {
               required
               // modal
               placeholder={day}
+              minDate={today}
             />
 
             <h1>Time</h1>
@@ -221,12 +221,12 @@ class CreateEvent extends Component {
               onKeyDown={this.handleKeyDown2}
             />
             <Link to="/">
-              <button
+              <h1
                 className="ce_button"
                 onClick={id => this.handleSubmit(id)}
               >
                 Submit Event
-              </button>
+              </h1>
             </Link>
           </div>
         )}

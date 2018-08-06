@@ -44,7 +44,7 @@ class EditProfile extends Component {
   };
 
   onImageDrop = files => {
-    this.setState({ uploadedFile: files[0] });
+    // this.setState({ uploadedFile: files[0] });
     this.handleImageUpload(files[0]);
   };
 
@@ -59,9 +59,10 @@ class EditProfile extends Component {
         console.log(err);
       }
       if (response.body.secure_url !== '') {
-        this.setState({
-          uploadedFileCloudinaryUrl: response.body.secure_url
-        });
+        // this.setState({
+        //   uploadedFileCloudinaryUrl: response.body.secure_url
+        // });
+        this.props.updateImg(response.body.secure_url)
       }
     });
   };
@@ -98,9 +99,11 @@ class EditProfile extends Component {
                   onKeyDown={this.handleKeyDown}
                 />
                 <div className="img-email-edit">
-                  <img
+                  <input
+                    type='image'
                     className="profile_display_img"
-                    src={img}
+                    src={this.state.uploadedFileCloudinaryUrl || img}
+                    // onChange={e => updateImg(e.target.value)}
                     alt={auth_id}
                   />
                   <div className="email_and_img_edit">
@@ -148,17 +151,28 @@ class EditProfile extends Component {
                     >
                       <div>
                         {this.state.uploadedFileCloudinaryUrl === '' ? (
-                          <p className='dropzone_text'>Drop an image or click to select a file to upload.</p>
+                          <p className="dropzone_text">
+                            Drop an image or click to select a file to upload.
+                          </p>
                         ) : (
                           <div>
                             {/* <p>{this.state.uploadedFile.name}</p> */}
-                            <img className='ep_upload_pic' src={this.state.uploadedFileCloudinaryUrl} alt='profile pic'/>
+                            <img
+                              className="ep_upload_pic"
+                              // src={this.state.uploadedFileCloudinaryUrl}
+                              src={img}
+                              
+                              alt="profile pic"
+                            />
                           </div>
                         )}
                       </div>
                     </Dropzone>
                   </div>
-                  <label className="file-upload-container" htmlFor="file-upload">
+                  <label
+                    className="file-upload-container"
+                    htmlFor="file-upload"
+                  >
                     <input className="file-upload" type="file" />
                     Select an Image
                   </label>

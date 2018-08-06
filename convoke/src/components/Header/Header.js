@@ -12,10 +12,11 @@ import { getUserEvents } from '../../ducks/userEventReducer';
 
 class Header extends Component {
   componentDidMount() {
-    this.props.getUser();
-    this.props.getEvents();
-    // this.props.getEventsAttending(this.props.user.users_id);
-    this.props.getUserEvents();
+    this.props.getUser().then(() => {
+      this.props.getEvents();
+      this.props.getEventsAttending(this.props.user.users_id);
+      this.props.getUserEvents();
+    });
   }
   render() {
     const { auth_id } = this.props.user;
@@ -35,15 +36,6 @@ class Header extends Component {
             </Link>
           </div>
           <div className="right_header_links">
-            <Link
-              onClick={() => {
-                window.scroll({ top: 1000, behavior: 'smooth' });
-              }}
-              className="link"
-              to="/chat"
-            >
-              Chat
-            </Link>
             <Link
               onClick={() => {
                 window.scroll({ top: 1000, behavior: 'smooth' });

@@ -104,19 +104,9 @@ export const updateUserInfo = (auth_id, name, email, home_town, img, bio) => {
 export default function userReducer(state = initialState, action) {
   switch (action.type) {
     case `${GET_USER}_FULFILLED`:    
-      // let { name, email, home_town, img, bio, auth_id } = action.payload.data;
       return {
-        // ...state,
-        // user: action.payload.data
-
         ...state,
         ...action.payload.data
-        // name,
-        // email,
-        // home_town,
-        // img,
-        // bio,
-        // auth_id
       };
     case `${GET_ALL_USERS}_FULFILLED`:
       return {
