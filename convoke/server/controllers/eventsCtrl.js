@@ -28,10 +28,10 @@ const getUserEvents = (req, res) => {
 
 const createEvent = (req, res, next) => {
   const db = req.app.get('db');
-  const { title, host, date, time, location, img, users_id } = req.body;
+  const { title, host, date, time, location, img, description, users_id } = req.body;
 
   db.events
-    .create_event([title, host, date, time, location, img, users_id])
+    .create_event([title, host, date, time, location, img, description, users_id])
     .then(response => {
       res.status(200).send(response);
     })

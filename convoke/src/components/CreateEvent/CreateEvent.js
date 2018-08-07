@@ -18,9 +18,9 @@ import {
   updateHost,
   updateDate,
   updateTime,
-  updateAmPm,
   updateLocation,
   updateImg,
+  updateDescription,
   reset
 } from '../../ducks/createReducer';
 
@@ -47,7 +47,7 @@ class CreateEvent extends Component {
   };
 
   handleSubmit = id => {
-    let { title, host, date, time, location, img } = this.props.create;
+    let { title, host, date, time, location, img, description } = this.props.create;
     let { users_id, name, email } = this.props.user;
 
     axios
@@ -58,6 +58,7 @@ class CreateEvent extends Component {
         time,
         location,
         img,
+        description,
         users_id
       })
       .then(() => {
@@ -106,7 +107,8 @@ class CreateEvent extends Component {
     const {
       updateEventName,
       updateHost,
-      updateLocation
+      updateLocation,
+      updateDescription
     } = this.props;
     const { auth_id } = this.props.user;
 
@@ -129,7 +131,6 @@ class CreateEvent extends Component {
           </div>
         ) : (
         <div className="create_event_input">
-          <h1>Event Name</h1>
           <label className="has-float-label">
             <input
               className="input_field"
@@ -139,7 +140,6 @@ class CreateEvent extends Component {
             />
             <span>What is the name of your event?</span>
           </label>
-          <h1>Hoster</h1>
           <label className="has-float-label">
             <input
               className="input_field"
@@ -149,7 +149,7 @@ class CreateEvent extends Component {
             />
             <span>Who is the host?</span>
           </label>
-          <h1>Date</h1>
+          <h1 className='ce_h1'>Date</h1>
 
           <DatePicker
             color="#296b3e"
@@ -166,7 +166,7 @@ class CreateEvent extends Component {
             minDate={today}
           />
 
-          <h1>Time</h1>
+          <h1 className='ce_h1'>Time</h1>
 
           <TimePicker
             showSecond={false}
@@ -178,7 +178,6 @@ class CreateEvent extends Component {
             style={{ width: 100 }}
           />
 
-          <h1>Location</h1>
           <PlacesAutocomplete
             value={location}
             onChange={updateLocation}
@@ -197,7 +196,7 @@ class CreateEvent extends Component {
                       className: 'location-search-input'
                     })}
                   />
-                  <span>Search</span>
+                  <span>Location</span>
                 </label>
                 <div className="autocomplete-dropdown-container">
                   {loading && <div>Loading...</div>}
@@ -224,8 +223,19 @@ class CreateEvent extends Component {
               </div>
             )}
           </PlacesAutocomplete>
+
+            <label className="has-float-label">
+            <input
+              className="input_field"
+              type="text"
+              placeholder="Description"
+              onChange={e => updateDescription(e.target.value)}
+            />
+            <span>Give your event a Description</span>
+          </label>
+
           <form>
-            <h1>Image Upload</h1>
+            <h1 className='ce_h1'>Image Upload</h1>
             <div className="file_upload">
               <Dropzone
                 onDrop={this.onImageDrop}
@@ -254,7 +264,7 @@ class CreateEvent extends Component {
           </form>
           <Link to="/">
             <h1 className="ce_button" onClick={id => this.handleSubmit(id)}>
-              Submit Event
+              Submit Event!
             </h1>
           </Link>
         </div>
@@ -273,9 +283,9 @@ export default connect(
     updateHost,
     updateDate,
     updateTime,
-    updateAmPm,
     updateLocation,
     updateImg,
+    updateDescription,
     reset,
     getUser
   }

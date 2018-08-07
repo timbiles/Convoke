@@ -149,6 +149,20 @@
   color: rgb(99, 28, 28);
 }
 
+.home_listview {
+  margin: 0 20%;
+}
+
+.home_menu_icon {
+  height: 25px;
+  margin-right: 2%;
+  cursor: pointer;
+}
+
+.home_menu_icon:hover {
+  transform: scale(1.05);
+}
+
 @keyframes menuFade {
   0% {
     opacity: 0;

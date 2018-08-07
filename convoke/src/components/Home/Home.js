@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 
 import './Home.css';
 import EventCard from '../EventCard/EventCard';
+import EventLineView from './EventLineView/EventLineView';
 
 import { getEvents } from '../../ducks/eventReducer';
 import { getUser, getEventsAttending } from '../../ducks/userReducer';
@@ -13,7 +14,9 @@ class Home extends Component {
     super(props);
 
     this.state = {
-      filteredEvents: []
+      filteredEvents: [],
+      blockView: false,
+      listView: true
     };
   }
 
@@ -26,7 +29,16 @@ class Home extends Component {
   handleChange = e => {
     this.setState({ filteredEvents: e.toLowerCase() });
   };
-  
+
+  toggleList = () => {
+    this.setState({ listView: true });
+    this.setState({ blockView: false });
+  };
+
+  toggleBlock = () => {
+    this.setState({ blockView: true });
+    this.setState({ listView: false });
+  };
 
   render() {
     const { isLoading, events } = this.props;
@@ -37,6 +49,12 @@ class Home extends Component {
         return e.title.toLowerCase().includes(filteredEvents);
       })
       .map((e, i) => <EventCard eachEvent={e} key={i} />);
+
+    let filter2 = events.events
+      .filter((e, i) => {
+        return e.title.toLowerCase().includes(filteredEvents);
+      })
+      .map((e, i) => <EventLineView eachEvent={e} key={i} />);
 
     let mapEvents = this.props.user.eventsAttending.map((e, i) => {
       return (
@@ -53,17 +71,27 @@ class Home extends Component {
         <div className="home_container">
           <h1 className="home_title">Convoke</h1>
           <div className="home_input_section">
-
-          <label className="has-float-label">
-            <input
-              className="search_bar"
-              type="text"
-              placeholder=". . ."
-              onChange={e => this.handleChange(e.target.value)}
+            <img
+              className="home_menu_icon"
+              src="https://image.flaticon.com/icons/svg/114/114320.svg"
+              onClick={this.toggleList}
+              alt="List view"
             />
-            <span>Search through Events</span>
-          </label>
-
+            <img
+              className="home_menu_icon"
+              src="https://image.flaticon.com/icons/svg/566/566001.svg"
+              onClick={this.toggleBlock}
+              alt="Block view"
+            />
+            <label className="has-float-label">
+              <input
+                className="search_bar"
+                type="text"
+                placeholder=". . ."
+                onChange={e => this.handleChange(e.target.value)}
+              />
+              <span>Search through Events</span>
+            </label>
 
             <div className="home_dropdown_container">
               <h1>Categories</h1>
@@ -76,14 +104,28 @@ class Home extends Component {
           </div>
           <div className="home_linebreak" />
           {isLoading && <p>Loading...</p>}
-          <div className="events_display">
-            {filter}
-            {!filter.length && (
-              <div className="event_not_found">
-                <h1> Ooops! We didn't find any event with that name!</h1>
-              </div>
-            )}
-          </div>
+
+          {this.state.listView && (
+            <div className="home_listview">
+              {filter2}
+              {!filter.length && (
+                <div className="event_not_found">
+                  <h1> Ooops! We didn't find any event with that name!</h1>
+                </div>
+              )}
+            </div>
+          )}
+
+          {this.state.blockView && (
+            <div className="events_display">
+              {filter}
+              {!filter.length && (
+                <div className="event_not_found">
+                  <h1> Ooops! We didn't find any event with that name!</h1>
+                </div>
+              )}
+            </div>
+          )}
           <div className="hidden_menu_arrow">
             <div className="hidden_menu_content">
               <h1>Quick Events List</h1>

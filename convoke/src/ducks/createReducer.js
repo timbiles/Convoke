@@ -8,7 +8,8 @@ const initialState = {
   time: '',
   am_pm: '',
   location: '',
-  img: ''
+  img: '',
+  description: ''
 };
 
 //constants
@@ -19,6 +20,7 @@ const UPDATE_TIME = 'UPDATE_TIME';
 const UPDATE_AM_PM = 'UPDATE_AM_PM';
 const UPDATE_LOCATION = 'UPDATE_LOCATION';
 const UPDATE_IMG = 'UPDATE_IMG';
+const UPDATE_DESCRIPTION = 'UPDATE_DESCRIPTION';
 const RESET = 'RESET';
 
 //action creators
@@ -71,6 +73,13 @@ export const updateImg = img => {
   };
 };
 
+export const updateDescription = description => {
+  return {
+    type: UPDATE_DESCRIPTION,
+    payload: description
+  };
+};
+
 export function reset() {
   return {
     type: RESET,
@@ -115,15 +124,20 @@ export default function eventReducer(state = initialState, action) {
       return {
         ...state,
         img: action.payload
-      }
+      };
+    case UPDATE_DESCRIPTION:
+    return {
+      ...state,
+      description: action.payload
+    }
     case RESET:
       return {
         title: action.payload,
         host: action.payload,
         date: action.payload,
-        time: action.payload,  
+        time: action.payload,
         location: action.payload,
-        img: action.payload              
+        img: action.payload
       };
     default:
       return state;

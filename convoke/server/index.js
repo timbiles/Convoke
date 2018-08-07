@@ -5,10 +5,8 @@ const massive = require('massive');
 const session = require('express-session');
 const passport = require('passport');
 const path = require('path');
-const NodeGeocoder = require('node-geocoder');
 const cloudinary = require('cloudinary');
 const socket = require('socket.io');
-const mustacheExpress = require('mustache-express');
 const port = process.env.SERVER_PORT || 3001;
 
 const strategy = require('./strategy');
@@ -36,10 +34,6 @@ const { eventEmail } = require('./controllers/nodeCtrl');
 const app = express();
 app.use(bodyParser.json());
 
-///image uploader
-// app.engine('html', mustacheExpress());
-// app.set('view engine', 'mustache');
-// app.use('/public', express.static('public'));
 
 massive(process.env.CONNECTION_STRING)
   .then(db => {
@@ -65,14 +59,6 @@ app.use(
 //   formatter: null
 // };
 
-// const geocoder = NodeGeocoder(options);
-
-///cloudinary///
-// cloudinary.config({
-//   cloud_name: process.env.CLOUD_NAME,
-//   api_key: process.env.CLOUD_API_KEY,
-//   api_secret: process.env.CLOUD_SECRET
-// })
 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -134,7 +120,6 @@ server = app.listen(port, () => {
 io = socket(server);
 
 io.on('connection', socket => {
-  // console.log(socket.id);
   socket.on('SEND_MESSAGE', function(data) {
     io.emit('RECEIVE_MESSAGE', data);
   });

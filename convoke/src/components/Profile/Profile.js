@@ -62,7 +62,7 @@ class Profile extends Component {
       <div className="mc_container">
         <div className="mc_display">
           {!auth_id.length ? (
-            <div>
+            <div className='mc_login_text'>
               <h2>Oops! Don't forget to Login!</h2>
               <a className="mc_link" href={process.env.REACT_APP_LOGIN}>
                 <h1 className="mc_login_btn">Login</h1>

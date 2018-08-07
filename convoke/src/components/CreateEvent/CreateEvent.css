@@ -17,16 +17,11 @@
   border-radius: 0.5%;
   margin: 2% 0;
   border-bottom: 1px solid #dbd8cf;
-  background: linear-gradient(to top right, rgb(205, 218, 214) 0%, #fff 70%);
+  background: linear-gradient(to top right, rgb(196, 197, 197) 0%, #fff 50%);
 }
 
 .create_event_container input {
   margin: 2%;
-}
-
-.create_event_container h1 {
-  font-weight: bold;
-  letter-spacing: 2px;
 }
 
 .ce_button {
@@ -35,11 +30,14 @@
   bottom: 0;
   right: 0;
   margin: 2%;
-  color: black;
+  color: rgb(128, 128, 128);
+  font-size: 1.8rem;
+
 }
 
 .ce_button:hover {
-  transform: scale(1.05)
+  transform: scale(1.05);
+  text-decoration: underline;
 }
 
 .create_event_input button:hover {
@@ -100,5 +98,16 @@
 .file_upload {
   display: flex;
   justify-content: center;
+  margin-top: 8%;
+}
+
+.has-float-label {
   margin-top: 4%;
+}
+
+.ce_h1 {
+  color: rgb(128, 128, 128);
+  margin-top: 4%;
+  font-size: 1.4rem;
+  letter-spacing: 2px;
 }
