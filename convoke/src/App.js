@@ -20,7 +20,7 @@ class App extends Component {
     return (
       <Provider store={store}>
         <Router>
-          <div>
+          <div className='site'>
             <Title />
             <Header />
             {routes}

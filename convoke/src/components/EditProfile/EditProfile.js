@@ -77,7 +77,6 @@ class EditProfile extends Component {
       updateBio
     } = this.props;
 
-    console.log(this.props)
 
     return (
       <div className="mc_container">
@@ -205,13 +204,15 @@ class EditProfile extends Component {
                     : e.time.substring(0, 5)}
                 </p>
                 <p>{e.location.substring(0, e.location.length - 5)}</p>
-                <button
+                <input
+                  className="profile_remove_img"
+                  type="image"
+                  alt="Delete icon"
+                  src="https://image.flaticon.com/icons/svg/118/118743.svg"
                   onClick={id => {
                     this.handleDelete(e.events_id);
                   }}
-                >
-                  Delete
-                </button>
+                />
               </div>
             );
           })}

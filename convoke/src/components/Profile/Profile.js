@@ -105,16 +105,11 @@ class Profile extends Component {
                 </div>
                 <p>{e.host}</p>
                 <p>
-                  {/* {e.date.substring(5, 10).replace(/-/g, '/')}/{e.date.substring(
-                    0,
-                    4
-                  )} */}
+               
                   {moment(e.date).format('MMM Do, YYYY')}
                 </p>
                 <p>
-                  {/* {e.time[0] === '0'
-                    ? e.time.substring(1, 5)
-                    : e.time.substring(0, 5)} */}
+                 
                   {moment(e.time).format('h:mm a')}
                 </p>
                 <p>{e.location.substring(0, e.location.length - 5)}</p>

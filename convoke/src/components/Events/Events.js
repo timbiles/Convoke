@@ -32,9 +32,6 @@ class Events extends Component {
     let time = String(event.time);
 
     const { userEvents } = this.props.userEvents;
-    const { updateTitle } = this.props;
-
-    console.log(this.props);
 
     let mapped = _.mapValues(userEvents, function(e) {
       return e.events_id;

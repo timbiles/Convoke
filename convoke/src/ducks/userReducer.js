@@ -27,14 +27,14 @@ const RESET = 'RESET';
 export const getUser = () => {
   return {
     type: GET_USER,
-    payload: axios.get('api/me')
+    payload: axios.get('/api/me')
   };
 };
 
 export const getAllUsers = () => {
   return {
     type: GET_ALL_USERS,
-    payload: axios.get('api/users')
+    payload: axios.get('/api/users')
   };
 };
 

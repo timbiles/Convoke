@@ -16,7 +16,7 @@ export default class Contact extends Component {
               <p>
                 Any issues? Send us an email at{' '}
                 <a className="contacts_email" href="mailto:fakeEmail@gmail.com">
-                  fakeEmail@gmail.com
+                  convoke.meet@gmail.com
                 </a>
               </p>
             </div>

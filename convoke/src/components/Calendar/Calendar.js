@@ -13,6 +13,8 @@ class Calendar extends Component {
   componentDidMount() {
     this.props.getEventsAttending(this.props.user.users_id);
 
+    console.log(this.props)
+
     $('#calendar').fullCalendar({
       header: {
         left: 'prev,next today',
@@ -28,9 +30,7 @@ class Calendar extends Component {
           $(this).remove();
         }
       },
-      events: {
-        url: `/api/events/${this.props.user.users_id}`
-      },
+      events: `/api/events/${this.props.user.users_id}`,
       eventMouseover: function(e, jsEvent) {
         const tooltip =
           '<div class="tooltipevent" style="padding:1% 1.5%;opacity: 0.8;background:rgb(241, 241, 241);position:absolute;z-index:10001;">' +

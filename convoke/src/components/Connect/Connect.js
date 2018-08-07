@@ -13,7 +13,8 @@ class Connect extends Component {
     this.state = {
       username: '',
       message: '',
-      messages: []
+      messages: [],
+      filteredPeople: []
     };
 
     this.socket = io('localhost:3001');
@@ -43,8 +44,18 @@ class Connect extends Component {
     this.props.getAllUsers();
   }
 
+  handleChange = e => {
+    this.setState({filteredPeople: e})
+  }
+
+  handleClick = e => {
+    this.setState({ filteredPeople: e});
+
+    console.log(this.state.filteredPeople);
+  };
+
   render() {
-    console.log(this.props.user.users);
+    // const { filteredPeople } = this.state;
 
     let mapped = _.mapValues(this.props.user.users, function(e) {
       return e.img === null
@@ -52,23 +63,33 @@ class Connect extends Component {
         : e.img;
     });
 
-    console.log(mapped)
-
-
     let map = Object.values(mapped).map((e, i) => {
       return (
         <div key={i}>
-          <img className='connect_profile_img'src={e} alt="user profile" />
-          <h1> {this.props.user.users[i].img === e && this.props.user.users[i].name}</h1>
+          <img className="connect_profile_img" src={e} alt="user profile" />
+          <h1>
+            {' '}
+            {this.props.user.users[i].img === e &&
+              this.props.user.users[i].name}
+          </h1>
         </div>
       );
     });
 
+    // let mapNames = _.mapValues(this.props.user.users, function(e) {
+    //   return e.name;
+    // });
+
+    // console.log(mapNames);
 
     return (
       <div className="connect_container">
         <div className="connect_users">
           <h1>Find Users</h1>
+          {/* <input placeholder="Search through Events" onChange={e => this.handleChange(e.target.value)}type="text" />
+          <button onClick={this.handleClick}>
+            Search
+          </button> */}
           {map}
         </div>
         <div className="connect_sub_container">
