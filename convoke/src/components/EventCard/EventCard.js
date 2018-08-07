@@ -8,7 +8,6 @@ import moment from 'moment';
 
 import EditEvent from './EditEvent';
 import './EventCard.css';
-// import pic from './person.png';
 
 import { getUser, getEventsAttending } from '../../ducks/userReducer';
 
@@ -55,7 +54,7 @@ class Card extends Component {
       title: 'Removing this event is permanant.',
       text: 'Do you wish to continue?',
       confirmButtonText: 'Yes, remove it!',
-      showCancelButton: true,
+      showCancelButton: true
       // closeOnConfirm: false,
       // closeOnCancel: false
     }).then(res => {
@@ -111,7 +110,7 @@ class Card extends Component {
 
     return (
       <div className="events_container">
-      <EditEvent />
+        <EditEvent />
         <div className="events_title">
           <Link to={`/events/${eachEvent.title}`}>
             <h1 className="events_title">{eachEvent.title}</h1>
@@ -185,16 +184,10 @@ class Card extends Component {
             <div className="events_info_btn_dropdown">
               <p>{eachEvent.host}</p>
               <p>
-                {/* {eachEvent.date.substring(5, 10).replace(/-/g, '/')}/{eachEvent.date.substring(
-                  0,
-                  4
-                )} */}
                 {moment(eachEvent.date).format('M/D/YYYY')}
               </p>
               <p>
-                {eachEvent.time[0] === '0'
-                  ? eachEvent.time.substring(1, 5)
-                  : eachEvent.time.substring(0, 5)}
+              {moment(eachEvent.time).format('h:mm a')}
               </p>
               <p>
                 {eachEvent.location.substring(0, eachEvent.location.length - 5)}
@@ -208,7 +201,7 @@ class Card extends Component {
                 <input
                   className="remove_icon_dropdown"
                   type="image"
-                  src="https://www.flaticon.com/premium-icon/icons/svg/484/484662.svg"
+                  src="https://image.flaticon.com/icons/svg/107/107181.svg"
                   alt="trash icon"
                   onClick={e => this.handleDelete(eachEvent.events_id)}
                 />

@@ -120,3 +120,8 @@
   text-align: center;
   padding: 5% 2%;
 }
+
+.file_upload {
+  display: flex;
+  justify-content: center;
+}

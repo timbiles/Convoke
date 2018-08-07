@@ -153,6 +153,11 @@
   bottom: 0;
 }
 
+.remove_icon_dropdown:hover {
+  transform: scale(1.03)
+}
+
+
 @media (max-width: 850px) {
   .events_container {
     /* height: 60vh; */

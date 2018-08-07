@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import moment from 'moment';
 import Dropzone from 'react-dropzone';
 import request from 'superagent';
 
@@ -59,28 +60,20 @@ class EditProfile extends Component {
         console.log(err);
       }
       if (response.body.secure_url !== '') {
-        // this.setState({
-        //   uploadedFileCloudinaryUrl: response.body.secure_url
-        // });
-        this.props.updateImg(response.body.secure_url)
+        this.setState({
+          uploadedFileCloudinaryUrl: response.body.secure_url
+        });
+        this.props.updateImg(response.body.secure_url);
       }
     });
   };
 
   render() {
     const { auth_id, name, email, home_town, img, bio } = this.props.user;
-    const {
-      updateName,
-      updateEmail,
-      updateHomeTown,
-      // updateImg,
-      updateBio
-    } = this.props;
-
+    const { updateName, updateEmail, updateHomeTown, updateBio } = this.props;
 
     return (
       <div className="mc_container">
-        <div className="mc_title">{/* <h1>MyConvoke Page</h1> */}</div>
         <div className="mc_display">
           {!auth_id.length ? (
             <div>
@@ -101,7 +94,7 @@ class EditProfile extends Component {
                 />
                 <div className="img-email-edit">
                   <input
-                    type='image'
+                    type="image"
                     className="profile_display_img"
                     src={this.state.uploadedFileCloudinaryUrl || img}
                     // onChange={e => updateImg(e.target.value)}
@@ -143,7 +136,7 @@ class EditProfile extends Component {
                   </Link>
                 </div>
                 <form>
-                  <div className="FileUpload">
+                  <div className="file_upload">
                     <Dropzone
                       onDrop={this.onImageDrop}
                       multiple={false}
@@ -160,9 +153,7 @@ class EditProfile extends Component {
                             {/* <p>{this.state.uploadedFile.name}</p> */}
                             <img
                               className="ep_upload_pic"
-                              // src={this.state.uploadedFileCloudinaryUrl}
                               src={img}
-                              
                               alt="profile pic"
                             />
                           </div>
@@ -170,13 +161,6 @@ class EditProfile extends Component {
                       </div>
                     </Dropzone>
                   </div>
-                  <label
-                    className="file-upload-container"
-                    htmlFor="file-upload"
-                  >
-                    <input className="file-upload" type="file" />
-                    Select an Image
-                  </label>
                 </form>
               </div>
             </div>
@@ -192,17 +176,8 @@ class EditProfile extends Component {
                   <img className="mc_events_img" src={e.img} alt={e.title} />
                 </div>
                 <p>{e.host}</p>
-                <p>
-                  {e.date.substring(5, 10).replace(/-/g, '/')}/{e.date.substring(
-                    0,
-                    4
-                  )}
-                </p>
-                <p>
-                  {e.time[0] === '0'
-                    ? e.time.substring(1, 5)
-                    : e.time.substring(0, 5)}
-                </p>
+                <p>{moment(e.date).format('MMM Do, YYYY')}</p>
+                <p>{moment(e.time).format('h:mm a')}</p>
                 <p>{e.location.substring(0, e.location.length - 5)}</p>
                 <input
                   className="profile_remove_img"
@@ -237,67 +212,3 @@ export default connect(
     updateUserInfo
   }
 )(EditProfile);
-
-//     return (
-//       <div className="ep_container">
-//         <div className="ep_box_container">
-//           {!auth_id.length ? (
-//             <div>
-//               <h1>Don't forget to Login!</h1>
-//               <a className="" href={process.env.REACT_APP_LOGIN}>
-//                 <h1 className="">Login</h1>
-//               </a>
-//             </div>
-//           ) : (
-//             <div className="ep_input">
-//               <h1>Update Name</h1>
-//               <input
-//                 className="update_profile_name"
-//                 value={name}
-//                 type="text"
-//                 onChange={e => updateName(e.target.value)}
-//                 onKeyDown={this.handleKeyDown}
-//               />
-//               <h1>Update Email</h1>
-//               <input
-//                 className="update_profile_email"
-//                 value={email}
-//                 type="text"
-//                 onChange={e => updateEmail(e.target.value)}
-//               />
-//               <h1>Update Home Town</h1>
-//               <input
-//                 className="update_profile_home_town"
-//                 value={home_town}
-//                 type="text"
-//                 onChange={e => updateHomeTown(e.target.value)}
-//               />
-//               <h1>Update Image</h1>
-//               <input
-//                 className="update_profile_Img"
-//                 placeholder="Update Image"
-//                 type="text"
-//                 onChange={e => updateImg(e.target.value)}
-//               />
-//               <h1>Update Bio</h1>
-//               <input
-//                 className="update_profile_bio"
-//                 value={bio}
-//                 type="text"
-//                 onChange={e => updateBio(e.target.value)}
-//               />
-//               <Link to="/profile">
-//                 <button
-//                   onKeyDown={this.handleKeyDown}
-//                   onClick={id => this.handleSubmit(id)}
-//                 >
-//                   Submit Edit
-//                 </button>
-//               </Link>
-//             </div>
-//           )}
-//         </div>
-//       </div>
-//     );
-//   }
-// }

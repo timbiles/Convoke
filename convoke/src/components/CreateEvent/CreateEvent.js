@@ -7,6 +7,8 @@ import PlacesAutocomplete from 'react-places-autocomplete';
 import DatePicker from 'react-custom-date-picker';
 import moment from 'moment';
 import TimePicker from 'rc-time-picker';
+import Dropzone from 'react-dropzone';
+import request from 'superagent';
 
 import './CreateEvent.css';
 import 'rc-time-picker/assets/index.css';
@@ -24,11 +26,16 @@ import {
 
 import { getUser } from '../../ducks/userReducer';
 
+const CLOUDINARY_UPLOAD_URL =
+  'https://api.cloudinary.com/v1_1/dwvrok1le/upload';
+const CLOUDINARY_UPLOAD_PRESET = 'ncjyrxth';
+
 class CreateEvent extends Component {
   constructor() {
     super();
     this.state = {
-      locationSelect: ''
+      locationSelect: '',
+      image: ''
     };
   }
   handleDateChange = date => {
@@ -71,14 +78,39 @@ class CreateEvent extends Component {
     });
   };
 
+  onImageDrop = files => {
+    // this.setState({ uploadedFile: files[0] });
+    this.handleImageUpload(files[0]);
+  };
+
+  handleImageUpload = file => {
+    let upload = request
+      .post(CLOUDINARY_UPLOAD_URL)
+      .field('upload_preset', CLOUDINARY_UPLOAD_PRESET)
+      .field('file', file);
+
+    upload.end((err, response) => {
+      if (err) {
+        console.log(err);
+      }
+      if (response.body.secure_url !== '') {
+        this.setState({
+          image: response.body.secure_url
+        });
+        this.props.updateImg(response.body.secure_url);
+      }
+    });
+  };
+
   render() {
     const {
       updateEventName,
       updateHost,
-      updateLocation,
-      updateImg
+      updateLocation
     } = this.props;
     const { auth_id } = this.props.user;
+
+    const { date, location } = this.props.create;
 
     const format = 'h:mm a';
 
@@ -96,10 +128,9 @@ class CreateEvent extends Component {
             </a>
           </div>
         ) : (
-        
         <div className="create_event_input">
           <h1>Event Name</h1>
-          <label class="has-float-label">
+          <label className="has-float-label">
             <input
               className="input_field"
               type="text"
@@ -109,7 +140,7 @@ class CreateEvent extends Component {
             <span>What is the name of your event?</span>
           </label>
           <h1>Hoster</h1>
-          <label class="has-float-label">
+          <label className="has-float-label">
             <input
               className="input_field"
               type="text"
@@ -122,7 +153,7 @@ class CreateEvent extends Component {
 
           <DatePicker
             color="#296b3e"
-            date={this.props.create.date}
+            date={date}
             errorColor="#c32c27"
             handleDateChange={this.handleDateChange}
             hoverWeek
@@ -131,7 +162,6 @@ class CreateEvent extends Component {
             }}
             lightHeader
             required
-            // modal
             placeholder={day}
             minDate={today}
           />
@@ -150,7 +180,7 @@ class CreateEvent extends Component {
 
           <h1>Location</h1>
           <PlacesAutocomplete
-            value={this.props.create.location}
+            value={location}
             onChange={updateLocation}
           >
             {({
@@ -160,16 +190,15 @@ class CreateEvent extends Component {
               loading
             }) => (
               <div className="location_container">
-          <label class="has-float-label">
-              
-                <input
-                  {...getInputProps({
-                    placeholder: 'Search Places ...',
-                    className: 'location-search-input'
-                  })}
-                />
-                <span>Search</span>
-          </label>
+                <label className="has-float-label">
+                  <input
+                    {...getInputProps({
+                      placeholder: 'Search Places ...',
+                      className: 'location-search-input'
+                    })}
+                  />
+                  <span>Search</span>
+                </label>
                 <div className="autocomplete-dropdown-container">
                   {loading && <div>Loading...</div>}
                   {suggestions.map(suggestion => {
@@ -195,20 +224,41 @@ class CreateEvent extends Component {
               </div>
             )}
           </PlacesAutocomplete>
-          <h1>Img URL</h1>
-          <input
-            type="text"
-            placeholder="Place URL here"
-            onChange={e => updateImg(e.target.value)}
-            onKeyDown={this.handleKeyDown2}
-          />
+          <form>
+            <h1>Image Upload</h1>
+            <div className="file_upload">
+              <Dropzone
+                onDrop={this.onImageDrop}
+                multiple={false}
+                accept="image/*"
+                className="image_dropzone"
+              >
+                <div>
+                  {this.state.image === '' ? (
+                    <p className="dropzone_text">
+                      Drop an image or click to select a file to upload.
+                    </p>
+                  ) : (
+                    <div>
+                      {/* <p>{this.state.uploadedFile.name}</p> */}
+                      <img
+                        className="ep_upload_pic"
+                        src={this.state.image}
+                        alt="event pic"
+                      />
+                    </div>
+                  )}
+                </div>
+              </Dropzone>
+            </div>
+          </form>
           <Link to="/">
             <h1 className="ce_button" onClick={id => this.handleSubmit(id)}>
               Submit Event
             </h1>
           </Link>
         </div>
-         )}
+        )}
       </div>
     );
   }

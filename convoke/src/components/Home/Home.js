@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import './Home.css';
-
 import EventCard from '../EventCard/EventCard';
 
 import { getEvents } from '../../ducks/eventReducer';
@@ -54,12 +53,18 @@ class Home extends Component {
         <div className="home_container">
           <h1 className="home_title">Convoke</h1>
           <div className="home_input_section">
+
+          <label className="has-float-label">
             <input
               className="search_bar"
-              placeholder="Search through Events"
               type="text"
+              placeholder=". . ."
               onChange={e => this.handleChange(e.target.value)}
             />
+            <span>Search through Events</span>
+          </label>
+
+
             <div className="home_dropdown_container">
               <h1>Categories</h1>
               <div className="home_dropdown">
