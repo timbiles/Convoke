@@ -26,7 +26,9 @@ class EditProfile extends Component {
   constructor() {
     super();
     this.state = {
-      uploadedFileCloudinaryUrl: ''
+      uploadedFileCloudinaryUrl: '',
+      initialImage: true,
+      editImage: false
     };
   }
   componentDidMount() {
@@ -42,6 +44,16 @@ class EditProfile extends Component {
       let { name, email, home_town, img, bio, auth_id } = this.props.user;
       this.props.updateUserInfo(auth_id, name, email, home_town, img, bio);
     }
+  };
+
+  toggleEdit = () => {
+    this.setState({ editImage: true });
+    this.setState({ initialImage: false });
+  };
+
+  toggleSubmitEdit = () => {
+    this.setState({ initialImage: true });
+    this.setState({ editImage: false });
   };
 
   onImageDrop = files => {
@@ -93,13 +105,55 @@ class EditProfile extends Component {
                   onKeyDown={this.handleKeyDown}
                 />
                 <div className="img-email-edit">
-                  <input
-                    type="image"
-                    className="profile_display_img"
-                    src={this.state.uploadedFileCloudinaryUrl || img}
-                    // onChange={e => updateImg(e.target.value)}
-                    alt={auth_id}
-                  />
+                  {this.state.initialImage && (
+                    <div>
+                      <input
+                        type="image"
+                        className="ep_display_img"
+                        src={this.state.uploadedFileCloudinaryUrl || img}
+                        // onChange={e => updateImg(e.target.value)}
+                        alt={auth_id}
+                      />
+                      <h1 className="ep_edit_pic" onClick={this.toggleEdit}>
+                        Edit Profile Image
+                      </h1>
+                    </div>
+                  )}
+
+                  {this.state.editImage && (
+                    <form>
+                      <div className="ep_file_upload">
+                        <Dropzone
+                          onDrop={this.onImageDrop}
+                          multiple={false}
+                          accept="image/*"
+                          className="image_dropzone"
+                        >
+                          <div>
+                            {this.state.uploadedFileCloudinaryUrl === '' ? (
+                              <p className="dropzone_text">
+                                Drop an image or click to select a file to
+                                upload.
+                              </p>
+                            ) : (
+                              <div>
+                                {/* <p>{this.state.uploadedFile.name}</p> */}
+                                <img
+                                  className="ep_upload_pic"
+                                  src={img}
+                                  alt="profile pic"
+                                />
+                              </div>
+                            )}
+                          </div>
+                        </Dropzone>
+                        <h1 className="ep_edit_pic" onClick={this.toggleSubmitEdit}>
+                        Submit Image
+                      </h1>
+                      </div>
+                    </form>
+                  )}
+
                   <div className="email_and_img_edit">
                     <h3>Email</h3>
                     <input
@@ -126,42 +180,15 @@ class EditProfile extends Component {
                 />
                 <div>
                   <Link to="/profile">
-                    <button
+                    <h1
                       onKeyDown={this.handleKeyDown}
                       className="ep_submit_btn"
                       onClick={id => this.handleSubmit(id)}
                     >
                       Submit Edit
-                    </button>
+                    </h1>
                   </Link>
                 </div>
-                <form>
-                  <div className="file_upload">
-                    <Dropzone
-                      onDrop={this.onImageDrop}
-                      multiple={false}
-                      accept="image/*"
-                      className="image_dropzone"
-                    >
-                      <div>
-                        {this.state.uploadedFileCloudinaryUrl === '' ? (
-                          <p className="dropzone_text">
-                            Drop an image or click to select a file to upload.
-                          </p>
-                        ) : (
-                          <div>
-                            {/* <p>{this.state.uploadedFile.name}</p> */}
-                            <img
-                              className="ep_upload_pic"
-                              src={img}
-                              alt="profile pic"
-                            />
-                          </div>
-                        )}
-                      </div>
-                    </Dropzone>
-                  </div>
-                </form>
               </div>
             </div>
           )}

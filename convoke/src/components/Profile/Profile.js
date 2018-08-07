@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import swal from 'sweetalert2';
 import moment from 'moment';
+import _ from 'lodash';
+import Fade from 'react-reveal/Fade';
 
 import './Profile.css';
 
@@ -52,17 +54,43 @@ class Profile extends Component {
   };
 
   render() {
-    const { auth_id, name, email, home_town, img, bio, membership_date } = this.props.user;
+    const {
+      auth_id,
+      name,
+      email,
+      home_town,
+      img,
+      bio,
+      membership_date
+    } = this.props.user;
 
     const image = !img
       ? 'https://image.flaticon.com/icons/svg/21/21104.svg'
       : img;
 
+      const { userEvents } = this.props.userEvents;
+
+    let mapped = _.mapValues(userEvents, function(e) {
+      return e.events_id;
+    });
+
+    let filter = _.filter(mapped, function(e) {
+      return e === e.events_id;
+    }).length;
+
+    let image1 = (
+      <img
+        className="events_person"
+        src="https://image.flaticon.com/icons/svg/10/10522.svg"
+        alt="person icon"
+      />
+    );
+
     return (
       <div className="mc_container">
         <div className="mc_display">
           {!auth_id.length ? (
-            <div className='mc_login_text'>
+            <div className="mc_login_text">
               <h2>Oops! Don't forget to Login!</h2>
               <a className="mc_link" href={process.env.REACT_APP_LOGIN}>
                 <h1 className="mc_login_btn">Login</h1>
@@ -72,7 +100,11 @@ class Profile extends Component {
             <div>
               <p className="mc_profile_name">{name}</p>
               <div className="img-email-edit">
-                <img className="profile_display_img" src={image} alt={auth_id} />
+                <img
+                  className="profile_display_img"
+                  src={image}
+                  alt={auth_id}
+                />
 
                 <div className="email_and_img_edit">
                   <h3>Email</h3>
@@ -92,37 +124,77 @@ class Profile extends Component {
           )}
         </div>
 
+        <h1 className='profile_events_text'>My Upcoming Events</h1>
+
         <div className="mc_events_display">
           {this.props.user.eventsAttending.map((e, i) => {
             return (
-              <div className="mc_events_cards" key={e.id}>
-                <div className="mc_name_and_img">
-                  <Link className="mc_selected_title" to={`/events/${e.title}`}>
-                    {e.title}
-                  </Link>
-
-                  <img className="mc_events_img" src={e.img} alt={e.title} />
+              <div key={i} className="profile_sub_container">
+                <div className="elv_date_container">
+                  <h1 className="profile_date">
+                    <img
+                      className="profile_icon"
+                      src="https://image.flaticon.com/icons/svg/25/25393.svg"
+                      alt="calendar"
+                    />{' '}
+                    {moment(e.date).format('dddd, MMM Do, YYYY')}
+                  </h1>
+                  <h1 className="profile_date">
+                    <img
+                      className="profile_icon"
+                      src="https://image.flaticon.com/icons/svg/61/61227.svg"
+                      alt="clock"
+                    />{' '}
+                    {moment(e.time).format('h:mm a')}
+                  </h1>
                 </div>
-                <p>{e.host}</p>
-                <p>
-               
-                  {moment(e.date).format('MMM Do, YYYY')}
-                </p>
-                <p>
-                 
-                  {moment(e.time).format('h:mm a')}
-                </p>
-                <p>{e.location.substring(0, e.location.length - 5)}</p>
+                <Fade left cascade>
+                  <h1 className="elv_title">{e.title.toUpperCase()}</h1>
+                </Fade>
+                <div className="elv_sub_content">
+                  <img
+                    className="elv_img"
+                    src={e.img}
+                    alt="Event pic"
+                  />
+                  <div className="elv_sub_content1">
+                    <p>[{e.host}]</p>
+                    <p>
+                      <img
+                        className="eventcard_icon"
+                        src="https://image.flaticon.com/icons/svg/33/33622.svg"
+                        alt="map marker"
+                      />{' '}
+                      {e.location.substring(
+                        0,
+                        e.location.length - 5
+                      )}
+                    </p>
+                    <br />
 
-                <input
-                  className="profile_remove_img"
-                  type="image"
-                  alt="Delete icon"
-                  src="https://image.flaticon.com/icons/svg/118/118743.svg"
-                  onClick={id => {
-                    this.handleDelete(e.events_id);
-                  }}
-                />
+                    <p className="showing_description">
+                      {e.description &&
+                        (e.description.length > 55
+                          ? e.description.substring(0, 55) + '...'
+                          : e.description)}
+                    </p>
+                    <p className="elv_people">
+                      {image1}
+                      {userEvents.length !== 0 && filter}
+                    </p>
+                    <div className="elv_icons">
+                      <input
+                        className="profile_remove_img"
+                        type="image"
+                        alt="Delete icon"
+                        src="https://image.flaticon.com/icons/svg/118/118743.svg"
+                        onClick={id => {
+                          this.handleDelete(e.events_id);
+                        }}
+                      />
+                    </div>
+                  </div>
+                </div>
               </div>
             );
           })}

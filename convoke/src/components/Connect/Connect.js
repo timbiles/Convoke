@@ -105,9 +105,9 @@ class Connect extends Component {
         <div className="connect_sub_container">
           <div className="connect_bar">
             <h1>Message Feed</h1>
-            {this.state.messages.map(e => {
+            {this.state.messages.map((e,i) => {
               return (
-                <div>
+                <div key={i}>
                   {e.author}: {e.message}
                 </div>
               );

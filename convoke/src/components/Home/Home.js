@@ -90,7 +90,7 @@ class Home extends Component {
                 placeholder=". . ."
                 onChange={e => this.handleChange(e.target.value)}
               />
-              <span>Search through Events</span>
+              <span className='search_span'>Search through Events</span>
             </label>
 
             <div className="home_dropdown_container">

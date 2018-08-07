@@ -25,13 +25,6 @@
 .elv_date {
   font-weight: bold;
   font-size: 2rem;
-  /* border-bottom: 2px solid black; */
-  padding-bottom: 2%;
-}
-
-.elv_time {
-  font-weight: bold;
-  font-size: 2rem;
   padding-bottom: 2%;
 }
 
@@ -47,10 +40,6 @@
 .elv_img {
   height: 125px;
 }
-
-.elv_sub_container:hover {
-  /* cursor: pointer; */
-  }
 
 .elv_sub_content1 {
     display: flex;
@@ -80,6 +69,10 @@
   cursor: pointer;
 }
 
+.home_icon:hover {
+  transform: scale(1.1);
+}
+
 .elv_people {
   margin-top: 4%;
   animation: bounce 0.9s both;
@@ -98,5 +91,44 @@
   }
   60% {
     transform: translateY(-5px);
+  }
+}
+
+@media (max-width: 1300px) {
+  .elv_date {
+    font-size: 1.4rem;
+  }
+
+  .elv_calendar_icon {
+    height: 25px;
+  }
+
+  .elv_time_icon {
+    height: 25px;    
+  }
+}
+
+@media (max-width: 950px) {
+  .elv_date {
+    font-size: 1rem;
+  }
+
+  .elv_calendar_icon {
+    height: 20px;
+  }
+
+  .elv_time_icon {
+    height: 20px;    
+  }
+
+  .home_listview {
+    width: 75%;
+    margin: 0 20%;
+  }
+}
+
+@media (max-width: 500px) {
+  .elv_title {
+    font-size: .7rem;
   }
 }

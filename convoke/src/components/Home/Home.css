@@ -218,6 +218,10 @@
   .events_display {
     justify-content: center;
   }
+
+  .search_bar {
+    width: 35rem;
+  }
 }
 
 @media (max-width: 800px) {
@@ -225,17 +229,26 @@
     width: 30rem;
     height: 2rem;
   }
+
+  .search_span {
+    font-size: 1rem !important;
+  }
 }
 
 @media (max-width: 700px) {
   .events_display {
     justify-content: center;
   }
+
+  .search_bar {
+    width: 22rem;
+    height: 1.5rem;
+  }
 }
 
-@media (max-width: 500px) {
+@media (max-width: 550px) {
   .search_bar {
-    width: 20rem;
-    height: 2rem;
+    width: 15rem;
+    height: 1.5rem;
   }
 }

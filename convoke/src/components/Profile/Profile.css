@@ -9,9 +9,10 @@
   justify-content: center;
   align-items: center;
   width: 50%;
-  background: linear-gradient(to top left, rgb(198, 200, 201) 0%, #fff 90%);
+  background: linear-gradient(to top right, rgb(244, 245, 245) 0%, #fff 90%);
   position: relative;
   border-radius: 1%;
+  padding: .5%;  
 }
 
 .mc_events_display {
@@ -98,6 +99,13 @@
   color: #3f3e3e;
   cursor: pointer;
   width: 90px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.profile_events_text {
+  margin: 3% 0;
+  font-size: 2rem;
 }
 
 .edit_profile_link:hover {
@@ -124,6 +132,28 @@
 
 .mc_login_text {
   padding: 15% 0;
+}
+
+.profile_icon {
+  height: 30px;
+  
+}
+
+.profile_sub_container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 5% 0;
+  padding: 2%;
+  border-bottom: 2px grey solid;
+  width: 60%;
+}
+
+.profile_date {
+  font-weight: bold;
+  font-size: 1.5rem;
+  padding-bottom: 2%;
 }
 
 @keyframes rotate-90-cw {
@@ -159,5 +189,44 @@
     opacity: 1;
     /* transform: scale(1); */
     transform: translateX(0);
+  }
+}
+
+@media (max-width: 1300px) {
+  .profile_date {
+    font-size: 1.1rem;
+  }
+
+  .profile_icon {
+    height: 20px;
+  }
+}
+
+@media (max-width: 1000px) {
+  .profile_sub_container{
+  width: 80%;
+    
+  }
+}
+
+@media (max-width: 730px) {
+  .profile_date {
+    font-size: .7rem;
+  }
+
+  .profile_icon {
+    height: 15px;
+  }
+
+  .elv_img {
+    height: 75px;
+  }
+
+  .elv_sub_content p {
+    font-size: .6rem;
+  }
+
+  .profile_remove_img {
+    height: 25px;
   }
 }

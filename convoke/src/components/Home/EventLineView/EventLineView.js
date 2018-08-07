@@ -116,7 +116,7 @@ class EventLineView extends Component {
               />{' '}
               {moment(eachEvent.date).format('dddd, MMM Do, YYYY')}
             </h1>
-            <h1 className="elv_time">
+            <h1 className="elv_date">
               <img
                 className="elv_time_icon"
                 src="https://image.flaticon.com/icons/svg/61/61227.svg"
@@ -148,6 +148,7 @@ class EventLineView extends Component {
                     ? eachEvent.description.substring(0, 55) + '...'
                     : eachEvent.description)}
               </p>
+
               <p className="elv_people">
                 {image1}
                 {userEvents.length !== 0 && filter}
@@ -155,14 +156,14 @@ class EventLineView extends Component {
               <div className="elv_icons">
                 <img
                   type="image"
-                  className="elv_add"
+                  className="elv_add home_icon"
                   src="https://image.flaticon.com/icons/svg/149/149171.svg"
                   alt="Add to favs"
                   onClick={e => this.handleClick(eachEvent.events_id)}
                 />
                 {this.props.user.users_id === eachEvent.users_id && (
                   <input
-                    className="elv_remove_event"
+                    className="elv_remove_event home_icon"
                     type="image"
                     src="https://image.flaticon.com/icons/svg/107/107181.svg"
                     alt="trash icon"

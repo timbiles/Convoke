@@ -60,23 +60,41 @@
   height: 5%;
 }
 
-/* .ep_input button:focus {
-    outline: none;
-  }
-
-.ep_input button:hover {
-    transform: scale(1.05);
-    background-color: rgb(236, 236, 236);
-  } */
-
 .update_profile_bio {
   width: 98%;
 }
 
+.ep_display_img {
+  width: 45%;
+}
+
+.ep_edit_pic {
+  cursor: pointer;
+  margin-top: 1%;
+}
+
+.ep_edit_pic:hover {
+  margin-left: 1%;
+  text-decoration: underline;
+}
+
+.ep_file_upload {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 8%;
+}
+
 .ep_submit_btn {
   margin-top: 2%;
-  background-color: rgb(229, 236, 234);
   border-radius: 0%;
+  text-decoration: none;
+  width: 90px;
+  color: black;
+}
+
+.ep_submit_btn:hover {
+  margin-left: 1%;
 }
 
 .image_dropzone {
