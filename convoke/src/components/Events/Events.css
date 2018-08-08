@@ -48,16 +48,17 @@
   flex-direction: column;
   justify-content: center;
   border-left: 1px solid #dbd8cf;
+  padding-left: 1%;
 }
 
 .ie_box h2 {
     font-weight: bold;
   letter-spacing: 2px;
-    padding: 0 2%;
+    /* padding: 0 2%; */
 }
 
 .ie_box h3 {
-  padding: 3%;
+  padding: 2.5% 1%;
 }
 
 .ie_box h4 {
@@ -92,6 +93,10 @@
 .events_editable_big {
   font-size: 2rem;
   letter-spacing: 2px;
+}
+
+.events_edit_date {
+
 }
 
 @keyframes ieTitleFade {

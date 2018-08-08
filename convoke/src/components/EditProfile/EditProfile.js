@@ -5,6 +5,8 @@ import moment from 'moment';
 import Dropzone from 'react-dropzone';
 import request from 'superagent';
 import ContentEditable from 'react-contenteditable';
+import Fade from 'react-reveal/Fade';
+import _ from 'lodash';
 
 import './EditProfile.css';
 
@@ -84,6 +86,23 @@ class EditProfile extends Component {
   render() {
     const { auth_id, name, email, home_town, img, bio } = this.props.user;
     const { updateName, updateEmail, updateHomeTown, updateBio } = this.props;
+    const { userEvents } = this.props.userEvents;
+
+    let mapped = _.mapValues(userEvents, function(e) {
+      return e.events_id;
+    });
+
+    let filter = _.filter(mapped, function(e) {
+      return e === e.events_id;
+    }).length;
+
+    let image1 = (
+      <img
+        className="events_person"
+        src="https://image.flaticon.com/icons/svg/10/10522.svg"
+        alt="person icon"
+      />
+    );
 
     return (
       <div className="mc_container">
@@ -174,10 +193,10 @@ class EditProfile extends Component {
                       className='profile_editable'
                     />
                 <div>
-                  <Link to="/profile">
+                  <Link className="edit_submit_btn" to="/profile">
                     <h1
                       onKeyDown={this.handleKeyDown}
-                      className="ep_submit_btn"
+                      className="edit_submit_btn"
                       onClick={() => this.handleSubmit()}
                     >
                       Submit Edit
@@ -190,6 +209,80 @@ class EditProfile extends Component {
         </div>
 
         <div className="mc_events_display">
+          {this.props.user.eventsAttending.map((e, i) => {
+            return (
+              <div key={i} className="profile_sub_container">
+                <div className="elv_date_container">
+                  <h1 className="profile_date">
+                    <img
+                      className="profile_icon"
+                      src="https://image.flaticon.com/icons/svg/25/25393.svg"
+                      alt="calendar"
+                    />{' '}
+                    {moment(e.date).format('dddd, MMM Do, YYYY')}
+                  </h1>
+                  <h1 className="profile_date">
+                    <img
+                      className="profile_icon"
+                      src="https://image.flaticon.com/icons/svg/61/61227.svg"
+                      alt="clock"
+                    />{' '}
+                    {moment(e.time).format('h:mm a')}
+                  </h1>
+                </div>
+                <Fade left cascade>
+                  <h1 className="elv_title">{e.title.toUpperCase()}</h1>
+                </Fade>
+                <div className="elv_sub_content">
+                  <img
+                    className="elv_img"
+                    src={e.img}
+                    alt="Event pic"
+                  />
+                  <div className="elv_sub_content1">
+                    <p>[{e.host}]</p>
+                    <p>
+                      <img
+                        className="eventcard_icon"
+                        src="https://image.flaticon.com/icons/svg/33/33622.svg"
+                        alt="map marker"
+                      />{' '}
+                      {e.location.substring(
+                        0,
+                        e.location.length - 5
+                      )}
+                    </p>
+                    <br />
+
+                    <p className="showing_description">
+                      {e.description &&
+                        (e.description.length > 55
+                          ? e.description.substring(0, 55) + '...'
+                          : e.description)}
+                    </p>
+                    <p className="elv_people">
+                      {image1}
+                      {userEvents.length !== 0 && filter}
+                    </p>
+                    <div className="elv_icons">
+                      <input
+                        className="profile_remove_img"
+                        type="image"
+                        alt="Delete icon"
+                        src="https://image.flaticon.com/icons/svg/118/118743.svg"
+                        onClick={id => {
+                          this.handleDelete(e.events_id);
+                        }}
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* <div className="mc_events_display">
           {this.props.user.eventsAttending.map((e, i) => {
             return (
               <div className="mc_events_cards" key={e.id}>
@@ -213,7 +306,8 @@ class EditProfile extends Component {
               </div>
             );
           })}
-        </div>
+        </div> */}
+
       </div>
     );
   }

@@ -18,7 +18,7 @@
 
 .events_container, .events_flip, .back_flip {
 	width: 320px;
-	height: 480px;
+	height: 100%;
 }
 
 /* flip speed goes here */
@@ -49,7 +49,6 @@
 /* back, initially hidden pane */
 .back_flip {
   transform: rotateY(180deg);
-  
 }
 
 /* map on back of card */
@@ -169,6 +168,7 @@
   width: 100%;
   top: 0;
   object-fit: cover;
+  border-bottom: 1px solid black;
 }
 
 .events_container_img:hover {
@@ -177,7 +177,6 @@
 
 .events_host {
   letter-spacing: 5px;
-  /* z-index: 1; */
 }
 
 .events_info_btn {
@@ -260,6 +259,11 @@
 
 .remove_icon_dropdown:hover {
   transform: scale(1.03)
+}
+
+.showing_description {
+  padding: 0 5%;
+  text-align: center;
 }
 
 @keyframes wobble-hor-bottom {

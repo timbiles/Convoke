@@ -53,6 +53,8 @@ class Profile extends Component {
       });
   };
 
+
+
   render() {
     const {
       auth_id,
@@ -68,13 +70,13 @@ class Profile extends Component {
       ? 'https://image.flaticon.com/icons/svg/21/21104.svg'
       : img;
 
-      const { userEvents } = this.props.userEvents;
+    const { userEvents } = this.props.userEvents;
 
-    let mapped = _.mapValues(userEvents, function(e) {
+    let mapped = _.mapValues(userEvents, function (e) {
       return e.events_id;
     });
 
-    let filter = _.filter(mapped, function(e) {
+    let filter = _.filter(mapped, function (e) {
       return e === e.events_id;
     }).length;
 
@@ -85,6 +87,26 @@ class Profile extends Component {
         alt="person icon"
       />
     );
+
+    console.log(userEvents)
+
+    const created = this.props.events.events.filter(e=>{
+      return e.users_id === this.props.user.users_id
+    })
+
+    const mapCreate = created.map((e,i)=>{
+      return (
+        <div key={i} className='create_map'>
+        
+        <Link className='create_map' to={`/events/${e.title}`}>
+        <img  src={e.img} alt='Events img'/>
+        
+            <h1 className='create_map_sub'>{e.title}</h1>
+            </Link>
+
+        </div>
+      )
+    })
 
     return (
       <div className="mc_container">
@@ -97,34 +119,44 @@ class Profile extends Component {
               </a>
             </div>
           ) : (
-            <div>
-              <p className="mc_profile_name">{name}</p>
-              <div className="img-email-edit">
-                <img
-                  className="profile_display_img"
-                  src={image}
-                  alt={auth_id}
-                />
+              <div className='profile_info'>
 
-                <div className="email_and_img_edit">
-                  <h3>Email</h3>
-                  <p>{email}</p>
-                  <h3>Home Town</h3>
-                  <p>{home_town}</p>
-                  <h3>Member Since</h3>
-                  <p>{moment(membership_date).format('MMM YYYY')}</p>
+                <div className='profile_left'>
+                  <p className="mc_profile_name">{name}</p>
+                  <div className="img-email-edit">
+                    <img
+                      className="profile_display_img"
+                      src={image}
+                      alt={auth_id}
+                    />
+
+                    <div className="email_and_img_edit">
+                      <h3>Email</h3>
+                      <p>{email}</p>
+                      <h3>Home Town</h3>
+                      <p>{home_town}</p>
+                      <h3>Member Since</h3>
+                      <p>{moment(membership_date).format('MMM YYYY')}</p>
+                    </div>
+                  </div>
+                  <h3>Bio</h3>
+                  <p className="profile_bio">{bio}</p>
+                  <Link className="edit_profile_link" to="/editprofile">
+                    Edit Profile
+              </Link>
+                </div>
+                <div className='profile_right'>
+                  <h1 className='profile_dropdown'>Created Events</h1>
+                  <h1 className='profile_created_events'>
+                      {mapCreate}
+                  </h1>
+
                 </div>
               </div>
-              <h3>Bio</h3>
-              <p className="profile_bio">{bio}</p>
-              <Link className="edit_profile_link" to="/editprofile">
-                Edit Profile
-              </Link>
-            </div>
-          )}
+            )}
         </div>
 
-        <h1 className='profile_events_text'>My Upcoming Events</h1>
+        <h1 className='profile_events_text'>Attending Events</h1>
 
         <div className="mc_events_display">
           {this.props.user.eventsAttending.map((e, i) => {
@@ -199,6 +231,7 @@ class Profile extends Component {
             );
           })}
         </div>
+
       </div>
     );
   }

@@ -79,6 +79,36 @@
   animation: bounce 0.9s both;
 }
 
+.evts_description {
+  display: flex;
+}
+.showing_description1 {
+  padding-left: 2%;
+}
+
+.hidden_description {
+  display: none;
+  position: absolute;
+  min-width: 160px;
+  height: auto;
+  width: 150px;
+  transform: translateY(-50%);
+  background-color: rgb(253, 253, 253);
+  border: 1px solid black;
+  padding: 3%;
+  z-index: 9999;
+  animation: downFade .5s;
+}
+
+.showing_description1 h1 {
+  font-weight: bold;
+}
+
+.showing_description1:hover .hidden_description {
+  display: flex;
+  flex-direction: column;
+}
+
 @keyframes bounce {
   0%,
   20%,

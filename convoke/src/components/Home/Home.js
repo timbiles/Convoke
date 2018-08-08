@@ -43,6 +43,7 @@ class Home extends Component {
   render() {
     const { isLoading, events } = this.props;
     const { filteredEvents } = this.state;
+    console.log(this.props)
 
     let filter = events.events
       .filter((e, i) => {
@@ -93,14 +94,14 @@ class Home extends Component {
               <span className='search_span'>Search through Events</span>
             </label>
 
-            <div className="home_dropdown_container">
+            {/* <div className="home_dropdown_container">
               <h1>Categories</h1>
               <div className="home_dropdown">
                 <h2>Party</h2>
                 <h2>Concert</h2>
                 <h2>Other...</h2>
               </div>
-            </div>
+            </div> */}
           </div>
           <div className="home_linebreak" />
           {isLoading && <p>Loading...</p>}

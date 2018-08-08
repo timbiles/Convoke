@@ -22,7 +22,7 @@
 .search_bar {
   width: 50rem;
   height: 2rem;
-  background-color: rgb(250, 250, 250);
+  background-color: rgb(253, 253, 253);
 }
 
 .search_bar:focus {

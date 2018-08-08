@@ -13,7 +13,7 @@ import { getUser, getEventsAttending } from '../../../ducks/userReducer';
 
 class EventLineView extends Component {
 
-  
+
   handleClick = val => {
     axios
       .post(`/api/add-event/${val}/${this.props.user.users_id}`)
@@ -91,11 +91,11 @@ class EventLineView extends Component {
 
     const { userEvents } = this.props.userEvents;
 
-    let mapped = _.mapValues(userEvents, function(e) {
+    let mapped = _.mapValues(userEvents, function (e) {
       return e.events_id;
     });
 
-    let filter = _.filter(mapped, function(e) {
+    let filter = _.filter(mapped, function (e) {
       return e === eachEvent.events_id;
     }).length;
 
@@ -136,7 +136,7 @@ class EventLineView extends Component {
           <div className="elv_sub_content">
             <img className="elv_img" src={eachEvent.img} alt="Event pic" />
             <div className="elv_sub_content1">
-              <p>[{eachEvent.host}]</p>
+              <p>[{eachEvent.host}]</p><br />
               <p>
                 <img
                   className="eventcard_icon"
@@ -146,13 +146,24 @@ class EventLineView extends Component {
                 {eachEvent.location.substring(0, eachEvent.location.length - 5)}
               </p>
               <br />
+              <div className='evts_description'>
 
-              <p className="showing_description">
-                {eachEvent.description &&
-                  (eachEvent.description.length > 55
-                    ? eachEvent.description.substring(0, 55) + '...'
-                    : eachEvent.description)}
-              </p>
+                <img
+                  className="eventcard_icon"
+                  src="https://image.flaticon.com/icons/svg/684/684831.svg"
+                  alt="Description icon"
+                />{' '}
+                <div className="showing_description1">
+                  {eachEvent.description &&
+                    (eachEvent.description.length > 55
+                      ? eachEvent.description.substring(0, 55) + '...'
+                      : eachEvent.description)}
+                      <div className='hidden_description'>
+                      <h1>Event Description</h1><br />
+                        {eachEvent.description}
+                      </div>
+                </div>
+              </div>
 
               <p className="elv_people">
                 {image1}

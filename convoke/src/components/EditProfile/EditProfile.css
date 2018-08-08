@@ -85,7 +85,7 @@
   margin-top: 8%;
 }
 
-.ep_submit_btn {
+.edit_submit_btn {
   margin-top: 2%;
   border-radius: 0%;
   text-decoration: none;
@@ -93,8 +93,8 @@
   color: black;
 }
 
-.ep_submit_btn:hover {
-  margin-left: 1%;
+.edit_submit_btn:hover {
+  transform: scale(1.05)
 }
 
 .image_dropzone {

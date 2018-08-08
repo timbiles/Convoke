@@ -155,6 +155,18 @@ class Card extends Component {
                 />{' '}
                 {eachEvent.location.substring(0, eachEvent.location.length - 5)}
               </h3>
+              <p className="showing_description">
+              <img
+                  className="eventcard_icon"
+                  src="https://image.flaticon.com/icons/svg/684/684831.svg"
+                  alt="Description icon"
+                />{' '}
+                {eachEvent.description &&
+                  (eachEvent.description.length > 55
+                    ? eachEvent.description.substring(0, 55) + '...'
+                    : eachEvent.description)}
+              </p>
+
               <h3 className='people_num_container'>
                 <p className='ec_person'>{image1} {userEvents.length !== 0 && filter}</p>
 

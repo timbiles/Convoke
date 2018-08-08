@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import _ from 'lodash';
 import moment from 'moment';
 import ContentEditable from 'react-contenteditable';
+import DatePicker from 'react-custom-date-picker';
+import TimePicker from 'rc-time-picker';
 
 import Map from '../Map/Map';
 import './Events.css';
@@ -57,6 +59,18 @@ class Events extends Component {
     })
   }
 
+  handleDateChange = date => {
+    this.setState({
+      date: moment(date).format('YYYY-MM-DD')
+    })
+  };
+
+  handleTime = time => {
+    this.setState({
+      time: time
+    })
+  };
+
   handleSubmit = event => {
     let { eventId, title, host, date, time, description } = this.state;
     this.props.updateEventInfo(eventId, title, host, date, time, description).then(() => {
@@ -95,6 +109,10 @@ class Events extends Component {
     let one = filter === 1 ? ' person is going' : ' people going';
     let date = String(event.date);
     let time = String(event.time);
+    let day = moment(event.date).format('MM/DD/YYYY');
+    let today = new Date();
+    const format = 'h:mm a';
+    
 
     return (
       <div className="ie_container">
@@ -102,126 +120,186 @@ class Events extends Component {
           ? <h1>USER NOT FOUND</h1> : (
 
 
-            this.props.user.users_id === event.users_id ? 
+            this.props.user.users_id === event.users_id ?
 
 
-            <div className='events_viewbox'>
-              <ContentEditable
-                      html={title}
-                      onChange={e => this.handleInputs(e.target.value, "title")}
-                      className='events_editable_big'
-                    />
-              <div className="ie_box">
-                <div className="ie_img_box">
-                  <img className="ie_img" src={event.img} alt={event.title} />
-                  <h2>
-                    {filter}
-                    {one}
-                  </h2>
-                </div>
-                <div className="ie_info_container">
-                  <div className="ie_info_one">
-                    <h2>Event Creator</h2>
-                    <ContentEditable
-                      html={host}
-                      onChange={e => this.handleInputs(e.target.value, "host")}
-                      className='events_editable'
-                    />
-                    <h3>{moment(event.date).format('dddd MMM Do, YYYY')}</h3>
-                    <input
-                      placeholder={moment(date).format('MM/DD/YYYY')}
-                      type="text"
-                      className="something_1"
-                      onChange={e => this.handleInputs(e.target.value, "date")}
-                    />
-                    <h3>
-                      {moment(time).format('h:mm a')}
-                    </h3>
-                    <input
-                      placeholder={time}
-                      type="text"
-                      className="something_1"
-                      onChange={e => this.handleInputs(e.target.value, "time")}
-                    />
-                    <h3>{event.location}</h3>
+              <div className='events_viewbox'>
+                <ContentEditable
+                  html={title}
+                  onChange={e => this.handleInputs(e.target.value, "title")}
+                  className='events_editable_big'
+                />
+                <div className="ie_box">
+                  <div className="ie_img_box">
+                    <img className="ie_img" src={event.img} alt={event.title} />
+                    <h2>
+                      {filter}
+                      {one}
+                    </h2>
                   </div>
-                  <div className="ie_info_two">
-                    <h2>Event Description</h2>
-                    <ContentEditable
-                      html={description}
-                      onChange={e => this.handleInputs(e.target.value, "description")}
-                      className='events_editable'
-                    />
+                  <div className="ie_info_container">
+                    <div className="ie_info_one">
+                      <h2>Event Creator</h2>
+                      <ContentEditable
+                        html={host}
+                        onChange={e => this.handleInputs(e.target.value, "host")}
+                        className='events_editable'
+                      />
+                      <h3>
+                        <img
+                          className="eventcard_icon"
+                          src="https://image.flaticon.com/icons/svg/25/25393.svg"
+                          alt="calendar"
+                        />{' '}
+                        {moment(event.date).format('dddd MMM Do, YYYY')}
+                      </h3>
+
+
+                      <DatePicker
+                        color="#296b3e"
+                        date={date}
+                        errorColor="#c32c27"
+                        handleDateChange={this.handleDateChange}
+                        hoverWeek
+                        inputStyle={{
+                          borderRadius: 0
+                        }}
+                        lightHeader
+                        required
+                        placeholder={day}
+                        minDate={today}
+                      />
+
+
+                      <h3>
+                        <img
+                          className="eventcard_icon"
+                          src="https://image.flaticon.com/icons/svg/61/61227.svg"
+                          alt="clock"
+                        />{' '}
+                        {moment(time).format('h:mm a')}
+                      </h3>
+
+                      <TimePicker
+                        showSecond={false}
+                        defaultValue={moment()}
+                        className="ce_time"
+                        onChange={this.handleTime}
+                        format={format}
+                        use12Hours
+                        style={{ width: 100 }}
+                      />
+
+                      {/* <input
+                        placeholder={time}
+                        type="text"
+                        className="something_1"
+                        onChange={e => this.handleInputs(e.target.value, "time")}
+                      /> */}
+
+                      <h3>
+                        <img
+                          className="eventcard_icon"
+                          src="https://image.flaticon.com/icons/svg/33/33622.svg"
+                          alt="map marker"
+                        />{' '}
+                        {event.location}
+                      </h3>
+                    </div>
+                    <div className="ie_info_two">
+                      <h2>Event Description</h2>
+                      <ContentEditable
+                        html={description}
+                        onChange={e => this.handleInputs(e.target.value, "description")}
+                        className='events_editable'
+                      />
+                    </div>
                   </div>
-                </div>
-                <h5
-                  className="ep_submit_btn"
-                  onClick={() => this.handleSubmit(event)}
-                >
-                  Submit Edit
+                  <h5
+                    className="ep_submit_btn"
+                    onClick={() => this.handleSubmit(event)}
+                  >
+                    Submit Edit
                 </h5>
-              </div>
-              <div className='events_map'>
-
-                <Map
-                  lat={event.lat}
-                  lng={event.lng}
-                  center={{
-                    lat: event.lat,
-                    lng: event.lng
-                  }}
-                />
-              </div>
-            </div>
-
-            
-            : 
-
-            <div className='events_viewbox'>
-              <h1 className="ie_title">{event.title}</h1>
-              
-              <div className="ie_box">
-                <div className="ie_img_box">
-                  <img className="ie_img" src={event.img} alt={event.title} />
-                  <h2>
-                    {filter}
-                    {one}
-                  </h2>
                 </div>
-                <div className="ie_info_container">
-                  <div className="ie_info_one">
-                    <h2>Event Creator</h2>
+                <div className='events_map'>
 
-                    <h3 >{event.host}</h3>
-                    
-                    <h3>{moment(event.date).format('dddd MMM Do, YYYY')}</h3>
-                    
-                    <h3>
-                      {moment(event.time).format('h:mm a')}
-                    </h3>
-                    
-                    <h3>{event.location}</h3>
-                  </div>
-                  <div className="ie_info_two">
-                    <h2>Event Description</h2>
-                    <h4>{event.description}</h4>
-                    
-                  </div>
+                  <Map
+                    lat={event.lat}
+                    lng={event.lng}
+                    center={{
+                      lat: event.lat,
+                      lng: event.lng
+                    }}
+                  />
                 </div>
-                
               </div>
-              <div className='events_map'>
 
-                <Map
-                  lat={event.lat}
-                  lng={event.lng}
-                  center={{
-                    lat: event.lat,
-                    lng: event.lng
-                  }}
-                />
+
+              :
+
+              <div className='events_viewbox'>
+                <h1 className="ie_title">{event.title}</h1>
+
+                <div className="ie_box">
+                  <div className="ie_img_box">
+                    <img className="ie_img" src={event.img} alt={event.title} />
+                    <h2>
+                      {filter}
+                      {one}
+                    </h2>
+                  </div>
+                  <div className="ie_info_container">
+                    <div className="ie_info_one">
+                      <h2>Event Creator</h2>
+
+                      <h3 >{event.host}</h3>
+                      <h3>
+                        <img
+                          className="eventcard_icon"
+                          src="https://image.flaticon.com/icons/svg/25/25393.svg"
+                          alt="calendar"
+                        />{' '}
+                        {moment(event.date).format('dddd MMM Do, YYYY')}</h3>
+
+                      <h3>
+                        <img
+                          className="eventcard_icon"
+                          src="https://image.flaticon.com/icons/svg/61/61227.svg"
+                          alt="clock"
+                        />{' '}
+                        {moment(event.time).format('h:mm a')}
+                      </h3>
+
+                      <h3>
+                        <img
+                          className="eventcard_icon"
+                          src="https://image.flaticon.com/icons/svg/33/33622.svg"
+                          alt="map marker"
+                        />{' '}
+                        {event.location}
+                      </h3>
+                    </div>
+                    <div className="ie_info_two">
+                      <h2>Event Description</h2>
+                      <h4>{event.description}</h4>
+
+                    </div>
+                  </div>
+
+                </div>
+                <div className='events_map'>
+
+                  <Map
+                    lat={event.lat}
+                    lng={event.lng}
+                    center={{
+                      lat: event.lat,
+                      lng: event.lng
+                    }}
+                  />
+                </div>
               </div>
-            </div>
 
 
           )
