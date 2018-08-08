@@ -34,7 +34,7 @@ class EditProfile extends Component {
   componentDidMount() {
     this.props.getEventsAttending(this.props.user.users_id);
   }
-  handleSubmit = id => {
+  handleSubmit = () => {
     let { name, email, home_town, img, bio, auth_id } = this.props.user;
     this.props.updateUserInfo(auth_id, name, email, home_town, img, bio);
   };
@@ -83,6 +83,8 @@ class EditProfile extends Component {
   render() {
     const { auth_id, name, email, home_town, img, bio } = this.props.user;
     const { updateName, updateEmail, updateHomeTown, updateBio } = this.props;
+
+    console.log(this.props)
 
     return (
       <div className="mc_container">
@@ -183,7 +185,7 @@ class EditProfile extends Component {
                     <h1
                       onKeyDown={this.handleKeyDown}
                       className="ep_submit_btn"
-                      onClick={id => this.handleSubmit(id)}
+                      onClick={() => this.handleSubmit()}
                     >
                       Submit Edit
                     </h1>

@@ -28,6 +28,10 @@ class Connect extends Component {
       console.log(data);
       this.setState({ messages: [...this.state.messages, data] });
       console.log(this.state.messages);
+      console.log(this.props)
+      axios.post(`/api/message/${this.props.user.users_id}`, {
+        messages: data
+      })
     };
 
     this.sendMessage = e => {
@@ -41,9 +45,9 @@ class Connect extends Component {
   }
 
   getMessages=() => {
-    axios.get('/api/message').then(res => {
+    axios.get('/api/messages').then(res => {
       console.log(res.data);
-      this.setState({messages: res.data})
+      this.setState({...this.state, messages: res.data})
     })
   }
 
@@ -51,7 +55,7 @@ class Connect extends Component {
     this.props.getUser();
     this.props.getAllUsers();
     this.getMessages();
-    console.log(this.props)
+    console.log(this.state)
   }
 
   handleChange = e => {

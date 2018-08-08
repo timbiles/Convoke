@@ -6,7 +6,6 @@ const initialState = {
   host: '',
   date: '',
   time: '',
-  am_pm: '',
   location: '',
   img: '',
   description: ''
@@ -17,7 +16,6 @@ const UPDATE_EVENT_NAME = 'UPDATE_EVENT_NAME';
 const UPDATE_HOST = 'UPDATE_HOST';
 const UPDATE_DATE = 'UPDATE_DATE';
 const UPDATE_TIME = 'UPDATE_TIME';
-const UPDATE_AM_PM = 'UPDATE_AM_PM';
 const UPDATE_LOCATION = 'UPDATE_LOCATION';
 const UPDATE_IMG = 'UPDATE_IMG';
 const UPDATE_DESCRIPTION = 'UPDATE_DESCRIPTION';
@@ -49,13 +47,6 @@ export const updateTime = time => {
   return {
     type: UPDATE_TIME,
     payload: time
-  };
-};
-
-export const updateAmPm = ampm => {
-  return {
-    type: UPDATE_TIME,
-    payload: ampm
   };
 };
 
@@ -110,11 +101,6 @@ export default function eventReducer(state = initialState, action) {
         ...state,
         time: action.payload
       };
-    case UPDATE_AM_PM:
-      return {
-        ...state,
-        ampm: action.payload
-      };
     case UPDATE_LOCATION:
       return {
         ...state,
@@ -143,10 +129,3 @@ export default function eventReducer(state = initialState, action) {
       return state;
   }
 }
-
-// export const createEvent = event => {
-//   return {
-//     type: CREATE_EVENTS,
-// };
-//     payload: axios.post(`/api/events`)
-//   };

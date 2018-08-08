@@ -28,10 +28,10 @@ const getUserEvents = (req, res) => {
 
 const createEvent = (req, res, next) => {
   const db = req.app.get('db');
-  const { title, host, date, time, location, img, description, users_id } = req.body;
+  const { title, host, date, time, location, lat, lng, img, description, users_id } = req.body;
 
   db.events
-    .create_event([title, host, date, time, location, img, description, users_id])
+    .create_event([title, host, date, time, location, lat, lng, img, description, users_id])
     .then(response => {
       res.status(200).send(response);
     })
@@ -131,6 +131,20 @@ const deleteOldEvents = (req, res) => {
   });
 }
 
+const getEvent = (res, req) => {
+  const db = req.app.get('db');
+  const { events_id } = req.params;  
+
+  db.events.get_event_by_events_id([events_id])
+  .then(response => {
+    res.status(200).send(response);
+  })
+  .catch(err => {
+    console.log(err);
+    res.status(500).send(err);
+  });
+}
+
 module.exports = {
   getAll,
   getUserEvents,
@@ -140,5 +154,6 @@ module.exports = {
   deleteEvent,
   deleteEventById,
   updateEventInfo,
-  deleteOldEvents
+  deleteOldEvents,
+  getEvent
 };

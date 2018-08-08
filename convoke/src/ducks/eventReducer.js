@@ -15,6 +15,7 @@ const initialState = {
 
 //constants
 const GET_EVENTS = 'GET_EVENTS';
+const GET_EVENT = 'GET_EVENT';
 const REMOVE_EVENT = 'REMOVE_EVENT';
 const UPDATE_TITLE = 'UPDATE_TITLE';
 const UPDATE_HOST = 'UPDATE_HOST';
@@ -31,6 +32,13 @@ export function getEvents() {
   };
 }
 
+export function getEvent(events_id) {
+  return {
+    type: GET_EVENT,
+    payload: axios.get(`/api/events/${events_id}`)
+  };
+}
+
 export const removeEvent = event => {
   return {
     type: REMOVE_EVENT,
@@ -39,6 +47,8 @@ export const removeEvent = event => {
 };
 
 export const updateTitle = title => {
+  console.log('hit title');
+
   return {
     type: UPDATE_TITLE,
     payload: title
@@ -46,6 +56,8 @@ export const updateTitle = title => {
 };
 
 export const updateHost = host => {
+  console.log('hit host');
+  console.log(initialState);
   return {
     type: UPDATE_HOST,
     payload: host
@@ -53,6 +65,8 @@ export const updateHost = host => {
 };
 
 export const updateDate = date => {
+  console.log('hit date');
+
   return {
     type: UPDATE_DATE,
     payload: date
@@ -60,6 +74,8 @@ export const updateDate = date => {
 };
 
 export const updateTime = time => {
+  console.log('hit time');
+
   return {
     type: UPDATE_TIME,
     payload: time
@@ -67,13 +83,24 @@ export const updateTime = time => {
 };
 
 export const updateDescription = description => {
+  console.log('hit description');
+
   return {
     type: UPDATE_DESCRIPTION,
     payload: description
   };
 };
 
-export const updateEventInfo = (events_id, title, host, date, time, description) =>{
+export const updateEventInfo = (
+  events_id,
+  title,
+  host,
+  date,
+  time,
+  description
+) => {
+  console.log('hit update all');
+
   return {
     type: UPDATE_EVENT,
     payload: axios.put(`/api/updateEventInfo/${events_id}`, {
@@ -85,8 +112,7 @@ export const updateEventInfo = (events_id, title, host, date, time, description)
       description
     })
   };
-}
-
+};
 
 // reducer
 export default function eventReducer(state = initialState, action) {
@@ -115,6 +141,7 @@ export default function eventReducer(state = initialState, action) {
         ...state,
         title: action.payload
       };
+      console.log(this.state.title);
     case UPDATE_HOST:
       return {
         ...state,

@@ -18,7 +18,8 @@ const eventEmail = (req, res) => {
       from: 'convoke.meet@gmail.com',
       to: email,
       subject: `Thanks for creating your event, ${title} with Convoke!`,
-      text: `Hey ${name}! Thank you for using Convoke to create your event, ${title}. Your event details are listed below.\n` +
+      text: `Hey ${name}! Thank you for using Convoke to create your event, ${title}.\n
+      Your event details are listed below.\n \n` +
       moment(date).format('MMM Do, YYYY') + `\n` +
       moment(time).format('h:mm a') + '\n' 
     })

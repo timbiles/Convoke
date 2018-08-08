@@ -1,9 +1,10 @@
 const createMessage = (req, res, next) => {
   const db = req.app.get('db');
-  const { message } = req.body;
+  const { messages } = req.body;
+  const { users_id } = req.params;
 
   db.messages
-    .create_message()
+    .create_message([messages, users_id])
     .then((response) => {
       res.status(200).send(response);
     })

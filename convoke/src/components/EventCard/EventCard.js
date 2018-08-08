@@ -108,6 +108,8 @@ class Card extends Component {
     //   <img className="events_person_white" src={pic} alt="person icon" />
     // );
 
+    console.log(this.props)
+
     return (
       <div className="events_container">
         {/* <div className="events_initial">

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import swal from 'sweetalert2';
 import _ from 'lodash';
@@ -11,6 +12,8 @@ import './EventLineView.css';
 import { getUser, getEventsAttending } from '../../../ducks/userReducer';
 
 class EventLineView extends Component {
+
+  
   handleClick = val => {
     axios
       .post(`/api/add-event/${val}/${this.props.user.users_id}`)
@@ -125,9 +128,11 @@ class EventLineView extends Component {
               {moment(eachEvent.time).format('h:mm a')}
             </h1>
           </div>
-          <Fade left cascade>
-            <h1 className="elv_title">{eachEvent.title.toUpperCase()}</h1>
-          </Fade>
+          <Link className='elv_title' to={`/events/${eachEvent.title}`}>
+            <Fade left cascade>
+              <h1 className="elv_title">{eachEvent.title.toUpperCase()}</h1>
+            </Fade>
+          </Link>
           <div className="elv_sub_content">
             <img className="elv_img" src={eachEvent.img} alt="Event pic" />
             <div className="elv_sub_content1">
@@ -154,6 +159,8 @@ class EventLineView extends Component {
                 {userEvents.length !== 0 && filter}
               </p>
               <div className="elv_icons">
+
+
                 <img
                   type="image"
                   className="elv_add home_icon"
@@ -161,6 +168,8 @@ class EventLineView extends Component {
                   alt="Add to favs"
                   onClick={e => this.handleClick(eachEvent.events_id)}
                 />
+
+
                 {this.props.user.users_id === eachEvent.users_id && (
                   <input
                     className="elv_remove_event home_icon"

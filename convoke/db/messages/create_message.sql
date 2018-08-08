@@ -1,2 +1,2 @@
-INSERT INTO messages(message)
-    VALUES($1);
+INSERT INTO messages(messages, users_id)
+    VALUES($1, $2);

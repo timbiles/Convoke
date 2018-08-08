@@ -230,9 +230,9 @@
     height: 2rem;
   }
 
-  .search_span {
+  /* .search_span {
     font-size: 1rem !important;
-  }
+  } */
 }
 
 @media (max-width: 700px) {
