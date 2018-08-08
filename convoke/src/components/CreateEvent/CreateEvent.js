@@ -120,6 +120,7 @@ class CreateEvent extends Component {
         this.props.updateLng(latLng.lng);
         console.log(latLng)
       })
+      .then(()=> this.props.updateLocation(location))
       .catch(err => console.error('error, error'))
   }
 
@@ -144,14 +145,14 @@ class CreateEvent extends Component {
 
     return (
       <div className="create_event_container">
-        {/* {!auth_id.length ? (
+        {!auth_id.length ? (
           <div>
             <h1>You have to login to Create an Event!</h1>
             <a className="" href={process.env.REACT_APP_LOGIN}>
               <h1 className="">Login</h1>
             </a>
           </div>
-        ) : ( */}
+        ) : (
             <div className="create_event_input">
               <label className="has-float-label">
                 <input

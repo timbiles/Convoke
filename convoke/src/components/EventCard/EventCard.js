@@ -7,6 +7,7 @@ import _ from 'lodash';
 import moment from 'moment';
 import Fade from 'react-reveal/Fade';
 
+import Map from '../Map/Map';
 import './EventCard.css';
 
 import { getUser, getEventsAttending } from '../../ducks/userReducer';
@@ -89,11 +90,11 @@ class Card extends Component {
 
     const { userEvents } = this.props.userEvents;
 
-    let mapped = _.mapValues(userEvents, function(e) {
+    let mapped = _.mapValues(userEvents, function (e) {
       return e.events_id;
     });
 
-    let filter = _.filter(mapped, function(e) {
+    let filter = _.filter(mapped, function (e) {
       return e === eachEvent.events_id;
     }).length;
 
@@ -108,123 +109,155 @@ class Card extends Component {
     //   <img className="events_person_white" src={pic} alt="person icon" />
     // );
 
-    console.log(this.props)
-
     return (
       <div className="events_container">
-        {/* <div className="events_initial">
-          <Fade left cascade>
-            <h1>{eachEvent.title.toUpperCase()}</h1>
-          </Fade>
-          <img
-            className="events_container_img1"
-            src={eachEvent.img}
-            alt={eachEvent.title}
-          />
-        </div> */}
-        <div className="events_flip">
-          <div className="events_title">
-            <Link to={`/events/${eachEvent.title}`}>
-              <Fade left cascade>
-                <h1 className="events_title">
-                  {eachEvent.title.toUpperCase()}
-                </h1>
-              </Fade>
-            </Link>
-          </div>
-          <div className="events_sub_container">
-            <Link to={`/events/${eachEvent.title}`}>
-              <img
-                className="events_container_img"
-                src={eachEvent.img}
-                alt={eachEvent.title}
-              />
-            </Link>
-            <h3 className="events_host"> [{eachEvent.host}]</h3>
+        <div className='flipper'>
 
-            <h3>
-              <img
-                className="eventcard_icon"
-                src="https://image.flaticon.com/icons/svg/25/25393.svg"
-                alt="calendar"
-              />{' '}
-              {moment(eachEvent.date).format('MMM Do, YYYY')}
-            </h3>
 
-            <h3>
-              <img
-                className="eventcard_icon"
-                src="https://image.flaticon.com/icons/svg/61/61227.svg"
-                alt="clock"
-              />{' '}
-              {moment(eachEvent.time).format('h:mm a')}
-            </h3>
-            <h3>
-              <img
-                className="eventcard_icon"
-                src="https://image.flaticon.com/icons/svg/33/33622.svg"
-                alt="map marker"
-              />{' '}
-              {eachEvent.location.substring(0, eachEvent.location.length - 5)}
-            </h3>
-            <h3 className='people_num_container'>
-            <p className='ec_person'>{image1} {userEvents.length !== 0 && filter}</p>
+          <div className="events_flip">
+            <div className="events_title">
+              <Link to={`/events/${eachEvent.title}`}>
+                <Fade left cascade>
+                  <h1 className="events_title">
+                    {eachEvent.title.toUpperCase()}
+                  </h1>
+                </Fade>
+              </Link>
+            </div>
+            <div className="events_sub_container">
+              <Link to={`/events/${eachEvent.title}`}>
+                <img
+                  className="events_container_img"
+                  src={eachEvent.img}
+                  alt={eachEvent.title}
+                />
+              </Link>
+              <h3 className="events_host"> [{eachEvent.host}]</h3>
 
-              
-            </h3>
+              <h3>
+                <img
+                  className="eventcard_icon"
+                  src="https://image.flaticon.com/icons/svg/25/25393.svg"
+                  alt="calendar"
+                />{' '}
+                {moment(eachEvent.date).format('MMM Do, YYYY')}
+              </h3>
 
-            {this.props.user.users_id === eachEvent.users_id && (
-              <input
-                className="remove_event_by_id"
-                type="image"
-                src="https://image.flaticon.com/icons/svg/107/107181.svg"
-                alt="trash icon"
-                onClick={e => this.handleDelete(eachEvent.events_id)}
-              />
-            )}
+              <h3>
+                <img
+                  className="eventcard_icon"
+                  src="https://image.flaticon.com/icons/svg/61/61227.svg"
+                  alt="clock"
+                />{' '}
+                {moment(eachEvent.time).format('h:mm a')}
+              </h3>
+              <h3>
+                <img
+                  className="eventcard_icon"
+                  src="https://image.flaticon.com/icons/svg/33/33622.svg"
+                  alt="map marker"
+                />{' '}
+                {eachEvent.location.substring(0, eachEvent.location.length - 5)}
+              </h3>
+              <h3 className='people_num_container'>
+                <p className='ec_person'>{image1} {userEvents.length !== 0 && filter}</p>
 
-            <input
-              type="image"
-              className="events_btn"
-              src="https://image.flaticon.com/icons/svg/149/149411.svg"
-              alt="Add to favs btn"
-              onClick={e => this.handleClick(eachEvent.events_id)}
-            />
 
-            <div className="events_info_btn">
+              </h3>
+
+              {this.props.user.users_id === eachEvent.users_id && (
+                <input
+                  className="remove_event_by_id"
+                  type="image"
+                  src="https://image.flaticon.com/icons/svg/107/107181.svg"
+                  alt="trash icon"
+                  onClick={e => this.handleDelete(eachEvent.events_id)}
+                />
+              )}
+
               <input
                 type="image"
-                className="events_info_btn"
-                src="https://cdn0.iconfinder.com/data/icons/mobile-set/154/info-512.png"
-                alt="info btn"
+                className="events_btn"
+                src="https://image.flaticon.com/icons/svg/149/149411.svg"
+                alt="Add to favs btn"
+                onClick={e => this.handleClick(eachEvent.events_id)}
               />
-              <div className="events_info_btn_dropdown">
-                <p>{eachEvent.host}</p>
-                <p>{moment(eachEvent.date).format('M/D/YYYY')}</p>
-                <p>{moment(eachEvent.time).format('h:mm a')}</p>
-                <p>
-                  {eachEvent.location.substring(
-                    0,
-                    eachEvent.location.length - 5
+
+              <div className="events_info_btn">
+                <input
+                  type="image"
+                  className="events_info_btn"
+                  src="https://cdn0.iconfinder.com/data/icons/mobile-set/154/info-512.png"
+                  alt="info btn"
+                />
+                <div className="events_info_btn_dropdown">
+                  <p>{eachEvent.host}</p>
+                  <p>{moment(eachEvent.date).format('M/D/YYYY')}</p>
+                  <p>{moment(eachEvent.time).format('h:mm a')}</p>
+                  <p>
+                    {eachEvent.location.substring(
+                      0,
+                      eachEvent.location.length - 5
+                    )}
+                  </p>
+                  <p>
+                    {image1}
+                    {userEvents.length !== 0 && filter}
+                  </p>
+
+                  {this.props.user.users_id === eachEvent.users_id && (
+                    <input
+                      className="remove_icon_dropdown"
+                      type="image"
+                      src="https://image.flaticon.com/icons/svg/107/107181.svg"
+                      alt="trash icon"
+                      onClick={e => this.handleDelete(eachEvent.events_id)}
+                    />
                   )}
-                </p>
-                <p>
-                  {image1}
-                  {userEvents.length !== 0 && filter}
-                </p>
-
-                {this.props.user.users_id === eachEvent.users_id && (
-                  <input
-                    className="remove_icon_dropdown"
-                    type="image"
-                    src="https://image.flaticon.com/icons/svg/107/107181.svg"
-                    alt="trash icon"
-                    onClick={e => this.handleDelete(eachEvent.events_id)}
-                  />
-                )}
+                </div>
               </div>
             </div>
           </div>
+
+          <div className='back_flip'>
+            <h1 className="back_flip_title">{eachEvent.title}</h1>
+            <div className='ec_map'>
+              <Map
+                lat={eachEvent.lat}
+                lng={eachEvent.lng}
+                center={{
+                  lat: eachEvent.lat,
+                  lng: eachEvent.lng
+                }}
+              />
+            </div>
+            <h3>
+                <img
+                  className="eventcard_icon"
+                  src="https://image.flaticon.com/icons/svg/33/33622.svg"
+                  alt="map marker"
+                />{' '}
+                {eachEvent.location.substring(0, eachEvent.location.length - 5)}
+              </h3>
+              {this.props.user.users_id === eachEvent.users_id && (
+                <input
+                  className="remove_event_by_id"
+                  type="image"
+                  src="https://image.flaticon.com/icons/svg/107/107181.svg"
+                  alt="trash icon"
+                  onClick={e => this.handleDelete(eachEvent.events_id)}
+                />
+              )}
+
+              <input
+                type="image"
+                className="events_btn"
+                src="https://image.flaticon.com/icons/svg/149/149411.svg"
+                alt="Add to favs btn"
+                onClick={e => this.handleClick(eachEvent.events_id)}
+              />
+          </div>
+
         </div>
       </div>
     );

@@ -13,8 +13,8 @@ import { getUserEvents } from '../../ducks/userEventReducer';
 
 class Header extends Component {
   componentDidMount() {
+    this.props.getEvents();
     this.props.getUser().then(() => {
-      this.props.getEvents();
       this.props.getEventsAttending(this.props.user.users_id);
       this.props.getUserEvents();
       // axios.delete('/api/deleteOldevent');
@@ -52,10 +52,10 @@ class Header extends Component {
                 <h1>Login</h1>
               </a>
             ) : (
-              <div className="header_render_logout">
-                <Avatar />
-              </div>
-            )}
+                <div className="header_render_logout">
+                  <Avatar />
+                </div>
+              )}
           </div>
         </div>
         <Hamburger />

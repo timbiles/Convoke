@@ -5,10 +5,67 @@
   justify-content: center;
   align-items: center;
   width: 40vh;
-  background-color: rgb(240, 240, 240);
+  background-color: rgb(245, 245, 245);
   position: relative;
   margin: 3%;
   border-radius: 2%;
+}
+
+/* flip the pane when hovered */
+.events_container:hover .flipper, events_container.hover .flipper {
+  transform: rotateY(180deg);
+}
+
+.events_container, .events_flip, .back_flip {
+	width: 320px;
+	height: 480px;
+}
+
+/* flip speed goes here */
+.flipper {
+	transition: 0.6s;
+	transform-style: preserve-3d;
+
+  position: relative;
+  width: 100%;
+  
+}
+
+/* hide back of pane during swap */
+.events_flip, .back_flip {
+	backface-visibility: hidden;
+	position: absolute;
+	top: 0;
+  left: 0;
+}
+
+/* front pane, placed above back */
+.events_flip {
+	z-index: 2;
+	/* for firefox 31 */
+	transform: rotateY(0deg);
+}
+
+/* back, initially hidden pane */
+.back_flip {
+  transform: rotateY(180deg);
+  
+}
+
+/* map on back of card */
+.ec_map { 
+  display: flex;
+  align-items: center;
+  overflow: auto;
+}
+
+.back_flip_title {
+  text-align: center;
+  font-weight: bold;
+  letter-spacing: 1.5px;
+  padding: 5% 0;  
+  background: linear-gradient(to left top, rgb(240, 240, 240) 0%, #fff 65%);  
+  
 }
 
 .events_title {
@@ -19,7 +76,7 @@
   width: 100%;
   padding: 5% 0;
   letter-spacing: 1.5px;
-  background: linear-gradient(to left top, rgb(168, 167, 167) 0%, #fff 65%);  
+  background: linear-gradient(to left top, rgb(230, 230, 230) 0%, #fff 65%);  
   color: #413f3f;
   text-decoration: none;
   z-index: 1;
@@ -85,13 +142,6 @@
 .events_flip {
   position: relative;
   width: 100%;
-}
-
-/* temporary!!!! */
-
-.events_flip {
-  /* display: none; */
-  
 }
 
 .events_initial:hover {
