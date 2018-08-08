@@ -103,6 +103,7 @@ class Home extends Component {
             </div>
           </div>
           <div className="home_linebreak" />
+          <h1 className='upcoming_evts'>Upcoming Events</h1>
           {isLoading && <p>Loading...</p>}
 
           {this.state.listView && (

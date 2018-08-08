@@ -165,7 +165,7 @@ class Card extends Component {
 
               </h3>
 
-              {this.props.user.users_id === eachEvent.users_id && (
+              {/* {this.props.user.users_id === eachEvent.users_id && (
                 <input
                   className="remove_event_by_id"
                   type="image"
@@ -181,7 +181,7 @@ class Card extends Component {
                 src="https://image.flaticon.com/icons/svg/149/149411.svg"
                 alt="Add to favs btn"
                 onClick={e => this.handleClick(eachEvent.events_id)}
-              />
+              /> */}
 
               <div className="events_info_btn">
                 <input

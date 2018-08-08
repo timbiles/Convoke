@@ -22,7 +22,6 @@ class Header extends Component {
   }
   render() {
     const { auth_id } = this.props.user;
-
     return (
       <div className="header_container">
         <div className="header_link_container">

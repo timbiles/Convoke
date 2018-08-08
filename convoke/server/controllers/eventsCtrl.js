@@ -109,10 +109,10 @@ const deleteEventById = (req, res, next) => {
 
 const updateEventInfo = (req, res) => {
   const db = req.app.get('db');
-  const { events_id, title, host, date, time, description } = req.body;
+  const { title, host, date, time, description } = req.body;
 
   db.events
-    .edit_event_by_events_id([events_id, title, host, date, time, description])
+    .edit_event_by_events_id([req.params.id, title, host, date, time, description])
     .then(response => res.status(200).send(response))
     .catch(err => res.status(500).send(err));
 };
@@ -121,28 +121,28 @@ const deleteOldEvents = (req, res) => {
   const db = req.app.get('db');
 
   db.events
-  .delete_old_events()
-  .then(response => {
-    res.status(200).send(response);
-  })
-  .catch(err => {
-    console.log(err);
-    res.status(500).send(err);
-  });
+    .delete_old_events()
+    .then(response => {
+      res.status(200).send(response);
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).send(err);
+    });
 }
 
 const getEvent = (res, req) => {
   const db = req.app.get('db');
-  const { events_id } = req.params;  
+  const { events_id } = req.params;
 
   db.events.get_event_by_events_id([events_id])
-  .then(response => {
-    res.status(200).send(response);
-  })
-  .catch(err => {
-    console.log(err);
-    res.status(500).send(err);
-  });
+    .then(response => {
+      res.status(200).send(response);
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).send(err);
+    });
 }
 
 module.exports = {

@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import axios from 'axios';
 import _ from 'lodash';
 import moment from 'moment';
-
 
 import Map from '../Map/Map';
 import './Events.css';
@@ -21,25 +19,47 @@ import {
 // import pic from '../EventCard/person.png';
 
 class Events extends Component {
-  // componentDidMount() {
-  // let eventFind = this.props.events.events.find(e=> e.events_id === this.props.match.params.events_id) || false
+  constructor(props) {
+    super();
+    this.state = {
+      eventId: "",
+      title: "",
+      host: "",
+      date: "",
+      time: "",
+      description: ""
+    }
+  }
 
-  //     this.props.getEvent();
-  //     console.log(eventFind)
-  // console.log(this.props)
-  //   }
+  componentDidMount() {
+    var event =
+      this.props.events.events.find(e => e.title === this.props.match.params.title) ||
+      false;
+
+    this.setState({
+      eventId: event.events_id,
+      title: event.title,
+      host: event.host,
+      date: event.date,
+      time: event.time,
+      description: event.description
+    })
+  }
+
+  handleInputs = (val, state) => {
+    this.setState({
+      [state]: val
+    })
+  }
 
   handleSubmit = event => {
-    console.log(event);
-
-    let { events_id, title, host, date, time, description } = event;
-    this.props.updateEventInfo(events_id, title, host, date, time, description);
-    console.log(this.props);
+    let { eventId, title, host, date, time, description } = this.state;
+    this.props.updateEventInfo(eventId, title, host, date, time, description)
   };
 
   render() {
-    const { events } = this.props;
-
+    const { events, updateTitle, updateHost, updateDate, updateTime, updateDescription } = this.props;
+    let { title, host, description } = this.state;
     let event =
       events.events.find(e => e.title === this.props.match.params.title) ||
       false;
@@ -57,9 +77,6 @@ class Events extends Component {
       return e === event.events_id;
     }).length;
 
-    console.log(event);
-    console.log(this.props);
-
     // let image1 = (
     //   <img
     //     className="events_person"
@@ -75,78 +92,85 @@ class Events extends Component {
 
     return (
       <div className="ie_container">
-        <h1 className="ie_title">{event.title}</h1>
-        <input
-          placeholder={event.title}
-          type="text"
-          className="something_1"
-          onChange={e => updateTitle(e.target.value)}
-        />
-        <div className="ie_box">
-          <div className="ie_img_box">
-            <img className="ie_img" src={event.img} alt={event.title} />
-            <h2>
-              {filter}
-              {one}
-            </h2>
-          </div>
-          <div className="ie_info_container">
-            <div className="ie_info_one">
-              <h2>Event Creator</h2>
-              <h3>{event.host}</h3>
+        {!event
+          ? <h1>USER NOT FOUND</h1> : (
+            <div>
+              <h1 className="ie_title">{title}</h1>
               <input
-                placeholder={event.host}
+                placeholder={event.title}
                 type="text"
                 className="something_1"
-                onChange={e => updateHost(e.target.value)}
+                onChange={e => this.handleInputs(e.target.value, "title")}
               />
-              <h3>{moment(date).format('dddd MMM Do, YYYY')}</h3>
-              <input
-                placeholder={event.date}
-                type="text"
-                className="something_1"
-                onChange={e => updateDate(e.target.value)}
-              />
-              <h3>
-                {time[0] === '0' ? time.substring(1, 5) : time.substring(0, 5)}
-                <input
-                  placeholder={event.time}
-                  type="text"
-                  className="something_1"
-                  onChange={e => updateTime(e.target.value)}
-                />
-              </h3>
-              <h3>{event.location}</h3>
-            </div>
-            <div className="ie_info_two">
-              <h2>Event Description</h2>
-              <h4>{event.description}</h4>
-              <input
-                placeholder={event.description}
-                type="text"
-                className="something_1"
-                onChange={e => updateDescription(e.target.value)}
-              />
-            </div>
-          </div>
-          <button
-            className="ep_submit_btn"
-            onClick={() => this.handleSubmit(event)}
-          >
-            Submit Edit
-          </button>
-        </div>
-        <div className='events_map'>
+              <div className="ie_box">
+                <div className="ie_img_box">
+                  <img className="ie_img" src={event.img} alt={event.title} />
+                  <h2>
+                    {filter}
+                    {one}
+                  </h2>
+                </div>
+                <div className="ie_info_container">
+                  <div className="ie_info_one">
+                    <h2>Event Creator</h2>
 
-        <Map
-          lat={event.lat}
-          lng={event.lng}
-          center={{
-            lat: event.lat,
-            lng: event.lng
-          }}
-        />
-        </div>
+                    <h3 >{host}</h3>
+                    <input
+                      placeholder={event.host}
+                      type="text"
+                      className="something_1"
+                      onChange={e => this.handleInputs(e.target.value, "host")}
+                    />
+                    <h3>{moment(event.date).format('dddd MMM Do, YYYY')}</h3>
+                    <input
+                      placeholder={moment(event.date).format('MM/DD/YYYY')}
+                      type="text"
+                      className="something_1"
+                      onChange={e => this.handleInputs(e.target.value, "date")}
+                    />
+                    <h3>
+                      {moment(event.time).format('h:mm a')}
+                    </h3>
+                    <input
+                      placeholder={event.time}
+                      type="text"
+                      className="something_1"
+                      onChange={e => this.handleInputs(e.target.value, "time")}
+                    />
+                    <h3>{event.location}</h3>
+                  </div>
+                  <div className="ie_info_two">
+                    <h2>Event Description</h2>
+                    <h4>{description}</h4>
+                    <input
+                      placeholder={event.description}
+                      type="text"
+                      className="something_1"
+                      onChange={e => this.handleInputs(e.target.value, "description")}
+                    />
+                  </div>
+                </div>
+                <button
+                  className="ep_submit_btn"
+                  onClick={() => this.handleSubmit(event)}
+                >
+                  Submit Edit
+          </button>
+              </div>
+              <div className='events_map'>
+
+                <Map
+                  lat={event.lat}
+                  lng={event.lng}
+                  center={{
+                    lat: event.lat,
+                    lng: event.lng
+                  }}
+                />
+              </div>
+            </div>
+          )
+        }
       </div>
     );
   }
