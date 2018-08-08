@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import _ from 'lodash';
 import moment from 'moment';
+import ContentEditable from 'react-contenteditable';
 
 import Map from '../Map/Map';
 import './Events.css';
@@ -17,6 +18,10 @@ import {
   updateEventInfo
 } from '../../ducks/eventReducer';
 // import pic from '../EventCard/person.png';
+
+const CLOUDINARY_UPLOAD_URL =
+  'https://api.cloudinary.com/v1_1/dwvrok1le/upload';
+const CLOUDINARY_UPLOAD_PRESET = 'ncjyrxth';
 
 class Events extends Component {
   constructor(props) {
@@ -54,18 +59,17 @@ class Events extends Component {
 
   handleSubmit = event => {
     let { eventId, title, host, date, time, description } = this.state;
-    this.props.updateEventInfo(eventId, title, host, date, time, description)
+    this.props.updateEventInfo(eventId, title, host, date, time, description).then(() => {
+      this.props.getEvents();
+    })
   };
 
   render() {
-    const { events, updateTitle, updateHost, updateDate, updateTime, updateDescription } = this.props;
+    const { events } = this.props;
     let { title, host, description } = this.state;
     let event =
       events.events.find(e => e.title === this.props.match.params.title) ||
       false;
-
-    let date = String(event.date);
-    let time = String(event.time);
 
     const { userEvents } = this.props.userEvents;
 
@@ -89,19 +93,24 @@ class Events extends Component {
     // );
 
     let one = filter === 1 ? ' person is going' : ' people going';
+    let date = String(event.date);
+    let time = String(event.time);
 
     return (
       <div className="ie_container">
         {!event
           ? <h1>USER NOT FOUND</h1> : (
-            <div>
-              <h1 className="ie_title">{title}</h1>
-              <input
-                placeholder={event.title}
-                type="text"
-                className="something_1"
-                onChange={e => this.handleInputs(e.target.value, "title")}
-              />
+
+
+            this.props.user.users_id === event.users_id ? 
+
+
+            <div className='events_viewbox'>
+              <ContentEditable
+                      html={title}
+                      onChange={e => this.handleInputs(e.target.value, "title")}
+                      className='events_editable_big'
+                    />
               <div className="ie_box">
                 <div className="ie_img_box">
                   <img className="ie_img" src={event.img} alt={event.title} />
@@ -113,26 +122,23 @@ class Events extends Component {
                 <div className="ie_info_container">
                   <div className="ie_info_one">
                     <h2>Event Creator</h2>
-
-                    <h3 >{host}</h3>
-                    <input
-                      placeholder={event.host}
-                      type="text"
-                      className="something_1"
+                    <ContentEditable
+                      html={host}
                       onChange={e => this.handleInputs(e.target.value, "host")}
+                      className='events_editable'
                     />
                     <h3>{moment(event.date).format('dddd MMM Do, YYYY')}</h3>
                     <input
-                      placeholder={moment(event.date).format('MM/DD/YYYY')}
+                      placeholder={moment(date).format('MM/DD/YYYY')}
                       type="text"
                       className="something_1"
                       onChange={e => this.handleInputs(e.target.value, "date")}
                     />
                     <h3>
-                      {moment(event.time).format('h:mm a')}
+                      {moment(time).format('h:mm a')}
                     </h3>
                     <input
-                      placeholder={event.time}
+                      placeholder={time}
                       type="text"
                       className="something_1"
                       onChange={e => this.handleInputs(e.target.value, "time")}
@@ -141,21 +147,19 @@ class Events extends Component {
                   </div>
                   <div className="ie_info_two">
                     <h2>Event Description</h2>
-                    <h4>{description}</h4>
-                    <input
-                      placeholder={event.description}
-                      type="text"
-                      className="something_1"
+                    <ContentEditable
+                      html={description}
                       onChange={e => this.handleInputs(e.target.value, "description")}
+                      className='events_editable'
                     />
                   </div>
                 </div>
-                <button
+                <h5
                   className="ep_submit_btn"
                   onClick={() => this.handleSubmit(event)}
                 >
                   Submit Edit
-          </button>
+                </h5>
               </div>
               <div className='events_map'>
 
@@ -169,6 +173,57 @@ class Events extends Component {
                 />
               </div>
             </div>
+
+            
+            : 
+
+            <div className='events_viewbox'>
+              <h1 className="ie_title">{event.title}</h1>
+              
+              <div className="ie_box">
+                <div className="ie_img_box">
+                  <img className="ie_img" src={event.img} alt={event.title} />
+                  <h2>
+                    {filter}
+                    {one}
+                  </h2>
+                </div>
+                <div className="ie_info_container">
+                  <div className="ie_info_one">
+                    <h2>Event Creator</h2>
+
+                    <h3 >{event.host}</h3>
+                    
+                    <h3>{moment(event.date).format('dddd MMM Do, YYYY')}</h3>
+                    
+                    <h3>
+                      {moment(event.time).format('h:mm a')}
+                    </h3>
+                    
+                    <h3>{event.location}</h3>
+                  </div>
+                  <div className="ie_info_two">
+                    <h2>Event Description</h2>
+                    <h4>{event.description}</h4>
+                    
+                  </div>
+                </div>
+                
+              </div>
+              <div className='events_map'>
+
+                <Map
+                  lat={event.lat}
+                  lng={event.lng}
+                  center={{
+                    lat: event.lat,
+                    lng: event.lng
+                  }}
+                />
+              </div>
+            </div>
+
+
           )
         }
       </div>

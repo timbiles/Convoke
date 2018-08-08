@@ -94,7 +94,6 @@ class Connect extends Component {
     //   return e.name;
     // });
 
-    // console.log(mapNames);
 
     return (
       <div className="connect_container">

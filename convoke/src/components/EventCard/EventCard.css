@@ -57,6 +57,7 @@
   display: flex;
   align-items: center;
   overflow: auto;
+  border: 1px solid black;
 }
 
 .back_flip_title {
@@ -65,7 +66,9 @@
   letter-spacing: 1.5px;
   padding: 5% 0;  
   background: linear-gradient(to left top, rgb(240, 240, 240) 0%, #fff 65%);  
-  
+  font-variant: small-caps;
+  color: #413f3f;
+  text-decoration: none;
 }
 
 .events_title {

@@ -76,7 +76,7 @@ const addEvent = (req, res, next) => {
       }
     })
     .catch(err => {
-      console.log('YOOOO!!', err);
+      console.log(err);
       res.status(500).send(err);
     });
 };

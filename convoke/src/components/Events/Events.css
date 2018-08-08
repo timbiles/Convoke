@@ -1,17 +1,25 @@
-.ie_container {
+/* .ie_container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+} */
+
+.events_viewbox {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .ie_box {
   display: flex;
   align-items: center;
-  width: 80%;
+  justify-content: center;
+  width: 90%;
   border-radius: 1%;
-  border-bottom: 1px solid #dbd8cf;
-  background: linear-gradient(to top left, rgb(220, 223, 222) 0%, #fff 90%);
+  /* background: linear-gradient(to top left, rgb(220, 223, 222) 0%, #fff 90%); */
+  position: relative;
 }
 
 .ie_container h1 {
@@ -23,8 +31,9 @@
 }
 
 .ie_img_box {
-    width: 50%;
+    width: 200px;
     height: 100%;
+    padding: 1%;
 }
 
 .ie_img {
@@ -38,6 +47,7 @@
   width: 50%;
   flex-direction: column;
   justify-content: center;
+  border-left: 1px solid #dbd8cf;
 }
 
 .ie_box h2 {
@@ -58,8 +68,30 @@
   animation: ieTitleFade 2s;
 }
 
+.ep_submit_btn {
+  font-size: .9rem;
+  position: absolute;
+  bottom: 1%;
+  right: 0;
+}
+
+.ep_submit_btn:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+}
+
 .events_map {
+  border: 1px solid black;
   margin: 1% 0;
+}
+
+.events_editable{
+  margin: 2%;
+}
+
+.events_editable_big {
+  font-size: 2rem;
+  letter-spacing: 2px;
 }
 
 @keyframes ieTitleFade {

@@ -13,8 +13,6 @@ class Calendar extends Component {
   componentDidMount() {
     this.props.getEventsAttending(this.props.user.users_id);
 
-    console.log(this.props)
-
     $('#calendar').fullCalendar({
       header: {
         left: 'prev,next today',

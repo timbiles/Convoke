@@ -164,11 +164,6 @@
   transform: scale(1.05);
 }
 
-.upcoming_evts {
-  font-weight: bold;
-  font-size: 2rem;
-}
-
 @keyframes menuFade {
   0% {
     opacity: 0;

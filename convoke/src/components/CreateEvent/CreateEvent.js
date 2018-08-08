@@ -30,7 +30,7 @@ import {
 
 import { getUser } from '../../ducks/userReducer';
 
-import { updateLat, updateLng } from '../../ducks/locationReducer';
+import { updateLat, updateLng } from '../../ducks/locationReducer'
 
 const CLOUDINARY_UPLOAD_URL =
   'https://api.cloudinary.com/v1_1/dwvrok1le/upload';
@@ -55,7 +55,7 @@ class CreateEvent extends Component {
   handleSubmit = id => {
     let { title, host, date, time, location, img, description } = this.props.create;
     let { users_id, name, email } = this.props.user;
-    let {lat, lng } = this.props.location;
+    let { lat, lng } = this.props.location;
 
     axios
       .post(`/api/events`, {
@@ -120,7 +120,7 @@ class CreateEvent extends Component {
         this.props.updateLng(latLng.lng);
         console.log(latLng)
       })
-      .then(()=> this.props.updateLocation(location))
+      .then(() => this.props.updateLocation(location))
       .catch(err => console.error('error, error'))
   }
 
@@ -141,158 +141,156 @@ class CreateEvent extends Component {
 
     const today = new Date();
 
-    console.log(this.props)
-
     return (
       <div className="create_event_container">
-        {!auth_id.length ? (
+        {/* {!auth_id.length ? (
           <div>
             <h1>You have to login to Create an Event!</h1>
             <a className="" href={process.env.REACT_APP_LOGIN}>
               <h1 className="">Login</h1>
             </a>
           </div>
-        ) : (
-            <div className="create_event_input">
-              <label className="has-float-label">
-                <input
-                  className="input_field"
-                  type="text"
-                  placeholder="Event Name"
-                  onChange={e => updateEventName(e.target.value)}
-                />
-                <span>What is the name of your event?</span>
-              </label>
-              <label className="has-float-label">
-                <input
-                  className="input_field"
-                  type="text"
-                  placeholder="Event Name"
-                  onChange={e => updateHost(e.target.value)}
-                />
-                <span>Who is the host?</span>
-              </label>
-              <h1 className='ce_h1'>Date</h1>
+        ) : ( */}
+        <div className="create_event_input">
+          <label className="has-float-label">
+            <input
+              className="input_field"
+              type="text"
+              placeholder="Event Name"
+              onChange={e => updateEventName(e.target.value)}
+            />
+            <span>What is the name of your event?</span>
+          </label>
+          <label className="has-float-label">
+            <input
+              className="input_field"
+              type="text"
+              placeholder="Event Name"
+              onChange={e => updateHost(e.target.value)}
+            />
+            <span>Who is the host?</span>
+          </label>
+          <h1 className='ce_h1'>Date</h1>
 
-              <DatePicker
-                color="#296b3e"
-                date={date}
-                errorColor="#c32c27"
-                handleDateChange={this.handleDateChange}
-                hoverWeek
-                inputStyle={{
-                  borderRadius: 0
-                }}
-                lightHeader
-                required
-                placeholder={day}
-                minDate={today}
-              />
+          <DatePicker
+            color="#296b3e"
+            date={date}
+            errorColor="#c32c27"
+            handleDateChange={this.handleDateChange}
+            hoverWeek
+            inputStyle={{
+              borderRadius: 0
+            }}
+            lightHeader
+            required
+            placeholder={day}
+            minDate={today}
+          />
 
-              <h1 className='ce_h1'>Time</h1>
+          <h1 className='ce_h1'>Time</h1>
 
-              <TimePicker
-                showSecond={false}
-                defaultValue={moment()}
-                className="ce_time"
-                onChange={this.handleTime}
-                format={format}
-                use12Hours
-                style={{ width: 100 }}
-              />
+          <TimePicker
+            showSecond={false}
+            defaultValue={moment()}
+            className="ce_time"
+            onChange={this.handleTime}
+            format={format}
+            use12Hours
+            style={{ width: 100 }}
+          />
 
-              <PlacesAutocomplete
-                value={location}
-                onChange={updateLocation}
-                onSelect={this.handleSelect}
-              >
-                {({
-                  getInputProps,
-                  suggestions,
-                  getSuggestionItemProps,
-                  loading
-                }) => (
-                    <div className="location_container">
-                      <label className="has-float-label">
-                        <input
-                          {...getInputProps({
-                            placeholder: 'Search Places ...',
-                            className: 'location-search-input'
+          <PlacesAutocomplete
+            value={location}
+            onChange={updateLocation}
+            onSelect={this.handleSelect}
+          >
+            {({
+              getInputProps,
+              suggestions,
+              getSuggestionItemProps,
+              loading
+            }) => (
+                <div className="location_container">
+                  <label className="has-float-label">
+                    <input
+                      {...getInputProps({
+                        placeholder: 'Search Places ...',
+                        className: 'location-search-input'
+                      })}
+                    />
+                    <span>Location</span>
+                  </label>
+                  <div className="autocomplete-dropdown-container">
+                    {loading && <div>Loading...</div>}
+                    {suggestions.map(suggestion => {
+                      const className = suggestion.active
+                        ? 'suggestion-item--active'
+                        : 'suggestion-item';
+                      // inline style for demonstration purpose
+                      const style = suggestion.active
+                        ? { backgroundColor: '#d1cfcf', cursor: 'pointer' }
+                        : { backgroundColor: '#ffffff', cursor: 'pointer' };
+                      return (
+                        <div
+                          {...getSuggestionItemProps(suggestion, {
+                            className,
+                            style
                           })}
-                        />
-                        <span>Location</span>
-                      </label>
-                      <div className="autocomplete-dropdown-container">
-                        {loading && <div>Loading...</div>}
-                        {suggestions.map(suggestion => {
-                          const className = suggestion.active
-                            ? 'suggestion-item--active'
-                            : 'suggestion-item';
-                          // inline style for demonstration purpose
-                          const style = suggestion.active
-                            ? { backgroundColor: '#d1cfcf', cursor: 'pointer' }
-                            : { backgroundColor: '#ffffff', cursor: 'pointer' };
-                          return (
-                            <div
-                              {...getSuggestionItemProps(suggestion, {
-                                className,
-                                style
-                              })}
-                            >
-                              <span>{suggestion.description}</span>
-                            </div>
-                          );
-                        })}
-                      </div>
-                    </div>
-                  )}
-              </PlacesAutocomplete>
-
-              <label className="has-float-label">
-                <input
-                  className="input_field"
-                  type="text"
-                  placeholder="Description"
-                  onChange={e => updateDescription(e.target.value)}
-                />
-                <span>Give your event a Description</span>
-              </label>
-
-              <form>
-                <h1 className='ce_h1'>Image Upload</h1>
-                <div className="file_upload">
-                  <Dropzone
-                    onDrop={this.onImageDrop}
-                    multiple={false}
-                    accept="image/*"
-                    className="image_dropzone"
-                  >
-                    <div>
-                      {this.state.image === '' ? (
-                        <p className="dropzone_text">
-                          Drop an image or click to select a file to upload.
-                    </p>
-                      ) : (
-                          <div>
-                            {/* <p>{this.state.uploadedFile.name}</p> */}
-                            <img
-                              className="ep_upload_pic"
-                              src={this.state.image}
-                              alt="event pic"
-                            />
-                          </div>
-                        )}
-                    </div>
-                  </Dropzone>
+                        >
+                          <span>{suggestion.description}</span>
+                        </div>
+                      );
+                    })}
+                  </div>
                 </div>
-              </form>
-              <Link to="/">
-                <h1 className="ce_button" onClick={id => this.handleSubmit(id)}>
-                  Submit Event!
-            </h1>
-              </Link>
+              )}
+          </PlacesAutocomplete>
+
+          <label className="has-float-label">
+            <input
+              className="input_field"
+              type="text"
+              placeholder="Description"
+              onChange={e => updateDescription(e.target.value)}
+            />
+            <span>Give your event a Description</span>
+          </label>
+
+          <form>
+            <h1 className='ce_h1'>Image Upload</h1>
+            <div className="file_upload">
+              <Dropzone
+                onDrop={this.onImageDrop}
+                multiple={false}
+                accept="image/*"
+                className="image_dropzone"
+              >
+                <div>
+                  {this.state.image === '' ? (
+                    <p className="dropzone_text">
+                      Drop an image or click to select a file to upload.
+                    </p>
+                  ) : (
+                      <div>
+                        {/* <p>{this.state.uploadedFile.name}</p> */}
+                        <img
+                          className="ep_upload_pic"
+                          src={this.state.image}
+                          alt="event pic"
+                        />
+                      </div>
+                    )}
+                </div>
+              </Dropzone>
             </div>
-          )}
+          </form>
+          <Link to="/">
+            <h1 className="ce_button" onClick={id => this.handleSubmit(id)}>
+              Submit Event!
+            </h1>
+          </Link>
+        </div>
+        )}
       </div>
     );
   }

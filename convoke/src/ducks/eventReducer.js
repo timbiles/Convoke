@@ -89,7 +89,7 @@ export const updateEventInfo = (
   time,
   description
 ) => {
-  
+
   return {
     type: UPDATE_EVENT,
     payload: axios.put(`/api/updateEventInfo/${events_id}`, {

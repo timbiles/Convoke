@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import moment from 'moment';
 import Dropzone from 'react-dropzone';
 import request from 'superagent';
+import ContentEditable from 'react-contenteditable';
 
 import './EditProfile.css';
 
@@ -84,8 +85,6 @@ class EditProfile extends Component {
     const { auth_id, name, email, home_town, img, bio } = this.props.user;
     const { updateName, updateEmail, updateHomeTown, updateBio } = this.props;
 
-    console.log(this.props)
-
     return (
       <div className="mc_container">
         <div className="mc_display">
@@ -99,13 +98,11 @@ class EditProfile extends Component {
           ) : (
             <div>
               <div>
-                <input
-                  className="update_profile_name"
-                  value={name}
-                  type="text"
-                  onChange={e => updateName(e.target.value)}
-                  onKeyDown={this.handleKeyDown}
-                />
+              <ContentEditable
+                      html={name}
+                      onChange={e => updateName(e.target.value)}
+                      className='profile_editable_big'
+                    />
                 <div className="img-email-edit">
                   {this.state.initialImage && (
                     <div>
@@ -113,7 +110,6 @@ class EditProfile extends Component {
                         type="image"
                         className="ep_display_img"
                         src={this.state.uploadedFileCloudinaryUrl || img}
-                        // onChange={e => updateImg(e.target.value)}
                         alt={auth_id}
                       />
                       <h1 className="ep_edit_pic" onClick={this.toggleEdit}>
@@ -157,29 +153,26 @@ class EditProfile extends Component {
                   )}
 
                   <div className="email_and_img_edit">
-                    <h3>Email</h3>
-                    <input
-                      className="update_profile_email"
-                      value={email}
-                      type="text"
+                  <h3>Email</h3>
+                  <ContentEditable
+                      html={email}
                       onChange={e => updateEmail(e.target.value)}
+                      className='profile_editable'
                     />
-                    <h3>Home Town</h3>
-                    <input
-                      className="update_profile_home_town"
-                      value={home_town}
-                      type="text"
+                      <h3>Home Town</h3>
+                    <ContentEditable
+                      html={home_town}
                       onChange={e => updateHomeTown(e.target.value)}
+                      className='profile_editable'
                     />
                   </div>
                 </div>
                 <h3>Bio</h3>
-                <textarea
-                  className="update_profile_bio"
-                  value={bio}
-                  type="text"
-                  onChange={e => updateBio(e.target.value)}
-                />
+                <ContentEditable
+                      html={bio}
+                      onChange={e => updateBio(e.target.value)}
+                      className='profile_editable'
+                    />
                 <div>
                   <Link to="/profile">
                     <h1

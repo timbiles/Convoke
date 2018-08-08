@@ -112,10 +112,10 @@ export default function eventReducer(state = initialState, action) {
         img: action.payload
       };
     case UPDATE_DESCRIPTION:
-    return {
-      ...state,
-      description: action.payload
-    }
+      return {
+        ...state,
+        description: action.payload
+      }
     case RESET:
       return {
         title: action.payload,

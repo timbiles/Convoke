@@ -116,22 +116,18 @@ class Card extends Component {
 
           <div className="events_flip">
             <div className="events_title">
-              <Link to={`/events/${eachEvent.title}`}>
-                <Fade left cascade>
-                  <h1 className="events_title">
-                    {eachEvent.title.toUpperCase()}
-                  </h1>
-                </Fade>
-              </Link>
+              <Fade left cascade>
+                <h1 className="events_title">
+                  {eachEvent.title.toUpperCase()}
+                </h1>
+              </Fade>
             </div>
             <div className="events_sub_container">
-              <Link to={`/events/${eachEvent.title}`}>
-                <img
-                  className="events_container_img"
-                  src={eachEvent.img}
-                  alt={eachEvent.title}
-                />
-              </Link>
+              <img
+                className="events_container_img"
+                src={eachEvent.img}
+                alt={eachEvent.title}
+              />
               <h3 className="events_host"> [{eachEvent.host}]</h3>
 
               <h3>
@@ -220,7 +216,10 @@ class Card extends Component {
           </div>
 
           <div className='back_flip'>
-            <h1 className="back_flip_title">{eachEvent.title}</h1>
+            <Link className='back_flip_title' to={`/events/${eachEvent.title}`}>
+
+              <h1 className="back_flip_title">{eachEvent.title.toUpperCase()}</h1>
+            </Link>
             <div className='ec_map'>
               <Map
                 lat={eachEvent.lat}
@@ -232,30 +231,30 @@ class Card extends Component {
               />
             </div>
             <h3>
-                <img
-                  className="eventcard_icon"
-                  src="https://image.flaticon.com/icons/svg/33/33622.svg"
-                  alt="map marker"
-                />{' '}
-                {eachEvent.location.substring(0, eachEvent.location.length - 5)}
-              </h3>
-              {this.props.user.users_id === eachEvent.users_id && (
-                <input
-                  className="remove_event_by_id"
-                  type="image"
-                  src="https://image.flaticon.com/icons/svg/107/107181.svg"
-                  alt="trash icon"
-                  onClick={e => this.handleDelete(eachEvent.events_id)}
-                />
-              )}
-
+              <img
+                className="eventcard_icon"
+                src="https://image.flaticon.com/icons/svg/33/33622.svg"
+                alt="map marker"
+              />{' '}
+              {eachEvent.location.substring(0, eachEvent.location.length - 5)}
+            </h3>
+            {this.props.user.users_id === eachEvent.users_id && (
               <input
+                className="remove_event_by_id"
                 type="image"
-                className="events_btn"
-                src="https://image.flaticon.com/icons/svg/149/149411.svg"
-                alt="Add to favs btn"
-                onClick={e => this.handleClick(eachEvent.events_id)}
+                src="https://image.flaticon.com/icons/svg/107/107181.svg"
+                alt="trash icon"
+                onClick={e => this.handleDelete(eachEvent.events_id)}
               />
+            )}
+
+            <input
+              type="image"
+              className="events_btn"
+              src="https://image.flaticon.com/icons/svg/149/149411.svg"
+              alt="Add to favs btn"
+              onClick={e => this.handleClick(eachEvent.events_id)}
+            />
           </div>
 
         </div>
