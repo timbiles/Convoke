@@ -250,14 +250,14 @@ class Events extends Component {
                         className='events_editable'
                       />
                     </div>
-                    <div>
+                    <div className='events_attend_container'>
                       {attending.length === 0 ?
-                        <h1
+                        <h5
                           className='events_attend'
                           onClick={e => this.handleClick(event.events_id)}
-                        >Attend</h1>
+                        >Attend</h5>
                         :
-                        <h1 className='events_attend'>You're already going!</h1>
+                        <h5 className='events_attend'>You're already going!</h5>
                       }
                     </div>
                   </div>
@@ -329,14 +329,16 @@ class Events extends Component {
                     <div className="ie_info_two">
                       <h2>Event Description</h2>
                       <h4>{event.description}</h4>
-                      {attending.length === 0 ?
-                        <h1
-                          className='events_attend'
-                          onClick={e => this.handleClick(event.events_id)}
-                        >Attend</h1>
-                        :
-                        <h1 className='events_attend'>You're already going!</h1>
-                      }
+                      <div className='events_attend_container'>
+                        {attending.length === 0 ?
+                          <h5
+                            className='events_attend'
+                            onClick={e => this.handleClick(event.events_id)}
+                          >Attend</h5>
+                          :
+                          <h5 className='events_attend'>You're already going!</h5>
+                        }
+                      </div>
                     </div>
                   </div>
 

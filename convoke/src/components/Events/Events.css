@@ -97,12 +97,18 @@
   letter-spacing: 2px;
 }
 
+.events_attend_container {
+  width: auto;
+}
+
 .events_attend {
-  font-size: .1rem;
+  font-weight: bold;
+  font-size: 1.3rem;
+  padding-left: 3%;
 }
 
 .events_attend:hover {
-  transform: scale(1.05)
+  /* transform: scale(1.05) */
 }
 
 @keyframes ieTitleFade {
