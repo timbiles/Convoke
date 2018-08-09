@@ -17,7 +17,7 @@ class Profile extends Component {
   componentDidMount() {
     this.props.getEventsAttending(this.props.user.users_id);
     // this.props.getAllUsers();        
-    
+
   }
 
   handleDelete = id => {
@@ -182,9 +182,12 @@ class Profile extends Component {
                     {moment(e.time).format('h:mm a')}
                   </h1>
                 </div>
-                <Fade left cascade>
-                  <h1 className="elv_title">{e.title.toUpperCase()}</h1>
-                </Fade>
+                <Link className='elv_title' to={`/events/${e.title}`}>
+
+                  <Fade left cascade>
+                    <h1 className="elv_title">{e.title.toUpperCase()}</h1>
+                  </Fade>
+                </Link>
                 <div className="elv_sub_content">
                   <img
                     className="elv_img"
@@ -218,7 +221,7 @@ class Profile extends Component {
                     </p>
                     <div className="elv_icons">
 
-                    <Invite currentEvent={e}/>
+                      <Invite currentEvent={e} />
 
                       <input
                         className="profile_remove_img"

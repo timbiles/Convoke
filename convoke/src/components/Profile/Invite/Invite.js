@@ -56,28 +56,29 @@ class Invite extends Component {
             axios.post(`/api/invite-email`, {
                 email: e.email,
                 name: e.name,
-                title
+                title,
+                senderName: this.props.user.name
             })
         })
 
         console.log(e)
-        console.log(this.props.currentEvent)
     }
 
 
     render() {
         const { users } = this.props.user
 
-        const userMap = users.map(e => {
-            e.users_id !== users.users_id
-            return <div
+        const userMap = users.map(e => (
+
+            e.users_id !== this.props.user.users_id &&
+            
+             <div
                 onClick={() => this.handleClick(e)}
                 className='invite_holder' key={e.users_id}>
                 <h1>{e.name}</h1>
                 <img className='invite_img' src={e.img} alt={e.name} />
             </div>
-        })
-
+        ))
 
         return (
             <div>

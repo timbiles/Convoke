@@ -97,8 +97,12 @@
   letter-spacing: 2px;
 }
 
-.events_edit_date {
+.events_attend {
+  font-size: .1rem;
+}
 
+.events_attend:hover {
+  transform: scale(1.05)
 }
 
 @keyframes ieTitleFade {

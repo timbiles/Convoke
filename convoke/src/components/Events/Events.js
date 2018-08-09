@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import _ from 'lodash';
 import moment from 'moment';
+import swal from 'sweetalert2';
+import axios from 'axios';
 import ContentEditable from 'react-contenteditable';
 import DatePicker from 'react-custom-date-picker';
 import TimePicker from 'rc-time-picker';
@@ -63,7 +65,27 @@ class Events extends Component {
     //     timer: 2000
     //   });
     // }, 3000)
-  }
+  };
+
+  handleClick = val => {
+    axios
+      .post(`/api/add-event/${val}/${this.props.user.users_id}`)
+
+      .then(res => {
+        swal({
+          position: 'top-end',
+          type: 'success',
+          title: 'Added to MyConvoke',
+          // imageUrl:
+          //   'http://images.hellogiggles.com/uploads/2015/09/17/bill_murray.jpg',
+          // imageWidth: 175,
+          // imageHeight: 250,
+          // imageAlt: 'Custom image',
+          showConfirmButton: false,
+          timer: 1500
+        });
+      })
+  };
 
   handleInputs = (val, state) => {
     this.setState({
@@ -118,13 +140,22 @@ class Events extends Component {
     //   <img className="events_person_white" src={pic} alt="person icon" />
     // );
 
+    console.log(event)
+    console.log(this.props)
+
     let one = filter === 1 ? ' person is going' : ' people going';
     let date = String(event.date);
     let time = String(event.time);
     let day = moment(event.date).format('MM/DD/YYYY');
     let today = new Date();
     const format = 'h:mm a';
-    
+
+    let attending = this.props.user.eventsAttending.filter(e => {
+      return e.events_id === event.events_id
+    })
+
+    console.log(attending)
+
 
     return (
       <div className="ie_container">
@@ -202,13 +233,6 @@ class Events extends Component {
                         style={{ width: 100 }}
                       />
 
-                      {/* <input
-                        placeholder={time}
-                        type="text"
-                        className="something_1"
-                        onChange={e => this.handleInputs(e.target.value, "time")}
-                      /> */}
-
                       <h3>
                         <img
                           className="eventcard_icon"
@@ -226,10 +250,20 @@ class Events extends Component {
                         className='events_editable'
                       />
                     </div>
+                    <div>
+                      {attending.length === 0 ?
+                        <h1
+                          className='events_attend'
+                          onClick={e => this.handleClick(event.events_id)}
+                        >Attend</h1>
+                        :
+                        <h1 className='events_attend'>You're already going!</h1>
+                      }
+                    </div>
                   </div>
                   <h5
                     className="ep_submit_btn"
-                    onClick={() => this.handleSubmit(event)}
+                    onClick={() => this.handleSubmit(event.events_id)}
                   >
                     Submit Edit
                 </h5>
@@ -295,7 +329,14 @@ class Events extends Component {
                     <div className="ie_info_two">
                       <h2>Event Description</h2>
                       <h4>{event.description}</h4>
-
+                      {attending.length === 0 ?
+                        <h1
+                          className='events_attend'
+                          onClick={e => this.handleClick(event.events_id)}
+                        >Attend</h1>
+                        :
+                        <h1 className='events_attend'>You're already going!</h1>
+                      }
                     </div>
                   </div>
 
