@@ -3,16 +3,16 @@ const passport = require('passport');
 const logout = (req, res) => {
   req.session.destroy(() => {
     // res.redirect('http://localhost:3000');
-    res.redirect('/');
+    res.redirect(process.env.REACT_APP_CLIENT + '/');
   });
 };
 
 const login = passport.authenticate('auth0', {
   // successRedirect: 'http://localhost:3000',
-  successRedirect: '/',
+  successRedirect: process.env.REACT_APP_CLIENT + '/',
   
   // failureRedirect: 'http://localhost:3000/login'
-  failureRedirect: '/login'
+  failureRedirect: process.env.REACT_APP_CLIENT + '/login'
   
 });
 
