@@ -224,7 +224,7 @@ class Profile extends Component {
                         className="profile_remove_img"
                         type="image"
                         alt="Delete icon"
-                        src="https://image.flaticon.com/icons/svg/118/118743.svg"
+                        src="https://image.flaticon.com/icons/svg/59/59836.svg"
                         onClick={id => {
                           this.handleDelete(e.events_id);
                         }}

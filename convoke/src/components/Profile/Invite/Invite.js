@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import axios from 'axios';
 import Modal from 'react-modal'
 import swal from 'sweetalert2';
 import _ from 'lodash';
@@ -19,6 +20,8 @@ const customStyles = {
         transform: 'translate(-50%, -50%)'
     }
 };
+
+Modal.setAppElement(document.getElementById('root'));
 
 class Invite extends Component {
     constructor() {
@@ -42,28 +45,36 @@ class Invite extends Component {
         this.setState({ modalIsOpen: false });
     }
 
-    handleClick = () => {
-        // axios.post(`/api/invite-email`, {
-        //     email
-        //     
-        // }).then(() => {
+    handleClick = (e) => {
+        swal({
+            type: 'success',
+            title: 'Button worked',
+            showConfirmButton: false,
+            timer: 1500
+        }).then(() => {
+            axios.post(`/api/invite-email`, {
+                email: e.email,
+                name: e.name
 
-        //     swal({
-        //         type: 'success',
-        //         title: 'Button worked',
-        //         showConfirmButton: false,
-        //         timer: 1500
-        //     });
-        // })
+            })
+        })
+
+        console.log(e)
+
+        console.log(this.props)
+
     }
 
 
     render() {
         const { users } = this.props.user
 
-        const userMap = users.map((e, i) => {
-            return <div className='invite_holder' key={i}>
-                <h1 onClick={this.handleClick()}>{e.name}</h1>
+        const userMap = users.map(e => {
+            e.users_id !== users.users_id
+            return <div
+                onClick={() => this.handleClick(e)}
+                className='invite_holder' key={e.users_id}>
+                <h1>{e.name}</h1>
                 <img className='invite_img' src={e.img} alt={e.name} />
             </div>
         })
@@ -79,9 +90,9 @@ class Invite extends Component {
                     onRequestClose={this.closeModal}
                     style={customStyles}
                 >
-
+                    
                     <div>
-                        <h1 className='invite_text'>Invite people to this event!</h1>
+                        <h1 className='invite_text'>Click someone to Invite them to this event!</h1>
 
                         <div className='invite_people_map'>
 

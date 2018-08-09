@@ -32,13 +32,13 @@ const eventEmail = (req, res) => {
 };
 
 const inviteEmail = (req, res) => {
-  const { email,  } = req.body;
+  const { email, name } = req.body;
 
   transporter
     .sendMail({
       from: 'convoke.meet@gmail.com',
       to: email,
-      subject: `You have been invited to an event!`,
+      subject: `Hey ${name}! You have been invited to an event!`,
       text: `Invite`
     })
     .catch(err => {

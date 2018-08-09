@@ -4,7 +4,6 @@ const bodyParser = require('body-parser');
 const massive = require('massive');
 const session = require('express-session');
 const passport = require('passport');
-const path = require('path');
 const cloudinary = require('cloudinary');
 const socket = require('socket.io');
 const port = process.env.SERVER_PORT || 3001;
@@ -34,6 +33,8 @@ const { eventEmail, inviteEmail } = require('./controllers/nodeCtrl');
 
 const app = express();
 app.use(bodyParser.json());
+
+app.use( express.static( `${__dirname}/../build` ) );
 
 
 massive(process.env.CONNECTION_STRING)
@@ -108,6 +109,12 @@ app.get('/api/messages', getMessages);
 app.post('/api/email', eventEmail);
 app.post('/api/invite-email', inviteEmail);
 
+
+//run build
+const path = require('path')
+app.get('*', (req, res)=>{
+  res.sendFile(path.join(__dirname, '../build/index.html'));
+})
 
 server = app.listen(port, () => {
   console.log(`Listening on port ${port}.`);
