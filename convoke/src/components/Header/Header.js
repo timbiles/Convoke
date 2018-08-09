@@ -7,7 +7,7 @@ import './Header.css';
 import Avatar from '../Avatar/Avatar';
 import Hamburger from './Hamburger/Hamburger';
 
-import { getUser, getEventsAttending } from '../../ducks/userReducer';
+import { getUser, getEventsAttending, getAllUsers } from '../../ducks/userReducer';
 import { getEvents } from '../../ducks/eventReducer';
 import { getUserEvents } from '../../ducks/userEventReducer';
 
@@ -17,6 +17,8 @@ class Header extends Component {
     this.props.getUser().then(() => {
       this.props.getEventsAttending(this.props.user.users_id);
       this.props.getUserEvents();
+      this.props.getAllUsers();
+
       // axios.delete('/api/deleteOldevent');
     });
   }
@@ -69,6 +71,7 @@ export default connect(
   mapStateToProps,
   {
     getUser,
+    getAllUsers,
     getEventsAttending,
     getEvents,
     getUserEvents

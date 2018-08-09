@@ -8,13 +8,16 @@ import _ from 'lodash';
 import Fade from 'react-reveal/Fade';
 
 import './Profile.css';
+import Invite from './Invite/Invite';
 
-import { getUser, getEventsAttending } from '../../ducks/userReducer';
+import { getUser, getAllUsers, getEventsAttending } from '../../ducks/userReducer';
 import { removeEvent } from '../../ducks/eventReducer';
 
 class Profile extends Component {
   componentDidMount() {
     this.props.getEventsAttending(this.props.user.users_id);
+    // this.props.getAllUsers();        
+    
   }
 
   handleDelete = id => {
@@ -88,21 +91,20 @@ class Profile extends Component {
       />
     );
 
-    console.log(userEvents)
+    console.log(this.props.events.events)
 
-    const created = this.props.events.events.filter(e=>{
+    const created = this.props.events.events.filter(e => {
       return e.users_id === this.props.user.users_id
     })
 
-    const mapCreate = created.map((e,i)=>{
+    const mapCreate = created.map((e, i) => {
       return (
         <div key={i} className='create_map'>
-        
-        <Link className='create_map' to={`/events/${e.title}`}>
-        {/* <img  src={e.img} alt='Events img'/> */}
-        
+
+          <Link className='create_map' to={`/events/${e.title}`}>
+
             <h1 className='create_map_sub'>{e.title}</h1>
-            </Link>
+          </Link>
 
         </div>
       )
@@ -148,7 +150,7 @@ class Profile extends Component {
                 <div className='profile_right'>
                   <h1 className='profile_dropdown'>Created Events</h1>
                   <h1 className='profile_created_events'>
-                      {mapCreate}
+                    {mapCreate}
                   </h1>
 
                 </div>
@@ -215,6 +217,9 @@ class Profile extends Component {
                       {userEvents.length !== 0 && filter}
                     </p>
                     <div className="elv_icons">
+
+                    <Invite />
+
                       <input
                         className="profile_remove_img"
                         type="image"
@@ -243,6 +248,7 @@ export default connect(
   mapStateToProps,
   {
     getUser,
+    getAllUsers,
     removeEvent,
     getEventsAttending
   }

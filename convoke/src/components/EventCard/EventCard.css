@@ -5,10 +5,14 @@
   justify-content: center;
   align-items: center;
   width: 40vh;
-  background-color: rgb(245, 245, 245);
+  /* background-color: rgb(253, 253, 253); */
+  background: linear-gradient(to top, rgb(253, 253, 253) 0%, #fff 100%);  
+  
+  border-bottom: 1px solid #000000;
+  padding-bottom: 2%;
   position: relative;
   margin: 3%;
-  border-radius: 2%;
+  /* border-radius: 2%; */
 }
 
 /* flip the pane when hovered */
@@ -36,7 +40,7 @@
 	backface-visibility: hidden;
 	position: absolute;
 	top: 0;
-  left: 0;
+  left: 0;  
 }
 
 /* front pane, placed above back */
@@ -99,7 +103,7 @@
   bottom: 0;
   margin: 5%;
   cursor: pointer;
-  background-color: rgb(240, 240, 240);
+  /* background-color: rgb(240, 240, 240); */
 
   height: 35px;
   width: 35px;
@@ -237,7 +241,7 @@
 
 .remove_event_by_id {
   position: absolute;
-  background-color: rgb(240, 240, 240);
+  /* background-color: rgb(240, 240, 240); */
   bottom: 0;
   margin: 5%;  
   height: 35px;

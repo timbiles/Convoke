@@ -30,7 +30,7 @@ const {
   getEvent
 } = require('./controllers/eventsCtrl');
 const { createMessage, getMessages } = require('./controllers/messageCtrl');
-const { eventEmail } = require('./controllers/nodeCtrl');
+const { eventEmail, inviteEmail } = require('./controllers/nodeCtrl');
 
 const app = express();
 app.use(bodyParser.json());
@@ -106,6 +106,8 @@ app.get('/api/messages', getMessages);
 
 //node endpoints
 app.post('/api/email', eventEmail);
+app.post('/api/invite-email', inviteEmail);
+
 
 server = app.listen(port, () => {
   console.log(`Listening on port ${port}.`);

@@ -26,6 +26,7 @@
     "react-custom-date-picker": "^1.1.17",
     "react-dom": "^16.4.1",
     "react-dropzone": "^4.2.13",
+    "react-modal": "^3.5.1",
     "react-places-autocomplete": "^7.2.0",
     "react-redux": "^5.0.7",
     "react-reveal": "^1.2.2",

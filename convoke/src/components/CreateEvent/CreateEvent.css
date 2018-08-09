@@ -88,7 +88,8 @@
 
 
 .input_field {
-  width: 400px;
+  width: 95%;
+
 }
 
 .setup_title {
@@ -110,4 +111,52 @@
   margin-top: 4%;
   font-size: 1.4rem;
   letter-spacing: 2px;
+}
+
+.ce_dropzone_text {
+  text-align: center;
+  padding: 5% 2%;
+}
+
+.ce_image_dropzone {
+  height: 225px;
+  width: 225px;
+  border-radius: 1%;
+  border: 1px dotted black;
+}
+
+@media (max-width: 700px) { 
+  .create_event_input {
+    width: 70%;
+  }
+  .ce_image_dropzone {
+    height: 175px;
+    width: 175px;
+  }
+
+  .ce_button {
+    font-size: 1.4rem;
+  }
+}
+
+@media (max-width: 500px) {
+  .ce_image_dropzone {
+    height: 150px;
+    width: 150px;
+  }
+
+  .ce_dropzone_text {
+    font-size: .8rem;
+  }
+
+  .ce_button {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .ce_image_dropzone {
+    height: 125px;
+    width: 125px;
+  }
 }

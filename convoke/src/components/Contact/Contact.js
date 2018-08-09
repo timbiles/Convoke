@@ -8,9 +8,14 @@ export default class Contact extends Component {
         <div className="contacts_container">
           <div className="contacts_box">
             <h1>Come say hi!</h1>
+
             <p>
-              Thank you for visiting our site! <br />
-              We have made it our top priority to ensure the best user experience while using our site. Do you have any input? Feel free to tell us your idea!
+              Thank you for visiting our site!
+
+            </p>
+            <p>
+              We continue to improve and expand to daily to ensure we reach everyone we can.
+                We have made it our top priority to ensure the best user experience while using our site. Do you have any input? Feel free to tell us your idea!
             </p>
             <div className='email_text'>
               <p>

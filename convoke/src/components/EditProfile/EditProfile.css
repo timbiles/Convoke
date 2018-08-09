@@ -6,6 +6,31 @@
   letter-spacing: 2px;
 }
 
+.ep_display {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  position: relative;
+  padding: .5%;  
+  border-left: 1px solid #dbd8cf;
+  padding-left: 2%;
+}
+
+.ep_display h2 {
+  font-size: 2rem;
+  font-variant: small-caps;
+  font-weight: bold;
+  text-align: center;
+  text-shadow: 0.5px 0.5px 8px grey;
+  letter-spacing: 4px;
+}
+
+.ep_display h3 {
+  font-weight: bold;
+  margin: 5% 0;
+}
+
 .ep_box_container {
   width: 60%;
   height: 70%;
@@ -146,4 +171,10 @@
 
 .profile_editable_big {
   font-size: 2rem;
+}
+
+@media (max-width: 800px) {
+  .ep_image_display {
+    
+  }
 }

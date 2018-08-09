@@ -84,7 +84,9 @@ class CreateEvent extends Component {
       name,
       title,
       date,
-      time
+      time,
+      location,
+      description
     });
   };
 
@@ -159,7 +161,7 @@ class CreateEvent extends Component {
               placeholder="Event Name"
               onChange={e => updateEventName(e.target.value)}
             />
-            <span>What is the name of your event?</span>
+            <span id='ce_title'>Event Name</span>
           </label>
           <label className="has-float-label">
             <input
@@ -168,24 +170,25 @@ class CreateEvent extends Component {
               placeholder="Event Name"
               onChange={e => updateHost(e.target.value)}
             />
-            <span>Who is the host?</span>
+            <span id='ce_title'>Event Host</span>
           </label>
           <h1 className='ce_h1'>Date</h1>
 
-          <DatePicker
-            color="#296b3e"
-            date={date}
-            errorColor="#c32c27"
-            handleDateChange={this.handleDateChange}
-            hoverWeek
-            inputStyle={{
-              borderRadius: 0
-            }}
-            lightHeader
-            required
-            placeholder={day}
-            minDate={today}
-          />
+
+            <DatePicker
+              color="#296b3e"
+              date={date}
+              errorColor="#c32c27"
+              handleDateChange={this.handleDateChange}
+              hoverWeek
+              inputStyle={{
+                borderRadius: 0
+              }}
+              lightHeader
+              required
+              placeholder={day}
+              minDate={today}
+            />
 
           <h1 className='ce_h1'>Time</h1>
 
@@ -218,7 +221,7 @@ class CreateEvent extends Component {
                         className: 'location-search-input'
                       })}
                     />
-                    <span>Location</span>
+                    <span id='ce_title'>Location</span>
                   </label>
                   <div className="autocomplete-dropdown-container">
                     {loading && <div>Loading...</div>}
@@ -253,7 +256,7 @@ class CreateEvent extends Component {
               placeholder="Description"
               onChange={e => updateDescription(e.target.value)}
             />
-            <span>Give your event a Description</span>
+            <span id='ce_title'>Event Description</span>
           </label>
 
           <form>
@@ -263,16 +266,15 @@ class CreateEvent extends Component {
                 onDrop={this.onImageDrop}
                 multiple={false}
                 accept="image/*"
-                className="image_dropzone"
+                className="ce_image_dropzone"
               >
                 <div>
                   {this.state.image === '' ? (
-                    <p className="dropzone_text">
+                    <p className="ce_dropzone_text">
                       Drop an image or click to select a file to upload.
                     </p>
                   ) : (
                       <div>
-                        {/* <p>{this.state.uploadedFile.name}</p> */}
                         <img
                           className="ep_upload_pic"
                           src={this.state.image}
