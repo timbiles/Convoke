@@ -91,7 +91,7 @@ class Profile extends Component {
       />
     );
 
-    console.log(this.props.events.events)
+
 
     const created = this.props.events.events.filter(e => {
       return e.users_id === this.props.user.users_id
@@ -218,7 +218,7 @@ class Profile extends Component {
                     </p>
                     <div className="elv_icons">
 
-                    <Invite />
+                    <Invite currentEvent={e}/>
 
                       <input
                         className="profile_remove_img"

@@ -46,6 +46,7 @@ class Invite extends Component {
     }
 
     handleClick = (e) => {
+        const { title } = this.props.currentEvent
         swal({
             type: 'success',
             title: 'Button worked',
@@ -54,15 +55,13 @@ class Invite extends Component {
         }).then(() => {
             axios.post(`/api/invite-email`, {
                 email: e.email,
-                name: e.name
-
+                name: e.name,
+                title
             })
         })
 
         console.log(e)
-
-        console.log(this.props)
-
+        console.log(this.props.currentEvent)
     }
 
 
@@ -79,7 +78,6 @@ class Invite extends Component {
             </div>
         })
 
-        console.log(userMap)
 
         return (
             <div>
@@ -90,7 +88,7 @@ class Invite extends Component {
                     onRequestClose={this.closeModal}
                     style={customStyles}
                 >
-                    
+
                     <div>
                         <h1 className='invite_text'>Click someone to Invite them to this event!</h1>
 

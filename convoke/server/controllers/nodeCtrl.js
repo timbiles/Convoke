@@ -32,14 +32,15 @@ const eventEmail = (req, res) => {
 };
 
 const inviteEmail = (req, res) => {
-  const { email, name } = req.body;
+  const { email, name, title } = req.body;
 
   transporter
     .sendMail({
       from: 'convoke.meet@gmail.com',
       to: email,
-      subject: `Hey ${name}! You have been invited to an event!`,
-      text: `Invite`
+      subject: `Hey ${name}! You have been invited to join event ${title}!`,
+      text: `Click the following link to...` + '\n' +
+      `http://localhost:3000/events/${title}.`
     })
     .catch(err => {
       console.log(err);

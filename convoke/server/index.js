@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
 const massive = require('massive');
+const path = require('path');
 const session = require('express-session');
 const passport = require('passport');
 const cloudinary = require('cloudinary');
@@ -34,6 +35,7 @@ const { eventEmail, inviteEmail } = require('./controllers/nodeCtrl');
 const app = express();
 app.use(bodyParser.json());
 
+console.log(`${__dirname}/../build`)
 app.use( express.static( `${__dirname}/../build` ) );
 
 
@@ -111,7 +113,6 @@ app.post('/api/invite-email', inviteEmail);
 
 
 //run build
-const path = require('path')
 app.get('*', (req, res)=>{
   res.sendFile(path.join(__dirname, '../build/index.html'));
 })
