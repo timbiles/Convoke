@@ -18,7 +18,7 @@ class Connect extends Component {
       filteredPeople: []
     };
 
-    this.socket = io('localhost:3001');
+    this.socket = io(process.env.REACT_APP_SERVER);
 
     this.socket.on('RECEIVE_MESSAGE', function(data) {
       addMessage(data);
