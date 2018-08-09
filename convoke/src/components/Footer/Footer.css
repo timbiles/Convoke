@@ -11,6 +11,8 @@
 
 .footer_link_container {
 margin-right: 100px;
+display: flex;
+justify-content: space-evenly;
 }
 
 .footer_icon {
@@ -79,13 +81,25 @@ margin-right: 100px;
   .footer_icon {
     margin: 5px;
   }
+
+  .foot_link {
+    font-size: .9rem;
+  }
+
+  .copyright {
+    font-size: .9rem;
+  }
 }
 
-@media (max-width: 440px) {
+@media (max-width: 460px) {
 
 
   .footer_link {
-    font-size: .9rem;
+    font-size: .7rem;
+  }
+
+  .copyright {
+    font-size: .7rem;
   }
 
   .footer_icon {
@@ -94,7 +108,5 @@ margin-right: 100px;
     width: 20px;
   }
 
-  .copyright {
-    font-size: .9rem;
-  }
+  
 }

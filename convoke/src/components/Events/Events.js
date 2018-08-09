@@ -21,9 +21,9 @@ import {
 } from '../../ducks/eventReducer';
 // import pic from '../EventCard/person.png';
 
-const CLOUDINARY_UPLOAD_URL =
-  'https://api.cloudinary.com/v1_1/dwvrok1le/upload';
-const CLOUDINARY_UPLOAD_PRESET = 'ncjyrxth';
+// const CLOUDINARY_UPLOAD_URL =
+//   'https://api.cloudinary.com/v1_1/dwvrok1le/upload';
+// const CLOUDINARY_UPLOAD_PRESET = 'ncjyrxth';
 
 class Events extends Component {
   constructor(props) {
@@ -51,6 +51,18 @@ class Events extends Component {
       time: event.time,
       description: event.description
     })
+
+    // this.props.user.users_id === event.users_id && setTimeout(()=>{
+    //   swal({
+    //     position: 'bottom-left',
+    //     imageUrl: 'https://vignette.wikia.nocookie.net/joke-battles/images/c/cb/Clippy.png/revision/latest?cb=20151209031540',
+    //     imageHeight: 200,
+    //     imageWidth: 200,
+    //     title: 'Click the text to edit the event info!',
+    //     showConfirmButton: false,
+    //     timer: 2000
+    //   });
+    // }, 3000)
   }
 
   handleInputs = (val, state) => {

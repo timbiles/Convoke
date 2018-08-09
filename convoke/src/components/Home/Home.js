@@ -43,7 +43,6 @@ class Home extends Component {
   render() {
     const { isLoading, events } = this.props;
     const { filteredEvents } = this.state;
-    console.log(this.props)
 
     let filter = events.events
       .filter((e, i) => {
@@ -70,7 +69,7 @@ class Home extends Component {
     return (
       <Fragment>
         <div className="home_container">
-          <h1 className="home_title">Convoke</h1>
+          <h1 className="home_title">Convoke.</h1>
           <div className="home_input_section">
             <img
               className="home_menu_icon"
@@ -91,7 +90,7 @@ class Home extends Component {
                 placeholder=". . ."
                 onChange={e => this.handleChange(e.target.value)}
               />
-              <span className='search_span'>Search through Events</span>
+              <span className='search_span'>Search Events</span>
             </label>
 
             {/* <div className="home_dropdown_container">

@@ -321,24 +321,19 @@
   }
 }
 
-
-@media (max-width: 850px) {
-  .events_container {
-    /* height: 60vh; */
-    width: 60vh;
-    letter-spacing: 4px;
-  }
-
-  .events_container_img {
-    height: 150px;
-  }
-}
-
 @media (max-width: 567px) {
   .events_container {
     height: 40vh;
     width: 40vh;
+    margin: 10% 0;
+  }
 
+  .showing_description {
+    display: none;
+  }
+
+  .ec_map { 
+  
   }
 
   .events_flip {
@@ -360,9 +355,6 @@
     display: block;
   }
 
-  .events_btn {
-
-  }
 
   .remove_event_by_id {
     display: none;    
@@ -380,4 +372,6 @@
   .events_container h3 {
     font-size: 0.8rem;
   }
+
+
 }

@@ -45,7 +45,7 @@ export default class Footer extends Component {
               className="footer_link"
               to="/about"
             >
-              About
+              <h1 className="footer_link">About</h1>
             </Link>
             <Link
               onClick={() => {
@@ -54,7 +54,7 @@ export default class Footer extends Component {
               className="footer_link"
               to="/contact"
             >
-              Contact
+              <h1 className="footer_link">Contact</h1>
             </Link>
           </div>
           <div>

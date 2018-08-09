@@ -99,7 +99,7 @@ class Profile extends Component {
         <div key={i} className='create_map'>
         
         <Link className='create_map' to={`/events/${e.title}`}>
-        <img  src={e.img} alt='Events img'/>
+        {/* <img  src={e.img} alt='Events img'/> */}
         
             <h1 className='create_map_sub'>{e.title}</h1>
             </Link>

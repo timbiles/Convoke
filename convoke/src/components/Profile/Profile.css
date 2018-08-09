@@ -161,8 +161,10 @@
 }
 
 .profile_left {
-  background: linear-gradient(to top right, rgb(244, 245, 245) 0%, #fff 90%);
+  background: linear-gradient(to top right, rgb(250, 250, 250) 0%, #fff 90%);
   width: 60%;
+  border-left: 1px solid grey;
+  padding-left: 2%;
 }
 
 .profile_right {
@@ -180,10 +182,12 @@ position: relative;
   position: absolute;
   min-width: 160px;
   /* height: 100px; */
-  width: auto;
+  width: 100%;
+  border-left: 1px solid grey;
+  padding-left: 5%;
   z-index: 9999;
   animation: downFade 1.5s;
-  background-color: rgb(250, 250, 250)
+  background-color: rgb(254, 254, 254)
 }
 
 .profile_dropdown {
@@ -192,7 +196,7 @@ position: relative;
 }
 
 .profile_dropdown:hover {
-  border-bottom: 1px solid black;
+  transform: scale(1.1)
 }
 
 .profile_right:hover .profile_created_events {
@@ -202,13 +206,20 @@ position: relative;
 }
 
 .create_map {
-  display: flex;
-  align-items: center;
+  letter-spacing: 2px;
+  text-align: center;
   text-decoration: none;
+  padding: 2% 0;
   color: #413f3f;  
 }
 .create_map_sub {
   width: 100%;
+}
+
+.create_map_sub:hover {
+  transform: scale(1.1);
+  border-bottom: 1px solid black;
+  
 }
 
 @keyframes rotate-90-cw {

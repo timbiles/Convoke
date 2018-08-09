@@ -20,6 +20,7 @@
   border-radius: 1%;
   /* background: linear-gradient(to top left, rgb(220, 223, 222) 0%, #fff 90%); */
   position: relative;
+  margin-top: 2%;
 }
 
 .ie_container h1 {
@@ -31,14 +32,15 @@
 }
 
 .ie_img_box {
-    width: 200px;
+    width: 300px;
     height: 100%;
     padding: 1%;
 }
 
 .ie_img {
+  height: 100%;
   width: 100%;
-  max-width: 300px;
+  max-width: 400px;
     max-height: 400px;
 }
 
@@ -73,7 +75,7 @@
   font-size: .9rem;
   position: absolute;
   bottom: 1%;
-  right: 0;
+  right: 1%;
 }
 
 .ep_submit_btn:hover {
@@ -121,16 +123,57 @@
   .ie_box {
     height: 60%;
   }
+
+  .ie_info_container {
+    width: 40%;
+  }
 }
 
-@media (max-width: 600px) {
-  .ie_img {
-    margin-right: 35%;
-    height: 40%;
-    width: 60%;
+@media (max-width: 900px) {
+  .ie_info_container {
+    width: 30%;
+  }
+}
+
+@media (max-width: 715px) {
+  .ie_box {
+    flex-direction: column;
+    margin-bottom: 6%;    
   }
 
-  .ie_box {
-    height: 40%;
+  .ie_img_box {
+    margin-bottom: 3%;
   }
+
+  .ie_img {
+    width: 100%;
+  }
+
+  .ie_info_container {
+    width: 100%;
+    align-items: stretch;
+
+    
+    border-left: none;
+    border-top: 1px solid #dbd8cf;
+    border-bottom: 1px solid #dbd8cf;
+    padding-top: 2%;
+    padding-bottom: 2%;  
+    padding-left: 5%;  
+  }
+
+  .ep_submit_btn {
+    bottom: -3.5%;
+  }
+}
+
+@media (max-width: 520px) {
+  .events_map {
+    display: flex;
+    align-items: center;
+    overflow: auto;
+    width: 100%;
+  }
+
+
 }

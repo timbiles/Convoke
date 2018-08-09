@@ -150,7 +150,7 @@
 }
 
 .home_listview {
-  width: 50%;
+  width: 60%;
   margin: 0 20%;
 }
 
@@ -220,14 +220,21 @@
   }
 
   .search_bar {
-    width: 35rem;
+    width: 40rem;
   }
 }
 
 @media (max-width: 800px) {
+  .home_input_section {
+    justify-content: space-evenly;
+    width: 80%;
+  }
   .search_bar {
     width: 30rem;
     height: 2rem;
+  }
+
+  .home_menu_icon {
   }
 
 }
@@ -242,6 +249,8 @@
     height: 1.5rem;
   }
 }
+
+
 
 @media (max-width: 550px) {
   .search_bar {

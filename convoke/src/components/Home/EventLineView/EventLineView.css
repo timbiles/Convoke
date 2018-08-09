@@ -1,3 +1,7 @@
+.elv_container {
+  /* width: 70%; */
+}
+
 .elv_sub_container {
   position: relative;
   display: flex;
@@ -158,8 +162,20 @@
   }
 }
 
+@media (max-width:615px) {
+  .home_listview {
+    width: 85%;
+    margin: 0 5%;
+  }
+}
+
 @media (max-width: 500px) {
   .elv_title {
     font-size: .7rem;
+  }
+
+  .showing_description1 {
+    font-size: .7rem;
+    margin-bottom: 10%;
   }
 }

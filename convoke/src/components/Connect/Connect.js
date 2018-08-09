@@ -28,14 +28,16 @@ class Connect extends Component {
       console.log(data);
       this.setState({ messages: [...this.state.messages, data] });
       console.log(this.state.messages);
-      console.log(this.props)
+
       axios.post(`/api/message/${this.props.user.users_id}`, {
-        messages: data
+        author: this.props.user.name,
+        messages: data.message
       })
     };
 
     this.sendMessage = e => {
       e.preventDefault();
+      console.log(this.props)
       this.socket.emit('SEND_MESSAGE', {
         author: this.props.user.name || this.state.username,
         message: this.state.message
@@ -69,7 +71,6 @@ class Connect extends Component {
   };
 
   render() {
-    // const { filteredPeople } = this.state;
 
     let mapped = _.mapValues(this.props.user.users, function(e) {
       return e.img === null
@@ -93,7 +94,7 @@ class Connect extends Component {
     // let mapNames = _.mapValues(this.props.user.users, function(e) {
     //   return e.name;
     // });
-
+    console.log(this.state)
 
     return (
       <div className="connect_container">
@@ -111,7 +112,7 @@ class Connect extends Component {
             {this.state.messages.map((e,i) => {
               return (
                 <div key={i}>
-                  {e.author}: {e.message}
+                  {e.author}: {e.messages}
                 </div>
               );
             })}
