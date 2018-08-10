@@ -56,31 +56,35 @@ class Card extends Component {
       text: 'Do you wish to continue?',
       confirmButtonText: 'Yes, remove it!',
       showCancelButton: true
-    }).then(res => {
-      if (res.value) {
-        swal({
-          position: 'top-end',
-          type: 'success',
-          title: 'Deleted',
-          text: 'Your Event has been deleted!',
-          showConfirmButton: false,
-          timer: 1500
-        });
-        axios
-          .delete(`/api/deleteEvent/${this.props.user.users_id}/${e}`)
-
-          .catch(() => {
-            swal({
-              position: 'top-end',
-              type: 'warning',
-              title:
-                'You cannot remove an event that someone has already signed up for!'
-            });
+    })
+      .then(res => {
+        if (res.value) {
+          swal({
+            position: 'top-end',
+            type: 'success',
+            title: 'Deleted',
+            text: 'Your Event has been deleted!',
+            showConfirmButton: false,
+            timer: 1500
           });
-      } else if (res.dismiss === swal.DismissReason.cancel) {
-        swal('Cancelled', 'Your Event is still here :)', 'error');
-      }
-    });
+          axios
+            .delete(`/api/deleteEvent/${this.props.user.users_id}/${e}`)
+
+            .catch(() => {
+              swal({
+                position: 'top-end',
+                type: 'warning',
+                title:
+                  'You cannot remove an event that someone has already signed up for!'
+              });
+            });
+        } else if (res.dismiss === swal.DismissReason.cancel) {
+          swal('Cancelled', 'Your Event is still here :)', 'error');
+        }
+      })
+      .then(() => {
+        this.context.history.push('/');
+      });
   };
 
   render() {

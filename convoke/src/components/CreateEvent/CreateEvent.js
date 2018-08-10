@@ -18,7 +18,6 @@ import {
   updateHost,
   updateDate,
   updateTime,
-  updateLocation,
   updateDescription,
   reset
 } from '../../ducks/createReducer';
@@ -83,12 +82,7 @@ class CreateEvent extends Component {
   };
 
   render() {
-    const {
-      updateEventName,
-      updateHost,
-      updateLocation,
-      updateDescription
-    } = this.props;
+    const { updateEventName, updateHost, updateDescription } = this.props;
     const { auth_id } = this.props.user;
     const { date, location } = this.props.create;
 
@@ -193,7 +187,6 @@ export default connect(
     updateHost,
     updateDate,
     updateTime,
-    updateLocation,
     updateDescription,
     reset,
     getUser,

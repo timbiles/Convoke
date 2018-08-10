@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import swal from 'sweetalert2';
 import moment from 'moment';
-import _ from 'lodash';
 import Fade from 'react-reveal/Fade';
 
 import './Profile.css';
@@ -30,32 +29,29 @@ class Profile extends Component {
       text: 'Do you wish to continue?',
       confirmButtonText: 'Yes, remove it!',
       showCancelButton: true
-    })
-      .then(res => {
-        if (res.value) {
-          swal({
-            position: 'top-end',
-            type: 'success',
-            title: 'Removed!',
-            text: 'Your event has been deleted.',
-            showConfirmButton: false,
-            timer: 1000
-          });
-          axios.delete(`/api/delete/${id}/${this.props.user.users_id}`);
-        } else if (res.dismiss === swal.DismissReason.cancel) {
-          swal({
-            position: 'top-end',
-            type: 'error',
-            title: 'Cancelled',
-            text: 'Your Event is still here :)',
-            showConfirmButton: false,
-            timer: 1000
-          });
-        }
-      })
-      .then(() => {
-        this.props.getEventsAttending(this.props.user.users_id);
-      });
+    }).then(res => {
+      if (res.value) {
+        swal({
+          position: 'top-end',
+          type: 'success',
+          title: 'Removed!',
+          text: 'Your event has been deleted.',
+          showConfirmButton: false,
+          timer: 1000
+        });
+        axios.delete(`/api/delete/${id}/${this.props.user.users_id}`);
+      } else if (res.dismiss === swal.DismissReason.cancel) {
+        swal({
+          position: 'top-end',
+          type: 'error',
+          title: 'Cancelled',
+          text: 'Your Event is still here :)',
+          showConfirmButton: false,
+          timer: 1000
+        });
+      }
+    });
+    window.location.reload();
   };
 
   render() {

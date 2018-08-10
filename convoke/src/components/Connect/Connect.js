@@ -50,7 +50,7 @@ class Connect extends Component {
 
   getMessages = () => {
     axios.get('/api/messages').then(res => {
-      console.log(res.data);
+      // console.log(res.data);
       this.setState({ ...this.state, messages: res.data });
     });
   };
@@ -59,7 +59,7 @@ class Connect extends Component {
     this.props.getUser();
     this.props.getAllUsers();
     this.getMessages();
-    console.log(this.state);
+    // console.log(this.state);
   }
 
   handleChange = e => {
@@ -68,8 +68,7 @@ class Connect extends Component {
 
   handleClick = e => {
     this.setState({ filteredPeople: e });
-
-    console.log(this.state.filteredPeople);
+    // console.log(this.state.filteredPeople);
   };
 
   render() {
@@ -91,9 +90,6 @@ class Connect extends Component {
         </div>
       );
     });
-
-    console.log(this.props.user);
-    console.log(this.state);
 
     return (
       <div className="connect_container">

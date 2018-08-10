@@ -17,7 +17,7 @@ export default class About extends Component {
           <div className="about_box">
             <h1>Skills Utilized</h1>
             <p>
-              JavaScript | Node | Express | MassiveJS | Auth0 | PostgresSQL | React | Redux | Google Maps | Socket.IO | Nodemailer
+              JavaScript | Node | Express | MassiveJS | Auth0 | PostgresSQL | React | Redux | Google Maps | Socket.IO | Nodemailer | Open Weather Map 
             </p>
           </div>
         </div>

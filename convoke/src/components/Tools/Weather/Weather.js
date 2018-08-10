@@ -41,7 +41,7 @@ export default class Weather extends Component {
           });
         } else {
           // Determine weather icon
-          console.log(data);
+          // console.log(data);
 
           let weatherId = data.weather[0].id;
 
@@ -83,7 +83,6 @@ export default class Weather extends Component {
         console.log(err);
       });
 
-    console.log(this.state);
   };
 
   render() {
@@ -104,12 +103,12 @@ export default class Weather extends Component {
     );
 
     const WeatherConditions =
-      this.state.cityNotFound == 404 ? (
+      this.state.cityNotFound === 404 ? (
         <div> {WeatherCardError} </div>
       ) : (
         <div>
           <div className="weather_container">
-            <h2 className="current_weather">Current Weather</h2>
+            <h2 className="current_weather">Today's Forecast</h2>
             <div className="weather_card">
               <img
                 className="weather_icon"
