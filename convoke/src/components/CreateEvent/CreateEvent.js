@@ -91,7 +91,6 @@ class CreateEvent extends Component {
   };
 
   onImageDrop = files => {
-    // this.setState({ uploadedFile: files[0] });
     this.handleImageUpload(files[0]);
   };
 
@@ -134,13 +133,10 @@ class CreateEvent extends Component {
       updateDescription
     } = this.props;
     const { auth_id } = this.props.user;
-
     const { date, location } = this.props.create;
 
     const format = 'h:mm a';
-
     const day = moment().format('MM/DD/YYYY');
-
     const today = new Date();
 
     return (

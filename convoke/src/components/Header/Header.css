@@ -28,6 +28,10 @@
   transform: scale(1.05);
 }
 
+.hamburger_link {
+  padding: 1% 0;
+}
+
 .header_render_logout {
   display: flex;
 }

@@ -1,84 +1,83 @@
 .connect_container {
-    display: flex;
-  }
+  display: flex;
+}
 
-  .connect_users {
-      border: 1px solid black;
-      width: 25%;
-      height: 100%;
-  }
+.connect_users {
+  border: 1px solid black;
+  width: 25%;
+  height: 100%;
+}
 
-  .connect_users h1 {
-    text-align: center;
-      
-  }
+.connect_users h1 {
+  text-align: center;
+}
 
-  .connect_sub_container {
-      display: flex;
-      justify-content: center;
-      width: 100%;
-      
-  }
-  
-  .connect_bar {
-      display: flex;
-      flex-direction: column;
-    width: 50%;
-    border: 1px solid black;
-  }
-  
-  .connect_title {
-      text-align: center;
-      font-size: 2rem;
-      font-weight: bold;
-      letter-spacing: 2px;
-      padding-bottom: 3%;
-      margin-bottom: 2%;
-      border-bottom: 1px solid grey;
-  }
-  
-  .messaging_input {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 0 10%;
-  }
-  
-  .message_btn {
-      cursor: pointer;
-  }
-  
-  .message_btn:hover {
-      transform: scale(1.05)
-  }
+.connect_sub_container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
 
-  .connect_profile_img {
-      border-radius: 50%;
-      width: 50px;
-      height: 50px;
-  }
+.connect_bar {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  max-height: 600px;
+  border: 1px solid black;
+  overflow: scroll;
+}
 
-  .connect_user {
-    display: flex;
-    background-color: rgb(193, 213, 241);
-    margin: 1%;
-    padding: 1%;
-    align-self: flex-end;
-    border: 1px solid #000;
-    border-radius: 5%;
-  }
+.connect_title {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+  padding-bottom: 3%;
+  margin-bottom: 2%;
+  border-bottom: 1px solid grey;
+}
 
-  .connect_messenger {
-    display: flex;
-    background-color: rgb(184, 212, 174);
-    margin: 1%;
-    padding: 1%;
-    align-self: flex-start;
-    border: 1px solid #000;
-    border-radius: 5%;
-  }
+.messaging_input {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 10%;
+}
 
-  .connect_bold {
-      font-weight: bold;
-  }
-  
+.message_btn {
+  cursor: pointer;
+}
+
+.message_btn:hover {
+  transform: scale(1.05);
+}
+
+.connect_profile_img {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+}
+
+.connect_user {
+  display: flex;
+  background-color: rgb(193, 213, 241);
+  margin: 1%;
+  padding: 1%;
+  align-self: flex-end;
+  border: 1px solid #000;
+  border-radius: 5%;
+}
+
+.connect_messenger {
+  display: flex;
+  background-color: rgb(184, 212, 174);
+  margin: 1%;
+  padding: 1%;
+  align-self: flex-start;
+  border: 1px solid #000;
+  border-radius: 5%;
+}
+
+.connect_bold {
+  font-weight: bold;
+}

@@ -10,12 +10,16 @@ import Fade from 'react-reveal/Fade';
 import './Profile.css';
 import Invite from './Invite/Invite';
 
-import { getUser, getAllUsers, getEventsAttending } from '../../ducks/userReducer';
+import {
+  getUser,
+  getAllUsers,
+  getEventsAttending
+} from '../../ducks/userReducer';
 import { removeEvent } from '../../ducks/eventReducer';
 
 class Profile extends Component {
   componentDidMount() {
-    this.props.getEventsAttending(this.props.user.users_id);    
+    this.props.getEventsAttending(this.props.user.users_id);
   }
 
   handleDelete = id => {
@@ -54,8 +58,6 @@ class Profile extends Component {
       });
   };
 
-
-
   render() {
     const {
       auth_id,
@@ -66,46 +68,15 @@ class Profile extends Component {
       bio,
       membership_date
     } = this.props.user;
+    const { userEvents } = this.props.userEvents;
 
     const image = !img
       ? 'https://image.flaticon.com/icons/svg/21/21104.svg'
       : img;
 
-    const { userEvents } = this.props.userEvents;
-
-    let mapped = _.mapValues(userEvents, function (e) {
-      return e.events_id;
-    });
-
-   
-
-    let image1 = (
-      <img
-        className="events_person"
-        src="https://image.flaticon.com/icons/svg/10/10522.svg"
-        alt="person icon"
-      />
-    );
-
-    console.log(this.props)
-    console.log(userEvents)
-
     const created = this.props.events.events.filter(e => {
-      return e.users_id === this.props.user.users_id
-    })
-
-    const mapCreate = created.map((e, i) => {
-      return (
-        <div key={i} className='create_map'>
-
-          <Link className='create_map' to={`/events/${e.title}`}>
-
-            <h1 className='create_map_sub'>{e.title}</h1>
-          </Link>
-
-        </div>
-      )
-    })
+      return e.users_id === this.props.user.users_id;
+    });
 
     return (
       <div className="mc_container">
@@ -118,44 +89,50 @@ class Profile extends Component {
               </a>
             </div>
           ) : (
-              <div className='profile_info'>
+            <div className="profile_info">
+              <div className="profile_left">
+                <p className="mc_profile_name">{name}</p>
+                <div className="img-email-edit">
+                  <img
+                    className="profile_display_img"
+                    src={image}
+                    alt={auth_id}
+                  />
 
-                <div className='profile_left'>
-                  <p className="mc_profile_name">{name}</p>
-                  <div className="img-email-edit">
-                    <img
-                      className="profile_display_img"
-                      src={image}
-                      alt={auth_id}
-                    />
-
-                    <div className="email_and_img_edit">
-                      <h3>Email</h3>
-                      <p>{email}</p>
-                      <h3>Home Town</h3>
-                      <p>{home_town}</p>
-                      <h3>Member Since</h3>
-                      <p>{moment(membership_date).format('MMM YYYY')}</p>
-                    </div>
+                  <div className="email_and_img_edit">
+                    <h3>Email</h3>
+                    <p>{email}</p>
+                    <h3>Home Town</h3>
+                    <p>{home_town}</p>
+                    <h3>Member Since</h3>
+                    <p>{moment(membership_date).format('MMM YYYY')}</p>
                   </div>
-                  <h3>Bio</h3>
-                  <p className="profile_bio">{bio}</p>
-                  <Link className="edit_profile_link" to="/editprofile">
-                    Edit Profile
-              </Link>
                 </div>
-                <div className='profile_right'>
-                  <h1 className='profile_dropdown'>Created Events</h1>
-                  <h1 className='profile_created_events'>
-                    {mapCreate}
-                  </h1>
-
-                </div>
+                <h3>Bio</h3>
+                <p className="profile_bio">{bio}</p>
+                <Link className="edit_profile_link" to="/editprofile">
+                  Edit Profile
+                </Link>
               </div>
-            )}
+              <div className="profile_right">
+                <h1 className="profile_dropdown">Created Events</h1>
+                <h1 className="profile_created_events">
+                  {created.map((e, i) => {
+                    return (
+                      <div key={i} className="create_map">
+                        <Link className="create_map" to={`/events/${e.title}`}>
+                          <h1 className="create_map_sub">{e.title}</h1>
+                        </Link>
+                      </div>
+                    );
+                  })}
+                </h1>
+              </div>
+            </div>
+          )}
         </div>
 
-        <h1 className='profile_events_text'>Attending Events</h1>
+        <h1 className="profile_events_text">Attending Events</h1>
 
         <div className="mc_events_display">
           {this.props.user.eventsAttending.map((e, i) => {
@@ -179,18 +156,13 @@ class Profile extends Component {
                     {moment(e.time).format('h:mm a')}
                   </h1>
                 </div>
-                <Link className='elv_title' to={`/events/${e.title}`}>
-
+                <Link className="elv_title" to={`/events/${e.title}`}>
                   <Fade left cascade>
                     <h1 className="elv_title">{e.title.toUpperCase()}</h1>
                   </Fade>
                 </Link>
                 <div className="elv_sub_content">
-                  <img
-                    className="elv_img"
-                    src={e.img}
-                    alt="Event pic"
-                  />
+                  <img className="elv_img" src={e.img} alt="Event pic" />
                   <div className="elv_sub_content1">
                     <p>[{e.host}]</p>
                     <p>
@@ -199,10 +171,7 @@ class Profile extends Component {
                         src="https://image.flaticon.com/icons/svg/33/33622.svg"
                         alt="map marker"
                       />{' '}
-                      {e.location.substring(
-                        0,
-                        e.location.length - 5
-                      )}
+                      {e.location.substring(0, e.location.length - 5)}
                     </p>
                     <br />
 
@@ -213,20 +182,18 @@ class Profile extends Component {
                           : e.description)}
                     </p>
                     <p className="elv_people">
-                      {image1}
-
-                    {/* {
-                       _.filter(mapped, function (ev) {
-                        return ev === e.events_id;
-                      }).length
-
-                    } */}
-
-
-                      {/* {userEvents.length !== 0 && filter} */}
+                      <img
+                        className="events_person"
+                        src="https://image.flaticon.com/icons/svg/10/10522.svg"
+                        alt="person icon"
+                      />
+                      {
+                        userEvents.filter(ev => {
+                          return ev.events_id === e.events_id;
+                        }).length
+                      }
                     </p>
                     <div className="elv_icons">
-
                       <Invite currentEvent={e} />
 
                       <input
@@ -245,7 +212,6 @@ class Profile extends Component {
             );
           })}
         </div>
-
       </div>
     );
   }

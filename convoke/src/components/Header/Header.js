@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-// import axios from 'axios';
 
 import './Header.css';
 import Avatar from '../Avatar/Avatar';
@@ -24,6 +23,7 @@ class Header extends Component {
   }
   render() {
     const { auth_id } = this.props.user;
+    
     return (
       <div className="header_container">
         <div className="header_link_container">

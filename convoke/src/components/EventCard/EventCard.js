@@ -56,8 +56,6 @@ class Card extends Component {
       text: 'Do you wish to continue?',
       confirmButtonText: 'Yes, remove it!',
       showCancelButton: true
-      // closeOnConfirm: false,
-      // closeOnCancel: false
     }).then(res => {
       if (res.value) {
         swal({
@@ -87,14 +85,13 @@ class Card extends Component {
 
   render() {
     const { eachEvent } = this.props;
-
     const { userEvents } = this.props.userEvents;
 
-    let mapped = _.mapValues(userEvents, function (e) {
+    let mapped = _.mapValues(userEvents, function(e) {
       return e.events_id;
     });
 
-    let filter = _.filter(mapped, function (e) {
+    let filter = _.filter(mapped, function(e) {
       return e === eachEvent.events_id;
     }).length;
 
@@ -105,15 +102,10 @@ class Card extends Component {
         alt="person icon"
       />
     );
-    // let image2 = (
-    //   <img className="events_person_white" src={pic} alt="person icon" />
-    // );
 
     return (
       <div className="events_container">
-        <div className='flipper'>
-
-
+        <div className="flipper">
           <div className="events_flip">
             <div className="events_title">
               <Fade left cascade>
@@ -156,7 +148,7 @@ class Card extends Component {
                 {eachEvent.location.substring(0, eachEvent.location.length - 5)}
               </h3>
               <p className="showing_description">
-              <img
+                <img
                   className="eventcard_icon"
                   src="https://image.flaticon.com/icons/svg/684/684831.svg"
                   alt="Description icon"
@@ -167,29 +159,12 @@ class Card extends Component {
                     : eachEvent.description)}
               </p>
 
-              <h3 className='people_num_container'>
-                <p className='ec_person'>{image1} {userEvents.length !== 0 && filter}</p>
-
-
+              <h3 className="people_num_container">
+                <p className="ec_person">
+                  {image1}
+                  {userEvents.length !== 0 && filter}
+                </p>
               </h3>
-
-              {/* {this.props.user.users_id === eachEvent.users_id && (
-                <input
-                  className="remove_event_by_id"
-                  type="image"
-                  src="https://image.flaticon.com/icons/svg/107/107181.svg"
-                  alt="trash icon"
-                  onClick={e => this.handleDelete(eachEvent.events_id)}
-                />
-              )}
-
-              <input
-                type="image"
-                className="events_btn"
-                src="https://image.flaticon.com/icons/svg/149/149411.svg"
-                alt="Add to favs btn"
-                onClick={e => this.handleClick(eachEvent.events_id)}
-              /> */}
 
               <div className="events_info_btn">
                 <input
@@ -227,12 +202,13 @@ class Card extends Component {
             </div>
           </div>
 
-          <div className='back_flip'>
-            <Link className='back_flip_title' to={`/events/${eachEvent.title}`}>
-
-              <h1 className="back_flip_title">{eachEvent.title.toUpperCase()}</h1>
+          <div className="back_flip">
+            <Link className="back_flip_title" to={`/events/${eachEvent.title}`}>
+              <h1 className="back_flip_title">
+                {eachEvent.title.toUpperCase()}
+              </h1>
             </Link>
-            <div className='ec_map'>
+            <div className="ec_map">
               <Map
                 lat={eachEvent.lat}
                 lng={eachEvent.lng}
@@ -268,7 +244,6 @@ class Card extends Component {
               onClick={e => this.handleClick(eachEvent.events_id)}
             />
           </div>
-
         </div>
       </div>
     );

@@ -12,8 +12,6 @@ import './EventLineView.css';
 import { getUser, getEventsAttending } from '../../../ducks/userReducer';
 
 class EventLineView extends Component {
-
-
   handleClick = val => {
     axios
       .post(`/api/add-event/${val}/${this.props.user.users_id}`)
@@ -57,8 +55,6 @@ class EventLineView extends Component {
       text: 'Do you wish to continue?',
       confirmButtonText: 'Yes, remove it!',
       showCancelButton: true
-      // closeOnConfirm: false,
-      // closeOnCancel: false
     }).then(res => {
       if (res.value) {
         swal({
@@ -88,24 +84,15 @@ class EventLineView extends Component {
 
   render() {
     const { eachEvent } = this.props;
-
     const { userEvents } = this.props.userEvents;
 
-    let mapped = _.mapValues(userEvents, function (e) {
+    let mapped = _.mapValues(userEvents, function(e) {
       return e.events_id;
     });
 
-    let filter = _.filter(mapped, function (e) {
+    let filter = _.filter(mapped, function(e) {
       return e === eachEvent.events_id;
     }).length;
-
-    let image1 = (
-      <img
-        className="events_person"
-        src="https://image.flaticon.com/icons/svg/10/10522.svg"
-        alt="person icon"
-      />
-    );
 
     return (
       <div className="elv_container">
@@ -128,7 +115,7 @@ class EventLineView extends Component {
               {moment(eachEvent.time).format('h:mm a')}
             </h1>
           </div>
-          <Link className='elv_title' to={`/events/${eachEvent.title}`}>
+          <Link className="elv_title" to={`/events/${eachEvent.title}`}>
             <Fade left cascade>
               <h1 className="elv_title">{eachEvent.title.toUpperCase()}</h1>
             </Fade>
@@ -136,7 +123,8 @@ class EventLineView extends Component {
           <div className="elv_sub_content">
             <img className="elv_img" src={eachEvent.img} alt="Event pic" />
             <div className="elv_sub_content1">
-              <p>[{eachEvent.host}]</p><br />
+              <p>[{eachEvent.host}]</p>
+              <br />
               <p>
                 <img
                   className="eventcard_icon"
@@ -146,8 +134,7 @@ class EventLineView extends Component {
                 {eachEvent.location.substring(0, eachEvent.location.length - 5)}
               </p>
               <br />
-              <div className='evts_description'>
-
+              <div className="evts_description">
                 <img
                   className="eventcard_icon"
                   src="https://image.flaticon.com/icons/svg/684/684831.svg"
@@ -158,20 +145,23 @@ class EventLineView extends Component {
                     (eachEvent.description.length > 55
                       ? eachEvent.description.substring(0, 55) + '...'
                       : eachEvent.description)}
-                      <div className='hidden_description'>
-                      <h1>Event Description</h1><br />
-                        {eachEvent.description}
-                      </div>
+                  <div className="hidden_description">
+                    <h1>Event Description</h1>
+                    <br />
+                    {eachEvent.description}
+                  </div>
                 </div>
               </div>
 
               <p className="elv_people">
-                {image1}
+                <img
+                  className="events_person"
+                  src="https://image.flaticon.com/icons/svg/10/10522.svg"
+                  alt="person icon"
+                />
                 {userEvents.length !== 0 && filter}
               </p>
               <div className="elv_icons">
-
-
                 <img
                   type="image"
                   className="elv_add home_icon"
@@ -179,7 +169,6 @@ class EventLineView extends Component {
                   alt="Add to favs"
                   onClick={e => this.handleClick(eachEvent.events_id)}
                 />
-
 
                 {this.props.user.users_id === eachEvent.users_id && (
                   <input

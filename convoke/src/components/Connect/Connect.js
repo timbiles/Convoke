@@ -21,24 +21,24 @@ class Connect extends Component {
 
     this.socket = io(process.env.REACT_APP_SERVER);
 
-    this.socket.on('RECEIVE_MESSAGE', function (data) {
+    this.socket.on('RECEIVE_MESSAGE', function(data) {
       addMessage(data);
     });
 
     const addMessage = data => {
       console.log(data);
       this.setState({ messages: [...this.state.messages, data] });
-      console.log(this.state.messages)
+      console.log(this.state.messages);
 
       axios.post(`/api/message/${this.props.user.users_id}`, {
         author: this.props.user.name,
         messages: data.message
-      })
+      });
     };
 
     this.sendMessage = e => {
       e.preventDefault();
-      console.log(this.props)
+      console.log(this.props);
       this.socket.emit('SEND_MESSAGE', {
         author: this.props.user.name || this.state.username,
         message: this.state.message,
@@ -51,20 +51,20 @@ class Connect extends Component {
   getMessages = () => {
     axios.get('/api/messages').then(res => {
       console.log(res.data);
-      this.setState({ ...this.state, messages: res.data })
-    })
-  }
+      this.setState({ ...this.state, messages: res.data });
+    });
+  };
 
   componentDidMount() {
     this.props.getUser();
     this.props.getAllUsers();
     this.getMessages();
-    console.log(this.state)
+    console.log(this.state);
   }
 
   handleChange = e => {
-    this.setState({ filteredPeople: e })
-  }
+    this.setState({ filteredPeople: e });
+  };
 
   handleClick = e => {
     this.setState({ filteredPeople: e });
@@ -73,8 +73,7 @@ class Connect extends Component {
   };
 
   render() {
-
-    let mapped = _.mapValues(this.props.user.users, function (e) {
+    let mapped = _.mapValues(this.props.user.users, function(e) {
       return e.img === null
         ? 'https://image.flaticon.com/icons/svg/21/21104.svg'
         : e.img;
@@ -93,29 +92,29 @@ class Connect extends Component {
       );
     });
 
-
-    console.log(this.props.user)
-    console.log(this.state)
+    console.log(this.props.user);
+    console.log(this.state);
 
     return (
       <div className="connect_container">
         <div className="connect_users">
-          <h1 className='connect_title'>Find Users</h1>
+          <h1 className="connect_title">Find Users</h1>
           {map}
         </div>
         <div className="connect_sub_container">
           <div className="connect_bar">
-            <h1 className='connect_title'>Message Feed</h1>
+            <h1 className="connect_title">Message Feed</h1>
             {this.state.messages.map((e, i) => {
-              return (
-                e.users_id === this.props.user.users_id ?
-                  <h1 className='connect_user' key={i}>
-                    <p className='connect_bold'>{e.author}</p>: {e.messages || e.message}
-                  </h1>
-                  :
-                  <h1 className='connect_messenger' key={i}>
-                    <p className='connect_bold'>{e.author}</p>: {e.messages || e.message}
-                  </h1>
+              return e.users_id === this.props.user.users_id ? (
+                <h1 className="connect_user" key={i}>
+                  <p className="connect_bold">{e.author}</p>:{' '}
+                  {e.messages || e.message}
+                </h1>
+              ) : (
+                <h1 className="connect_messenger" key={i}>
+                  <p className="connect_bold">{e.author}</p>:{' '}
+                  {e.messages || e.message}
+                </h1>
               );
             })}
           </div>
@@ -154,52 +153,3 @@ export default connect(
     getAllUsers
   }
 )(Connect);
-
-// import React, { Component } from 'react';
-// import { connect } from 'react-redux';
-// import _ from 'lodash';
-
-// import './Connect.css';
-// import { getAllUsers } from '../../ducks/userReducer';
-
-// class Connect extends Component {
-//   componentDidMount() {
-//     this.props.getAllUsers();
-//   }
-
-//   render() {
-//     const { users } = this.props.user;
-
-//     let map = _.mapValues(users, function(e) {
-//       return e.img
-//     });
-
-//     let filter = _.filter(map, function(e) {
-//         return e
-//     })
-
-//     // let map = users.map((e,i) => {
-//     //     return (
-//     //         <div key={i}>
-//     //             e.img.source
-//     //         </div>
-//     //     )
-//     // })
-
-//     console.log(filter)
-
-//     return (
-//       <div className="connect_container">
-//         <h1>Connect</h1>
-//         {/* <div className="connect_sidebar"><img className='connect_img' src={filter} alt="user profile"/></div> */}
-//       </div>
-//     );
-//   }
-// }
-
-// const mapStateToProps = state => state;
-
-// export default connect(
-//   mapStateToProps,
-//   { getAllUsers }
-// )(Connect);

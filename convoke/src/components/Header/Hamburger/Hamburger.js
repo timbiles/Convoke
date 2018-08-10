@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import './Hamburger.css';
-
 import { getUser } from '../../../ducks/userReducer';
 
 class Hamburger extends Component {
@@ -25,9 +23,19 @@ class Hamburger extends Component {
             <div className="hamburger_dropdown">
               <Link
                 onClick={() => {
+                  window.scroll({ top: 1000, behavior: 'smooth' });
+                }}
+                className="link hamburger_link"
+                to="/profile"
+              >
+                MyConvoke
+              </Link>
+              <br />
+              <Link
+                onClick={() => {
                   window.scrollTo({ top: 1000, behavior: 'smooth' });
                 }}
-                className="link"
+                className="link hamburger_link"
                 to="/create"
               >
                 Create Event
@@ -37,22 +45,13 @@ class Hamburger extends Component {
                 onClick={() => {
                   window.scroll({ top: 1000, behavior: 'smooth' });
                 }}
-                className="link"
-                to="/chat"
+                className="link hamburger_link"
+                to="/connect"
               >
-                Chat
+                Connect
               </Link>
 
-              <Link
-                onClick={() => {
-                  window.scroll({ top: 1000, behavior: 'smooth' });
-                }}
-                className="link"
-                to="/profile"
-              >
-                MyConvoke
-              </Link>
-              <Link className="link" to="/Calendar">
+              <Link className="link hamburger_link" to="/Calendar">
                 Calendar
               </Link>
               <div>

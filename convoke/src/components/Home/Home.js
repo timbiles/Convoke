@@ -56,16 +56,6 @@ class Home extends Component {
       })
       .map((e, i) => <EventLineView eachEvent={e} key={i} />);
 
-    let mapEvents = this.props.user.eventsAttending.map((e, i) => {
-      return (
-        <div className="hidden_side_events" key={i}>
-          <Link className="home_selected_event" to={`/events/${e.title}`}>
-            {e.title}
-          </Link>
-        </div>
-      );
-    });
-
     return (
       <Fragment>
         <div className="home_container">
@@ -90,17 +80,8 @@ class Home extends Component {
                 placeholder=". . ."
                 onChange={e => this.handleChange(e.target.value)}
               />
-              <span className='search_span'>Search Events</span>
+              <span className="search_span">Search Events</span>
             </label>
-
-            {/* <div className="home_dropdown_container">
-              <h1>Categories</h1>
-              <div className="home_dropdown">
-                <h2>Party</h2>
-                <h2>Concert</h2>
-                <h2>Other...</h2>
-              </div>
-            </div> */}
           </div>
           <div className="home_linebreak" />
           {isLoading && <p>Loading...</p>}
@@ -129,7 +110,19 @@ class Home extends Component {
           <div className="hidden_menu_arrow">
             <div className="hidden_menu_content">
               <h1>Quick Events List</h1>
-              {mapEvents}
+
+              {this.props.user.eventsAttending.map((e, i) => {
+                return (
+                  <div className="hidden_side_events" key={i}>
+                    <Link
+                      className="home_selected_event"
+                      to={`/events/${e.title}`}
+                    >
+                      {e.title}
+                    </Link>
+                  </div>
+                );
+              })}
             </div>
             <input
               type="image"
@@ -150,14 +143,3 @@ export default connect(
   mapStateToProps,
   { getUser, getEvents, getEventsAttending }
 )(Home);
-
-/*
- SHORT CIRCUIT EVALUATION:
- &&=>
- VALUE ON LEFT IS TRUE, RETURN VALUE ON RIGHT
- VALUE ON LEFT IS FALSE, RETURN ITSELF
-
- ||=>
- VALUE ON LEFT IS FALSE, RETURN RIGHT VALUE;
- VALUE ON LEFT IS TRUE, RETURN ITSELF
-*/
