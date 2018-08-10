@@ -14,20 +14,21 @@ class Connect extends Component {
     this.state = {
       username: '',
       message: '',
+      users_id: '',
       messages: [],
       filteredPeople: []
     };
 
     this.socket = io(process.env.REACT_APP_SERVER);
 
-    this.socket.on('RECEIVE_MESSAGE', function(data) {
+    this.socket.on('RECEIVE_MESSAGE', function (data) {
       addMessage(data);
     });
 
     const addMessage = data => {
       console.log(data);
       this.setState({ messages: [...this.state.messages, data] });
-      console.log(this.state.messages);
+      console.log(this.state.messages)
 
       axios.post(`/api/message/${this.props.user.users_id}`, {
         author: this.props.user.name,
@@ -40,16 +41,17 @@ class Connect extends Component {
       console.log(this.props)
       this.socket.emit('SEND_MESSAGE', {
         author: this.props.user.name || this.state.username,
-        message: this.state.message
+        message: this.state.message,
+        users_id: this.props.user.users_id
       });
       this.setState({ message: '' });
     };
   }
 
-  getMessages=() => {
+  getMessages = () => {
     axios.get('/api/messages').then(res => {
       console.log(res.data);
-      this.setState({...this.state, messages: res.data})
+      this.setState({ ...this.state, messages: res.data })
     })
   }
 
@@ -61,18 +63,18 @@ class Connect extends Component {
   }
 
   handleChange = e => {
-    this.setState({filteredPeople: e})
+    this.setState({ filteredPeople: e })
   }
 
   handleClick = e => {
-    this.setState({ filteredPeople: e});
+    this.setState({ filteredPeople: e });
 
     console.log(this.state.filteredPeople);
   };
 
   render() {
 
-    let mapped = _.mapValues(this.props.user.users, function(e) {
+    let mapped = _.mapValues(this.props.user.users, function (e) {
       return e.img === null
         ? 'https://image.flaticon.com/icons/svg/21/21104.svg'
         : e.img;
@@ -91,29 +93,29 @@ class Connect extends Component {
       );
     });
 
-    // let mapNames = _.mapValues(this.props.user.users, function(e) {
-    //   return e.name;
-    // });
+
+    console.log(this.props.user)
     console.log(this.state)
 
     return (
       <div className="connect_container">
         <div className="connect_users">
-          <h1>Find Users</h1>
-          {/* <input placeholder="Search through Events" onChange={e => this.handleChange(e.target.value)}type="text" />
-          <button onClick={this.handleClick}>
-            Search
-          </button> */}
+          <h1 className='connect_title'>Find Users</h1>
           {map}
         </div>
         <div className="connect_sub_container">
           <div className="connect_bar">
-            <h1>Message Feed</h1>
-            {this.state.messages.map((e,i) => {
+            <h1 className='connect_title'>Message Feed</h1>
+            {this.state.messages.map((e, i) => {
               return (
-                <div key={i}>
-                  {e.author}: {e.messages}
-                </div>
+                e.users_id === this.props.user.users_id ?
+                  <h1 className='connect_user' key={i}>
+                    <p className='connect_bold'>{e.author}</p>: {e.messages || e.message}
+                  </h1>
+                  :
+                  <h1 className='connect_messenger' key={i}>
+                    <p className='connect_bold'>{e.author}</p>: {e.messages || e.message}
+                  </h1>
               );
             })}
           </div>

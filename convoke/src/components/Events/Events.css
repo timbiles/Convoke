@@ -101,14 +101,20 @@
   width: auto;
 }
 
+.events_attend_link {
+  cursor: pointer;
+}
+
 .events_attend {
   font-weight: bold;
   font-size: 1.3rem;
   padding-left: 3%;
+  margin-top: 3%;
 }
 
-.events_attend:hover {
-  /* transform: scale(1.05) */
+.events_attend_link:hover {
+  transform: translate(2%)
+  
 }
 
 @keyframes ieTitleFade {

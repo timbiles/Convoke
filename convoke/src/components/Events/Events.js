@@ -253,7 +253,7 @@ class Events extends Component {
                     <div className='events_attend_container'>
                       {attending.length === 0 ?
                         <h5
-                          className='events_attend'
+                          className='events_attend events_attend_link'
                           onClick={e => this.handleClick(event.events_id)}
                         >Attend</h5>
                         :
@@ -332,11 +332,11 @@ class Events extends Component {
                       <div className='events_attend_container'>
                         {attending.length === 0 ?
                           <h5
-                            className='events_attend'
+                            className='events_attend events_attend_link'
                             onClick={e => this.handleClick(event.events_id)}
                           >Attend</h5>
                           :
-                          <h5 className='events_attend'>You're already going!</h5>
+                          <h5 className='events_attend'>You're signed up!</h5>
                         }
                       </div>
                     </div>

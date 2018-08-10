@@ -15,9 +15,7 @@ import { removeEvent } from '../../ducks/eventReducer';
 
 class Profile extends Component {
   componentDidMount() {
-    this.props.getEventsAttending(this.props.user.users_id);
-    // this.props.getAllUsers();        
-
+    this.props.getEventsAttending(this.props.user.users_id);    
   }
 
   handleDelete = id => {
@@ -79,9 +77,7 @@ class Profile extends Component {
       return e.events_id;
     });
 
-    let filter = _.filter(mapped, function (e) {
-      return e === e.events_id;
-    }).length;
+   
 
     let image1 = (
       <img
@@ -91,7 +87,8 @@ class Profile extends Component {
       />
     );
 
-
+    console.log(this.props)
+    console.log(userEvents)
 
     const created = this.props.events.events.filter(e => {
       return e.users_id === this.props.user.users_id
@@ -217,7 +214,16 @@ class Profile extends Component {
                     </p>
                     <p className="elv_people">
                       {image1}
-                      {userEvents.length !== 0 && filter}
+
+                    {/* {
+                       _.filter(mapped, function (ev) {
+                        return ev === e.events_id;
+                      }).length
+
+                    } */}
+
+
+                      {/* {userEvents.length !== 0 && filter} */}
                     </p>
                     <div className="elv_icons">
 
