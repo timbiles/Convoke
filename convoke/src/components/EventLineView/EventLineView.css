@@ -98,7 +98,7 @@
   width: 150px;
   transform: translateY(-50%);
   background-color: rgb(253, 253, 253);
-  border: 1px solid black;
+  border: 1px solid rgb(240, 239, 239);
   padding: 3%;
   z-index: 9999;
   animation: downFade .5s;

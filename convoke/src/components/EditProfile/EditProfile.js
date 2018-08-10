@@ -23,14 +23,12 @@ const CLOUDINARY_UPLOAD_URL =
 const CLOUDINARY_UPLOAD_PRESET = 'ncjyrxth';
 
 class EditProfile extends Component {
-  constructor() {
-    super();
-    this.state = {
-      uploadedFileCloudinaryUrl: '',
-      initialImage: true,
-      editImage: false
-    };
-  }
+  state = {
+    uploadedFileCloudinaryUrl: '',
+    initialImage: true,
+    editImage: false
+  };
+
   componentDidMount() {
     this.props.getEventsAttending(this.props.user.users_id);
   }
@@ -96,11 +94,11 @@ class EditProfile extends Component {
           ) : (
             <div>
               <div>
-              <ContentEditable
-                      html={name}
-                      onChange={e => updateName(e.target.value)}
-                      className='profile_editable_big'
-                    />
+                <ContentEditable
+                  html={name}
+                  onChange={e => updateName(e.target.value)}
+                  className="profile_editable_big"
+                />
                 <div className="img-email-edit">
                   {this.state.initialImage && (
                     <div>
@@ -142,34 +140,37 @@ class EditProfile extends Component {
                             )}
                           </div>
                         </Dropzone>
-                        <h1 className="ep_edit_pic" onClick={this.toggleSubmitEdit}>
-                        Submit Image
-                      </h1>
+                        <h1
+                          className="ep_edit_pic"
+                          onClick={this.toggleSubmitEdit}
+                        >
+                          Submit Image
+                        </h1>
                       </div>
                     </form>
                   )}
 
                   <div className="email_and_img_edit">
-                  <h3>Email</h3>
-                  <ContentEditable
+                    <h3>Email</h3>
+                    <ContentEditable
                       html={email}
                       onChange={e => updateEmail(e.target.value)}
-                      className='profile_editable'
+                      className="profile_editable"
                     />
-                      <h3>Home Town</h3>
+                    <h3>Home Town</h3>
                     <ContentEditable
                       html={home_town}
                       onChange={e => updateHomeTown(e.target.value)}
-                      className='profile_editable'
+                      className="profile_editable"
                     />
                   </div>
                 </div>
                 <h3>Bio</h3>
                 <ContentEditable
-                      html={bio}
-                      onChange={e => updateBio(e.target.value)}
-                      className='profile_editable'
-                    />
+                  html={bio}
+                  onChange={e => updateBio(e.target.value)}
+                  className="profile_editable"
+                />
                 <div>
                   <Link className="edit_submit_btn" to="/profile">
                     <h1
@@ -185,7 +186,6 @@ class EditProfile extends Component {
             </div>
           )}
         </div>
-
       </div>
     );
   }

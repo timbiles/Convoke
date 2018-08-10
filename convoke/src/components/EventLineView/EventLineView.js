@@ -9,7 +9,7 @@ import Fade from 'react-reveal/Fade';
 
 import './EventLineView.css';
 
-import { getUser, getEventsAttending } from '../../../ducks/userReducer';
+import { getUser, getEventsAttending } from '../../ducks/userReducer';
 
 class EventLineView extends Component {
   handleClick = val => {

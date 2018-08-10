@@ -10,7 +10,7 @@ import DatePicker from 'react-custom-date-picker';
 import TimePicker from 'rc-time-picker';
 
 import Map from '../Map/Map';
-import Weather from '../Weather/Weather';
+import Weather from '../Tools/Weather/Weather';
 import './Events.css';
 
 import {
@@ -31,17 +31,14 @@ import {
 // const CLOUDINARY_UPLOAD_PRESET = 'ncjyrxth';
 
 class Events extends Component {
-  constructor(props) {
-    super();
-    this.state = {
-      eventId: '',
-      title: '',
-      host: '',
-      date: '',
-      time: '',
-      description: ''
-    };
-  }
+  state = {
+    eventId: '',
+    title: '',
+    host: '',
+    date: '',
+    time: '',
+    description: ''
+  };
 
   componentDidMount() {
     var event =

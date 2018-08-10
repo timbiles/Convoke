@@ -4,21 +4,17 @@ import { Link } from 'react-router-dom';
 
 import './Home.css';
 import EventCard from '../EventCard/EventCard';
-import EventLineView from './EventLineView/EventLineView';
+import EventLineView from '../EventLineView/EventLineView';
 
 import { getEvents } from '../../ducks/eventReducer';
 import { getUser, getEventsAttending } from '../../ducks/userReducer';
 
 class Home extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      filteredEvents: [],
-      blockView: false,
-      listView: true
-    };
-  }
+  state = {
+    filteredEvents: [],
+    blockView: false,
+    listView: true
+  };
 
   componentDidMount() {
     this.props.getUser().then(() => {

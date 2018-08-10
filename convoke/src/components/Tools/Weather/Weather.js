@@ -3,23 +3,19 @@ import { Link } from 'react-router-dom';
 
 import './Weather.css';
 
-class Weather extends Component {
-  constructor() {
-    super();
-
-    this.state = {
-      isLoading: true,
-      currentTemp: '',
-      humidity: '',
-      wind: '',
-      windDirection: '',
-      currentCondition: '',
-      currentConditionDescription: '',
-      weatherIcon: '',
-      cityName: '',
-      cityNotFound: ''
-    };
-  }
+export default class Weather extends Component {
+  state = {
+    isLoading: true,
+    currentTemp: '',
+    humidity: '',
+    wind: '',
+    windDirection: '',
+    currentCondition: '',
+    currentConditionDescription: '',
+    weatherIcon: '',
+    cityName: '',
+    cityNotFound: ''
+  };
 
   componentDidMount() {
     this.getWeather();
@@ -113,6 +109,7 @@ class Weather extends Component {
       ) : (
         <div>
           <div className="weather_container">
+            <h2 className="current_weather">Current Weather</h2>
             <div className="weather_card">
               <img
                 className="weather_icon"
@@ -137,16 +134,6 @@ class Weather extends Component {
         </div>
       );
 
-    // const LoadingDisplay = (
-    //   <div className="loading">
-    //     <img
-    //       className="loadingIcon"
-    //       src="https://image.flaticon.com/icons/svg/25/25220.svg"
-    //       alt="loading icon"
-    //     />
-    //   </div>
-    // );
-
     const LoadingDisplay = (
       <div className="loading">
         <div className="loading_bar" />
@@ -166,5 +153,3 @@ class Weather extends Component {
     return <div>{CurrentWeatherCard}</div>;
   }
 }
-
-export default Weather;

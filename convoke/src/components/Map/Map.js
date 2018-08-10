@@ -14,21 +14,15 @@ const Marker = props => {
 };
 
 class Map extends Component {
-  constructor() {
-    super();
-
-    this.state = {
-      center: {
-        lat:
-          32.735687,
-        lng: -97.10806559999997
-      },
-      zoom: 11
-    };
-  }
+  state = {
+    center: {
+      lat: 32.735687,
+      lng: -97.10806559999997
+    },
+    zoom: 11
+  };
 
   render() {
-
     return (
       <div className="google_map">
         <GoogleMapReact

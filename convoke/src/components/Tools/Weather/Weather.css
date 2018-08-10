@@ -10,7 +10,7 @@
     align-items: center;
     text-align: center;
     width: 100%;
-    margin-top: 10%;
+    /* margin-top: 10%; */
 }
 
 .weather_icon {
@@ -38,6 +38,12 @@
     width: auto;
 }
 
+.current_weather {
+    font-size: 1.3rem;
+    font-weight: bold;
+    letter-spacing: .5px;
+    margin: 4% 0;
+}
 
  .loading {
   position: absolute;

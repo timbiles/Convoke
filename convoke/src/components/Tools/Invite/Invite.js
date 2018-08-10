@@ -22,13 +22,9 @@ const customStyles = {
 Modal.setAppElement(document.getElementById('root'));
 
 class Invite extends Component {
-  constructor() {
-    super();
-
-    this.state = {
-      modalIsOpen: false
-    };
-  }
+  state = {
+    modalIsOpen: false
+  };
 
   openModal = () => {
     this.setState({ modalIsOpen: true });

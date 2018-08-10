@@ -8,7 +8,7 @@ import _ from 'lodash';
 import Fade from 'react-reveal/Fade';
 
 import './Profile.css';
-import Invite from './Invite/Invite';
+import Invite from '../Tools/Invite/Invite';
 
 import {
   getUser,
