@@ -31,6 +31,7 @@ const {
 } = require('./controllers/eventsCtrl');
 const { createMessage, getMessages } = require('./controllers/messageCtrl');
 const { eventEmail, inviteEmail } = require('./controllers/nodeCtrl');
+// const { getWeather } = require('./controllers/weatherCtrl');
 
 const app = express();
 app.use(bodyParser.json());
@@ -110,6 +111,9 @@ app.get('/api/messages', getMessages);
 //node endpoints
 app.post('/api/email', eventEmail);
 app.post('/api/invite-email', inviteEmail);
+
+// weather endpoints
+// app.get('/api/get-weather', getWeather)
 
 
 //run build

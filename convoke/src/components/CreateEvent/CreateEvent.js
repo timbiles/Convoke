@@ -115,13 +115,15 @@ class CreateEvent extends Component {
 
   handleSelect = location => {
     geocodeByAddress(location)
-      .then(results => getLatLng(results[0]))
+    console.log(geocodeByAddress)
+    
+    .then(results => getLatLng(results[0]))
       .then(latLng => {
         this.props.updateLat(latLng.lat);
         this.props.updateLng(latLng.lng);
         console.log(latLng)
       })
-      .then(() => this.props.updateLocation(location))
+      .then(() => this.props.updateLocation(location))      
       .catch(err => console.error('error, error'))
   }
 

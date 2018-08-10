@@ -52,7 +52,7 @@ const getEvents = (req, res, next) => {
       const modifiedResponse = response.map((e, i) => {
         return { ...e, date: JSON.stringify(e.date).substring(1, 11) }
       })
-      console.log("MODIFIED: ", modifiedResponse)
+      // console.log("MODIFIED: ", modifiedResponse)
       res.status(200).send(modifiedResponse);
     })
     .catch(err => {

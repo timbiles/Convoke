@@ -69,6 +69,8 @@
 
 .ie_title {
   animation: ieTitleFade 2s;
+  text-align: center;
+  
 }
 
 .ep_submit_btn {
@@ -95,6 +97,7 @@
 .events_editable_big {
   font-size: 2rem;
   letter-spacing: 2px;
+  text-align: center;
 }
 
 .events_attend_container {
@@ -152,6 +155,14 @@
 }
 
 @media (max-width: 715px) {
+  .events_editable_big {
+    font-size: 1.5rem;
+  }
+
+  .ie_title {
+    font-size: 1.5rem;
+  }
+  
   .ie_box {
     flex-direction: column;
     margin-bottom: 6%;    
