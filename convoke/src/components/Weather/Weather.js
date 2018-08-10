@@ -29,7 +29,7 @@ class Weather extends Component {
     const { event } = this.props;
 
     const api_call = await fetch(
-      `http://api.openweathermap.org/data/2.5/weather?lat=${event.lat}&lon=${
+      `https://api.openweathermap.org/data/2.5/weather?lat=${event.lat}&lon=${
         event.lng
       }&appid=${process.env.REACT_APP_WEATHER_API_KEY}`
     );
