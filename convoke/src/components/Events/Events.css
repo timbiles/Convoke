@@ -87,7 +87,14 @@
 
 .events_map {
   border: 1px solid black;
-  margin: 1% 0;
+  margin: 3%;
+}
+
+.events_map_weather {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 80%;
 }
 
 .events_editable{
