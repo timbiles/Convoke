@@ -133,7 +133,7 @@ class Card extends Component {
                   alt="calendar"
                 />{' '}
                 {/* {moment(eachEvent.date).format('MMM Do, YYYY')} */}
-                {date}
+                {eachEvent.date}
               </h3>
 
               <h3>
