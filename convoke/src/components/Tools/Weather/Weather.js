@@ -24,14 +24,14 @@ export default class Weather extends Component {
   getWeather = async () => {
     const { event } = this.props;
 
-    const api_call = await fetch(
+     (await fetch(
       `https://api.openweathermap.org/data/2.5/weather?lat=${event.lat}&lon=${
         event.lng
       }&appid=${process.env.REACT_APP_WEATHER_API_KEY}`
-    );
+    )).json()
 
-    const data = await api_call
-      .json()
+    // const data = await api_call
+      // .json()
 
       .then(data => {
         if (data.cod === 404) {
