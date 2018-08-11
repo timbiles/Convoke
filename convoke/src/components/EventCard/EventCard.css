@@ -330,11 +330,11 @@
   .back_flip {
     width: 100%;
     height: 100%;
+    /* overflow: hidden; */
   }
 
   .google_map {
-    height: 100%;
-    width: 100%;
+    height: 36vh;
 }
 
   .events_flip {

@@ -149,7 +149,7 @@ class Card extends Component {
                   src="https://image.flaticon.com/icons/svg/33/33622.svg"
                   alt="map marker"
                 />{' '}
-                {eachEvent.location.substring(0, eachEvent.location.length - 5)}
+                {eachEvent.location.replace(', USA', '')}
               </h3>
               <p className="showing_description">
                 <img
@@ -181,12 +181,7 @@ class Card extends Component {
                   <p>{eachEvent.host}</p>
                   <p>{moment.utc(eachEvent.date).format('M/D/YYYY')}</p>
                   <p>{moment(eachEvent.time).format('h:mm a')}</p>
-                  <p>
-                    {eachEvent.location.substring(
-                      0,
-                      eachEvent.location.length - 5
-                    )}
-                  </p>
+                  <p>{eachEvent.location.replace(', USA', '')}</p>
                   <p>
                     {image1}
                     {userEvents.length !== 0 && filter}
@@ -228,7 +223,7 @@ class Card extends Component {
                 src="https://image.flaticon.com/icons/svg/33/33622.svg"
                 alt="map marker"
               />{' '}
-              {eachEvent.location.substring(0, eachEvent.location.length - 5)}
+              {eachEvent.location.replace(', USA', '')}
             </h3>
             {this.props.user.users_id === eachEvent.users_id && (
               <input

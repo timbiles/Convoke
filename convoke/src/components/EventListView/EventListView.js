@@ -131,7 +131,8 @@ class EventListView extends Component {
                   src="https://image.flaticon.com/icons/svg/33/33622.svg"
                   alt="map marker"
                 />{' '}
-                {eachEvent.location.substring(0, eachEvent.location.length - 5)}
+                {eachEvent.location.replace(', USA', '')}
+
               </p>
               <br />
               <div className="evts_description">
