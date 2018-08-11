@@ -72,15 +72,16 @@ class EditProfile extends Component {
             </div>
           ) : (
             <div>
-              <div>
+              <div className='ep_info_holder'>
                 <ContentEditable
                   html={name}
                   onChange={e => updateName(e.target.value)}
                   className="profile_editable_big"
                 />
+                <div className="ep_linebreak" />
                 <div className="img-email-edit">
                   {this.state.initialImage && (
-                    <div>
+                    <div className='ep_img_cont'>
                       <input
                         type="image"
                         className="ep_display_img"
@@ -115,12 +116,14 @@ class EditProfile extends Component {
                       onChange={e => updateEmail(e.target.value)}
                       className="profile_editable"
                     />
+                    <div className="ep_linebreak" />
                     <h3>Home Town</h3>
                     <ContentEditable
                       html={home_town}
                       onChange={e => updateHomeTown(e.target.value)}
                       className="profile_editable"
                     />
+                    <div className="ep_linebreak" />
                   </div>
                 </div>
                 <h3>Bio</h3>
@@ -129,6 +132,7 @@ class EditProfile extends Component {
                   onChange={e => updateBio(e.target.value)}
                   className="profile_editable"
                 />
+                <div className="ep_linebreak" />
                 <div>
                   <Link className="edit_submit_btn" to="/profile">
                     <h1

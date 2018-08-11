@@ -7,11 +7,11 @@ import _ from 'lodash';
 import moment from 'moment';
 import Fade from 'react-reveal/Fade';
 
-import './EventLineView.css';
+import './EventListView.css';
 
 import { getUser, getEventsAttending } from '../../ducks/userReducer';
 
-class EventLineView extends Component {
+class EventListView extends Component {
   handleClick = val => {
     axios
       .post(`/api/add-event/${val}/${this.props.user.users_id}`)
@@ -171,6 +171,8 @@ class EventLineView extends Component {
                 />
 
                 {this.props.user.users_id === eachEvent.users_id && (
+                  // <img className='elv_remove_initial' src="" alt="trash can"/>
+
                   <input
                     className="elv_remove_event home_icon"
                     type="image"
@@ -178,6 +180,8 @@ class EventLineView extends Component {
                     alt="trash icon"
                     onClick={e => this.handleDelete(eachEvent.events_id)}
                   />
+
+
                 )}
               </div>
             </div>
@@ -193,4 +197,4 @@ const mapStateToProps = state => state;
 export default connect(
   mapStateToProps,
   { getUser, getEventsAttending }
-)(EventLineView);
+)(EventListView);

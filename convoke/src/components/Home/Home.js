@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 import './Home.css';
 import EventCard from '../EventCard/EventCard';
-import EventLineView from '../EventLineView/EventLineView';
+import EventListView from '../EventListView/EventListView';
 
 import { getEvents } from '../../ducks/eventReducer';
 import { getUser, getEventsAttending } from '../../ducks/userReducer';
@@ -38,7 +38,9 @@ class Home extends Component {
 
   render() {
     const { isLoading, events } = this.props;
+    const { eventsAttending, auth_id, email } = this.props.user
     const { filteredEvents } = this.state;
+    
 
     let filter = events.events
       .filter((e, i) => {
@@ -50,7 +52,7 @@ class Home extends Component {
       .filter((e, i) => {
         return e.title.toLowerCase().includes(filteredEvents);
       })
-      .map((e, i) => <EventLineView eachEvent={e} key={i} />);
+      .map((e, i) => <EventListView eachEvent={e} key={i} />);
 
     return (
       <Fragment>
@@ -107,7 +109,7 @@ class Home extends Component {
             <div className="hidden_menu_content">
               <h1>Quick Events List</h1>
 
-              {this.props.user.eventsAttending.map((e, i) => {
+              {eventsAttending.map((e, i) => {
                 return (
                   <div className="hidden_side_events" key={i}>
                     <Link
@@ -127,6 +129,23 @@ class Home extends Component {
               alt="hidden menu btn"
             />
           </div>
+          {
+            auth_id.length &&
+            (
+              email === null && (
+                <div className="profile_setup">
+                  <div className='home_bubble'>
+                    <Link className='bubble_text' to='/editprofile'>
+                    <h1 className='bubble_text'>Set up Profile</h1>
+                    </Link>
+                  </div>
+                
+                </div>
+              )
+            )
+          }
+
+          
         </div>
       </Fragment>
     );

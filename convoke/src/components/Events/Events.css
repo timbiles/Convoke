@@ -116,15 +116,16 @@
 
 .events_attend_link:hover {
   transform: translate(2%)
-  
 }
 
 .back_to_events {
-
+text-decoration: none;
+color: #3f3e3e;
+margin-top: 5%;
 }
 
 .back_to_events:hover { 
-  
+  transform: scale(1.05)
 }
 
 @keyframes ieTitleFade {
@@ -186,8 +187,6 @@
   .ie_info_container {
     width: 100%;
     align-items: stretch;
-
-    
     border-left: none;
     border-top: 1px solid #dbd8cf;
     border-bottom: 1px solid #dbd8cf;

@@ -55,7 +55,7 @@
   font-variant: small-caps;
   font-weight: bold;
   text-align: center;
-  text-shadow: 0.5px 0.5px 8px grey;
+  text-shadow: 0.5px 0.5px 8px rgb(126, 125, 125);
   letter-spacing: 4px;
 }
 
@@ -146,7 +146,7 @@
   align-items: flex-start;
   margin: 5% 0;
   padding: 2%;
-  border-bottom: 2px grey solid;
+  border-bottom: 2px solid #dbd8cf;
   width: 100%;
 }
 
@@ -164,7 +164,7 @@
 .profile_left {
   background: linear-gradient(to top right, rgb(250, 250, 250) 0%, #fff 90%);
   width: 60%;
-  border-left: 1px solid grey;
+  border-left: 1px solid #dbd8cf;
   padding-left: 2%;
 }
 
@@ -182,9 +182,8 @@ position: relative;
   display: none;
   position: absolute;
   min-width: 160px;
-  /* height: 100px; */
   width: 100%;
-  border-left: 1px solid grey;
+  border-left: 1px solid #dbd8cf;
   padding-left: 5%;
   z-index: 9999;
   animation: downFade 1.5s;

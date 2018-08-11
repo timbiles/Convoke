@@ -143,7 +143,7 @@ class Events extends Component {
                 <h2>
                   {filter}
                   {one}
-                  <Link to="/">
+                  <Link className="back_to_events" to="/">
                     <h3 className="back_to_events">Back to Events Listing</h3>
                   </Link>
                 </h2>
@@ -262,7 +262,7 @@ class Events extends Component {
                 <h2>
                   {filter}
                   {one}
-                  <Link to="/">
+                  <Link className="back_to_events" to="/">
                     <h3 className="back_to_events">Back to Events Listing</h3>
                   </Link>
                 </h2>
