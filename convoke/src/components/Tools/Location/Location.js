@@ -34,8 +34,6 @@ class Location extends Component {
         value={location}
         onChange={updateLocation}
         onSelect={this.handleSelect}
-        onError={this._handleError}
-        clearItemsOnError={true}
       >
         {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
           <div className="location_container">

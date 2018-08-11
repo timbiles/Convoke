@@ -132,7 +132,7 @@ class Home extends Component {
           {
             auth_id.length &&
             (
-              email === null && (
+              email === ( null || '') && (
                 <div className="profile_setup">
                   <div className='home_bubble'>
                     <Link className='bubble_text' to='/editprofile'>
