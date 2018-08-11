@@ -25,8 +25,9 @@
   letter-spacing: 2px;
   font-size: 3rem;
   margin: 2%;
-  opacity: .8;
-  animation: name duration timing-function delay iteration-count direction fill-mode;
+  opacity: 0.8;
+  animation: name duration timing-function delay iteration-count direction
+    fill-mode;
   animation: fadeInOutText 3s;
 }
 
@@ -59,11 +60,25 @@
   }
 }
 
-
-@media (max-width: 500px){
+@media (max-width: 500px) {
   .titlepage_main {
     justify-content: start;
+    background-attachment: scroll;
   }
+
+  /* .titlepage_main {
+    width: 100%;
+    height: 100vh;
+    background-image: url(https://images.pexels.com/photos/325521/pexels-photo-325521.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+  } */
 
   .fake_logo {
     margin-top: 150px;
@@ -74,5 +89,4 @@
   .title_text {
     font-size: 1.5rem;
   }
-
 }

@@ -1,10 +1,12 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import Delay from 'react-delay';
 
 import './Home.css';
 import EventCard from '../EventCard/EventCard';
 import EventListView from '../EventListView/EventListView';
+import bamboo from './bamboo.mp3';
 
 import { getEvents } from '../../ducks/eventReducer';
 import { getUser, getEventsAttending } from '../../ducks/userReducer';
@@ -38,9 +40,8 @@ class Home extends Component {
 
   render() {
     const { isLoading, events } = this.props;
-    const { eventsAttending, auth_id, email } = this.props.user
+    const { eventsAttending, auth_id, email } = this.props.user;
     const { filteredEvents } = this.state;
-    
 
     let filter = events.events
       .filter((e, i) => {
@@ -83,7 +84,6 @@ class Home extends Component {
           </div>
           <div className="home_linebreak" />
           {isLoading && <p>Loading...</p>}
-
           {this.state.listView && (
             <div className="home_listview">
               {filter2}
@@ -94,7 +94,6 @@ class Home extends Component {
               )}
             </div>
           )}
-
           {this.state.blockView && (
             <div className="events_display">
               {filter}
@@ -129,23 +128,24 @@ class Home extends Component {
               alt="hidden menu btn"
             />
           </div>
-          {
-            auth_id.length &&
-            (
-              email === ( null || '') && (
-                <div className="profile_setup">
-                  <div className='home_bubble'>
-                    <Link className='bubble_text' to='/editprofile'>
-                    <h1 className='bubble_text'>Set up Profile</h1>
-                    </Link>
-                  </div>
-                
-                </div>
-              )
-            )
-          }
-
-          
+          {auth_id.length &&
+            (!email && (
+          <div className="profile_setup">
+            <div className="home_bubble">
+              <Link className="bubble_text" to="/editprofile">
+                <h1 className="bubble_text">Set up Profile</h1>
+              </Link>
+            </div>
+            <img
+              className="clippy"
+              src="http://images1.wikia.nocookie.net/__cb20110716185610/central/images/c/cb/Clippy.png"
+              alt="clippy"
+            />
+            <Delay wait={2000}>
+              <audio src={bamboo} autoPlay />
+            </Delay>
+          </div>
+          ))}
         </div>
       </Fragment>
     );

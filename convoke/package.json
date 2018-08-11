@@ -24,6 +24,7 @@
     "react": "^16.4.1",
     "react-contenteditable": "^2.1.5",
     "react-custom-date-picker": "^1.1.17",
+    "react-delay": "^0.1.0",
     "react-dom": "^16.4.1",
     "react-dropzone": "^4.2.13",
     "react-modal": "^3.5.1",
