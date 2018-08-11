@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import Dropzone from 'react-dropzone';
-import request from 'superagent';
 import ContentEditable from 'react-contenteditable';
 
 import './EditProfile.css';
+
+import ImageUploader from '../Tools/ImageUploader/ImageUploader';
 
 import {
   getEventsAttending,
@@ -17,10 +17,6 @@ import {
   reset,
   updateUserInfo
 } from '../../ducks/userReducer';
-
-const CLOUDINARY_UPLOAD_URL =
-  'https://api.cloudinary.com/v1_1/dwvrok1le/upload';
-const CLOUDINARY_UPLOAD_PRESET = 'ncjyrxth';
 
 class EditProfile extends Component {
   state = {
@@ -54,32 +50,15 @@ class EditProfile extends Component {
     this.setState({ editImage: false });
   };
 
-  onImageDrop = files => {
-    this.handleImageUpload(files[0]);
-  };
-
-  handleImageUpload = file => {
-    let upload = request
-      .post(CLOUDINARY_UPLOAD_URL)
-      .field('upload_preset', CLOUDINARY_UPLOAD_PRESET)
-      .field('file', file);
-
-    upload.end((err, response) => {
-      if (err) {
-        console.log(err);
-      }
-      if (response.body.secure_url !== '') {
-        this.setState({
-          uploadedFileCloudinaryUrl: response.body.secure_url
-        });
-        this.props.updateImg(response.body.secure_url);
-      }
-    });
-  };
-
   render() {
     const { auth_id, name, email, home_town, img, bio } = this.props.user;
-    const { updateName, updateEmail, updateHomeTown, updateBio } = this.props;
+    const {
+      updateName,
+      updateEmail,
+      updateHomeTown,
+      updateBio,
+      updateImg
+    } = this.props;
 
     return (
       <div className="mc_container">
@@ -117,29 +96,8 @@ class EditProfile extends Component {
                   {this.state.editImage && (
                     <form>
                       <div className="ep_file_upload">
-                        <Dropzone
-                          onDrop={this.onImageDrop}
-                          multiple={false}
-                          accept="image/*"
-                          className="image_dropzone"
-                        >
-                          <div>
-                            {this.state.uploadedFileCloudinaryUrl === '' ? (
-                              <p className="dropzone_text">
-                                Drop an image or click to select a file to
-                                upload.
-                              </p>
-                            ) : (
-                              <div>
-                                <img
-                                  className="ep_upload_pic"
-                                  src={img}
-                                  alt="profile pic"
-                                />
-                              </div>
-                            )}
-                          </div>
-                        </Dropzone>
+                        <ImageUploader updateImg={updateImg} />
+
                         <h1
                           className="ep_edit_pic"
                           onClick={this.toggleSubmitEdit}

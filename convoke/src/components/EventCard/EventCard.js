@@ -132,7 +132,8 @@ class Card extends Component {
                   src="https://image.flaticon.com/icons/svg/25/25393.svg"
                   alt="calendar"
                 />{' '}
-                {moment(eachEvent.date).format('MMM Do, YYYY')}
+                {/* {moment(eachEvent.date).format('MMM Do, YYYY')} */}
+                {date}
               </h3>
 
               <h3>

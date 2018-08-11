@@ -1,15 +1,12 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import Dropzone from 'react-dropzone';
 import request from 'superagent';
-
-import { updateImg } from '../../../ducks/createReducer';
 
 const CLOUDINARY_UPLOAD_URL =
   'https://api.cloudinary.com/v1_1/dwvrok1le/upload';
 const CLOUDINARY_UPLOAD_PRESET = 'ncjyrxth';
 
-class ImageUploader extends Component {
+export default class ImageUploader extends Component {
   state = {
       image: ''
   }
@@ -66,12 +63,3 @@ class ImageUploader extends Component {
     );
   }
 }
-
-const mapStateToProps = state => state;
-
-export default connect(
-  mapStateToProps,
-  {
-    updateImg
-  }
-)(ImageUploader);

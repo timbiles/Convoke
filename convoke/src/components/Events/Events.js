@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import _ from 'lodash';
 import moment from 'moment';
 import swal from 'sweetalert2';
@@ -8,9 +9,10 @@ import ContentEditable from 'react-contenteditable';
 import DatePicker from 'react-custom-date-picker';
 import TimePicker from 'rc-time-picker';
 
+import './Events.css';
+
 import Map from '../Map/Map';
 import Weather from '../Tools/Weather/Weather';
-import './Events.css';
 
 import {
   getEvents,
@@ -22,12 +24,6 @@ import {
   updateDescription,
   updateEventInfo
 } from '../../ducks/eventReducer';
-
-// const weatherApi = process.env.WEATHER_API_KEY;
-
-// const CLOUDINARY_UPLOAD_URL =
-//   'https://api.cloudinary.com/v1_1/dwvrok1le/upload';
-// const CLOUDINARY_UPLOAD_PRESET = 'ncjyrxth';
 
 class Events extends Component {
   state = {
@@ -147,7 +143,9 @@ class Events extends Component {
                 <h2>
                   {filter}
                   {one}
-                  <h3 className='back_to_events'>Back to Events Listing</h3>
+                  <Link to="/">
+                    <h3 className="back_to_events">Back to Events Listing</h3>
+                  </Link>
                 </h2>
               </div>
               <div className="ie_info_container">
@@ -264,7 +262,9 @@ class Events extends Component {
                 <h2>
                   {filter}
                   {one}
-                  <h3 className='back_to_events'>Back to Events Listing</h3>                  
+                  <Link to="/">
+                    <h3 className="back_to_events">Back to Events Listing</h3>
+                  </Link>
                 </h2>
               </div>
               <div className="ie_info_container">

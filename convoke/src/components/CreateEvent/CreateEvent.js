@@ -10,8 +10,8 @@ import TimePicker from 'rc-time-picker';
 import './CreateEvent.css';
 import 'rc-time-picker/assets/index.css';
 
-import Location from '../Tools/Location/Location';
 import ImageUploader from '../Tools/ImageUploader/ImageUploader';
+import Location from '../Tools/Location/Location';
 
 import {
   updateEventName,
@@ -19,6 +19,7 @@ import {
   updateDate,
   updateTime,
   updateDescription,
+  updateImg,
   reset
 } from '../../ducks/createReducer';
 
@@ -82,7 +83,12 @@ class CreateEvent extends Component {
   };
 
   render() {
-    const { updateEventName, updateHost, updateDescription } = this.props;
+    const {
+      updateEventName,
+      updateHost,
+      updateDescription,
+      updateImg
+    } = this.props;
     const { auth_id } = this.props.user;
     const { date, location } = this.props.create;
 
@@ -163,7 +169,7 @@ class CreateEvent extends Component {
             <form>
               <h1 className="ce_h1">Image Upload</h1>
               <div className="file_upload">
-                <ImageUploader />
+                <ImageUploader updateImg={updateImg} />
               </div>
             </form>
             <Link to="/">
@@ -188,6 +194,7 @@ export default connect(
     updateDate,
     updateTime,
     updateDescription,
+    updateImg,
     reset,
     getUser,
     updateLat,
