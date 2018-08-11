@@ -104,7 +104,7 @@ class EventLineView extends Component {
                 src="https://image.flaticon.com/icons/svg/25/25393.svg"
                 alt="calendar"
               />{' '}
-              {moment(eachEvent.date).format('dddd, MMM Do, YYYY')}
+              {moment.utc(eachEvent.date).format('dddd, MMM Do, YYYY')}
             </h1>
             <h1 className="elv_date">
               <img

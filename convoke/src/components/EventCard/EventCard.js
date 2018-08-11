@@ -132,8 +132,7 @@ class Card extends Component {
                   src="https://image.flaticon.com/icons/svg/25/25393.svg"
                   alt="calendar"
                 />{' '}
-                {/* {moment(eachEvent.date).format('MMM Do, YYYY')} */}
-                {eachEvent.date}
+                {moment.utc(eachEvent.date).format('MMM Do, YYYY')}
               </h3>
 
               <h3>
@@ -180,7 +179,7 @@ class Card extends Component {
                 />
                 <div className="events_info_btn_dropdown">
                   <p>{eachEvent.host}</p>
-                  <p>{moment(eachEvent.date).format('M/D/YYYY')}</p>
+                  <p>{moment.utc(eachEvent.date).format('M/D/YYYY')}</p>
                   <p>{moment(eachEvent.time).format('h:mm a')}</p>
                   <p>
                     {eachEvent.location.substring(
