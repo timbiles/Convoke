@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import './Header.css';
-import Avatar from '../Avatar/Avatar';
-import Hamburger from './Hamburger/Hamburger';
+import Avatar from '../Tools/Avatar/Avatar';
+import Hamburger from '../Tools/Hamburger/Hamburger';
 
 import { getUser, getEventsAttending, getAllUsers } from '../../ducks/userReducer';
 import { getEvents } from '../../ducks/eventReducer';

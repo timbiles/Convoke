@@ -41,9 +41,10 @@ class Invite extends Component {
 
   handleClick = e => {
     const { title } = this.props.currentEvent;
+    
     swal({
       type: 'success',
-      title: 'Message Sent!',
+      title: `E-vite Sent to ${e.name}!`,
       showConfirmButton: false,
       timer: 1500
     }).then(() => {

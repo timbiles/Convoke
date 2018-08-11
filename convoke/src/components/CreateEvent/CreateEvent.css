@@ -32,7 +32,6 @@
   margin: 2%;
   color: rgb(128, 128, 128);
   font-size: 1.8rem;
-
 }
 
 .ce_button:hover {
@@ -65,7 +64,7 @@
 }
 
 .ce_input_field {
-  outline: none;    
+  outline: none;
 }
 
 .floating_placeholder {
@@ -74,7 +73,7 @@
   left: 20px;
   top: 18px;
   transition: 0.2s ease all;
-    opacity: .7;
+  opacity: 0.7;
 }
 
 .ce_input_field:focus ~ .floating_placeholder,
@@ -86,10 +85,8 @@
   opacity: 1;
 }
 
-
 .input_field {
   width: 95%;
-
 }
 
 .setup_title {
@@ -125,7 +122,38 @@
   border: 1px dotted black;
 }
 
-@media (max-width: 700px) { 
+.ce_link:hover {
+  transform: scale(1.05);
+}
+
+.ce_link {
+  margin-top: 20%;
+}
+
+.ce_setup_title {
+  font-size: 1.5rem;
+  width: 100%;
+  text-align: center;
+  text-shadow: 0.5px 0.5px 5px rgb(126, 125, 125);
+}
+
+.ce_big {
+  font-size: 2rem;
+  margin-bottom: 2%;
+}
+
+.ce_setup_container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 50vh;
+  padding: 0 5%;
+  border-bottom: 1px solid #dbd8cf;
+  background: linear-gradient(to top right, rgb(241, 245, 244) 0%, #fff 60%);
+}
+
+@media (max-width: 700px) {
   .create_event_input {
     width: 70%;
   }
@@ -146,7 +174,7 @@
   }
 
   .ce_dropzone_text {
-    font-size: .8rem;
+    font-size: 0.8rem;
   }
 
   .ce_button {

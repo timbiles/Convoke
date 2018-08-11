@@ -24,16 +24,16 @@
 }
 
 .ie_img_box {
-    width: 300px;
-    height: 100%;
-    padding: 1%;
+  width: 300px;
+  height: 100%;
+  padding: 1%;
 }
 
 .ie_img {
   height: 100%;
   width: 100%;
   max-width: 400px;
-    max-height: 400px;
+  max-height: 400px;
 }
 
 .ie_info_container {
@@ -46,9 +46,9 @@
 }
 
 .ie_box h2 {
-    font-weight: bold;
+  font-weight: bold;
   letter-spacing: 2px;
-    /* padding: 0 2%; */
+  /* padding: 0 2%; */
 }
 
 .ie_box h3 {
@@ -62,11 +62,10 @@
 .ie_title {
   animation: ieTitleFade 2s;
   text-align: center;
-  
 }
 
 .ep_submit_btn {
-  font-size: .9rem;
+  font-size: 0.9rem;
   position: absolute;
   bottom: 1%;
   right: 1%;
@@ -89,7 +88,7 @@
   width: 80%;
 }
 
-.events_editable{
+.events_editable {
   margin: 2%;
 }
 
@@ -115,29 +114,29 @@
 }
 
 .events_attend_link:hover {
-  transform: translate(2%)
+  transform: translate(2%);
 }
 
 .back_to_events {
-text-decoration: none;
-color: #3f3e3e;
-margin-top: 5%;
+  font-size: 0.8rem;
+  text-decoration: none;
+  color: #3f3e3e;
+  margin-top: 5%;
 }
 
-.back_to_events:hover { 
-  transform: scale(1.05)
+.back_to_events:hover {
+  transform: scale(1.05);
 }
 
 @keyframes ieTitleFade {
   0% {
     opacity: 0;
-    transform: translateX(-40px)
+    transform: translateX(-40px);
   }
 
   100% {
     opacity: 1;
-    transform: translateX(0)
-    
+    transform: translateX(0);
   }
 }
 
@@ -170,10 +169,10 @@ margin-top: 5%;
   .ie_title {
     font-size: 1.5rem;
   }
-  
+
   .ie_box {
     flex-direction: column;
-    margin-bottom: 6%;    
+    margin-bottom: 6%;
   }
 
   .ie_img_box {
@@ -191,8 +190,8 @@ margin-top: 5%;
     border-top: 1px solid #dbd8cf;
     border-bottom: 1px solid #dbd8cf;
     padding-top: 2%;
-    padding-bottom: 2%;  
-    padding-left: 5%;  
+    padding-bottom: 2%;
+    padding-left: 5%;
   }
 
   .ep_submit_btn {
@@ -207,6 +206,4 @@ margin-top: 5%;
     overflow: auto;
     width: 100%;
   }
-
-
 }

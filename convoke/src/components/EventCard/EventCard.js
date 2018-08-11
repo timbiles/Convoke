@@ -7,7 +7,7 @@ import _ from 'lodash';
 import moment from 'moment';
 import Fade from 'react-reveal/Fade';
 
-import Map from '../Map/Map';
+import Map from '../Tools/Map/Map';
 import './EventCard.css';
 
 import { getUser, getEventsAttending } from '../../ducks/userReducer';

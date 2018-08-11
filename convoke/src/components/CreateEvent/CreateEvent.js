@@ -89,21 +89,38 @@ class CreateEvent extends Component {
       updateDescription,
       updateImg
     } = this.props;
-    const { auth_id } = this.props.user;
+    const { auth_id, email } = this.props.user;
     const { date, location } = this.props.create;
 
     const format = 'h:mm a';
     const day = moment().format('MM/DD/YYYY');
     const today = new Date();
 
+    console.log(this.props);
+
     return (
       <div className="create_event_container">
         {!auth_id.length ? (
-          <div>
-            <h1>You have to login to Create an Event!</h1>
-            <a className="" href={process.env.REACT_APP_LOGIN}>
-              <h1 className="">Login</h1>
+          <div className="ce_setup_container">
+            <h1 className="ce_setup_title">
+              You have to login to Create an Event!
+            </h1>
+            <a className="link" href={process.env.REACT_APP_LOGIN}>
+              <h1 className="ce_link">Login</h1>
             </a>
+          </div>
+        ) : email === (null || '') ? (
+          <div className="ce_setup_container">
+            <div>
+              <h2 className="ce_setup_title ce_big">Oops!</h2>
+              <h2 className="ce_setup_title">
+                You must finish setting up your account before creating an
+                Event.
+              </h2>
+            </div>
+            <Link className="link" to="/editprofile">
+              <h3 className="ce_link">Complete Profile Set up</h3>
+            </Link>
           </div>
         ) : (
           <div className="create_event_input">

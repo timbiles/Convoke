@@ -11,7 +11,7 @@ import TimePicker from 'rc-time-picker';
 
 import './Events.css';
 
-import Map from '../Map/Map';
+import Map from '../Tools/Map/Map';
 import Weather from '../Tools/Weather/Weather';
 
 import {
@@ -95,6 +95,15 @@ class Events extends Component {
       .updateEventInfo(eventId, title, host, date, time, description)
       .then(() => {
         this.props.getEvents();
+      })
+      .then(res => {
+        swal({
+          position: 'top-end',
+          type: 'success',
+          title: 'Event is Edited!',
+          showConfirmButton: false,
+          timer: 1000
+        });
       });
   };
 
@@ -137,6 +146,8 @@ class Events extends Component {
               onChange={e => this.handleInputs(e.target.value, 'title')}
               className="events_editable_big"
             />
+            <div className="ep_linebreak" />
+
             <div className="ie_box">
               <div className="ie_img_box">
                 <img className="ie_img" src={event.img} alt={event.title} />
@@ -156,6 +167,8 @@ class Events extends Component {
                     onChange={e => this.handleInputs(e.target.value, 'host')}
                     className="events_editable"
                   />
+                  <div className="ep_linebreak" />
+
                   <h3>
                     <img
                       className="eventcard_icon"
@@ -217,6 +230,7 @@ class Events extends Component {
                     }
                     className="events_editable"
                   />
+                  <div className="ep_linebreak" />
                 </div>
                 <div className="events_attend_container">
                   {attending.length === 0 ? (

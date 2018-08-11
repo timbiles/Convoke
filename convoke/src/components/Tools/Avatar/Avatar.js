@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import './Avatar.css';
 
-import { getUser } from '../../ducks/userReducer';
+import { getUser } from '../../../ducks/userReducer';
 
 class Avatar extends Component {
   render() {
