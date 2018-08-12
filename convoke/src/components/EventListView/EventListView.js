@@ -133,7 +133,6 @@ class EventListView extends Component {
                   alt="map marker"
                 />{' '}
                 {eachEvent.location.replace(', USA', '')}
-
               </p>
               <br />
               <div className="evts_description">
@@ -182,8 +181,6 @@ class EventListView extends Component {
                     alt="trash icon"
                     onClick={e => this.handleDelete(eachEvent.events_id)}
                   />
-
-
                 )}
               </div>
             </div>

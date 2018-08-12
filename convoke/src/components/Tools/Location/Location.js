@@ -5,7 +5,7 @@ import PlacesAutocomplete, {
   getLatLng
 } from 'react-places-autocomplete';
 
-import { updateLocation } from '../../../ducks/createReducer';
+// import { updateLocation } from '../../../ducks/createReducer';
 import { updateLat, updateLng } from '../../../ducks/locationReducer';
 
 class Location extends Component {
@@ -27,12 +27,13 @@ class Location extends Component {
 
   render() {
     const { location } = this.props.create;
-    const { updateLocation } = this.props;
+    // const { updateLocation } = this.props;
+    console.log(this.props.updateLocation)
 
     return (
       <PlacesAutocomplete
         value={location}
-        onChange={updateLocation}
+        onChange={this.props.updateLocation}
         onSelect={this.handleSelect}
       >
         {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
@@ -79,5 +80,5 @@ const mapStateToProps = state => state;
 
 export default connect(
   mapStateToProps,
-  { updateLocation, updateLat, updateLng }
+  { updateLat, updateLng }
 )(Location);

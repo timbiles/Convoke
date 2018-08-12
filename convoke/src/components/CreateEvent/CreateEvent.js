@@ -19,6 +19,7 @@ import {
   updateDate,
   updateTime,
   updateDescription,
+  updateLocation,
   updateImg,
   reset
 } from '../../ducks/createReducer';
@@ -37,7 +38,6 @@ class CreateEvent extends Component {
   };
 
   refreshPage = () => {
-    window.location.reload();
   };
 
   handleSubmit = id => {
@@ -84,7 +84,8 @@ class CreateEvent extends Component {
         time,
         location,
         description
-      })
+      });
+      window.location.reload(true)
   };
 
   render() {
@@ -92,6 +93,7 @@ class CreateEvent extends Component {
       updateEventName,
       updateHost,
       updateDescription,
+      updateLocation,
       updateImg
     } = this.props;
     const { auth_id, name } = this.props.user;
@@ -174,7 +176,10 @@ class CreateEvent extends Component {
               style={{ width: 100 }}
             />
 
-            <Location location={location} />
+            <Location 
+              updateLocation={updateLocation}
+              location={location}
+              />
 
             <label className="has-float-label">
               <input
@@ -214,6 +219,7 @@ export default connect(
     updateDate,
     updateTime,
     updateDescription,
+    updateLocation,
     updateImg,
     reset,
     getUser,

@@ -18,12 +18,6 @@ class Home extends Component {
     listView: true
   };
 
-  componentDidMount() {
-    // this.props.getUser().then(() => {
-    //   this.props.getEventsAttending(this.props.user.users_id);
-    // });
-  }
-
   handleChange = e => {
     this.setState({ filteredEvents: e.toLowerCase() });
   };

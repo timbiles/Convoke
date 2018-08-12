@@ -32,13 +32,6 @@ export function getEvents() {
   };
 }
 
-// export function getEvent(events_id) {
-//   return {
-//     type: GET_EVENT,
-//     payload: axios.get(`/api/events/${events_id}`)
-//   };
-// }
-
 export const removeEvent = event => {
   return {
     type: REMOVE_EVENT,

@@ -31,7 +31,8 @@ class Events extends Component {
     host: '',
     date: '',
     time: '',
-    description: ''
+    description: '',
+    location: ''
   };
 
   componentDidMount() {
@@ -46,7 +47,7 @@ class Events extends Component {
       host: event.host,
       date: event.date,
       time: event.time,
-      description: event.description
+      description: event.description,
     });
   }
 
@@ -57,13 +58,13 @@ class Events extends Component {
       .then(res => {
         swal({
           position: 'top-end',
-          type: 'success',
           title: 'Added to MyConvoke',
-          // imageUrl:
-          //   'http://images.hellogiggles.com/uploads/2015/09/17/bill_murray.jpg',
-          // imageWidth: 175,
-          // imageHeight: 250,
-          // imageAlt: 'Custom image',
+          text: 'See you there!',
+          imageUrl:
+            'http://images.hellogiggles.com/uploads/2015/09/17/bill_murray.jpg',
+          imageWidth: 175,
+          imageHeight: 250,
+          imageAlt: 'Custom image',
           showConfirmButton: false,
           timer: 1500
         });

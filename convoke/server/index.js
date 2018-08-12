@@ -26,8 +26,7 @@ const {
   deleteEvent,
   deleteEventById,
   updateEventInfo,
-  deleteOldEvents,
-  // getEvent
+  deleteOldEvents
 } = require('./controllers/eventsCtrl');
 const { createMessage, getMessages } = require('./controllers/messageCtrl');
 const { eventEmail, inviteEmail } = require('./controllers/nodeCtrl');
@@ -88,7 +87,6 @@ passport.deserializeUser((user, done) => {
 app.get('/api/events', getAll);
 app.get('/api/user-events', getUserEvents);
 app.get('/api/events/:users_id', getEvents);
-// app.get('/api/events/:events_id', getEvent)
 app.post('/api/add-event/:events_id/:users_id', addEvent);
 app.post('/api/events', createEvent);
 app.delete('/api/delete/:events_id/:users_id', deleteEvent);
