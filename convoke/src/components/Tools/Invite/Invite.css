@@ -24,10 +24,6 @@
     border-radius: 50%;
 }
 
-.invite_holder:hover {
-    transform: scale(1.05)
-}
-
 .invite_holder {
     text-align: center;
     border-bottom: 1px solid #dbd8cf;

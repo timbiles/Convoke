@@ -84,8 +84,8 @@ class Invite extends Component {
     const userMap = users.map(
       e =>
         e.users_id !== this.props.user.users_id && (
-          <div className="invite_container">
-            <div className="invite_holder" key={e.users_id}>
+          <div className="invite_container" key={e.users_id}>
+            <div className="invite_holder" >
               <h1>{e.name}</h1>
               <img className="invite_img" src={e.img} alt={e.name} />
             </div>

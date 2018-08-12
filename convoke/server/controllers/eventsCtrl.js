@@ -49,10 +49,9 @@ const getEvents = (req, res, next) => {
     .get_event_by_user_id([users_id])
     .then(response => {
 
-      const modifiedResponse = response.map((e, i) => {
+      const modifiedResponse = response.map(e => {
         return { ...e, date: JSON.stringify(e.date).substring(1, 11) }
       })
-      // console.log("MODIFIED: ", modifiedResponse)
       res.status(200).send(modifiedResponse);
     })
     .catch(err => {
