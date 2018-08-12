@@ -31,8 +31,7 @@ class Events extends Component {
     host: '',
     date: '',
     time: '',
-    description: '',
-    location: ''
+    description: ''
   };
 
   componentDidMount() {
@@ -47,7 +46,7 @@ class Events extends Component {
       host: event.host,
       date: event.date,
       time: event.time,
-      description: event.description,
+      description: event.description
     });
   }
 

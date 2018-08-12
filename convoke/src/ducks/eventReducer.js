@@ -9,19 +9,20 @@ const initialState = {
   date: '',
   time: '',
   description: '',
+  location: '',
   isLoading: false,
   didErr: false
 };
 
 //constants
 const GET_EVENTS = 'GET_EVENTS';
-// const GET_EVENT = 'GET_EVENT';
 const REMOVE_EVENT = 'REMOVE_EVENT';
 const UPDATE_TITLE = 'UPDATE_TITLE';
 const UPDATE_HOST = 'UPDATE_HOST';
 const UPDATE_DATE = 'UPDATE_DATE';
 const UPDATE_TIME = 'UPDATE_TIME';
 const UPDATE_DESCRIPTION = 'UPDATE_DESCRIPTION';
+const UPDATE_LOCATION = 'UPDATE_LOCATION';
 const UPDATE_EVENT = 'UPDATE_EVENT';
 
 //action creators
@@ -74,13 +75,21 @@ export const updateDescription = description => {
   };
 };
 
+export const updateLocation = location => {
+  return {
+    type: UPDATE_LOCATION,
+    payload: location
+  };
+};
+
 export const updateEventInfo = (
   events_id,
   title,
   host,
   date,
   time,
-  description
+  description,
+  location
 ) => {
 
   return {
@@ -90,7 +99,8 @@ export const updateEventInfo = (
       host,
       date,
       time,
-      description
+      description,
+      location
     })
   };
 };
@@ -141,6 +151,11 @@ export default function eventReducer(state = initialState, action) {
       return {
         ...state,
         description: action.payload
+      };
+      case UPDATE_LOCATION:
+      return {
+        ...state,
+        location: action.payload
       };
     default:
       return state;
