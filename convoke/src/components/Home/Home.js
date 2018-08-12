@@ -40,8 +40,8 @@ class Home extends Component {
 
   render() {
     const { isLoading, events } = this.props;
-    const { eventsAttending, auth_id, email } = this.props.user;
-    const { filteredEvents } = this.state;
+    const { eventsAttending, auth_id, name } = this.props.user;
+    const { filteredEvents, blockView, listView } = this.state;
 
     let filter = events.events
       .filter((e, i) => {
@@ -60,18 +60,38 @@ class Home extends Component {
         <div className="home_container">
           <h1 className="home_title">Convoke.</h1>
           <div className="home_input_section">
-            <img
-              className="home_menu_icon"
-              src="https://image.flaticon.com/icons/svg/114/114320.svg"
-              onClick={this.toggleList}
-              alt="List view"
-            />
-            <img
-              className="home_menu_icon"
-              src="https://image.flaticon.com/icons/svg/566/566001.svg"
-              onClick={this.toggleBlock}
-              alt="Block view"
-            />
+            {listView === true ? (
+              <img
+                className="home_menu_icon icon_shade"
+                src="https://image.flaticon.com/icons/svg/114/114320.svg"
+                onClick={this.toggleList}
+                alt="List view"
+              />
+            ) : (
+              <img
+                className="home_menu_icon"
+                src="https://image.flaticon.com/icons/svg/114/114320.svg"
+                onClick={this.toggleList}
+                alt="List view"
+              />
+            )}
+
+            {blockView === true ? (
+              <img
+                className="home_menu_icon icon_shade"
+                src="https://image.flaticon.com/icons/svg/566/566001.svg"
+                onClick={this.toggleBlock}
+                alt="Block view"
+              />
+            ) : (
+              <img
+                className="home_menu_icon"
+                src="https://image.flaticon.com/icons/svg/566/566001.svg"
+                onClick={this.toggleBlock}
+                alt="Block view"
+              />
+            )}
+
             <label className="has-float-label">
               <input
                 className="search_bar"
@@ -129,23 +149,26 @@ class Home extends Component {
             />
           </div>
           {auth_id.length &&
-            (!email && (
-          <div className="profile_setup">
-            <div className="home_bubble">
-              <Link className="bubble_text" to="/editprofile">
-                <h1 className="bubble_text">Set up Profile</h1>
-              </Link>
-            </div>
-            <img
-              className="clippy"
-              src="http://images1.wikia.nocookie.net/__cb20110716185610/central/images/c/cb/Clippy.png"
-              alt="clippy"
-            />
-            <Delay wait={2000}>
-              <audio src={bamboo} autoPlay />
-            </Delay>
-          </div>
-          ))}
+            (!name && (
+              <div className="profile_setup">
+                <div className="home_bubble">
+                  <h1 className="bubble_text">Welcome to Convoke!</h1>
+                  <Link className="bubble_text" to="/editprofile">
+                    <h2 className="click_here">
+                      Click here to set up your profile!
+                    </h2>
+                  </Link>
+                </div>
+                <img
+                  className="clippy"
+                  src="http://images1.wikia.nocookie.net/__cb20110716185610/central/images/c/cb/Clippy.png"
+                  alt="clippy"
+                />
+                <Delay wait={2000}>
+                  <audio src={bamboo} autoPlay />
+                </Delay>
+              </div>
+            ))}
         </div>
       </Fragment>
     );

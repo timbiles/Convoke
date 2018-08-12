@@ -85,9 +85,6 @@ class CreateEvent extends Component {
         location,
         description
       })
-      .then(() => {
-        this.refreshPage();
-      });
   };
 
   render() {
@@ -97,14 +94,12 @@ class CreateEvent extends Component {
       updateDescription,
       updateImg
     } = this.props;
-    const { auth_id, email } = this.props.user;
+    const { auth_id, name } = this.props.user;
     const { date, location } = this.props.create;
 
     const format = 'h:mm a';
     const day = moment().format('MM/DD/YYYY');
     const today = new Date();
-
-    console.log(this.props);
 
     return (
       <div className="create_event_container">
@@ -117,7 +112,7 @@ class CreateEvent extends Component {
               <h1 className="ce_link">Login</h1>
             </a>
           </div>
-        ) : email === (null || '') ? (
+        ) : !name ? (
           <div className="ce_setup_container">
             <div>
               <h2 className="ce_setup_title ce_big">Oops!</h2>

@@ -99,7 +99,6 @@ export const updateUserInfo = (auth_id, name, email, home_town, img, bio) => {
       bio
     })
   };
-  console.log('hit>>', name)
 };
 
 export default function userReducer(state = initialState, action) {

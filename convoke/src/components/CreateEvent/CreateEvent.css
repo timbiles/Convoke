@@ -17,7 +17,7 @@
   border-radius: 0.5%;
   margin: 2% 0;
   border-bottom: 1px solid #dbd8cf;
-  background: linear-gradient(to top right, rgb(196, 197, 197) 0%, #fff 50%);
+  background: linear-gradient(to top, rgb(196, 197, 197) 0%, #fff 100%);
 }
 
 .create_event_container input {

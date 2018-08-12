@@ -28,9 +28,9 @@ class Header extends Component {
         <div className="header_link_container">
           <div className="link">
             <Link
-              onClick={() => {
-                window.scrollTo({ top: 1000, behavior: 'smooth' });
-              }}
+              // onClick={() => {
+              //   window.scrollTo({ top: 1000, behavior: 'smooth' });
+              // }}
               className="link"
               to="/create"
             >
@@ -39,9 +39,9 @@ class Header extends Component {
           </div>
           <div className="right_header_links">
             <Link
-              onClick={() => {
-                window.scroll({ top: 1000, behavior: 'smooth' });
-              }}
+              // onClick={() => {
+              //   window.scroll({ top: 1000, behavior: 'smooth' });
+              // }}
               className="link"
               to="/profile"
             >

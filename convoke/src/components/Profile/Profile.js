@@ -19,7 +19,6 @@ import { removeEvent } from '../../ducks/eventReducer';
 class Profile extends Component {
   componentDidMount() {
     this.props.getEventsAttending(this.props.user.users_id);
-    
   }
 
   handleDelete = id => {
@@ -90,11 +89,16 @@ class Profile extends Component {
               <div className="profile_left">
                 <p className="mc_profile_name">{name}</p>
                 <div className="img-email-edit">
-                  <img
-                    className="profile_display_img"
-                    src={image}
-                    alt={auth_id}
-                  />
+                  <div className="mc_prof_img">
+                    <img
+                      className="profile_display_img"
+                      src={image}
+                      alt={auth_id}
+                    />
+                    <Link className="back_to_events" to="/">
+                      <h3 className="back_to_events">Back to Events Listing</h3>
+                    </Link>
+                  </div>
 
                   <div className="email_and_img_edit">
                     <h3>Email</h3>

@@ -31,6 +31,7 @@ const {
 } = require('./controllers/eventsCtrl');
 const { createMessage, getMessages } = require('./controllers/messageCtrl');
 const { eventEmail, inviteEmail } = require('./controllers/nodeCtrl');
+const { textMessage } = require('./controllers/smsCtrl');
 
 const app = express();
 app.use(bodyParser.json());
@@ -64,10 +65,10 @@ passport.use(strategy);
 passport.serializeUser((user, done) => {
   const db = app.get('db');
 
-  
   db.users
     .get_user_by_authid(user.id)
     .then(response => {
+      console.log(user)
       if (!response[0]) {
         db.users
           .add_user_by_authid([user.displayName, user.id])
@@ -110,6 +111,9 @@ app.get('/api/messages', getMessages);
 //node endpoints
 app.post('/api/email', eventEmail);
 app.post('/api/invite-email', inviteEmail);
+
+//twilio endpoints
+app.post("/api/invite-text", textMessage);
 
 //run build
 app.get('*', (req, res)=>{

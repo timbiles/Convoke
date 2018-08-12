@@ -10,15 +10,15 @@ const logout = (req, res) => {
 const login = passport.authenticate('auth0', {
   // successRedirect: 'http://localhost:3000',
   successRedirect: process.env.REACT_APP_CLIENT + '/',
-  
+
   // failureRedirect: 'http://localhost:3000/login'
   failureRedirect: process.env.REACT_APP_CLIENT + '/login'
-  
 });
 
 const getUser = (req, res) => {
+  console.log('check this', req.user);
   if (!req.user) {
-    res.status(500).send({ message: 'Not Logged in' });
+    return null;
   } else {
     res.status(200).send(req.user);
   }
