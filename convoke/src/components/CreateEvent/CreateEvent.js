@@ -36,6 +36,10 @@ class CreateEvent extends Component {
     this.props.create.time = time;
   };
 
+  refreshPage = () => {
+    window.location.reload();
+  };
+
   handleSubmit = id => {
     let {
       title,
@@ -71,15 +75,19 @@ class CreateEvent extends Component {
           timer: 1000
         });
       });
-    axios.post(`/api/email`, {
-      email,
-      name,
-      title,
-      date,
-      time,
-      location,
-      description
-    });
+    axios
+      .post(`/api/email`, {
+        email,
+        name,
+        title,
+        date,
+        time,
+        location,
+        description
+      })
+      .then(() => {
+        this.refreshPage();
+      });
   };
 
   render() {

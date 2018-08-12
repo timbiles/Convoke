@@ -11,7 +11,7 @@ import { getUser, getEventsAttending } from '../../ducks/userReducer';
 
 class Calendar extends Component {
   componentDidMount() {
-    this.props.getEventsAttending(this.props.user.users_id);
+    // this.props.getEventsAttending(this.props.user.users_id);
 
     $('#calendar').fullCalendar({
       header: {

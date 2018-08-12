@@ -19,9 +19,9 @@ class Home extends Component {
   };
 
   componentDidMount() {
-    this.props.getUser().then(() => {
-      this.props.getEventsAttending(this.props.user.users_id);
-    });
+    // this.props.getUser().then(() => {
+    //   this.props.getEventsAttending(this.props.user.users_id);
+    // });
   }
 
   handleChange = e => {

@@ -19,6 +19,7 @@ import { removeEvent } from '../../ducks/eventReducer';
 class Profile extends Component {
   componentDidMount() {
     this.props.getEventsAttending(this.props.user.users_id);
+    
   }
 
   handleDelete = id => {

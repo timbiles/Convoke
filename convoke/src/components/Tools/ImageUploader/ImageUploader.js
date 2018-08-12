@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import Dropzone from 'react-dropzone';
 import request from 'superagent';
 
+import './ImageUploader.css'
+
 const CLOUDINARY_UPLOAD_URL =
   'https://api.cloudinary.com/v1_1/dwvrok1le/upload';
 const CLOUDINARY_UPLOAD_PRESET = 'ncjyrxth';
@@ -49,7 +51,7 @@ export default class ImageUploader extends Component {
                 Drop an image or click to select a file to upload.
               </p>
             ) : (
-              <div>
+              <div className='image_uploader_container'>
                 <img
                   className="ep_upload_pic"
                   src={this.state.image}

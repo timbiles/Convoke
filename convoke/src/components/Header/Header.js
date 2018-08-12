@@ -13,13 +13,12 @@ import { getUserEvents } from '../../ducks/userEventReducer';
 class Header extends Component {
   componentDidMount() {
     this.props.getEvents();
-    this.props.getUser().then(() => {
+    this.props.getUser();
       this.props.getEventsAttending(this.props.user.users_id);
       this.props.getUserEvents();
       this.props.getAllUsers();
 
       // axios.delete('/api/deleteOldevent');
-    });
   }
   render() {
     const { auth_id } = this.props.user;

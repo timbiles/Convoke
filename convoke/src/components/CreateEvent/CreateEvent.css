@@ -97,6 +97,8 @@
   display: flex;
   justify-content: center;
   margin-top: 8%;
+  
+
 }
 
 .has-float-label {
@@ -162,6 +164,16 @@
     width: 175px;
   }
 
+  .image_uploader_container {
+    height: 175px;
+    width: 175px;
+  }
+
+  .ep_upload_pic {
+    height: 175px;
+    width: 175px;
+  }
+
   .ce_button {
     font-size: 1.4rem;
   }
@@ -169,6 +181,11 @@
 
 @media (max-width: 500px) {
   .ce_image_dropzone {
+    height: 150px;
+    width: 150px;
+  }
+
+  .image_uploader_container {
     height: 150px;
     width: 150px;
   }

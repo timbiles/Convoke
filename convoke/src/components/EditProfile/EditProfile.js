@@ -8,6 +8,7 @@ import './EditProfile.css';
 import ImageUploader from '../Tools/ImageUploader/ImageUploader';
 
 import {
+  getUser,
   getEventsAttending,
   updateName,
   updateEmail,
@@ -26,19 +27,22 @@ class EditProfile extends Component {
   };
 
   componentDidMount() {
-    this.props.getEventsAttending(this.props.user.users_id);
+    // this.props.getEventsAttending(this.props.user.users_id);
+    
   }
   handleSubmit = () => {
-    let { name, email, home_town, img, bio, auth_id } = this.props.user;
-    this.props.updateUserInfo(auth_id, name, email, home_town, img, bio);
+    let { auth_id, name, email, home_town, img, bio } = this.props.user;
+    this.props
+      .updateUserInfo(auth_id, name, email, home_town, img, bio)
+      
   };
 
-  handleKeyDown = e => {
-    if (e.keyCode === 13) {
-      let { name, email, home_town, img, bio, auth_id } = this.props.user;
-      this.props.updateUserInfo(auth_id, name, email, home_town, img, bio);
-    }
-  };
+  // handleKeyDown = e => {
+  //   if (e.keyCode === 13) {
+  //     let { name, email, home_town, img, bio, auth_id } = this.props.user;
+  //     this.props.updateUserInfo(auth_id, name, email, home_town, img, bio);
+  //   }
+  // };
 
   toggleEdit = () => {
     this.setState({ editImage: true });
@@ -72,7 +76,7 @@ class EditProfile extends Component {
             </div>
           ) : (
             <div>
-              <div className='ep_info_holder'>
+              <div className="ep_info_holder">
                 <ContentEditable
                   html={name}
                   onChange={e => updateName(e.target.value)}
@@ -81,7 +85,7 @@ class EditProfile extends Component {
                 <div className="ep_linebreak" />
                 <div className="img-email-edit">
                   {this.state.initialImage && (
-                    <div className='ep_img_cont'>
+                    <div className="ep_img_cont">
                       <input
                         type="image"
                         className="ep_display_img"
@@ -158,6 +162,7 @@ const mapStateToProps = state => state;
 export default connect(
   mapStateToProps,
   {
+    getUser,
     getEventsAttending,
     updateName,
     updateEmail,

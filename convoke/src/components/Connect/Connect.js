@@ -56,7 +56,7 @@ class Connect extends Component {
   };
 
   componentDidMount() {
-    this.props.getUser();
+    // this.props.getUser();
     this.props.getAllUsers();
     this.getMessages();
     // console.log(this.state);
