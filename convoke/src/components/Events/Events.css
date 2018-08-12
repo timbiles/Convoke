@@ -122,6 +122,7 @@
   text-decoration: none;
   color: #369999;
   margin-top: 5%;
+  display: inline-block;
 }
 
 .back_to_events:hover {

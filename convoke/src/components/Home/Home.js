@@ -148,27 +148,29 @@ class Home extends Component {
               alt="hidden menu btn"
             />
           </div>
-          {auth_id.length &&
-            (!name && (
-              <div className="profile_setup">
-                <div className="home_bubble">
-                  <h1 className="bubble_text">Welcome to Convoke!</h1>
-                  <Link className="bubble_text" to="/editprofile">
-                    <h2 className="click_here">
-                      Click here to set up your profile!
-                    </h2>
-                  </Link>
+
+          {auth_id.length
+            ? !name && (
+                <div className="profile_setup">
+                  <div className="home_bubble">
+                    <h1 className="bubble_text">Welcome to Convoke!</h1>
+                    <Link className="bubble_text" to="/editprofile">
+                      <h2 className="click_here">
+                        Click here to set up your profile!
+                      </h2>
+                    </Link>
+                  </div>
+                  <img
+                    className="clippy"
+                    src="http://images1.wikia.nocookie.net/__cb20110716185610/central/images/c/cb/Clippy.png"
+                    alt="clippy"
+                  />
+                  <Delay wait={2000}>
+                    <audio src={bamboo} autoPlay />
+                  </Delay>
                 </div>
-                <img
-                  className="clippy"
-                  src="http://images1.wikia.nocookie.net/__cb20110716185610/central/images/c/cb/Clippy.png"
-                  alt="clippy"
-                />
-                <Delay wait={2000}>
-                  <audio src={bamboo} autoPlay />
-                </Delay>
-              </div>
-            ))}
+              )
+            : null}
         </div>
       </Fragment>
     );

@@ -78,7 +78,7 @@ class Events extends Component {
 
   handleDateChange = date => {
     this.setState({
-      date: moment(date).format('YYYY-MM-DD')
+      date: moment.utc(date).format('YYYY-MM-DD')
     });
   };
 
@@ -126,7 +126,7 @@ class Events extends Component {
     let one = filter === 1 ? ' person is going' : ' people going';
     let date = String(event.date);
     let time = String(event.time);
-    let day = moment(event.date).format('MM/DD/YYYY');
+    let day = moment.utc(event.date).format('MM/DD/YYYY');
     let today = new Date();
     const format = 'h:mm a';
 
@@ -174,7 +174,7 @@ class Events extends Component {
                       src="https://image.flaticon.com/icons/svg/25/25393.svg"
                       alt="calendar"
                     />{' '}
-                    {moment(event.date).format('dddd MMM Do, YYYY')}
+                    {moment.utc(event.date).format('dddd MMM Do, YYYY')}
                   </h3>
 
                   <DatePicker
@@ -291,7 +291,7 @@ class Events extends Component {
                       src="https://image.flaticon.com/icons/svg/25/25393.svg"
                       alt="calendar"
                     />{' '}
-                    {moment(event.date).format('dddd MMM Do, YYYY')}
+                    {moment.utc(event.date).format('dddd MMM Do, YYYY')}
                   </h3>
 
                   <h3>

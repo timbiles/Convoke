@@ -19,13 +19,14 @@ class EventListView extends Component {
       .then(res => {
         swal({
           position: 'top-end',
-          type: 'success',
+          // type: 'success',
           title: 'Added to MyConvoke',
-          // imageUrl:
-          //   'http://images.hellogiggles.com/uploads/2015/09/17/bill_murray.jpg',
-          // imageWidth: 175,
-          // imageHeight: 250,
-          // imageAlt: 'Custom image',
+          text: 'See you there!',
+          imageUrl:
+            'http://images.hellogiggles.com/uploads/2015/09/17/bill_murray.jpg',
+          imageWidth: 125,
+          imageHeight: 200,
+          imageAlt: 'Custom image',
           showConfirmButton: false,
           timer: 1500
         });
@@ -104,7 +105,7 @@ class EventListView extends Component {
                 src="https://image.flaticon.com/icons/svg/25/25393.svg"
                 alt="calendar"
               />{' '}
-              {moment(eachEvent.date).format('dddd, MMM Do, YYYY')}
+              {moment.utc(eachEvent.date).format('dddd, MMM Do, YYYY')}
             </h1>
             <h1 className="elv_date">
               <img

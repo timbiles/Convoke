@@ -50,8 +50,10 @@ class Profile extends Component {
           timer: 1000
         });
       }
-    });
-    window.location.reload();
+    })
+    .then(()=> {
+      this.props.getEventsAttending(this.props.user.users_id);
+    })
   };
 
   render() {
@@ -95,7 +97,7 @@ class Profile extends Component {
                       src={image}
                       alt={auth_id}
                     />
-                    <Link className="back_to_events" to="/">
+                    <Link  to="/">
                       <h3 className="back_to_events">Back to Events Listing</h3>
                     </Link>
                   </div>
