@@ -16,9 +16,9 @@ const login = passport.authenticate('auth0', {
 });
 
 const getUser = (req, res) => {
-  console.log('check this', req.user);
+
   if (!req.user) {
-    return null;
+    res.status(500).send({ message: 'Not Logged in' });
   } else {
     res.status(200).send(req.user);
   }

@@ -136,19 +136,19 @@ const deleteOldEvents = (req, res) => {
     });
 }
 
-const getEvent = (res, req) => {
-  const db = req.app.get('db');
-  const { events_id } = req.params;
+// const getEvent = (res, req) => {
+//   const db = req.app.get('db');
+//   const { events_id } = req.params;
 
-  db.events.get_event_by_events_id([events_id])
-    .then(response => {
-      res.status(200).send(response);
-    })
-    .catch(err => {
-      console.log(err);
-      res.status(500).send(err);
-    });
-}
+//   db.events.get_event_by_events_id([events_id])
+//     .then(response => {
+//       res.status(200).send(response);
+//     })
+//     .catch(err => {
+//       console.log(err);
+//       res.status(500).send(err);
+//     });
+// }
 
 module.exports = {
   getAll,
@@ -160,5 +160,5 @@ module.exports = {
   deleteEventById,
   updateEventInfo,
   deleteOldEvents,
-  getEvent
+  // getEvent
 };

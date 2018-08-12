@@ -15,7 +15,7 @@ const initialState = {
 
 //constants
 const GET_EVENTS = 'GET_EVENTS';
-const GET_EVENT = 'GET_EVENT';
+// const GET_EVENT = 'GET_EVENT';
 const REMOVE_EVENT = 'REMOVE_EVENT';
 const UPDATE_TITLE = 'UPDATE_TITLE';
 const UPDATE_HOST = 'UPDATE_HOST';
@@ -32,12 +32,12 @@ export function getEvents() {
   };
 }
 
-export function getEvent(events_id) {
-  return {
-    type: GET_EVENT,
-    payload: axios.get(`/api/events/${events_id}`)
-  };
-}
+// export function getEvent(events_id) {
+//   return {
+//     type: GET_EVENT,
+//     payload: axios.get(`/api/events/${events_id}`)
+//   };
+// }
 
 export const removeEvent = event => {
   return {

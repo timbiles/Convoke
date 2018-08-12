@@ -7,14 +7,15 @@ const client = new twilio(
 
 const textMessage = (req, res) => {
   let { name, title, senderName } = req.body;
-  // console.log(message);
+  const url = encodeURIComponent(title.trim())  
+
   client.messages
     .create({
-      body: `Hey ${name}You have been invited by ${senderName} to join a convoke event, ${title}! Click the following link to see details!`,
-      to: process.env.TWILIO_TO_NUMBER,
-      from: process.env.TWILIO_FROM_NUMBER
+      body: `Hey ${name}You have been invited by ${senderName} to join a convoke event, ${title}! Click the following link to see details! http://www.convokegroups.com/events/${url}.`,
+      to: process.env.TWILIO_TO_NUM,
+      from: process.env.TWILIO_FROM_NUM
     })
-    .then(message => console.log(message))
+    .then(message => console.log(message.sid))
     .done();
 };
 

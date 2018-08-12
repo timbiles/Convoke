@@ -32,15 +32,37 @@
     text-align: center;
     border-bottom: 1px solid #dbd8cf;
     padding: 2% 0;
+    width: 100%;
+}
+
+.invite_holder h1 {
+    width: 100%;
 }
 
 .invite_container {
     display: flex;
     align-items: center;
+    width: 100%;
+}
+
+.invite_link {
+height: 25px;
+margin: 0 10%;
 }
 
 .invite_link:hover {
     cursor: pointer;
+    transform: scale(1.05);
 }
 
-  
+.invite_icons {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+}
+
+.react_modal {
+    height: 70vh;
+    padding-bottom: 5%;
+}

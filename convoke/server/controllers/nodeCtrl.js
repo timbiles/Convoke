@@ -33,7 +33,6 @@ const eventEmail = (req, res) => {
 
 const inviteEmail = (req, res) => {
   const { email, name, title, senderName } = req.body;
-
   const url = encodeURIComponent(title.trim())
 
   transporter
@@ -42,7 +41,7 @@ const inviteEmail = (req, res) => {
       to: email,
       subject: `Hey ${name}! You have been invited by ${senderName} to join event ${title}!`,
       text: `Click the following link to view the event details.` + '\n' +
-      `http://www.convokegroups.com//events/${url}.`
+      `http://www.convokegroups.com/events/${url}.`
     })
     .catch(err => {
       console.log(err);

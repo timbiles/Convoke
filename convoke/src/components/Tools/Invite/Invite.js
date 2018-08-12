@@ -84,17 +84,25 @@ class Invite extends Component {
     const userMap = users.map(
       e =>
         e.users_id !== this.props.user.users_id && (
-          <div className='invite_container'>
+          <div className="invite_container">
             <div className="invite_holder" key={e.users_id}>
               <h1>{e.name}</h1>
               <img className="invite_img" src={e.img} alt={e.name} />
             </div>
-            <div>
+            <div className='invite_icons'>
               <div onClick={() => this.handleClick(e)}>
-                <h2 className='invite_link'>E-vite</h2>
+                <img
+                  className="invite_link"
+                  src="https://image.flaticon.com/icons/svg/263/263140.svg"
+                  alt="Evite icon"
+                />
               </div>
               <div onClick={() => this.handleClick2(e)}>
-                <h2 className='invite_link'>Text</h2>
+              <img
+                  className="invite_link"
+                  src="https://image.flaticon.com/icons/svg/234/234160.svg"
+                  alt="Text message icon"
+                />
               </div>
             </div>
           </div>
@@ -112,12 +120,12 @@ class Invite extends Component {
           onRequestClose={this.closeModal}
           style={customStyles}
         >
-          <div>
+          <div className='react_modal'>
             <h1 className="invite_text">
               Click someone to Invite them to this event!
             </h1>
 
-            <div className="invite_people_map">{userMap}</div>
+            <div className="invite_people_map">{userMap}</div><br />
           </div>
         </Modal>
       </div>
