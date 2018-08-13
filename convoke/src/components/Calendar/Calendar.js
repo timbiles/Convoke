@@ -7,11 +7,10 @@ import moment from 'moment';
 import './fullcalendar.css';
 import './Calendar.css';
 
-import { getUser, getEventsAttending } from '../../ducks/userReducer';
+import { getUser } from '../../ducks/userReducer';
 
 class Calendar extends Component {
   componentDidMount() {
-    // this.props.getEventsAttending(this.props.user.users_id);
 
     $('#calendar').fullCalendar({
       header: {
@@ -75,7 +74,6 @@ const mapStateToProps = state => state;
 export default connect(
   mapStateToProps,
   {
-    getUser,
-    getEventsAttending
+    getUser
   }
 )(Calendar);

@@ -6,23 +6,31 @@ import './Header.css';
 import Avatar from '../Tools/Avatar/Avatar';
 import Hamburger from '../Tools/Hamburger/Hamburger';
 
-import { getUser, getEventsAttending, getAllUsers } from '../../ducks/userReducer';
+import {
+  getUser,
+  getEventsAttending,
+  getAllUsers
+} from '../../ducks/userReducer';
 import { getEvents } from '../../ducks/eventReducer';
 import { getUserEvents } from '../../ducks/userEventReducer';
 
 class Header extends Component {
   componentDidMount() {
     this.props.getEvents();
-    this.props.getUser();
-      this.props.getEventsAttending(this.props.user.users_id);
-      this.props.getUserEvents();
-      this.props.getAllUsers();
+    this.props
+      .getUser()
 
-      // axios.delete('/api/deleteOldevent');
+      .then(() => {
+        this.props.getEventsAttending(this.props.user.users_id);
+        this.props.getUserEvents();
+        this.props.getAllUsers();
+      });
+
+    // axios.delete('/api/deleteOldevent');
   }
   render() {
     const { auth_id } = this.props.user;
-    
+
     return (
       <div className="header_container">
         <div className="header_link_container">
@@ -52,10 +60,10 @@ class Header extends Component {
                 <h1>Login</h1>
               </a>
             ) : (
-                <div className="header_render_logout">
-                  <Avatar />
-                </div>
-              )}
+              <div className="header_render_logout">
+                <Avatar />
+              </div>
+            )}
           </div>
         </div>
         <Hamburger />

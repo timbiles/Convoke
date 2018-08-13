@@ -10,7 +10,7 @@ import Fade from 'react-reveal/Fade';
 import Map from '../Tools/Map/Map';
 import './EventCard.css';
 
-import { getUser, getEventsAttending } from '../../ducks/userReducer';
+import { getEventsAttending } from '../../ducks/userReducer';
 
 class Card extends Component {
   handleClick = val => {
@@ -20,13 +20,13 @@ class Card extends Component {
       .then(res => {
         swal({
           position: 'top-end',
-          type: 'success',
           title: 'Added to MyConvoke',
-          // imageUrl:
-          //   'http://images.hellogiggles.com/uploads/2015/09/17/bill_murray.jpg',
-          // imageWidth: 175,
-          // imageHeight: 250,
-          // imageAlt: 'Custom image',
+          text: 'See you there!',
+          imageUrl:
+            'http://images.hellogiggles.com/uploads/2015/09/17/bill_murray.jpg',
+          imageWidth: 175,
+          imageHeight: 250,
+          imageAlt: 'Custom image',
           showConfirmButton: false,
           timer: 1500
         });
@@ -37,11 +37,6 @@ class Card extends Component {
           type: 'warning',
           title: 'Oops! You are already going to this event.',
           text: 'See you there!',
-          // imageUrl:
-          //   'https://i.pinimg.com/originals/bc/a8/5f/bca85f46b77d4b2f2e247b13441b4fd8.jpg',
-          // imageWidth: 175,
-          // imageHeight: 250,
-          // imageAlt: 'Custom going image',
           showConfirmButton: false,
           timer: 1500
         });
@@ -255,5 +250,5 @@ const mapStateToProps = state => state;
 
 export default connect(
   mapStateToProps,
-  { getUser, getEventsAttending }
+  { getEventsAttending }
 )(Card);

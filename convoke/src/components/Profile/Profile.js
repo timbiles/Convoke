@@ -14,7 +14,6 @@ import {
   getAllUsers,
   getEventsAttending
 } from '../../ducks/userReducer';
-import { removeEvent } from '../../ducks/eventReducer';
 
 class Profile extends Component {
   componentDidMount() {
@@ -227,7 +226,6 @@ export default connect(
   {
     getUser,
     getAllUsers,
-    removeEvent,
     getEventsAttending
   }
 )(Profile);

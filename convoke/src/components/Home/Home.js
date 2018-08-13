@@ -8,8 +8,8 @@ import EventCard from '../EventCard/EventCard';
 import EventListView from '../EventListView/EventListView';
 import bamboo from './bamboo.mp3';
 
-import { getEvents } from '../../ducks/eventReducer';
-import { getUser, getEventsAttending } from '../../ducks/userReducer';
+
+import { getUser } from '../../ducks/userReducer';
 
 class Home extends Component {
   state = {
@@ -175,5 +175,5 @@ const mapStateToProps = state => state;
 
 export default connect(
   mapStateToProps,
-  { getUser, getEvents, getEventsAttending }
+  { getUser }
 )(Home);

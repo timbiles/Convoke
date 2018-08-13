@@ -16,7 +16,6 @@ const initialState = {
 
 //constants
 const GET_EVENTS = 'GET_EVENTS';
-const REMOVE_EVENT = 'REMOVE_EVENT';
 const UPDATE_TITLE = 'UPDATE_TITLE';
 const UPDATE_HOST = 'UPDATE_HOST';
 const UPDATE_DATE = 'UPDATE_DATE';
@@ -32,13 +31,6 @@ export function getEvents() {
     payload: axios.get('/api/events')
   };
 }
-
-export const removeEvent = event => {
-  return {
-    type: REMOVE_EVENT,
-    payload: axios.delete(`/api/events/${event}`)
-  };
-};
 
 export const updateTitle = title => {
   return {
@@ -114,14 +106,12 @@ export default function eventReducer(state = initialState, action) {
         isLoading: true
       };
     case `${GET_EVENTS}_FULFILLED`:
-    case `${REMOVE_EVENT}_FULFILLED`:
       return {
         ...state,
         isLoading: false,
         events: action.payload.data
       };
     case `${GET_EVENTS}_REJECTED`:
-    case `${REMOVE_EVENT}_REJECTED`:
       return {
         ...state,
         isLoading: false,

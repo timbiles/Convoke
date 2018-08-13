@@ -19,7 +19,6 @@ class EventListView extends Component {
       .then(res => {
         swal({
           position: 'top-end',
-          // type: 'success',
           title: 'Added to MyConvoke',
           text: 'See you there!',
           imageUrl:
@@ -37,11 +36,6 @@ class EventListView extends Component {
           type: 'warning',
           title: 'Oops! You are already going to this event.',
           text: 'See you there!',
-          // imageUrl:
-          //   'https://i.pinimg.com/originals/bc/a8/5f/bca85f46b77d4b2f2e247b13441b4fd8.jpg',
-          // imageWidth: 175,
-          // imageHeight: 250,
-          // imageAlt: 'Custom going image',
           showConfirmButton: false,
           timer: 1500
         });

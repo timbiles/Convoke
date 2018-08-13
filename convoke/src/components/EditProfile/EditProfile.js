@@ -8,8 +8,6 @@ import './EditProfile.css';
 import ImageUploader from '../Tools/ImageUploader/ImageUploader';
 
 import {
-  getUser,
-  getEventsAttending,
   updateName,
   updateEmail,
   updateHomeTown,
@@ -26,10 +24,6 @@ class EditProfile extends Component {
     editImage: false
   };
 
-  componentDidMount() {
-    // this.props.getEventsAttending(this.props.user.users_id);
-    
-  }
   handleSubmit = () => {
     let { auth_id, name, email, home_town, img, bio } = this.props.user;
     this.props
@@ -162,8 +156,6 @@ const mapStateToProps = state => state;
 export default connect(
   mapStateToProps,
   {
-    getUser,
-    getEventsAttending,
     updateName,
     updateEmail,
     updateHomeTown,

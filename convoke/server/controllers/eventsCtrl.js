@@ -48,14 +48,13 @@ const getEvents = (req, res, next) => {
   db.events
     .get_event_by_user_id([users_id])
     .then(response => {
-
       const modifiedResponse = response.map(e => {
         return { ...e, date: JSON.stringify(e.date).substring(1, 11) }
       })
       res.status(200).send(modifiedResponse);
     })
     .catch(err => {
-      console.log(err);
+      console.log('getEvents err', err);
       res.status(500).send(err);
     });
 };

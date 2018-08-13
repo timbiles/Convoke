@@ -21,7 +21,6 @@ const getMessages = (req, res) => {
     .get_messages()
     .then((response) => {
       res.status(200).send(response);
-      console.log(response)
     })
     .catch(err => {
       console.log(err);
