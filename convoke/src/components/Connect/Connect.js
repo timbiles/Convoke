@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import io from 'socket.io-client';
 import _ from 'lodash';
@@ -80,8 +81,10 @@ class Connect extends Component {
 
     let map = Object.values(mapped).map((e, i) => {
       return (
-        <div key={i}>
+        <div className='connect_map_container' key={i}>
+        <Link to={`/users/${this.props.user.users[i].users_id}`}>
           <img className="connect_profile_img" src={e} alt="user profile" />
+          </Link>
           <h1>
             {' '}
             {this.props.user.users[i].img === e &&
@@ -94,7 +97,7 @@ class Connect extends Component {
     return (
       <div className="connect_container">
         <div className="connect_users">
-          <h1 className="connect_title">Find Users</h1>
+          <h1 className="connect_title connect_find">Find Users</h1>
           {map}
         </div>
         <div className="connect_sub_container">
@@ -115,6 +118,8 @@ class Connect extends Component {
             })}
           </div>
           <div className="messaging_input">
+          <h1 className="connect_title">Send Message</h1>
+          
             <input
               type="text"
               placeholder={this.props.user.name || 'Username'}

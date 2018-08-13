@@ -3,9 +3,10 @@
 }
 
 .connect_users {
-  border: 1px solid black;
   width: 25%;
   height: 100%;
+  margin-left: 1%;
+  padding: 1%;
 }
 
 .connect_users h1 {
@@ -37,6 +38,16 @@
   border-bottom: 1px solid #dbd8cf;
 }
 
+.connect_find {
+  cursor: pointer;  
+  
+}
+
+.connect_users:hover .connect_map_container{
+  display: flex;
+  animation: downFade 1.5s;
+}
+
 .messaging_input {
   display: flex;
   flex-direction: column;
@@ -56,6 +67,10 @@
   border-radius: 50%;
   width: 50px;
   height: 50px;
+}
+
+.connect_profile_img:hover {
+  transform: scale(1.03)
 }
 
 .connect_user {
@@ -80,4 +95,14 @@
 
 .connect_bold {
   font-weight: bold;
+}
+
+.connect_map_container {
+  display: none;
+
+}
+
+.connect_map_container h1 {
+  align-self: center;
+  margin-left: 5%;
 }

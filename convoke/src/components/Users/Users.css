@@ -1,0 +1,17 @@
+.users_container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.users_left {
+    background: linear-gradient(to top right, rgb(250, 250, 250) 0%, #fff 90%);
+    width: 100%;
+    border-left: 1px solid #dbd8cf;
+    padding-left: 2%;
+  }
+
+  .users_text {
+      font-weight: bold;
+      margin: 5% 0;
+  }

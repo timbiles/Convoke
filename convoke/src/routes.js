@@ -10,6 +10,7 @@ import Home from './components/Home/Home';
 import Profile from './components/Profile/Profile';
 import EditProfile from './components/EditProfile/EditProfile';
 import Events from './components/Events/Events';
+import Users from './components/Users/Users';
 
 export default (
   <Switch>
@@ -20,7 +21,8 @@ export default (
     <Route path="/create" component={CreateEvent} />  
     <Route path="/profile" component={Profile} />
     <Route path="/Calendar" component={Calendar}/>
-    <Route path="/Connect" component={Connect}/>    
+    <Route path="/Connect" component={Connect}/>  
+    <Route path="/users/:users_id" component={Users} />      
     <Route exact path="/" component={Home} />
     <Route path='*' render={()=> <h1>404</h1>}/>
   </Switch>
