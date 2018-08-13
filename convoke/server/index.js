@@ -29,15 +29,18 @@ const {
   deleteOldEvents
 } = require('./controllers/eventsCtrl');
 const { createMessage, getMessages } = require('./controllers/messageCtrl');
-const { eventEmail, inviteEmail } = require('./controllers/nodeCtrl');
+const {
+  eventEmail,
+  inviteEmail,
+  sendEmail
+} = require('./controllers/nodeCtrl');
 const { textMessage } = require('./controllers/smsCtrl');
 
 const app = express();
 app.use(bodyParser.json());
 
-console.log(`${__dirname}/../build`)
-app.use( express.static( `${__dirname}/../build` ) );
-
+console.log(`${__dirname}/../build`);
+app.use(express.static(`${__dirname}/../build`));
 
 massive(process.env.CONNECTION_STRING)
   .then(db => {
@@ -55,7 +58,6 @@ app.use(
     }
   })
 );
-
 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -92,7 +94,7 @@ app.post('/api/events', createEvent);
 app.delete('/api/delete/:events_id/:users_id', deleteEvent);
 app.delete('/api/deleteEvent/:users_id/:events_id', deleteEventById);
 app.put('/api/updateEventInfo/:id', updateEventInfo);
-app.delete('/api/deleteOldEvent', deleteOldEvents)
+app.delete('/api/deleteOldEvent', deleteOldEvents);
 
 //user endpoints
 app.get('/login', login);
@@ -108,14 +110,15 @@ app.get('/api/messages', getMessages);
 //node endpoints
 app.post('/api/email', eventEmail);
 app.post('/api/invite-email', inviteEmail);
+app.post('/api/send-email', sendEmail);
 
 //twilio endpoints
 app.post('/api/invite-text', textMessage);
 
 //run build
-app.get('*', (req, res)=>{
+app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../build/index.html'));
-})
+});
 
 server = app.listen(port, () => {
   console.log(`Listening on port ${port}.`);

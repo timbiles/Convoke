@@ -39,7 +39,6 @@
 .header_render_logout a {
   display: flex;
   align-items: center;
-  /* justify-content: center; */
 }
 
 .hamburger_container {
@@ -56,9 +55,6 @@
 
 .hamburger_dropdown {
   display: none;
-  /* transition: all .25s ease; */
-  /* transition: all 0.3s ease-in-out 0s, visibility 0s linear 0.3s, z-index 0s linear 0.01s; */
-  
 }
 
 .hamburger_container:hover .hamburger_dropdown {

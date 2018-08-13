@@ -7,8 +7,8 @@
 }
 
 .contacts_box {
-    width: 50%;
-    height: 40%;
+    width: 70%;
+    height: 60%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -16,7 +16,6 @@
     background-color: rgb(205, 218, 214);
     border-radius: .5%;
     margin: 2% 0;
-    position: relative;
     text-align: center;
     padding: 2%;
     border-bottom: 1px solid #dbd8cf;
@@ -24,9 +23,8 @@
 }
 
 .contacts_box h1 {
-    font-size: 40px;
-    position: absolute;
-    top: 0;
+    font-size: 2.3rem;
+    font-weight: bold;
     margin: 5% 0;
     letter-spacing: 5px;
 }
@@ -34,16 +32,41 @@
 .contacts_box p {
     font-size: 1.2rem;
     letter-spacing: 1px;
-    line-height: 2rem;    
+    line-height: 2rem; 
+    margin: 2% 0;   
 }
 
 .email_text {
-    position: absolute;
-    bottom: 0;
     margin-bottom: 5%;    
 }
 
 .contacts_email {
     text-decoration: none;
     color: rgb(153, 151, 151);
+}
+
+@media (max-width: 700px) {
+    .contacts_box h1 {
+        font-size: 1.5;
+    }
+    
+    .contacts_box p {
+        font-size: .8rem;
+    }
+}
+
+@media (max-width: 700px) {
+
+    .contacts_box {
+        width: 80%;
+        height: 55%;
+    }
+
+    .contacts_box h1 {
+        font-size: 1.5;
+    }
+    
+    .contacts_box p {
+        font-size: .8rem;
+    }
 }

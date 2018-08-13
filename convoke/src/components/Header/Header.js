@@ -35,26 +35,19 @@ class Header extends Component {
       <div className="header_container">
         <div className="header_link_container">
           <div className="link">
-            <Link
-              // onClick={() => {
-              //   window.scrollTo({ top: 1000, behavior: 'smooth' });
-              // }}
-              className="link"
-              to="/create"
-            >
-              Create Event
-            </Link>
+            {auth_id && (
+              <Link className="link" to="/create">
+                Create Event
+              </Link>
+            )}
           </div>
           <div className="right_header_links">
-            <Link
-              // onClick={() => {
-              //   window.scroll({ top: 1000, behavior: 'smooth' });
-              // }}
-              className="link"
-              to="/profile"
-            >
-              MyConvoke
-            </Link>
+            {auth_id && (
+              <Link className="link" to="/profile">
+                MyConvoke
+              </Link>
+            )}
+
             {!auth_id.length ? (
               <a className="link" href={process.env.REACT_APP_LOGIN}>
                 <h1>Login</h1>

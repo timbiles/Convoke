@@ -9,9 +9,8 @@
 }
 
 .footer_link_container {
-  margin-right: 100px;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
 }
 
 .footer_icon {
@@ -49,7 +48,7 @@
   text-decoration: none;
   color: #3f3e3e;
   cursor: pointer;
-  padding: 10%;
+  margin: 5%;
 }
 
 .footer_link:hover {
@@ -81,6 +80,7 @@
 
   .foot_link {
     font-size: 0.9rem;
+    margin: 2%;
   }
 
   .copyright {

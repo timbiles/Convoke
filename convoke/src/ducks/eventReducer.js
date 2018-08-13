@@ -9,6 +9,7 @@ const initialState = {
   date: '',
   time: '',
   description: '',
+  img: '',
   location: '',
   isLoading: false,
   didErr: false
@@ -21,6 +22,7 @@ const UPDATE_HOST = 'UPDATE_HOST';
 const UPDATE_DATE = 'UPDATE_DATE';
 const UPDATE_TIME = 'UPDATE_TIME';
 const UPDATE_DESCRIPTION = 'UPDATE_DESCRIPTION';
+const UPDATE_IMG = 'UPDATE_IMG';
 const UPDATE_LOCATION = 'UPDATE_LOCATION';
 const UPDATE_EVENT = 'UPDATE_EVENT';
 
@@ -67,6 +69,13 @@ export const updateDescription = description => {
   };
 };
 
+export const updateImg = img => {
+  return {
+    type: UPDATE_IMG,
+    payload: img
+  };
+};
+
 export const updateLocation = location => {
   return {
     type: UPDATE_LOCATION,
@@ -81,6 +90,7 @@ export const updateEventInfo = (
   date,
   time,
   description,
+  img,
   location
 ) => {
 
@@ -92,6 +102,7 @@ export const updateEventInfo = (
       date,
       time,
       description,
+      img,
       location
     })
   };

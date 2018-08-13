@@ -48,7 +48,6 @@
 .ie_box h2 {
   font-weight: bold;
   letter-spacing: 2px;
-  /* padding: 0 2%; */
 }
 
 .ie_box h3 {
@@ -127,6 +126,12 @@
 
 .back_to_events:hover {
   transform: scale(1.05);
+}
+
+.events_edit_prof {
+  font-size: 1rem;
+  margin: 4% 0;
+  cursor: pointer;
 }
 
 @keyframes ieTitleFade {

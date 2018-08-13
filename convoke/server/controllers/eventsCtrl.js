@@ -112,10 +112,10 @@ const deleteEventById = (req, res, next) => {
 
 const updateEventInfo = (req, res) => {
   const db = req.app.get('db');
-  const { title, host, date, time, description } = req.body;
+  const { title, host, date, time, description, img } = req.body;
 
   db.events
-    .edit_event_by_events_id([req.params.id, title, host, date, time, description])
+    .edit_event_by_events_id([req.params.id, title, host, date, time, description, img])
     .then(response => res.status(200).send(response))
     .catch(err => res.status(500).send(err));
 };

@@ -49,7 +49,25 @@ const inviteEmail = (req, res) => {
     });
 };
 
+const sendEmail = (req, res) => {
+  const { userEmail, email, name, sender, message } = req.body;
+
+  transporter
+    .sendMail({
+      from: 'convoke.meet@gmail.com',
+      to: email,
+      bcc: userEmail,
+      subject: `Hey ${name}! You have a Convoke message from ${sender}!`,
+      text: message
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).send(err);
+    });
+};
+
 module.exports = {
   eventEmail,
-  inviteEmail
+  inviteEmail,
+  sendEmail
 };

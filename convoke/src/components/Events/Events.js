@@ -13,6 +13,7 @@ import './Events.css';
 
 import Map from '../Tools/Map/Map';
 import Weather from '../Tools/Weather/Weather';
+import ImageUploader from '../Tools/ImageUploader/ImageUploader';
 
 import {
   getEvents,
@@ -21,6 +22,7 @@ import {
   updateDate,
   updateTime,
   updateDescription,
+  updateImg,
   updateEventInfo
 } from '../../ducks/eventReducer';
 
@@ -31,7 +33,11 @@ class Events extends Component {
     host: '',
     date: '',
     time: '',
-    description: ''
+    description: '',
+    img: '',
+    uploadedFileCloudinaryUrl: '',
+    initialImage: true,
+    editImage: false
   };
 
   componentDidMount() {
@@ -70,6 +76,16 @@ class Events extends Component {
       });
   };
 
+  toggleEdit = () => {
+    this.setState({ editImage: true });
+    this.setState({ initialImage: false });
+  };
+
+  toggleSubmitEdit = () => {
+    this.setState({ initialImage: true });
+    this.setState({ editImage: false });
+  };
+
   handleInputs = (val, state) => {
     this.setState({
       [state]: val
@@ -89,9 +105,9 @@ class Events extends Component {
   };
 
   handleSubmit = event => {
-    let { eventId, title, host, date, time, description } = this.state;
+    let { eventId, title, host, date, time, description, img } = this.state;
     this.props
-      .updateEventInfo(eventId, title, host, date, time, description)
+      .updateEventInfo(eventId, title, host, date, time, description, img)
       .then(() => {
         this.props.getEvents();
       })
@@ -107,9 +123,12 @@ class Events extends Component {
   };
 
   render() {
-    const { events } = this.props;
+    const { events, updateImg } = this.props;
     const { userEvents } = this.props.userEvents;
-    let { title, host, description } = this.state;
+    let { title, host, description, image } = this.state;
+
+
+    console.log(this.props)
 
     let event =
       events.events.find(e => e.title === this.props.match.params.title) ||
@@ -149,7 +168,42 @@ class Events extends Component {
 
             <div className="ie_box">
               <div className="ie_img_box">
-                <img className="ie_img" src={event.img} alt={event.title} />
+
+                {/* <img className="ie_img" src={event.img} alt={event.title} /> */}
+
+                {this.state.initialImage && (
+                    <div className="ep_img_cont">
+                      <input
+                        type="image"
+                        className="ie_img"
+                        src={this.state.uploadedFileCloudinaryUrl || event.img}
+                        alt={event.auth_id}
+                      />
+                      <h6 className="events_edit_prof" onClick={this.toggleEdit}>
+                        Edit Profile Image
+                      </h6>
+                    </div>
+                  )}
+
+                  {this.state.editImage && (
+                    <form>
+                      <div className="ep_file_upload">
+                        <ImageUploader
+                          // image={this.props.image}
+                          updateImg={updateImg}
+                        />
+
+                        <h6
+                          className="ie_img"
+                          onClick={this.toggleSubmitEdit}
+                        >
+                          Submit Image
+                        </h6>
+                      </div>
+                    </form>
+                  )}
+
+
                 <h2>
                   {filter}
                   {one}
@@ -361,6 +415,7 @@ export default connect(
     updateDate,
     updateTime,
     updateDescription,
+    updateImg,
     updateEventInfo
   }
 )(Events);
