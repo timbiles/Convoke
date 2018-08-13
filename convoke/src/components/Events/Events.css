@@ -122,10 +122,16 @@
   color: #369999;
   margin-top: 5%;
   display: inline-block;
+  width: 100%;
+}
+
+.back_to_events_holder {
+  width: 100%;
+
 }
 
 .back_to_events:hover {
-  transform: scale(1.05);
+  transform: scale(1.02);
 }
 
 .events_edit_prof {

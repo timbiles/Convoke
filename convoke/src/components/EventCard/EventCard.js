@@ -164,7 +164,6 @@ class Card extends Component {
                   {userEvents.length !== 0 && filter}
                 </p>
               </h3>
-
             </div>
           </div>
 
@@ -193,11 +192,8 @@ class Card extends Component {
               {eachEvent.location.replace(', USA', '')}
             </h3>
             {this.props.user.users_id === eachEvent.users_id && (
-              <input
-                className="remove_event_by_id"
-                type="image"
-                src="https://image.flaticon.com/icons/svg/107/107181.svg"
-                alt="trash icon"
+              <div
+                className="elv_remove_event2 home_icon"
                 onClick={e => this.handleDelete(eachEvent.events_id)}
               />
             )}
@@ -211,34 +207,37 @@ class Card extends Component {
             />
 
             <div className="events_info_btn">
-                <input
-                  type="image"
-                  className="events_info_btn"
-                  src="https://cdn0.iconfinder.com/data/icons/mobile-set/154/info-512.png"
-                  alt="info btn"
-                />
-                <div className="events_info_btn_dropdown">
-                  <p>{eachEvent.host}</p>
-                  <p>{moment.utc(eachEvent.date).format('M/D/YYYY')}</p>
-                  <p>{moment(eachEvent.time).format('h:mm a')}</p>
-                  <p>{eachEvent.location.replace(', USA', '')}</p>
-                  <p>
-                    {image1}
-                    {userEvents.length !== 0 && filter}
-                  </p>
+              <input
+                type="image"
+                className="events_info_btn"
+                src="https://cdn0.iconfinder.com/data/icons/mobile-set/154/info-512.png"
+                alt="info btn"
+              />
+              <div className="events_info_btn_dropdown">
+                <p>{eachEvent.host}</p>
+                <p>{moment.utc(eachEvent.date).format('M/D/YYYY')}</p>
+                <p>{moment(eachEvent.time).format('h:mm a')}</p>
+                <p>{eachEvent.location.replace(', USA', '')}</p>
+                <p>
+                  {image1}
+                  {userEvents.length !== 0 && filter}
+                </p>
 
-                  {this.props.user.users_id === eachEvent.users_id && (
-                    <input
-                      className="remove_icon_dropdown"
-                      type="image"
-                      src="https://image.flaticon.com/icons/svg/107/107181.svg"
-                      alt="trash icon"
+                {this.props.user.users_id === eachEvent.users_id && (
+                  <div
+                      className="elv_remove_event3 home_icon"
                       onClick={e => this.handleDelete(eachEvent.events_id)}
                     />
-                  )}
-                </div>
+                )}
+                <input
+                  type="image"
+                  className="events_btn e_btn_info"
+                  src="https://image.flaticon.com/icons/svg/149/149411.svg"
+                  alt="Add to favs btn"
+                  onClick={e => this.handleClick(eachEvent.events_id)}
+                />
               </div>
-
+            </div>
           </div>
         </div>
       </div>

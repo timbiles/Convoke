@@ -104,6 +104,12 @@
   width: 35px;
 }
 
+.e_btn_info {
+  position: absolute;
+  bottom: 0;
+  right: 40%;
+}
+
 .events_btn:hover {
   transform: scale(1.1);
 }
@@ -231,7 +237,7 @@
   height: 20px;
 }
 
-.remove_event_by_id {
+.elv_remove_event2 {
   position: absolute;
   bottom: 0;
   margin: 5%;  
@@ -239,8 +245,30 @@
   width: 35px;
 }
 
-.remove_event_by_id:hover {
-  transform: scale(1.1)
+.elv_remove_event3 {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  height: 35px;
+  width: 35px;
+}
+
+.elv_remove_event3 {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  height: 35px;
+  width: 35px;
+  cursor: pointer;
+  background: url("https://image.flaticon.com/icons/svg/107/107181.svg") no-repeat;
+  background-size: 30px;
+}
+
+.elv_remove_event3:hover {
+  background:url('http://res.cloudinary.com/dwvrok1le/image/upload/v1534177848/qbisucuksh08pcdrzvym.png');
+
+  background-size: 40px;
+  /* transform: translateX(-20px); */
 }
 
 .remove_icon_dropdown {
@@ -259,6 +287,20 @@
 .showing_description {
   padding: 0 5%;
   text-align: center;
+}
+
+.elv_remove_event2 {
+  height: 35px;
+  width: 35px;
+  cursor: pointer;
+  background: url("https://image.flaticon.com/icons/svg/107/107181.svg") no-repeat;
+  background-size: 30px;
+}
+
+.elv_remove_event2:hover {
+  background:url('http://res.cloudinary.com/dwvrok1le/image/upload/v1534177848/qbisucuksh08pcdrzvym.png');
+  background-size: 40px;
+  /* transform: translateX(-10px); */
 }
 
 @keyframes wobble-hor-bottom {
@@ -330,7 +372,6 @@
   .back_flip {
     width: 100%;
     height: 100%;
-    /* overflow: hidden; */
   }
 
   .google_map {
@@ -350,6 +391,14 @@
   .events_container_img {
     height: 40vh;
     object-fit: cover; 
+  }
+
+  .events_btn {
+    display: none;
+  }
+
+  .e_btn_info {
+    display: block;
   }
 
   .events_info_btn {

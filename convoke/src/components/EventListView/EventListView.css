@@ -72,6 +72,13 @@
   height: 35px;
   width: 35px;
   cursor: pointer;
+  background: url("https://image.flaticon.com/icons/svg/107/107181.svg") no-repeat;
+  background-size: 30px;
+}
+
+.elv_remove_event:hover {
+  background:url('http://res.cloudinary.com/dwvrok1le/image/upload/v1534177848/qbisucuksh08pcdrzvym.png');
+  background-size: 40px;
 }
 
 .home_icon:hover {

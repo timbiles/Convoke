@@ -1,0 +1,1 @@
+SELECT count(*) FROM user_events where events_id = $1;

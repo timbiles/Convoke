@@ -27,9 +27,7 @@ class Connect extends Component {
     });
 
     const addMessage = data => {
-      console.log(data);
       this.setState({ messages: [...this.state.messages, data] });
-      console.log(this.state.messages);
 
       axios.post(`/api/message/${this.props.user.users_id}`, {
         author: this.props.user.name,
@@ -39,7 +37,6 @@ class Connect extends Component {
 
     this.sendMessage = e => {
       e.preventDefault();
-      console.log(this.props);
       this.socket.emit('SEND_MESSAGE', {
         author: this.props.user.name || this.state.username,
         message: this.state.message,
@@ -49,18 +46,20 @@ class Connect extends Component {
     };
   }
 
+  handleKeyDown = e => {
+    e.keyCode === 13 && this.sendMessage(e);
+    
+  };
+
   getMessages = () => {
     axios.get('/api/messages').then(res => {
-      // console.log(res.data);
       this.setState({ ...this.state, messages: res.data });
     });
   };
 
   componentDidMount() {
-    // this.props.getUser();
     this.props.getAllUsers();
     this.getMessages();
-    // console.log(this.state);
   }
 
   handleChange = e => {
@@ -69,7 +68,6 @@ class Connect extends Component {
 
   handleClick = e => {
     this.setState({ filteredPeople: e });
-    // console.log(this.state.filteredPeople);
   };
 
   render() {
@@ -81,9 +79,9 @@ class Connect extends Component {
 
     let map = Object.values(mapped).map((e, i) => {
       return (
-        <div className='connect_map_container' key={i}>
-        <Link to={`/users/${this.props.user.users[i].users_id}`}>
-          <img className="connect_profile_img" src={e} alt="user profile" />
+        <div className="connect_map_container" key={i}>
+          <Link to={`/users/${this.props.user.users[i].users_id}`}>
+            <img className="connect_profile_img" src={e} alt="user profile" />
           </Link>
           <h1>
             {' '}
@@ -118,8 +116,8 @@ class Connect extends Component {
             })}
           </div>
           <div className="messaging_input">
-          <h1 className="connect_title">Send Message</h1>
-          
+            <h1 className="connect_title">Send Message</h1>
+
             <input
               type="text"
               placeholder={this.props.user.name || 'Username'}
@@ -133,6 +131,7 @@ class Connect extends Component {
               className="messaging_form"
               value={this.state.message}
               onChange={e => this.setState({ message: e.target.value })}
+              onKeyDown={e => this.handleKeyDown(e)}
             />
             <br />
             <h2 onClick={this.sendMessage} className="message_btn">

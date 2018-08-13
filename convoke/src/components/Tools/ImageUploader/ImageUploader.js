@@ -32,7 +32,6 @@ export default class ImageUploader extends Component {
           image: response.body.secure_url
         });
         this.props.updateImg(response.body.secure_url);
-        this.props.callbackFromParent(this.state.image)
       }
     });
   };

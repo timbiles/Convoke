@@ -20,6 +20,7 @@ const {
 const {
   getAll,
   getUserEvents,
+  getUserEventCount,
   createEvent,
   getEvents,
   addEvent,
@@ -88,6 +89,7 @@ passport.deserializeUser((user, done) => {
 //events end-points
 app.get('/api/events', getAll);
 app.get('/api/user-events', getUserEvents);
+app.get('/api/user-event/count/:events_id', getUserEventCount)
 app.get('/api/events/:users_id', getEvents);
 app.post('/api/add-event/:events_id/:users_id', addEvent);
 app.post('/api/events', createEvent);

@@ -26,17 +26,8 @@ class EditProfile extends Component {
 
   handleSubmit = () => {
     let { auth_id, name, email, home_town, img, bio } = this.props.user;
-    this.props
-      .updateUserInfo(auth_id, name, email, home_town, img, bio)
-      
+    this.props.updateUserInfo(auth_id, name, email, home_town, img, bio);
   };
-
-  // handleKeyDown = e => {
-  //   if (e.keyCode === 13) {
-  //     let { name, email, home_town, img, bio, auth_id } = this.props.user;
-  //     this.props.updateUserInfo(auth_id, name, email, home_town, img, bio);
-  //   }
-  // };
 
   toggleEdit = () => {
     this.setState({ editImage: true });
@@ -134,7 +125,6 @@ class EditProfile extends Component {
                 <div>
                   <Link className="edit_submit_btn" to="/profile">
                     <h1
-                      onKeyDown={this.handleKeyDown}
                       className="edit_submit_btn"
                       onClick={() => this.handleSubmit()}
                     >

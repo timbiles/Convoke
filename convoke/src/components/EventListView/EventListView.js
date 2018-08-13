@@ -166,15 +166,10 @@ class EventListView extends Component {
                 />
 
                 {this.props.user.users_id === eachEvent.users_id && (
-                  // <img className='elv_remove_initial' src="" alt="trash can"/>
-
-                  <input
-                    className="elv_remove_event home_icon"
-                    type="image"
-                    src="https://image.flaticon.com/icons/svg/107/107181.svg"
-                    alt="trash icon"
-                    onClick={e => this.handleDelete(eachEvent.events_id)}
-                  />
+                    <div
+                      className="elv_remove_event home_icon"
+                      onClick={e => this.handleDelete(eachEvent.events_id)}
+                    />
                 )}
               </div>
             </div>

@@ -125,10 +125,9 @@ class Events extends Component {
   render() {
     const { events, updateImg } = this.props;
     const { userEvents } = this.props.userEvents;
-    let { title, host, description, image } = this.state;
+    let { title, host, description } = this.state;
 
 
-    console.log(this.props)
 
     let event =
       events.events.find(e => e.title === this.props.match.params.title) ||
@@ -189,7 +188,6 @@ class Events extends Component {
                     <form>
                       <div className="ep_file_upload">
                         <ImageUploader
-                          // image={this.props.image}
                           updateImg={updateImg}
                         />
 
@@ -204,13 +202,13 @@ class Events extends Component {
                   )}
 
 
-                <h2>
+                <div>
                   {filter}
                   {one}
-                  <Link className="back_to_events" to="/">
+                  <Link className="back_to_events_holder" to="/">
                     <h3 className="back_to_events">Back to Events Listing</h3>
                   </Link>
-                </h2>
+                </div>
               </div>
               <div className="ie_info_container">
                 <div className="ie_info_one">
