@@ -8,12 +8,13 @@ import axios from 'axios';
 import ContentEditable from 'react-contenteditable';
 import DatePicker from 'react-custom-date-picker';
 import TimePicker from 'rc-time-picker';
+import Dropzone from 'react-dropzone';
+import request from 'superagent';
 
 import './Events.css';
 
 import Map from '../Tools/Map/Map';
 import Weather from '../Tools/Weather/Weather';
-import ImageUploader from '../Tools/ImageUploader/ImageUploader';
 
 import {
   getEvents,
@@ -26,6 +27,10 @@ import {
   updateEventInfo
 } from '../../ducks/eventReducer';
 
+const CLOUDINARY_UPLOAD_URL =
+  'https://api.cloudinary.com/v1_1/dwvrok1le/upload';
+const CLOUDINARY_UPLOAD_PRESET = 'ncjyrxth';
+
 class Events extends Component {
   state = {
     eventId: '',
@@ -34,7 +39,7 @@ class Events extends Component {
     date: '',
     time: '',
     description: '',
-    img: '',
+    image: '',
     uploadedFileCloudinaryUrl: '',
     initialImage: true,
     editImage: false
@@ -52,9 +57,33 @@ class Events extends Component {
       host: event.host,
       date: event.date,
       time: event.time,
-      description: event.description
+      description: event.description,
+      image: event.img
     });
   }
+
+  onImageDrop = files => {
+    this.handleImageUpload(files[0]);
+  };
+
+  handleImageUpload = file => {
+    let upload = request
+      .post(CLOUDINARY_UPLOAD_URL)
+      .field('upload_preset', CLOUDINARY_UPLOAD_PRESET)
+      .field('file', file);
+
+    upload.end((err, response) => {
+      if (err) {
+        console.log(err);
+      }
+      if (response.body.secure_url !== '') {
+        this.setState({
+          image: response.body.secure_url
+        });
+        this.props.updateImg(response.body.secure_url);
+      }
+    });
+  };
 
   handleClick = val => {
     axios
@@ -105,9 +134,9 @@ class Events extends Component {
   };
 
   handleSubmit = event => {
-    let { eventId, title, host, date, time, description, img } = this.state;
+    let { eventId, title, host, date, time, description, image } = this.state;
     this.props
-      .updateEventInfo(eventId, title, host, date, time, description, img)
+      .updateEventInfo(eventId, title, host, date, time, description, image)
       .then(() => {
         this.props.getEvents();
       })
@@ -126,8 +155,6 @@ class Events extends Component {
     const { events, updateImg } = this.props;
     const { userEvents } = this.props.userEvents;
     let { title, host, description } = this.state;
-
-
 
     let event =
       events.events.find(e => e.title === this.props.match.params.title) ||
@@ -167,40 +194,54 @@ class Events extends Component {
 
             <div className="ie_box">
               <div className="ie_img_box">
-
                 {/* <img className="ie_img" src={event.img} alt={event.title} /> */}
 
                 {this.state.initialImage && (
-                    <div className="ep_img_cont">
-                      <input
-                        type="image"
-                        className="ie_img"
-                        src={this.state.uploadedFileCloudinaryUrl || event.img}
-                        alt={event.auth_id}
-                      />
-                      <h6 className="events_edit_prof" onClick={this.toggleEdit}>
-                        Edit Profile Image
+                  <div className="ep_img_cont">
+                    <input
+                      type="image"
+                      className="ie_img"
+                      src={this.state.uploadedFileCloudinaryUrl || event.img}
+                      alt={event.auth_id}
+                    />
+                    <h6 className="events_edit_prof" onClick={this.toggleEdit}>
+                      Edit Profile Image
+                    </h6>
+                  </div>
+                )}
+
+                {this.state.editImage && (
+                  <form>
+                    <div className="ep_file_upload">
+                      <Dropzone
+                        onDrop={this.onImageDrop}
+                        multiple={false}
+                        accept="image/*"
+                        className="ce_image_dropzone"
+                      >
+                        <div>
+                          {this.state.image === '' ? (
+                            <p className="ce_dropzone_text">
+                              Drop an image or click to select a file to upload.
+                            </p>
+                          ) : (
+                            <div className="image_uploader_container">
+                              <img
+                                className="ep_upload_pic"
+                                src={this.state.image}
+                                alt="event pic"
+                              />
+                            </div>
+                          )}
+                        </div>
+                      </Dropzone>
+
+                      <h6 className="ie_img" onClick={this.toggleSubmitEdit}>
+                        Submit Image
                       </h6>
                     </div>
-                  )}
-
-                  {this.state.editImage && (
-                    <form>
-                      <div className="ep_file_upload">
-                        <ImageUploader
-                          updateImg={updateImg}
-                        />
-
-                        <h6
-                          className="ie_img"
-                          onClick={this.toggleSubmitEdit}
-                        >
-                          Submit Image
-                        </h6>
-                      </div>
-                    </form>
-                  )}
-
+                  </form>
+                )}
 
                 <div>
                   {filter}
