@@ -182,7 +182,7 @@ class Events extends Component {
     return (
       <div className="ie_container">
         {!event ? (
-          <h1>USER NOT FOUND</h1>
+          <h1>EVENT NOT FOUND</h1>
         ) : this.props.user.users_id === event.users_id ? (
           <div className="events_viewbox">
             <ContentEditable

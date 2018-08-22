@@ -37,8 +37,7 @@ class CreateEvent extends Component {
     this.props.create.time = time;
   };
 
-  refreshPage = () => {
-  };
+  refreshPage = () => {};
 
   handleSubmit = id => {
     let {
@@ -75,17 +74,16 @@ class CreateEvent extends Component {
           timer: 1000
         });
       });
-    axios
-      .post(`/api/email`, {
-        email,
-        name,
-        title,
-        date,
-        time,
-        location,
-        description
-      });
-      window.location.reload(true)
+    axios.post(`/api/email`, {
+      email,
+      name,
+      title,
+      date,
+      time,
+      location,
+      description
+    });
+    window.location.reload(true);
   };
 
   render() {
@@ -176,10 +174,7 @@ class CreateEvent extends Component {
               style={{ width: 100 }}
             />
 
-            <Location 
-              updateLocation={updateLocation}
-              location={location}
-              />
+            <Location updateLocation={updateLocation} location={location} />
 
             <label className="has-float-label">
               <input
