@@ -1,2 +1,2 @@
 DELETE FROM events
-WHERE date < now();
+WHERE date < 'yesterday';

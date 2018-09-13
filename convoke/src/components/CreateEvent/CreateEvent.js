@@ -87,6 +87,7 @@ class CreateEvent extends Component {
   };
 
   render() {
+    
     const {
       updateEventName,
       updateHost,

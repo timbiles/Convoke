@@ -85,7 +85,6 @@ class Card extends Component {
   render() {
     const { eachEvent } = this.props;
     const { userEvents } = this.props.userEvents;
-
     let mapped = _.mapValues(userEvents, function(e) {
       return e.events_id;
     });
@@ -215,7 +214,7 @@ class Card extends Component {
               />
               <div className="events_info_btn_dropdown">
                 <p>{eachEvent.host}</p>
-                <p>{moment.utc(eachEvent.date).format('M/D/YYYY')}</p>
+                {/* <p>{moment.utc(date).format('M/D/YYYY')}</p> */}
                 <p>{moment(eachEvent.time).format('h:mm a')}</p>
                 <p>{eachEvent.location.replace(', USA', '')}</p>
                 <p>
