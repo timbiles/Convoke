@@ -10,6 +10,7 @@ import Fade from 'react-reveal/Fade';
 import './EventListView.css';
 
 import { getUser, getEventsAttending } from '../../ducks/userReducer';
+import { getEvents } from '../../ducks/eventReducer';
 
 class EventListView extends Component {
   handleClick = val => {
@@ -62,7 +63,9 @@ class EventListView extends Component {
         });
         axios
           .delete(`/api/deleteEvent/${this.props.user.users_id}/${e}`)
-
+          .then(() => {
+            this.props.getEvents();
+          })
           .catch(() => {
             swal({
               position: 'top-end',
@@ -166,10 +169,10 @@ class EventListView extends Component {
                 />
 
                 {this.props.user.users_id === eachEvent.users_id && (
-                    <div
-                      className="elv_remove_event home_icon"
-                      onClick={e => this.handleDelete(eachEvent.events_id)}
-                    />
+                  <div
+                    className="elv_remove_event home_icon"
+                    onClick={e => this.handleDelete(eachEvent.events_id)}
+                  />
                 )}
               </div>
             </div>
@@ -184,5 +187,5 @@ const mapStateToProps = state => state;
 
 export default connect(
   mapStateToProps,
-  { getUser, getEventsAttending }
+  { getUser, getEventsAttending, getEvents }
 )(EventListView);

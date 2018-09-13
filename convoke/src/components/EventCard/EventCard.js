@@ -11,6 +11,7 @@ import Map from '../Tools/Map/Map';
 import './EventCard.css';
 
 import { getEventsAttending } from '../../ducks/userReducer';
+import { getEvents } from '../../ducks/eventReducer';
 
 class Card extends Component {
   handleClick = val => {
@@ -78,7 +79,7 @@ class Card extends Component {
         }
       })
       .then(() => {
-        this.context.history.push('/');
+        this.props.getEvents();
       });
   };
 
@@ -224,9 +225,9 @@ class Card extends Component {
 
                 {this.props.user.users_id === eachEvent.users_id && (
                   <div
-                      className="elv_remove_event3 home_icon"
-                      onClick={e => this.handleDelete(eachEvent.events_id)}
-                    />
+                    className="elv_remove_event3 home_icon"
+                    onClick={e => this.handleDelete(eachEvent.events_id)}
+                  />
                 )}
                 <input
                   type="image"
@@ -248,5 +249,5 @@ const mapStateToProps = state => state;
 
 export default connect(
   mapStateToProps,
-  { getEventsAttending }
+  { getEventsAttending, getEvents }
 )(Card);
