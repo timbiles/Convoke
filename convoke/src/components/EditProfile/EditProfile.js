@@ -107,7 +107,7 @@ class EditProfile extends Component {
                     />
                     <div className="ep_linebreak" />
                     <h3>Home Town</h3>
-                    <ContentEditable
+                    <ContentEditable                    
                       html={home_town}
                       onChange={e => updateHomeTown(e.target.value)}
                       className="profile_editable"
